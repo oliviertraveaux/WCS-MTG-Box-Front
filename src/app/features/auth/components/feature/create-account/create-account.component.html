@@ -1,0 +1,109 @@
+<section class="register">
+
+  <div class="register-card">
+    <h1 class="register-title">Inscription</h1>
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+
+      <!-- UserName  -->
+      <mat-step [stepControl]="userNameFormGroup">
+        <form [formGroup]="userNameFormGroup">
+          <ng-template matStepLabel>Nom d'utilisateur</ng-template>
+          <mat-form-field>
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput  formControlName="userName" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Email  -->
+      <mat-step [stepControl]="emailFormGroup">
+        <form [formGroup]="emailFormGroup">
+          <ng-template matStepLabel>Email</ng-template>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Password  -->
+      <mat-step [stepControl]="passwordFormGroup">
+        <form [formGroup]="passwordFormGroup">
+          <ng-template matStepLabel>Mot de passe</ng-template>
+          <mat-form-field>
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password"  formControlName="password" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Confirm Password -->
+      <mat-step [stepControl]="confirmPasswordFormGroup">
+        <form [formGroup]="confirmPasswordFormGroup">
+          <ng-template matStepLabel>Confirmer le mot de passe</ng-template>
+          <mat-form-field>
+            <mat-label>Confirmer le mot de passe</mat-label>
+            <input matInput type="password"  formControlName="confirmPassword" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Postal Code  -->
+      <mat-step [stepControl]="postCodeFormGroup">
+        <form [formGroup]="postCodeFormGroup">
+          <ng-template matStepLabel>Code Postal</ng-template>
+          <mat-form-field>
+            <mat-label>Code Postal</mat-label>
+            <input matInput  formControlName="postCode" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- City -->
+      <mat-step [stepControl]="cityFormGroup">
+        <form [formGroup]="cityFormGroup">
+          <ng-template matStepLabel>Ville</ng-template>
+          <mat-form-field>
+            <mat-label>Ville</mat-label>
+            <input matInput  formControlName="city" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Final Step -->
+      <mat-step>
+        <ng-template matStepLabel>Validation</ng-template>
+        <form (submit)="onSubmit()">
+          <div>
+            <button  type="submit"mat-button  class="button">Confirmer l'inscription</button>
+            <button  type="button" mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </form>
+      </mat-step>
+
+    </mat-stepper>
+  </div>
+</section>
