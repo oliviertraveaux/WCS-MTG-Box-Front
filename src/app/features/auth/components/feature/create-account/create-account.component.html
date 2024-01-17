@@ -92,18 +92,18 @@
           </div>
         </form>
       </mat-step>
+    </mat-stepper>
 
       <!-- Final Step -->
-      <mat-step>
-        <ng-template matStepLabel>Validation</ng-template>
+
         <form (submit)="onSubmit()">
-          <div>
-            <button  type="submit"mat-button  class="button">Confirmer l'inscription</button>
-            <button  type="button" mat-button (click)="stepper.reset()">Reset</button>
+          <div class="button">
+            <button  mat-button  type="submit" class="button">Confirmer l'inscription</button>
+            <button   mat-button  type="button"  (click)="stepper.reset()">Réinitialiser</button>
           </div>
         </form>
-      </mat-step>
 
-    </mat-stepper>
+
   </div>
+
 </section>
