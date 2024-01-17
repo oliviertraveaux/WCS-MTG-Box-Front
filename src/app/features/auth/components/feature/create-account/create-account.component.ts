@@ -66,13 +66,13 @@ export class CreateAccountComponent {
     this.registerService.register(formData).subscribe({
       next: (response) => {
         console.log('Registration successful', response);
-        this._snackBar.open('Inscription réussie ✅ ', 'Fermer', {
+        this._snackBar.open(' ✅  Inscription réussie', 'Fermer', {
           duration: 3000,
         });
       },
       error: (error) => {
         console.error('Registration failed ❌', error);
-        this._snackBar.open("Erreur lors de l'inscription", 'Fermer', {
+        this._snackBar.open(" ⚠️ Erreur lors de l'inscription ️", 'Fermer', {
           duration: 3000,
         });
 
