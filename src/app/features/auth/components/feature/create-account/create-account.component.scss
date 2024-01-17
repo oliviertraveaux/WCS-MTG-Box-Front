@@ -1,5 +1,9 @@
 
-
+.section {
+  display: flex;
+  justify-content: center;
+  width: 80vh;
+}
 
 
   .register-card {
@@ -15,6 +19,10 @@
     padding: 1rem;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 
+  }
+
+  button{
+    gap: 20px;
   }
 
   .button {

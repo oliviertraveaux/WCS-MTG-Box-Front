@@ -13,7 +13,7 @@
             <input matInput  formControlName="userName" required>
           </mat-form-field>
           <div>
-            <button mat-button matStepperNext>Suivant</button>
+            <button mat-raised-button color="accent" matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
@@ -27,8 +27,8 @@
             <input matInput formControlName="email" required>
           </mat-form-field>
           <div>
-            <button mat-button matStepperPrevious>Retour</button>
-            <button mat-button matStepperNext>Suivant</button>
+
+            <button mat-raised-button color="accent"  matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
@@ -42,8 +42,8 @@
             <input matInput type="password"  formControlName="password" required>
           </mat-form-field>
           <div>
-            <button mat-button matStepperPrevious>Retour</button>
-            <button mat-button matStepperNext>Suivant</button>
+
+            <button mat-raised-button color="accent"  matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
@@ -57,8 +57,8 @@
             <input matInput type="password"  formControlName="confirmPassword" required>
           </mat-form-field>
           <div>
-            <button mat-button matStepperPrevious>Retour</button>
-            <button mat-button matStepperNext>Suivant</button>
+
+            <button mat-raised-button color="accent"  matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
@@ -72,8 +72,8 @@
             <input matInput  formControlName="postCode" required>
           </mat-form-field>
           <div>
-            <button mat-button matStepperPrevious>Retour</button>
-            <button mat-button matStepperNext>Suivant</button>
+
+            <button mat-raised-button color="accent"  matStepperNext>Suivant</button>
           </div>
         </form>
       </mat-step>
@@ -87,8 +87,7 @@
             <input matInput  formControlName="city" required>
           </mat-form-field>
           <div>
-            <button mat-button matStepperPrevious>Retour</button>
-            <button mat-button matStepperNext>Suivant</button>
+
           </div>
         </form>
       </mat-step>
@@ -98,8 +97,8 @@
 
         <form (submit)="onSubmit()">
           <div class="button">
-            <button  mat-button  type="submit" class="button">Confirmer l'inscription</button>
-            <button   mat-button  type="button"  (click)="stepper.reset()">Réinitialiser</button>
+            <button mat-raised-button color="primary" type="submit">Confirmer l'inscription</button>
+            <button   mat-raised-button color="primary" type="button" (click)="stepper.reset()">Réinitialiser</button>
           </div>
         </form>
 
