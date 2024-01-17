@@ -7,13 +7,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {RegisterService} from "../../../shared/register.service";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+
 
 @Component({
   selector: 'app-create-account',
   standalone: true,
   imports: [
     CommonModule, MatStepperModule, MatInputModule, MatSelectModule, MatButtonModule,
-    FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
+    FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSnackBarModule
   ],
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.scss']
@@ -43,8 +45,9 @@ export class CreateAccountComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private registerService: RegisterService
-              ) {}
+    private registerService: RegisterService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   passwordsMatch = true;
 
@@ -63,10 +66,15 @@ export class CreateAccountComponent {
     this.registerService.register(formData).subscribe({
       next: (response) => {
         console.log('Registration successful', response);
-
+        this._snackBar.open(' ✅  Inscription réussie', 'Fermer', {
+          duration: 3000,
+        });
       },
       error: (error) => {
-        console.error('Registration failed', error);
+        console.error('Registration failed ❌', error);
+        this._snackBar.open(" ⚠️ Erreur lors de l'inscription ️", 'Fermer', {
+          duration: 3000,
+        });
 
       }
     });
