@@ -78,7 +78,7 @@
               "browserTarget": "WCS-MTG-Box-Front:build:production"
             },
             "development": {
-              "browserTarget": "WCS-MTG-Box-Front:build:development"
+              "browserTarget": "WCS-MTG-Box-Front:build:development",
 
             }
           },

@@ -11,7 +11,6 @@ import {AuthService} from "../../features/auth/shared/services/auth.service";
   standalone: true,
   imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, RouterLink],
   templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent {
 

@@ -1,7 +1,9 @@
-<div class="main-container">
+<div class="flex h-screen w-screen flex-col">
     <app-topbar></app-topbar>
-  <div class="router-container">
-    <router-outlet></router-outlet>
-  </div>
-    <app-footer></app-footer>
+    <div class="flex flex-grow overflow-y-auto">
+        <router-outlet></router-outlet>
+    </div>
+    <div *ngIf="(currentBreakpoint$ | async)?.includes(Breakpoints.Small)">
+        <app-footer />
+    </div>
 </div>
