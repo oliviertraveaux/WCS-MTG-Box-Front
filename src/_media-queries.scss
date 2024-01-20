@@ -1,8 +1,14 @@
-$screen-sm: 576px;
-$screen-md: 768px;
-$screen-lg: 992px;
-$screen-xl: 1200px;
-$screen-xxl: 1400px;
+$screen-xs: 599.98px;
+$screen-sm: 600px;
+$screen-md: 960px;
+$screen-lg: 1280px;
+$screen-xl: 1920px;
+
+@mixin xs {
+  @media only screen and (min-width: $screen-xs) {
+    @content;
+  }
+}
 
 @mixin sm {
   @media only screen and (min-width: $screen-sm) {
@@ -24,12 +30,6 @@ $screen-xxl: 1400px;
 
 @mixin xl {
   @media only screen and (min-width: $screen-xl) {
-    @content;
-  }
-}
-
-@mixin xxl {
-  @media only screen and (min-width: $screen-xxl) {
     @content;
   }
 }

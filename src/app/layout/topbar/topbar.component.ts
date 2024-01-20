@@ -10,7 +10,6 @@ import {RouterLink} from "@angular/router";
   standalone: true,
   imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, RouterLink],
   templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent {
 
