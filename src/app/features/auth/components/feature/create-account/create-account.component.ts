@@ -65,35 +65,33 @@ export class CreateAccountComponent {
 
       // Check if the passwords match
       if (this.passwordFormGroup.value.password !== this.confirmPasswordFormGroup.value.confirmPassword) {
-        this._snackBar.open("Les mots de passe ne correspondent pas", 'Fermer', {
+        this._snackBar.open("❌ Les mots de passe ne correspondent pas", 'Fermer', {
           duration: 3000,
         });
         return;
       }
 
-      // Extract username and email from the form groups
+
       const username = this.userNameFormGroup.get('userName')?.value ?? "";
       const email = this.emailFormGroup.get('email')?.value ?? '';
 
-      // Check availability of username and email
       this.registerService.checkAvailability(username, email).subscribe({
         next: (response) => {
-
-const responseFix = JSON.parse(response);
-console.log("Response from server:", response);
-            if (response === "Username already exists") {
-              this._snackBar.open("Le nom d'utilisateur est déjà utilisé", 'Fermer', {duration: 3000});
-            } else if (response === "Email already exists") {
-              this._snackBar.open("L'adresse email est déjà utilisée", 'Fermer', {duration: 3000});
+          console.log("Response from server:", response);
 
 
-            }
-
-          this.performRegistration();
+          if (response.success === "Username already exists") {
+            this._snackBar.open("❌ Le nom d'utilisateur est déjà utilisé", 'Fermer', { duration: 3000 });
+          } else if (response.success === "Email already exists") {
+            this._snackBar.open(" ❌ L'adresse email est déjà utilisée", 'Fermer', { duration: 3000 });
+          } else {
+            // Si c'est dispo on effectue l'inscription
+            this.performRegistration();
+          }
         },
         error: (error) => {
-          // Gérer l'erreur
           console.error('Error:', error);
+          this._snackBar.open("⚠️ Erreur lors de la vérification de la disponibilité", 'Fermer', { duration: 3000 });
         }
       });
     }}
