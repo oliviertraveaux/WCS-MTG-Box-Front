@@ -7,7 +7,7 @@ import { Router} from "@angular/router";
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = '/api/v1/login'; // Update with your backend URL
+  private loginUrl = '/api/v1/login';
 
 
   constructor(private http: HttpClient,private router: Router) {}
@@ -18,14 +18,12 @@ export class AuthService {
 
 
   isAuthenticated(): boolean {
-    // Vérifiez si un token JWT est présent dans le stockage local
     return !!localStorage.getItem('authToken');
   }
 
 
   logout() {
     localStorage.removeItem('authToken');
-    // Redirect to login or home page
     this.router.navigate(['/login']);
   }
 

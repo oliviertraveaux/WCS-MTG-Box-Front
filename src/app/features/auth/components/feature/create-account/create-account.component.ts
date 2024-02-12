@@ -46,7 +46,8 @@ export class CreateAccountComponent {
   isLinear = false;
   hidePassword = true;
   hideConfirmPassword = true;
-
+userNameisAvailable : boolean = true;
+  emailIsAvailable : boolean = true;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -58,73 +59,73 @@ export class CreateAccountComponent {
 
 
   onSubmit() {
-    // First, check if all form groups are valid
-    if (this.userNameFormGroup.valid &&
-      this.emailFormGroup.valid &&
-      this.passwordFormGroup.valid &&
-      this.confirmPasswordFormGroup.valid &&
-      this.postCodeFormGroup.valid &&
-      this.cityFormGroup.valid) {
+    if (this.userNameFormGroup.valid && this.emailFormGroup.valid &&
+      this.passwordFormGroup.valid && this.confirmPasswordFormGroup.valid &&
+      this.postCodeFormGroup.valid && this.cityFormGroup.valid &&
+      this.userNameisAvailable && this.emailIsAvailable) {
 
-      // Check if the passwords match
       if (this.passwordFormGroup.value.password !== this.confirmPasswordFormGroup.value.confirmPassword) {
-        this._snackBar.open("❌ Les mots de passe ne correspondent pas", 'Fermer', {
-          duration: 3000,
-        });
+        this._snackBar.open("❌ Les mots de passe ne correspondent pas", 'Fermer', { duration: 3000 });
         return;
       }
-
-
-      const username = this.userNameFormGroup.get('userName')?.value ?? "";
-      const email = this.emailFormGroup.get('email')?.value ?? '';
-
-      this.registerService.checkAvailability(username, email).subscribe({
-        next: (response) => {
-          console.log("Response from server:", response);
-
-
-          if (response.success === "Username already exists") {
-            this._snackBar.open("❌ Le nom d'utilisateur est déjà utilisé", 'Fermer', { duration: 3000 });
-          } else if (response.success === "Email already exists") {
-            this._snackBar.open(" ❌ L'adresse email est déjà utilisée", 'Fermer', { duration: 3000 });
-          } else {
-            // Si c'est dispo on effectue l'inscription
-            this.performRegistration();
-          }
-        },
-        error: (error) => {
-          console.error('Error:', error);
-          this._snackBar.open("⚠️ Erreur lors de la vérification de la disponibilité", 'Fermer', { duration: 3000 });
-        }
-      });
-    }}
-
-
-
-
-      performRegistration() {
-        const formData = {
-          username: this.userNameFormGroup.get('userName')?.value,
-          email: this.emailFormGroup.get('email')?.value,
-          password: this.passwordFormGroup.get('password')?.value,
-          postCode: this.postCodeFormGroup.get('postCode')?.value,
-          city: this.cityFormGroup.get('city')?.value
-        };
-
-        this.registerService.register(formData).subscribe({
-          next: (response) => {
-            console.log('Registration successful', response);
-            this._snackBar.open(' ✅  Inscription réussie', 'Fermer', { duration: 3000 });
-            setTimeout(() => {
-              this.router.navigate(['/login'], { queryParams: { username: formData.username } });
-            }, 1200);          },
-          error: (error) => {
-            console.error('Registration failed ❌', error);
-            this._snackBar.open(" ⚠️ Erreur lors de l'inscription", 'Fermer', { duration: 3000 });
-          }
-        });
-      }
+      this.performRegistration();
     }
+  }
+
+
+
+  performRegistration() {
+    const formData = {
+      username: this.userNameFormGroup.get('userName')?.value,
+      email: this.emailFormGroup.get('email')?.value,
+      password: this.passwordFormGroup.get('password')?.value,
+      postCode: this.postCodeFormGroup.get('postCode')?.value,
+      city: this.cityFormGroup.get('city')?.value
+    };
+
+    this.registerService.register(formData).subscribe({
+      next: (response) => {
+        this._snackBar.open('✅ Inscription réussie', 'Fermer', { duration: 3000 });
+        setTimeout(() => {
+          this.router.navigate(['/login'], { queryParams: { username: formData.username } });
+        }, 1200);
+      },
+      error: (error) => {
+        console.error('Échec de l\'inscription', error);
+        this._snackBar.open("⚠️ Erreur lors de l'inscription", 'Fermer', { duration: 3000 });
+      }
+    });
+  }
+
+
+  checkUsernameAvailability() {
+    const username = this.userNameFormGroup.get('userName')?.value ?? "";
+    this.registerService.checkAvailability(username, "").subscribe({
+      next: (response) => {
+        console.log("Response from server:", response);
+        if (response.message === "Username already exists") {
+          this._snackBar.open("❌ Le nom d'utilisateur est déjà utilisé", 'Fermer', { duration: 3000 });
+          this.userNameisAvailable = false;
+        }
+      },
+    });
+  }
+
+  checkEmailAvailability() {
+    const email = this.emailFormGroup.get('email')?.value ?? "";
+    this.registerService.checkAvailability("", email).subscribe({
+      next: (response) => {
+        console.log("Response from server:", response);
+        if (response.message === "Email already exists") {
+          this.emailIsAvailable = false;
+          this._snackBar.open("❌ L'adresse email est déjà utilisée", 'Fermer', { duration: 3000 });
+        }
+      },
+    });
+  }
+
+  }
+
 
 
 
