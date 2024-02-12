@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable} from "rxjs";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
-
+export class RegisterRepository {
   private registerUrl = '/api/v1/register';
   private checkAvailabilityUrl = '/api/v1/check-availability';
 
@@ -19,6 +18,5 @@ export class RegisterService {
   checkAvailability(username: string, email: string): Observable<any> {
     let params = new HttpParams().set('username', username).set('email', email);
     return this.http.get(this.checkAvailabilityUrl, { params: params });
-  }}
-
-
+  }
+}

@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule, ValidationErrors,
+  Validators
+} from '@angular/forms';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {RegisterService} from "../../../shared/register.service";
+import {RegisterService} from "../../../shared/services/register.service";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
 import {Router} from "@angular/router";
+import {catchError, map, Observable, of} from "rxjs";
 
 
 @Component({
@@ -25,10 +33,18 @@ import {Router} from "@angular/router";
 export class CreateAccountComponent {
 
   userNameFormGroup = this._formBuilder.group({
-    userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    userName: ['', {
+      validators: [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+      asyncValidators: [this.checkUsernameAvailabilityValidator(this.registerService, this._snackBar)],
+      updateOn: 'blur'
+    }]
   });
   emailFormGroup = this._formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', {
+      validators: [Validators.required, Validators.email],
+      asyncValidators: [this.checkEmailAvailabilityValidator(this.registerService, this._snackBar)],
+      updateOn: 'blur'
+    }]
   });
   passwordFormGroup = this._formBuilder.group({
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -44,9 +60,9 @@ export class CreateAccountComponent {
   });
 
   isLinear = false;
-  hidePassword = true;
+
   hideConfirmPassword = true;
-userNameisAvailable : boolean = true;
+  userNameisAvailable : boolean = true;
   emailIsAvailable : boolean = true;
 
   constructor(
@@ -98,33 +114,46 @@ userNameisAvailable : boolean = true;
   }
 
 
-  checkUsernameAvailability() {
-    const username = this.userNameFormGroup.get('userName')?.value ?? "";
-    this.registerService.checkAvailability(username, "").subscribe({
-      next: (response) => {
-        console.log("Response from server:", response);
-        if (response.message === "Username already exists") {
-          this._snackBar.open("❌ Le nom d'utilisateur est déjà utilisé", 'Fermer', { duration: 3000 });
-          this.userNameisAvailable = false;
-        }
-      },
-    });
+ // validators personnalisés pour username et email
+
+  checkUsernameAvailabilityValidator(registerService: RegisterService, snackBar: MatSnackBar): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return registerService.checkAvailability(control.value, "").pipe(
+        map(response => {
+          if (response.message === "Username already exists") {
+            snackBar.open("❌ Le nom d'utilisateur est déjà utilisé", 'Fermer', { duration: 3000 });
+            return { usernameUnavailable: true };
+          }
+          return null;
+        }),
+        catchError(() => {
+          snackBar.open("Erreur lors de la vérification du nom d'utilisateur", 'Fermer', { duration: 3000 });
+          return of(null);
+        })
+      );
+    };
   }
 
-  checkEmailAvailability() {
-    const email = this.emailFormGroup.get('email')?.value ?? "";
-    this.registerService.checkAvailability("", email).subscribe({
-      next: (response) => {
-        console.log("Response from server:", response);
-        if (response.message === "Email already exists") {
-          this.emailIsAvailable = false;
-          this._snackBar.open("❌ L'adresse email est déjà utilisée", 'Fermer', { duration: 3000 });
-        }
-      },
-    });
-  }
 
+  checkEmailAvailabilityValidator(registerService: RegisterService, snackBar: MatSnackBar): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return registerService.checkAvailability("", control.value).pipe(
+        map(response => {
+          if (response.message === "Email already exists") {
+            snackBar.open("❌ L'adresse email est déjà utilisée", 'Fermer', { duration: 3000 });
+            return { emailUnavailable: true };
+          }
+          return null;
+        }),
+        catchError(() => {
+
+          snackBar.open("Erreur lors de la vérification de l'adresse email", 'Fermer', { duration: 3000 });
+          return of(null);
+        })
+      );
+    };
   }
+}
 
 
 
