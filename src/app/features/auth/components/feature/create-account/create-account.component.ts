@@ -9,6 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {RegisterService} from "../../../shared/register.service";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -46,10 +47,12 @@ export class CreateAccountComponent {
   hidePassword = true;
   hideConfirmPassword = true;
 
+
   constructor(
     private _formBuilder: FormBuilder,
     private registerService: RegisterService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router,
   ) {
   }
 
@@ -112,7 +115,9 @@ export class CreateAccountComponent {
           next: (response) => {
             console.log('Registration successful', response);
             this._snackBar.open(' ✅  Inscription réussie', 'Fermer', { duration: 3000 });
-          },
+            setTimeout(() => {
+              this.router.navigate(['/login'], { queryParams: { username: formData.username } });
+            }, 1200);          },
           error: (error) => {
             console.error('Registration failed ❌', error);
             this._snackBar.open(" ⚠️ Erreur lors de l'inscription", 'Fermer', { duration: 3000 });
