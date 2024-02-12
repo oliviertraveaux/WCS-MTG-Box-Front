@@ -15,8 +15,17 @@ export class RegisterRepository {
     return this.http.post(this.registerUrl, formData);
   }
 
-  checkAvailability(username: string, email: string): Observable<any> {
-    let params = new HttpParams().set('username', username).set('email', email);
-    return this.http.get(this.checkAvailabilityUrl, { params: params });
+  checkAvailability(username?: string, email?: string): Observable<boolean> {
+    let params = new HttpParams();
+
+    params = params.set('username', username || '');
+
+    params = params.set('email', email || '');
+    return this.http.get<boolean>(this.checkAvailabilityUrl, { params: params });
   }
+
+
+
+
+
 }

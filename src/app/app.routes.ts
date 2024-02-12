@@ -10,7 +10,7 @@ import {AuthGuard} from "./features/auth/shared/auth.guard";
 export const routes: Routes = [
   { path: '', component: SearchPageComponent, canActivate: [AuthGuard]},
   { path: 'register', component: CreateAccountComponent },
-  { path: 'collection', component: CollectionPageComponent },
+  { path: 'collection', component: CollectionPageComponent,canActivate: [AuthGuard] },
   { path: 'profil', component: ProfilPageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
 ];

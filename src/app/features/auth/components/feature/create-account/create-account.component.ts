@@ -62,8 +62,8 @@ export class CreateAccountComponent {
   isLinear = false;
 
   hideConfirmPassword = true;
-  userNameisAvailable : boolean = true;
-  emailIsAvailable : boolean = true;
+  isUsernameAvailable: boolean = true;
+  emailIsAvailable: boolean = true;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -78,16 +78,15 @@ export class CreateAccountComponent {
     if (this.userNameFormGroup.valid && this.emailFormGroup.valid &&
       this.passwordFormGroup.valid && this.confirmPasswordFormGroup.valid &&
       this.postCodeFormGroup.valid && this.cityFormGroup.valid &&
-      this.userNameisAvailable && this.emailIsAvailable) {
+      this. isUsernameAvailable && this.emailIsAvailable) {
 
       if (this.passwordFormGroup.value.password !== this.confirmPasswordFormGroup.value.confirmPassword) {
-        this._snackBar.open("❌ Les mots de passe ne correspondent pas", 'Fermer', { duration: 3000 });
+        this._snackBar.open("❌ Les mots de passe ne correspondent pas", 'Fermer', {duration: 3000});
         return;
       }
       this.performRegistration();
     }
   }
-
 
 
   performRegistration() {
@@ -101,28 +100,31 @@ export class CreateAccountComponent {
 
     this.registerService.register(formData).subscribe({
       next: (response) => {
-        this._snackBar.open('✅ Inscription réussie', 'Fermer', { duration: 3000 });
+        this._snackBar.open('✅ Inscription réussie', 'Fermer', {duration: 3000});
         setTimeout(() => {
-          this.router.navigate(['/login'], { queryParams: { username: formData.username } });
+          this.router.navigate(['/login'], {queryParams: {username: formData.username}});
         }, 1200);
       },
       error: (error) => {
         console.error('Échec de l\'inscription', error);
-        this._snackBar.open("⚠️ Erreur lors de l'inscription", 'Fermer', { duration: 3000 });
+        this._snackBar.open("⚠️ Erreur lors de l'inscription", 'Fermer', {duration: 3000});
       }
     });
   }
 
 
- // validators personnalisés pour username et email
+  // validators personnalisés pour username et email
 
   checkUsernameAvailabilityValidator(registerService: RegisterService, snackBar: MatSnackBar): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return registerService.checkAvailability(control.value, "").pipe(
+      if (!control.value) {
+        return of(null);
+      }
+      return registerService.checkAvailability(control.value, '').pipe(
         map(response => {
-          if (response.message === "Username already exists") {
-            snackBar.open("❌ Le nom d'utilisateur est déjà utilisé", 'Fermer', { duration: 3000 });
-            return { usernameUnavailable: true };
+if (!response) {
+            snackBar.open("❌ Le nom d'utilisateur est déjà utilisé", 'Fermer', {duration: 3000});
+            return {usernameUnavailable: true};
           }
           return null;
         }),
@@ -134,27 +136,39 @@ export class CreateAccountComponent {
     };
   }
 
-
   checkEmailAvailabilityValidator(registerService: RegisterService, snackBar: MatSnackBar): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return registerService.checkAvailability("", control.value).pipe(
-        map(response => {
-          if (response.message === "Email already exists") {
-            snackBar.open("❌ L'adresse email est déjà utilisée", 'Fermer', { duration: 3000 });
-            return { emailUnavailable: true };
+      if (!control.value) {
+        return of(null);
+      }
+      const emailValue: string = control.value;
+      let usernameValue: string | undefined = "";
+
+      return registerService.checkAvailability(usernameValue, emailValue).pipe(
+        map(isAvailable => {
+          if (!isAvailable) {
+            snackBar.open("❌ L'adresse email est déjà utilisée", 'Fermer', {duration: 3000});
+            return {emailUnavailable: true};
           }
           return null;
         }),
         catchError(() => {
-
-          snackBar.open("Erreur lors de la vérification de l'adresse email", 'Fermer', { duration: 3000 });
+          snackBar.open("L'adresse email est déjà utilisée", 'Fermer', {duration: 3000});
           return of(null);
         })
       );
     };
   }
-}
 
+
+
+
+
+
+
+
+
+}
 
 
 

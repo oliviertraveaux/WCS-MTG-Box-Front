@@ -27,7 +27,7 @@ export class LoginComponent {
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) {
-    // Récupérez le paramètre de requête 'username' et mettez à jour le formulaire si nécessaire
+
     this.route.queryParams.subscribe(params => {
       const username = params['username'];
       if (username) {
