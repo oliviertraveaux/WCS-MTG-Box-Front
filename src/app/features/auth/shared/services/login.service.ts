@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {AuthRepository} from "../repositories/auth.repository";
+import {LoginRepository} from "../repositories/login.repository";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class LoginService {
 
 
-  constructor(  private authRepository : AuthRepository) {
+  constructor(  private authRepository : LoginRepository) {
   }
 
   login(credentials: { username: string; password: string }): Observable<any> {

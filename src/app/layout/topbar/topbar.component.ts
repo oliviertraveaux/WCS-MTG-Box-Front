@@ -4,7 +4,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
-import {AuthService} from "../../features/auth/shared/services/auth.service";
+import {LoginService} from "../../features/auth/shared/services/login.service";
 
 @Component({
   selector: 'app-topbar',
@@ -14,7 +14,7 @@ import {AuthService} from "../../features/auth/shared/services/auth.service";
 })
 export class TopbarComponent {
 
-  constructor(protected authService: AuthService) {
+  constructor(protected authService: LoginService) {
   }
 
   isLoggedIn(): boolean {

@@ -10,7 +10,7 @@ import {stringify} from "postcss";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthRepository {
+export class LoginRepository {
   private loginUrl = `${ENVIRONMENT.apiLoginConfigurationURL}`;
 
   constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
@@ -35,23 +35,13 @@ export class AuthRepository {
   }
 
   isAuthenticated(): boolean {
-     return localStorage.getItem('loggedIn') === 'true';
+    return localStorage.getItem('loggedIn') === 'true';
   }
 
   logout() {
     localStorage.setItem('loggedIn', 'false');
-    this.cookieService.delete('token');
+    // this.cookieService.delete('token');   package pour gérer les cookies mais ne marche pas car le cookie n'est pas accessible par le navigateur
     this.router.navigate(['/login']);
   }
 
-
-  checkToken(token: string): Observable<string> {
-    const params = { token };
-    return this.http.get<string>(this.loginUrl, { params });
-  }
 }
-
-
-
-
-
