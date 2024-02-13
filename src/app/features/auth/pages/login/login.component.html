@@ -1,0 +1,25 @@
+
+<section class="login-container max-w-md mx-auto">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form flex flex-col gap-4 p-12">
+    <img src="../../../../../assets/images/backgrounds/mtg-background.png" class="rounded-full  ">
+
+    <mat-form-field appearance="fill" class="login-form-field w-full mt-2">
+      <mat-label>Nom d'utilisateur</mat-label>
+      <input matInput type="text" formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="login-form-field w-full">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" formControlName="password">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit"  class="login-button w-full py-2">
+      Connexion
+    </button>
+  </form>
+
+  <p class="text-center "><a href="/register" class="text-blue-500 hover:underline">Vous n'avez pas encore de compte?</a></p>
+</section>
+
+
