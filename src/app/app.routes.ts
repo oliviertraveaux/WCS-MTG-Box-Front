@@ -4,7 +4,9 @@ import {SearchPageComponent} from "./features/search/components/ui/search-page/s
 import {CollectionPageComponent} from "./features/collection/components/ui/collection-page/collection-page.component";
 import {ProfilPageComponent} from "./features/profil/components/ui/profil-page/profil-page.component";
 import {LoginComponent} from "./features/auth/components/feature/login/login.component";
-import {AuthGuard} from "./features/auth/shared/auth.guard";
+import {AuthGuard} from "./features/auth/shared/guards/auth.guard";
+
+
 
 
 export const routes: Routes = [
@@ -16,4 +18,4 @@ export const routes: Routes = [
 ];
 
 
-;
+

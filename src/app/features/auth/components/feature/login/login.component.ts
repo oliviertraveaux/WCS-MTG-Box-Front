@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router'; // Importez ActivatedRoute
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from "../../../shared/services/auth.service";
 import { MatInputModule } from "@angular/material/input";
@@ -28,6 +28,7 @@ export class LoginComponent {
     private route: ActivatedRoute
   ) {
 
+
     this.route.queryParams.subscribe(params => {
       const username = params['username'];
       if (username) {
@@ -41,14 +42,11 @@ export class LoginComponent {
       const credentials = this.loginForm.value as { username: string; password: string };
       this.authService.login(credentials).subscribe({
         next: (token) => {
-          console.log('Login successful', token);
-          localStorage.setItem('authToken', token);
-
           this._snackBar.open('Connexion réussie. Bienvenue !', 'Fermer', { duration: 1000 });
           setTimeout(() => this.router.navigate(['/profil']), 1200);
         },
         error: (error) => {
-          console.error('Login failed', error);
+          console.error(error);
           this._snackBar.open("Échec de la connexion. Veuillez réessayer.", "Fermer", { duration: 3000 });
         }
       });

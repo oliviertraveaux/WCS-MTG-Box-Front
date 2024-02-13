@@ -1,32 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import {Observable, tap} from "rxjs";
-import { Router} from "@angular/router";
-import {CookieService} from "ngx-cookie-service";
+import {Observable} from "rxjs";
+import {AuthRepository} from "../repositories/auth.repository";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = '/api/v1/login';
 
 
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
+  constructor(  private authRepository : AuthRepository) {
   }
 
   login(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post(this.loginUrl, credentials, {responseType: 'text'}).pipe(
-      tap(token => this.cookieService.set('authToken', token, { secure: true, sameSite: 'Strict' }))
-  );
+    return this.authRepository.login(credentials);
   }
 
   isAuthenticated(): boolean {
-    return !!this.cookieService.get('authToken');
+    return this.authRepository.isAuthenticated()
   }
 
   logout() {
-    this.cookieService.delete('authToken');
-    this.router.navigate(['/login']);
+    this.authRepository.logout()
   }
 }

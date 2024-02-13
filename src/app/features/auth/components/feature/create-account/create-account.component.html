@@ -1,7 +1,7 @@
 <section class="register">
 
-  <div class="register-card">
-    <h1 class="register-title">Inscription</h1>
+  <div class=" border border-gray-300 rounded-lg">
+      <h1 class="text-center text-2xl p-2">Inscription</h1>
     <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
 
       <!-- UserName  -->
@@ -110,7 +110,7 @@
     <!-- Final Step -->
 
     <form (submit)="onSubmit()">
-      <div class="button">
+      <div class=" flex justify-center items-center gap-5 p-4 mt-4">
         <button mat-raised-button color="primary" type="submit"
                 [disabled]="!userNameFormGroup.valid ||
                         !emailFormGroup.valid ||
@@ -118,7 +118,7 @@
                         !confirmPasswordFormGroup.valid ||
                         !postCodeFormGroup.valid ||
                         !cityFormGroup.valid">
-          Confirmer l'inscription
+          S'inscrire
         </button>
         <button mat-raised-button color="primary" type="button" (click)="stepper.reset()">Réinitialiser</button>
       </div>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -17,7 +17,7 @@ import {RegisterService} from "../../../shared/services/register.service";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
 import {Router} from "@angular/router";
-import {catchError, map, Observable, of} from "rxjs";
+import { map, Observable, of} from "rxjs";
 
 
 @Component({
@@ -78,7 +78,7 @@ export class CreateAccountComponent {
     if (this.userNameFormGroup.valid && this.emailFormGroup.valid &&
       this.passwordFormGroup.valid && this.confirmPasswordFormGroup.valid &&
       this.postCodeFormGroup.valid && this.cityFormGroup.valid &&
-      this. isUsernameAvailable && this.emailIsAvailable) {
+      this.isUsernameAvailable && this.emailIsAvailable) {
 
       if (this.passwordFormGroup.value.password !== this.confirmPasswordFormGroup.value.confirmPassword) {
         this._snackBar.open("❌ Les mots de passe ne correspondent pas", 'Fermer', {duration: 3000});
@@ -113,7 +113,8 @@ export class CreateAccountComponent {
   }
 
 
-  // validators personnalisés pour username et email
+  // validators
+
 
   checkUsernameAvailabilityValidator(registerService: RegisterService, snackBar: MatSnackBar): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
@@ -122,49 +123,33 @@ export class CreateAccountComponent {
       }
       return registerService.checkAvailability(control.value, '').pipe(
         map(response => {
-if (!response) {
+          if (!response.isAvailable) {
             snackBar.open("❌ Le nom d'utilisateur est déjà utilisé", 'Fermer', {duration: 3000});
-            return {usernameUnavailable: true};
+            return { usernameUnavailable: true };
           }
           return null;
         }),
-        catchError(() => {
-          snackBar.open("Erreur lors de la vérification du nom d'utilisateur", 'Fermer', { duration: 3000 });
-          return of(null);
-        })
       );
     };
   }
+
 
   checkEmailAvailabilityValidator(registerService: RegisterService, snackBar: MatSnackBar): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       if (!control.value) {
         return of(null);
       }
-      const emailValue: string = control.value;
-      let usernameValue: string | undefined = "";
-
-      return registerService.checkAvailability(usernameValue, emailValue).pipe(
-        map(isAvailable => {
-          if (!isAvailable) {
+      return registerService.checkAvailability('', control.value).pipe(
+        map(response => {
+          if (!response.isAvailable) {
             snackBar.open("❌ L'adresse email est déjà utilisée", 'Fermer', {duration: 3000});
-            return {emailUnavailable: true};
+            return { emailUnavailable: true };
           }
           return null;
         }),
-        catchError(() => {
-          snackBar.open("L'adresse email est déjà utilisée", 'Fermer', {duration: 3000});
-          return of(null);
-        })
       );
     };
   }
-
-
-
-
-
-
 
 
 

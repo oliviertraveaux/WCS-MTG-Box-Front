@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {TopbarComponent} from "./layout/topbar/topbar.component";
 import {FooterComponent} from "./layout/footer/footer.component";
-import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @Component({
   selector: 'app-root',
