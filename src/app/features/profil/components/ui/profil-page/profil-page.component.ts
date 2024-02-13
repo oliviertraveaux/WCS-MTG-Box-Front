@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AuthService} from "../../../../auth/shared/auth.service";
+import {AuthService} from "../../../../auth/shared/services/auth.service";
 
 @Component({
   selector: 'app-profil-page',

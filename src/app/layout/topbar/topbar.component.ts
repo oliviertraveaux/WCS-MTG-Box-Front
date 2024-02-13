@@ -4,7 +4,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
-import {AuthService} from "../../features/auth/shared/auth.service";
+import {AuthService} from "../../features/auth/shared/services/auth.service";
 
 @Component({
   selector: 'app-topbar',
@@ -19,12 +19,11 @@ export class TopbarComponent {
   }
 
   isLoggedIn(): boolean {
-    // Utilisez le service AuthService pour vérifier si l'utilisateur est connecté
     return this.authService.isAuthenticated();
   }
 
   logout() {
-    // Utilisez le service AuthService pour effectuer la déconnexion
+
     this.authService.logout();
   }
 
