@@ -14,7 +14,7 @@ import { BreakpointObserverService } from '@shared';
 import { CollectionAddCardBasketComponent } from '../../components/collection-add-card/collection-add-card-basket/collection-add-card-basket.component';
 import { CollectionAddCardSearchFormComponent } from '../../components/collection-add-card/collection-add-card-search-form/collection-add-card-search-form.component';
 import { CollectionAddCardSearchResultsComponent } from '../../components/collection-add-card/collection-add-card-search-results/collection-add-card-search-results.component';
-import { SearchQuery } from '../../models/search-querry.model';
+import { SearchQuery } from '../../models/search-query.model';
 import { CollectionAddCardBasketService } from '../../shared/services/collection-add-card-basket.service';
 import { CollectionAddCardSearchFormService } from '../../shared/services/collection-add-card-search-form.service';
 import { CollectionAddCardSearchResultsService } from '../../shared/services/collection-add-card-search-results.service';
@@ -47,7 +47,11 @@ export class CollectionAddCardPageComponent implements OnInit {
 
     protected readonly Breakpoints = Breakpoints;
 
-    currentBreakpoint$ = this._breakpointObserverService.currentBreakpoint;
+    readonly currentBreakpoint$ = this._breakpointObserverService.currentBreakpoints;
+    readonly isMobile = this._breakpointObserverService.isMobile;
+    readonly isTablet = this._breakpointObserverService.isTablet;
+    readonly isDesktop = this._breakpointObserverService.isDesktop;
+
     searchForm = this._searchFormService.searchForm;
 
     ngOnInit() {

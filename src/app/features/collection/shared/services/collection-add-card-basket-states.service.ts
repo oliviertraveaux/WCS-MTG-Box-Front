@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Card } from '@shared';
+import { UserCard } from '@shared';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CollectionAddCardBasketStatesService {
-    private cardBasket$ = new BehaviorSubject<Card[]>([]);
+    private _cardBasket$ = new BehaviorSubject<UserCard[]>([]);
 
-    getCardBasket(): Observable<Card[]> {
-        return this.cardBasket$;
+    getCardBasket$(): Observable<UserCard[]> {
+        return this._cardBasket$;
     }
 
-    getCardBasketValue(): Card[] {
-        return this.cardBasket$.getValue();
+    getCardBasketValue(): UserCard[] {
+        return this._cardBasket$.getValue();
     }
 
-    setCardBasket(cards: Card[]): void {
-        this.cardBasket$.next(cards);
+    setCardBasket(cards: UserCard[]): void {
+        this._cardBasket$.next(cards);
     }
 }

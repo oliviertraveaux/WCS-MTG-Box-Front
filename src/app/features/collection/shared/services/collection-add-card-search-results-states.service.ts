@@ -1,48 +1,48 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RequestStatus } from '../../../../shared/enums/request-status.enum';
-import { CardApi } from '../../models/card-api.model';
+import { ApiCard } from '../../models/card-api.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CollectionAddCardResultsStatesService {
-    private cards$ = new BehaviorSubject<CardApi[]>([]);
-    private cardsTypes$ = new BehaviorSubject<string[]>([]);
-    private searchRequestStatus$ = new BehaviorSubject<RequestStatus>(RequestStatus.initial);
+    private _cards$ = new BehaviorSubject<ApiCard[]>([]);
+    private _cardsTypes$ = new BehaviorSubject<string[]>([]);
+    private _searchRequestStatus$ = new BehaviorSubject<RequestStatus>(RequestStatus.initial);
 
-    getCards(): Observable<CardApi[]> {
-        return this.cards$;
+    getCards$(): Observable<ApiCard[]> {
+        return this._cards$;
     }
-    getCardsValue(): CardApi[] {
-        return this.cards$.getValue();
-    }
-
-    setCards(cards: CardApi[]): void {
-        this.cards$.next(cards);
+    getCardsValue(): ApiCard[] {
+        return this._cards$.getValue();
     }
 
-    getCardTypes(): Observable<string[]> {
-        return this.cardsTypes$;
+    setCards(cards: ApiCard[]): void {
+        this._cards$.next(cards);
+    }
+
+    getCardTypes$(): Observable<string[]> {
+        return this._cardsTypes$;
     }
 
     getCardTypesValue(): string[] {
-        return this.cardsTypes$.getValue();
+        return this._cardsTypes$.getValue();
     }
 
     setCardTypes(cardTypes: string[]): void {
-        this.cardsTypes$.next(cardTypes);
+        this._cardsTypes$.next(cardTypes);
     }
 
-    getSearchRequestStatus(): Observable<RequestStatus> {
-        return this.searchRequestStatus$;
+    getSearchRequestStatus$(): Observable<RequestStatus> {
+        return this._searchRequestStatus$;
     }
 
     getSearchRequestStatusValue(): RequestStatus {
-        return this.searchRequestStatus$.getValue();
+        return this._searchRequestStatus$.getValue();
     }
 
     setSearchRequestStatus(status: RequestStatus): void {
-        this.searchRequestStatus$.next(status);
+        this._searchRequestStatus$.next(status);
     }
 }

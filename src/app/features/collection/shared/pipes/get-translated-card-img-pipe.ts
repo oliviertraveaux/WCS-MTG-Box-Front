@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CardApi } from '../../models/card-api.model';
+import { ApiCard } from '../../models/card-api.model';
 @Pipe({
     standalone: true,
     name: 'getTranslatedCardImg',
 })
 export class GetTranslatedCardImgPipe implements PipeTransform {
-    transform(card: CardApi, language: string): string {
+    transform(card: ApiCard, language: string): string {
         switch (language) {
             case 'French':
                 const frenchCard = card.foreignNames.find((card) => card.language === 'French');

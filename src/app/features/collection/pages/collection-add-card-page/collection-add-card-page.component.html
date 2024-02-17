@@ -39,21 +39,15 @@
                         class="ml-3"
                         [disabled]="isCardCollectionEmpty()"
                         (click)="collectionDrawer.toggle()"
-                        *ngIf="!(currentBreakpoint$ | async)?.includes(Breakpoints.Large)">
+                        *ngIf="!(isDesktop | async)">
                         <mat-icon>playlist_add_check</mat-icon>
                     </button>
-                    <h3
-                        class="pl-6 lg:w-5/12"
-                        *ngIf="(currentBreakpoint$ | async)?.includes(Breakpoints.Large)">
-                        Cartes à ajouter
-                    </h3>
+                    <h3 class="pl-6 lg:w-5/12" *ngIf="isDesktop | async">Cartes à ajouter</h3>
                 </div>
 
                 <!-- Name Filter MOBILE ONLY -->
 
-                <div
-                    class="flex items-center"
-                    *ngIf="!(currentBreakpoint$ | async)?.includes(Breakpoints.Small)">
+                <div class="flex items-center" *ngIf="!(isTablet | async)">
                     <form class="w-full" [formGroup]="searchForm">
                         <mat-form-field appearance="outline" class="flex w-full items-center">
                             <mat-label>Name</mat-label>
@@ -84,29 +78,27 @@
 
                 <!-- filters TABLETT AND DESKTOP ONLY -->
 
-                <div class="flex flex-grow gap-8">
+                <div class="h-full-form-and-results flex grow gap-8">
                     <div class="flex flex-col lg:w-7/12">
-                        <div *ngIf="(currentBreakpoint$ | async)?.includes(Breakpoints.Small)">
+                        <div *ngIf="isTablet | async">
                             <app-collection-search-form />
                         </div>
 
                         <!-- Search Results -->
-                        <div class="no-scrollbar scrollbar-hide flex-grow overflow-auto">
+                        <div class="scrollbar-hide flex h-full grow overflow-hidden">
                             <app-collection-search-results />
                         </div>
                     </div>
 
                     <!-- Divider TABLETT AND DESKTOP ONLY -->
 
-                    <mat-divider
-                        *ngIf="(currentBreakpoint$ | async)?.includes(Breakpoints.Large)"
-                        [vertical]="true"></mat-divider>
+                    <mat-divider *ngIf="isDesktop | async" [vertical]="true"></mat-divider>
 
                     <!-- Collection list DESKTOP ONLY -->
 
                     <div
-                        *ngIf="(currentBreakpoint$ | async)?.includes(Breakpoints.Large)"
-                        class="lg:w-5/12">
+                        *ngIf="isDesktop | async"
+                        class="scrollbar-hide flex h-full grow overflow-hidden lg:w-5/12">
                         <app-collection-card-list />
                     </div>
                 </div>

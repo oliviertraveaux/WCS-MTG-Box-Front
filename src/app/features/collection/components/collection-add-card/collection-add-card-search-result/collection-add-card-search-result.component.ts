@@ -6,13 +6,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
-    Card,
     GetRarityClassPipe,
     GetRaritySymbolPipe,
     SnackbarService,
     SnackbarStatus,
+    UserCard,
 } from '@shared';
-import { CardApi } from '../../../models/card-api.model';
+import { ApiCard } from '../../../models/card-api.model';
 import { GetTranslatedCardImgPipe } from '../../../shared/pipes/get-translated-card-img-pipe';
 import { GetTranslatedCardNamePipe } from '../../../shared/pipes/get-translated-card-name-pipe';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
@@ -37,7 +37,7 @@ import { CollectionAddCardSearchFormService } from '../../../shared/services/col
 })
 export class CollectionAddCardSearchResultComponent {
     @ViewChild('selectValue') selectValue: any;
-    @Input({ required: true }) card!: CardApi;
+    @Input({ required: true }) card!: ApiCard;
 
     private _cardBasketService = inject(CollectionAddCardBasketService);
     private _snackbarService = inject(SnackbarService);
@@ -49,9 +49,12 @@ export class CollectionAddCardSearchResultComponent {
 
     addCardsToBasket(selectedValue: number) {
         if (selectedValue !== 0) {
-            const cards: Card[] = [];
+            const cards: UserCard[] = [];
             for (let i = 0; i < selectedValue; i++) {
-                const card: Card = this._cardBasketService.fromSearchResultToCardBasket(this.card);
+                console.log('this.card', this.card);
+                const card: UserCard = this._cardBasketService.fromSearchResultToCardBasket(
+                    this.card
+                );
                 cards.push(card);
             }
             this._cardBasketService.addCardsToCardBasket(cards);

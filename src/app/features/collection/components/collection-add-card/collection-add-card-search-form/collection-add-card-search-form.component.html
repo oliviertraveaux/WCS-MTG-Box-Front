@@ -1,6 +1,6 @@
 <div class="flex h-full flex-col py-2">
     <form [formGroup]="searchForm" class="flex flex-wrap">
-        <mat-form-field appearance="outline" class="w-full sm:w-3/12 sm:px-1.5">
+        <mat-form-field appearance="outline" class="w-3/4 pr-1.5 sm:w-3/12 sm:px-1.5">
             <mat-label>Name</mat-label>
             <input
                 matInput
@@ -18,7 +18,7 @@
             </button>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-full sm:w-2/12 sm:px-1.5">
+        <mat-form-field appearance="outline" class="w-1/4 sm:w-2/12 sm:px-1.5">
             <mat-select formControlName="language">
                 <mat-option *ngFor="let language of LANGUAGES" [value]="language.value">
                     {{ language.name }}
@@ -29,7 +29,7 @@
         <mat-form-field appearance="outline" class="w-full sm:w-2/12 sm:px-1.5">
             <mat-label>Couleur</mat-label>
             <mat-select formControlName="color">
-                <mat-option value="">Aucune</mat-option>
+                <mat-option>Aucune</mat-option>
                 <mat-option *ngFor="let color of CARD_COLORS" [value]="color.value">
                     {{ color.name }}
                 </mat-option>
@@ -39,7 +39,7 @@
         <mat-form-field appearance="outline" class="w-full sm:w-3/12 sm:px-1.5">
             <mat-label>Rareté</mat-label>
             <mat-select formControlName="rarity">
-                <mat-option value="">Aucune</mat-option>
+                <mat-option>Aucune</mat-option>
                 <mat-option *ngFor="let rarity of Object.values(CardRarity)" [value]="rarity">
                     {{ rarity }}
                 </mat-option>
@@ -53,7 +53,7 @@
                 matInput
                 type="number"
                 [value]="searchForm.value.name"
-                formControlName="convertedManaCost" />
+                formControlName="cmc" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full sm:w-1/4 sm:px-1.5">
@@ -79,10 +79,16 @@
     </form>
     <div class="flex-grow"></div>
 
-    <div class="flex sm:justify-end">
-        <div class="flex w-full flex-col sm:w-1/2 sm:flex-row-reverse">
+    <div class="flex w-full flex-col sm:flex-row sm:justify-end">
+        <div
+            class="flex w-full justify-center pb-2 text-xs sm:w-1/2 sm:items-center sm:justify-start sm:pb-0">
+            <p *ngIf="(status$ | async) === RequestStatus.success && (cards$ | async)">
+                {{ (cards$ | async).length | getSearchResultText }}
+            </p>
+        </div>
+        <div class="flex w-full flex-col gap-2 sm:w-1/2 sm:flex-row-reverse">
             <button
-                class="my-1 w-full sm:mx-1 sm:w-1/2"
+                class="my-1 w-full sm:w-1/2"
                 mat-flat-button
                 color="primary"
                 (click)="search()"
@@ -90,7 +96,7 @@
                 RECHERCHER
             </button>
             <button
-                class="my-1 w-full sm:mx-1 sm:w-1/2"
+                class="my-1 w-full sm:w-1/2"
                 mat-flat-button
                 (click)="reset()"
                 [disabled]="!isFormValid">

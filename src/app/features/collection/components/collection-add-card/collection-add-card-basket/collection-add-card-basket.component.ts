@@ -1,5 +1,4 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -15,8 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BreakpointObserverService, Card, CardQualityEnum } from '@shared';
-import { BehaviorSubject } from 'rxjs';
+import { BreakpointObserverService, CardQuality, UserCard } from '@shared';
 import { FilterValues } from '../../../models/filter-values.model';
 import { CollectionAddCardBasketStatesService } from '../../../shared/services/collection-add-card-basket-states.service';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
@@ -52,15 +50,12 @@ export class CollectionAddCardBasketComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _destroyRef = inject(DestroyRef);
 
-    protected readonly Breakpoints = Breakpoints;
-    protected readonly CardQuality = CardQualityEnum;
+    protected readonly CardQuality = CardQuality;
     protected readonly Object = Object;
 
-    currentBreakpoint$: BehaviorSubject<string[]> =
-        this._breakpointObserverService.currentBreakpoint;
     displayedColumns: string[] = ['show', 'name', 'set', 'quality', 'action'];
-    dataSource = new MatTableDataSource<Card>();
-    selectedCard: Card | null = null;
+    CardsData = new MatTableDataSource<UserCard>([]);
+    selectedCard: UserCard | null = null;
 
     nameFilter = new FormControl('');
     filterValues: FilterValues = {
@@ -68,18 +63,19 @@ export class CollectionAddCardBasketComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.filterPredicate = this.createFilter();
+        this.CardsData.paginator = this.paginator;
+        this.CardsData.filterPredicate = this.createFilter();
         this._cardBasketStateService
-            .getCardBasket()
+            .getCardBasket$()
             .pipe(takeUntilDestroyed(this._destroyRef))
             .subscribe((cards) => {
-                this.dataSource.data = cards;
+                this.CardsData.data = cards;
+                this.CardsData.paginator = this.paginator;
             });
 
         this.nameFilter.valueChanges.subscribe((name) => {
             this.filterValues.name = name;
-            this.dataSource.filter = JSON.stringify(this.filterValues);
+            this.CardsData.filter = JSON.stringify(this.filterValues);
         });
 
         this._breakpointObserverService.breakpoint$
@@ -88,8 +84,8 @@ export class CollectionAddCardBasketComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
+        this.CardsData.sort = this.sort;
+        this.CardsData.paginator = this.paginator;
     }
 
     /** Announce the change in sort state for assistive technology. */
@@ -108,15 +104,18 @@ export class CollectionAddCardBasketComponent implements OnInit {
     createFilter(): (data: any, filter: string) => boolean {
         let filterFunction = function (data: any, filter: any): boolean {
             let searchTerms = JSON.parse(filter);
-            return data.name.toLowerCase().indexOf(searchTerms.name.toLowerCase()) !== -1;
+            return data.cardInfo.name.toLowerCase().indexOf(searchTerms.name.toLowerCase()) !== -1;
         };
         return filterFunction;
     }
 
-    setQuality(element: Card, quality: string) {
-        const updatedCard: Card = {
-            ...element,
-            quality: quality as CardQualityEnum,
+    setQuality(card: UserCard, quality: string) {
+        const updatedCard: UserCard = {
+            ...card,
+            userInfo: {
+                ...card.userInfo,
+                qualityName: quality as CardQuality,
+            },
         };
         this._cardBasketService.updateCardBasket(updatedCard);
     }
@@ -130,14 +129,14 @@ export class CollectionAddCardBasketComponent implements OnInit {
     }
 
     save(): void {
-        this._cardBasketStateService.getCardBasket().subscribe((cards) => console.log(cards));
+        this._cardBasketService.fromCardBasketToCollection();
     }
 
     empty(): void {
         this._cardBasketService.emptyCardBasket();
     }
 
-    showImage(card: Card): void {
+    showImage(card: UserCard): void {
         this.selectedCard = card;
     }
 
