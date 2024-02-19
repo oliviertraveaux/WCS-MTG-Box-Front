@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 
     protected readonly Breakpoints = Breakpoints;
 
-    public currentBreakpoint$ = this._breakpointObserverService.currentBreakpoint;
+    public currentBreakpoint$ = this._breakpointObserverService.currentBreakpoints;
 
     ngOnInit() {
         this._breakpointObserverService.breakpoint$

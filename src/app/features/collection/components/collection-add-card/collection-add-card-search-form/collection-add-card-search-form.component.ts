@@ -1,3 +1,4 @@
+import { Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -8,9 +9,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CARD_COLORS, CardRarity, LANGUAGES } from '@shared';
+import {
+    CARD_COLORS,
+    CardRarity,
+    getSearchResultTextPipe,
+    LANGUAGES,
+    RequestStatus,
+} from '@shared';
 import { map, Observable, startWith } from 'rxjs';
-import { SearchQuery } from '../../../models/search-querry.model';
+import { SearchQuery } from '../../../models/search-query.model';
 import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
 import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card-search-results-states.service';
 import { CollectionAddCardSearchResultsService } from '../../../shared/services/collection-add-card-search-results.service';
@@ -27,6 +34,7 @@ import { CollectionAddCardSearchResultsService } from '../../../shared/services/
         MatSelectModule,
         MatAutocompleteModule,
         MatIconModule,
+        getSearchResultTextPipe,
     ],
     templateUrl: './collection-add-card-search-form.component.html',
 })
@@ -40,23 +48,26 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
     protected readonly CardRarity = CardRarity;
     protected readonly Object = Object;
     protected readonly LANGUAGES = LANGUAGES;
+    protected readonly RequestStatus = RequestStatus;
 
     searchForm!: FormGroup;
     cardTypes!: string[];
     filteredCardTypes!: Observable<string[]> | undefined;
     isFormValid!: boolean;
+    cards$: Observable<any> = this._searchResultsStateService.getCards$();
+    status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
 
     ngOnInit(): void {
         this.searchForm = this._searchFormService.searchForm;
         this.isFormValid = this.searchForm.valid && this.searchForm.dirty;
-        this._searchFormService.updateNameValidityWhenFormValueChanges();
+        this._searchFormService.updateValidityWhenFormValueChanges();
         this._searchResultsService.readCardTypes();
 
         this.searchForm.valueChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
             this.isFormValid = this.searchForm.valid && this.searchForm.dirty;
         });
 
-        this._searchResultsStateService.getCardTypes().subscribe((types) => {
+        this._searchResultsStateService.getCardTypes$().subscribe((types) => {
             this.cardTypes = types;
             this.filteredCardTypes = this._searchFormService.searchForm
                 .get('type')
@@ -69,7 +80,6 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
 
     search() {
         const searchQuery: SearchQuery = this._searchFormService.getSearch();
-        console.log('searchQuerry', searchQuery);
         this._searchResultsService.searchCards(searchQuery);
     }
 
@@ -81,4 +91,6 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
         const filterValue = value.toLowerCase();
         return this.cardTypes.filter((option) => option.toLowerCase().includes(filterValue));
     }
+
+    protected readonly Breakpoints = Breakpoints;
 }

@@ -164,3 +164,27 @@ a {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+:root {
+  --titleAndFieldHeight : 132px;
+  --topbarMobileHeight: 56px;
+  --topbarTabletHeight: 64px;
+  --footerHeight: 64px;
+  --drawerTitleHeight: 72px;
+}
+
+.h-full-form-and-results {
+  height: calc(100% - var(--titleAndFieldHeight));
+}
+
+.h-full-drawer {
+  height: calc(100% - var(--drawerTitleHeight));
+}
+
+.h-full-header-less-mobile {
+  height: calc(100% - var(--topbarMobileHeight));
+}
+
+.h-full-header-and-footer-less {
+  height: calc(100% - (var(--topbarTabletHeight)));
+}

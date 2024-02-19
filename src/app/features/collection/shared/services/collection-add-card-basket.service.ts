@@ -1,28 +1,76 @@
 import { inject, Injectable } from '@angular/core';
-import { Card, CardQualityEnum } from '@shared';
+import { CardQuality, UserCard } from '@shared';
 import { v4 as uuidv4 } from 'uuid';
-import { CardApi } from '../../models/card-api.model';
+import userCardsMock from '../../../../shared/collection/mocks/user-cards.mock';
+import { ApiCard } from '../../models/card-api.model';
 import { CollectionAddCardBasketStatesService } from './collection-add-card-basket-states.service';
+import { CollectionAddCardSearchFormService } from './collection-add-card-search-form.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CollectionAddCardBasketService {
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
+    private _searchFormService = inject(CollectionAddCardSearchFormService);
 
-    updateCardBasket(updatedCard: Card): void {
+    updateCardBasket(updatedCard: UserCard): void {
         return this._cardBasketStateService.setCardBasket(
             this._cardBasketStateService
                 .getCardBasketValue()
-                .map((card) => (card.uniqueId === updatedCard.uniqueId ? updatedCard : card))
+                .map((card) =>
+                    card.cardInfo.uniqueId === updatedCard.cardInfo.uniqueId ? updatedCard : card
+                )
         );
     }
 
-    fromSearchResultToCardBasket(cardApi: CardApi): Card {
-        return { ...cardApi, uniqueId: uuidv4(), quality: CardQualityEnum.excellent };
+    fromSearchResultToCardBasket(apiCard: ApiCard): UserCard {
+        return {
+            cardInfo: {
+                uniqueId: uuidv4(),
+                apiCardId: apiCard.cardIdApi,
+                name: apiCard.name,
+                frenchName:
+                    apiCard.foreignNames?.find((foreignName) => foreignName.language === 'French')
+                        ?.name || '',
+                imageUrl: apiCard.imageUrl,
+                frenchImageUrl:
+                    apiCard.foreignNames?.find((foreignName) => foreignName.language === 'French')
+                        ?.imageUrl || '',
+                manaCost: apiCard.manaCost,
+                rarity: apiCard.rarity,
+                setAbbreviation: apiCard.set,
+                setName: apiCard.setName,
+                text: apiCard.text,
+                artist: apiCard.artist,
+            },
+            userInfo: {
+                userId: 3565,
+                qualityName: CardQuality.excellent,
+                qualityId: 1,
+                languageName: this._searchFormService.languageControl,
+                languageId: 1,
+            },
+        };
     }
 
-    addCardsToCardBasket(cards: Card[]): void {
+    fromCardBasketToCollection(): UserCard[] {
+        const result = this._cardBasketStateService.getCardBasketValue().map((card) => {
+            const {
+                cardInfo: { uniqueId, ...restCardInfo },
+                userInfo: { qualityName, languageName, ...restUserInfo },
+            } = card;
+            return {
+                cardInfo: restCardInfo,
+                userInfo: restUserInfo,
+            };
+        });
+        // todo: send proper objetc when data ready
+        console.log(result);
+        console.log(userCardsMock);
+        return userCardsMock;
+    }
+
+    addCardsToCardBasket(cards: UserCard[]): void {
         this._cardBasketStateService.setCardBasket([
             ...this._cardBasketStateService.getCardBasketValue(),
             ...cards,
@@ -33,7 +81,7 @@ export class CollectionAddCardBasketService {
         this._cardBasketStateService.setCardBasket(
             this._cardBasketStateService
                 .getCardBasketValue()
-                .filter((card) => card.uniqueId !== uniqueId)
+                .filter((card) => card.cardInfo.uniqueId !== uniqueId)
         );
     }
 
@@ -42,7 +90,7 @@ export class CollectionAddCardBasketService {
             this._cardBasketStateService.getCardBasketValue().length > 0 &&
             this._cardBasketStateService
                 .getCardBasketValue()
-                .every((card) => card.quality !== undefined)
+                .every((card) => card.userInfo.qualityName !== undefined)
         );
     }
 

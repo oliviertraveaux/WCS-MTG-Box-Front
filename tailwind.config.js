@@ -17,13 +17,7 @@ module.exports = {
             xlg: '1920px',
             // => @media (min-width: 1920px) { ... }
         },
-        extend: {
-            height: {
-                'full-header-less-mobile': 'calc(100% - 56px)',
-                'full-header-and-footer-less': 'calc(100% - 128px)',
-                'full-drawer': 'calc(100% - 72px)',
-            },
-        },
+        extend: {},
     },
     plugins: [],
 };

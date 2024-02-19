@@ -5,12 +5,56 @@
   @include sm {
     padding: 0 16px 0 16px;
   }
+  @include lg {
+    padding: 0 8px 0 16px;
+  }
 }
 
-.cdk-column-actions {
-  padding: 0px;
-  width: 24px;
+.cdk-column-show {
+  @include lg {
+    max-width: 40px;
+  }
+}
+
+.cdk-column-name {
   @include sm {
+    max-width: 90px;
+  }
+}
+
+.cdk-column-set {
+  @include sm {
+    max-width: 48px;
+  }
+}
+
+.cdk-column-quality {
+  max-width: 110px;
+  @include sm {
+    max-width: 120px;
+    width: auto;
+  }
+}
+//
+.cdk-column-action {
+  padding: 0px;
+  width: 16px;
+  @include sm {
+    width: 24px;
     padding: 0 16px 0 16px;
+  }
+}
+
+:host {
+  @include lg {
+    flex-grow: 1;
+    display: flex;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
   }
 }

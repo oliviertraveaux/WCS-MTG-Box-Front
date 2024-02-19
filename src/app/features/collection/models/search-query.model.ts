@@ -4,10 +4,10 @@ export interface SearchQuery {
     name?: string;
     language?: string;
     set?: string;
-    cmc?: number;
-    rarity?: CardRarity;
+    cmc?: number | string;
+    rarity?: CardRarity | string;
     type?: string;
-    colors?: CardColor;
+    colors?: CardColor | string;
     text?: string;
     artist?: string;
 }

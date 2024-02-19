@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { RequestStatus } from '../../../../shared/enums/request-status.enum';
-import { SearchQuery } from '../../models/search-querry.model';
+import { SearchQuery } from '../../models/search-query.model';
 import { CollectionAddCardRepository } from '../repositories/collection-add-card.repository';
 import { CollectionAddCardResultsStatesService } from './collection-add-card-search-results-states.service';
 
