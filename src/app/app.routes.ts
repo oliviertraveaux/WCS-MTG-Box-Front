@@ -16,6 +16,8 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'collection/add', component: CollectionAddCardPageComponent, canActivate: [AuthGuard] },
   { path: '', component: SearchPageComponent },
+  { path: 'profil', component: ProfilPageComponent },
+
 ];
 
 
