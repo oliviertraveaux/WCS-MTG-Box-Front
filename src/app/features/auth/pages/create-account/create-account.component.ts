@@ -33,8 +33,7 @@ import {SnackbarService, SnackbarStatus} from "@shared";
   styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent {
-
-
+  
   private _snackbarService = inject(SnackbarService);
   private _formBuilder = inject(FormBuilder);
   private _registerService = inject(RegisterService);

@@ -6,16 +6,13 @@ import {ProfilPageComponent} from "./features/profil/components/ui/profil-page/p
 import {LoginComponent} from "./features/auth/pages/login/login.component";
 import {AuthGuard} from "./features/auth/shared/guards/auth.guard";
 
-
-
-
 export const routes: Routes = [
   { path: '', component: SearchPageComponent, canActivate: [AuthGuard]},
   { path: 'register', component: CreateAccountComponent },
   { path: 'profil', component: ProfilPageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'collection/add', component: CollectionAddCardPageComponent, canActivate: [AuthGuard] },
-  { path: '', component: SearchPageComponent },
+
 ];
 
 

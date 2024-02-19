@@ -4,7 +4,6 @@ export const ENVIRONMENT = {
   apiLoginConfigurationURL: "/api/v1/login",
   apiRegisterConfigurationURL: "/api/v1/register",
   apiCheckAvailabilityConfigurationURL: "/api/v1/check-availability",
-  url: "http://localhost:8080"
+  url: "http://localhost:8080",
 }
-
 
