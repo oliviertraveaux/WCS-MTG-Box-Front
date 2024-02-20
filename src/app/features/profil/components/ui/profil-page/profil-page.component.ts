@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {LoginService} from "../../../../auth/shared/services/login.service";
 
 @Component({
   selector: 'app-profil-page',
@@ -9,5 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./profil-page.component.scss']
 })
 export class ProfilPageComponent {
+
+  constructor(private authService: LoginService) {
+  }
+
+  logout() { this.authService.logout();}
 
 }
