@@ -1,0 +1,130 @@
+<section class="register">
+
+  <div class=" border border-gray-300 rounded-lg">
+    <h1 class="text-center text-2xl p-2">Inscription</h1>
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+
+      <!-- UserName  -->
+      <mat-step [stepControl]="userNameFormGroup">
+        <form [formGroup]="userNameFormGroup">
+          <ng-template matStepLabel>Nom d'utilisateur</ng-template>
+          <mat-form-field>
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput formControlName="userName" required  (input)=" isUsernameAvailable = true">
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!userNameFormGroup.valid || !isUsernameAvailable">Suivant
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Email  -->
+      <mat-step [stepControl]="emailFormGroup">
+        <form [formGroup]="emailFormGroup">
+          <ng-template matStepLabel>Email</ng-template>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required  (input)="isEmailAvailable = true">
+          </mat-form-field>
+          <div>
+
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!emailFormGroup.valid || !isEmailAvailable">Suivant</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Password  -->
+      <mat-step [stepControl]="passwordFormGroup">
+        <form [formGroup]="passwordFormGroup">
+          <ng-template matStepLabel>Mot de passe</ng-template>
+          <mat-form-field>
+            <mat-label>Mot de passe</mat-label>
+            <input matInput [type]="isConfirmPasswordHidden ? 'password' : 'text'" formControlName="password" required>
+            <button mat-icon-button matSuffix (click)="isConfirmPasswordHidden = !isConfirmPasswordHidden" tabindex="-1">
+              <mat-icon>{{ isConfirmPasswordHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+
+          </mat-form-field>
+          <div>
+
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!passwordFormGroup.valid">Suivant
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Confirm Password -->
+      <mat-step [stepControl]="confirmPasswordFormGroup">
+        <form [formGroup]="confirmPasswordFormGroup">
+          <ng-template matStepLabel>Confirmer le mot de passe</ng-template>
+          <mat-form-field>
+            <mat-label>Confirmer le mot de passe</mat-label>
+            <input matInput [type]="isConfirmPasswordHidden ? 'password' : 'text'" formControlName="confirmPassword"
+                   required>
+            <button mat-icon-button matSuffix (click)="isConfirmPasswordHidden = !isConfirmPasswordHidden" tabindex="-1">
+              <mat-icon>{{ isConfirmPasswordHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <div>
+
+            <button mat-raised-button color="accent" matStepperNext
+                    [disabled]="!confirmPasswordFormGroup.valid || !passwordFormGroup.valid">Suivant
+            </button>
+
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Postal Code  -->
+      <mat-step [stepControl]="postCodeFormGroup">
+        <form [formGroup]="postCodeFormGroup">
+          <ng-template matStepLabel>Code Postal</ng-template>
+          <mat-form-field>
+            <mat-label>Code Postal à 5 chiffres</mat-label>
+            <input matInput formControlName="postCode" required>
+          </mat-form-field>
+          <div>
+
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!postCodeFormGroup.valid">Suivant
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- City -->
+      <mat-step [stepControl]="cityFormGroup">
+        <form [formGroup]="cityFormGroup">
+          <ng-template matStepLabel>Ville</ng-template>
+          <mat-form-field>
+            <mat-label>Ville</mat-label>
+            <input matInput formControlName="city" required>
+          </mat-form-field>
+          <div>
+
+          </div>
+        </form>
+      </mat-step>
+    </mat-stepper>
+
+    <!-- Final Step -->
+
+    <form (submit)="onSubmit()">
+      <div class=" flex justify-center items-center gap-5 p-4 mt-4">
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!userNameFormGroup.valid ||
+                        !emailFormGroup.valid ||
+                        !passwordFormGroup.valid ||
+                        !confirmPasswordFormGroup.valid ||
+                        !postCodeFormGroup.valid ||
+                        !cityFormGroup.valid">
+          S'inscrire
+        </button>
+        <button mat-raised-button color="primary" type="button" (click)="stepper.reset()">Réinitialiser</button>
+      </div>
+    </form>
+
+
+  </div>
+
+</section>
