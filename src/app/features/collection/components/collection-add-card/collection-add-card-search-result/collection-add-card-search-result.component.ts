@@ -17,22 +17,24 @@ import { GetTranslatedCardImgPipe } from '../../../shared/pipes/get-translated-c
 import { GetTranslatedCardNamePipe } from '../../../shared/pipes/get-translated-card-name-pipe';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
 import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-search-card-result',
     standalone: true,
-    imports: [
-        CommonModule,
-        GetRaritySymbolPipe,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatOptionModule,
-        MatSelectModule,
-        GetRarityClassPipe,
-        MatSnackBarModule,
-        GetTranslatedCardImgPipe,
-        GetTranslatedCardNamePipe,
-    ],
+  imports: [
+    CommonModule,
+    GetRaritySymbolPipe,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    GetRarityClassPipe,
+    MatSnackBarModule,
+    GetTranslatedCardImgPipe,
+    GetTranslatedCardNamePipe,
+    TranslateModule,
+  ],
     templateUrl: './collection-add-card-search-result.component.html',
 })
 export class CollectionAddCardSearchResultComponent {

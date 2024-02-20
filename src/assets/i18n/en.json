@@ -1,0 +1,58 @@
+{
+  "Register": {
+    "subscription": "Registration",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "password-confirm": "Confirm Password",
+    "postal-code": "Postal Code",
+    "city": "City",
+    "next": "Next",
+    "sign-up": "Sign Up",
+    "reset": "Reset"
+  },
+  "Login": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "no-account": "Don't have an account yet?"
+  },
+  "Collection": {
+    "set": "Set",
+    "card-to-add": "Card to Add",
+    "quality": "Quality",
+    "delete": "Delete",
+    "name": "Name",
+    "reset": "RESET",
+    "color": "Color",
+    "rarity": "Rarity",
+    "cmc_label": "CMC",
+    "type": "Type",
+    "text": "Text",
+    "artist": "Artist",
+    "none": "None",
+    "collection": "Collection",
+    "add-cards": "Cards to Add",
+    "search": "Search",
+    "filters": "Filters",
+    "add": "Add",
+    "results": "results",
+    "result": "result"
+  },
+  "Topbar": {
+    "title": "MTGBox",
+    "add": "Add",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "Toasts": {
+    "username-not-available": "The username is already in use",
+    "email-not-available": "The email is already in use",
+    "passwords-match": "Passwords do not match",
+    "register-sucess": "Registration successful",
+    "register-fail": "Registration failed",
+    "login-fail": "Login failed. Please try again.",
+    "login-success": "Login successful. Welcome!",
+    "card-added": "cards added to your collection"
+  }
+}

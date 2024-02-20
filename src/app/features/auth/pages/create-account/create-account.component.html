@@ -1,45 +1,44 @@
 <section class="register">
 
   <div class=" border border-gray-300 rounded-lg">
-    <h1 class="text-center text-2xl p-2">Inscription</h1>
+    <h1 class="text-center text-2xl p-2">{{ 'Register.subscription' | translate }}</h1>
     <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
 
-      <!-- UserName  -->
+      <!-- Nom d'utilisateur -->
       <mat-step [stepControl]="userNameFormGroup">
         <form [formGroup]="userNameFormGroup">
-          <ng-template matStepLabel>Nom d'utilisateur</ng-template>
+          <ng-template matStepLabel>{{ 'Register.username' | translate }}</ng-template>
           <mat-form-field>
-            <mat-label>Nom d'utilisateur</mat-label>
+            <mat-label>{{ 'Register.username' | translate }}</mat-label>
             <input matInput formControlName="userName" required  (input)=" isUsernameAvailable = true">
           </mat-form-field>
           <div>
-            <button mat-raised-button color="accent" matStepperNext [disabled]="!userNameFormGroup.valid || !isUsernameAvailable">Suivant
-            </button>
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!userNameFormGroup.valid || !isUsernameAvailable">{{ 'Register.next' | translate }}</button>
           </div>
         </form>
       </mat-step>
 
-      <!-- Email  -->
+      <!-- Email -->
       <mat-step [stepControl]="emailFormGroup">
         <form [formGroup]="emailFormGroup">
-          <ng-template matStepLabel>Email</ng-template>
+          <ng-template matStepLabel>{{ 'Register.email' | translate }}</ng-template>
           <mat-form-field>
-            <mat-label>Email</mat-label>
+            <mat-label>{{ 'Register.email' | translate }}</mat-label>
             <input matInput formControlName="email" required  (input)="isEmailAvailable = true">
           </mat-form-field>
           <div>
 
-            <button mat-raised-button color="accent" matStepperNext [disabled]="!emailFormGroup.valid || !isEmailAvailable">Suivant</button>
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!emailFormGroup.valid || !isEmailAvailable">{{ 'Register.next' | translate }}</button>
           </div>
         </form>
       </mat-step>
 
-      <!-- Password  -->
+      <!-- Mot de passe -->
       <mat-step [stepControl]="passwordFormGroup">
         <form [formGroup]="passwordFormGroup">
-          <ng-template matStepLabel>Mot de passe</ng-template>
+          <ng-template matStepLabel>{{ 'Register.password' | translate }}</ng-template>
           <mat-form-field>
-            <mat-label>Mot de passe</mat-label>
+            <mat-label>{{ 'Register.password' | translate }}</mat-label>
             <input matInput [type]="isConfirmPasswordHidden ? 'password' : 'text'" formControlName="password" required>
             <button mat-icon-button matSuffix (click)="isConfirmPasswordHidden = !isConfirmPasswordHidden" tabindex="-1">
               <mat-icon>{{ isConfirmPasswordHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -48,18 +47,17 @@
           </mat-form-field>
           <div>
 
-            <button mat-raised-button color="accent" matStepperNext [disabled]="!passwordFormGroup.valid">Suivant
-            </button>
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!passwordFormGroup.valid">{{ 'Register.next' | translate }}</button>
           </div>
         </form>
       </mat-step>
 
-      <!-- Confirm Password -->
+      <!-- Confirmer le mot de passe -->
       <mat-step [stepControl]="confirmPasswordFormGroup">
         <form [formGroup]="confirmPasswordFormGroup">
-          <ng-template matStepLabel>Confirmer le mot de passe</ng-template>
+          <ng-template matStepLabel>{{ 'Register.password-confirm' | translate }}</ng-template>
           <mat-form-field>
-            <mat-label>Confirmer le mot de passe</mat-label>
+            <mat-label>{{ 'Register.password-confirm' | translate }}</mat-label>
             <input matInput [type]="isConfirmPasswordHidden ? 'password' : 'text'" formControlName="confirmPassword"
                    required>
             <button mat-icon-button matSuffix (click)="isConfirmPasswordHidden = !isConfirmPasswordHidden" tabindex="-1">
@@ -69,35 +67,33 @@
           <div>
 
             <button mat-raised-button color="accent" matStepperNext
-                    [disabled]="!confirmPasswordFormGroup.valid || !passwordFormGroup.valid">Suivant
-            </button>
+                    [disabled]="!confirmPasswordFormGroup.valid || !passwordFormGroup.valid">{{ 'Register.next' | translate }}</button>
 
           </div>
         </form>
       </mat-step>
 
-      <!-- Postal Code  -->
+      <!-- Code Postal -->
       <mat-step [stepControl]="postCodeFormGroup">
         <form [formGroup]="postCodeFormGroup">
-          <ng-template matStepLabel>Code Postal</ng-template>
+          <ng-template matStepLabel>{{ 'Register.postal-code' | translate }}</ng-template>
           <mat-form-field>
-            <mat-label>Code Postal à 5 chiffres</mat-label>
+            <mat-label>{{ 'Register.postal-code' | translate }}</mat-label>
             <input matInput formControlName="postCode" required>
           </mat-form-field>
           <div>
 
-            <button mat-raised-button color="accent" matStepperNext [disabled]="!postCodeFormGroup.valid">Suivant
-            </button>
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!postCodeFormGroup.valid">{{ 'Register.next' | translate }}</button>
           </div>
         </form>
       </mat-step>
 
-      <!-- City -->
+      <!-- Ville -->
       <mat-step [stepControl]="cityFormGroup">
         <form [formGroup]="cityFormGroup">
-          <ng-template matStepLabel>Ville</ng-template>
+          <ng-template matStepLabel>{{ 'Register.city' | translate }}</ng-template>
           <mat-form-field>
-            <mat-label>Ville</mat-label>
+            <mat-label>{{ 'Register.city' | translate }}</mat-label>
             <input matInput formControlName="city" required>
           </mat-form-field>
           <div>
@@ -107,7 +103,7 @@
       </mat-step>
     </mat-stepper>
 
-    <!-- Final Step -->
+    <!-- Étape finale -->
 
     <form (submit)="onSubmit()">
       <div class=" flex justify-center items-center gap-5 p-4 mt-4">
@@ -117,10 +113,8 @@
                         !passwordFormGroup.valid ||
                         !confirmPasswordFormGroup.valid ||
                         !postCodeFormGroup.valid ||
-                        !cityFormGroup.valid">
-          S'inscrire
-        </button>
-        <button mat-raised-button color="primary" type="button" (click)="stepper.reset()">Réinitialiser</button>
+                        !cityFormGroup.valid">{{ 'Register.sign-up' | translate }}</button>
+        <button mat-raised-button color="primary" type="button" (click)="stepper.reset()">{{ 'Register.reset' | translate }}</button>
       </div>
     </form>
 

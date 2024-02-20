@@ -1,0 +1,59 @@
+{
+  "Register": {
+    "subscription": "Inscription",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "password": "Mot de passe",
+    "password-confirm": "Confirmer le mot de passe",
+    "postal-code": "Code Postal",
+    "city": "Ville",
+    "next": "Suivant",
+    "sign-up": "S'inscrire",
+    "reset": "Réinitialiser"
+  },
+  "Login": {
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "login": "Connexion",
+    "no-account": "Vous n'avez pas encore de compte?"
+  },
+  "Collection": {
+    "set": "Set",
+    "card-to-add": "Carte à ajouter",
+    "quality": "Qualité",
+    "delete": "Effacer",
+    "name": "Nom",
+    "reset": "Réinitialiser",
+    "color": "Couleur",
+    "rarity": "Rareté",
+    "cmc_label": "CCM",
+    "type": "Type",
+    "text": "Texte",
+    "artist": "Artiste",
+    "none": "Aucune",
+    "collection": "Collection",
+    "add-cards": "Ajouter une carte",
+    "search": "Rechercher",
+    "filters": "Filtres",
+    "add": "Ajouter",
+    "results": "résultats",
+    "result": "résultat"
+  },
+  "Topbar": {
+    "title": "MTGBox",
+    "add": "Ajouter",
+    "logout": "Déconnexion",
+    "login": "Connexion"
+  },
+  "Toasts": {
+    "username-not-available": "Le nom d'utilisateur est déjà utilisé",
+    "email-not-available": "L'email est déjà utilisé",
+    "passwords-match": " Les mots de passe ne correspondent pas",
+    "register-sucess": "Inscription réussie'",
+    "register-fail": "Erreur lors de l'inscription",
+    "login-fail": "Échec de la connexion. Veuillez réessayer.",
+    "login-success": "Connexion réussie. Bienvenue !",
+    "card-added": "cartes ajoutées à votre collection"
+  }
+
+}

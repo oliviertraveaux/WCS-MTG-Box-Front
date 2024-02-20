@@ -18,25 +18,27 @@ import { BreakpointObserverService, CardQuality, UserCard } from '@shared';
 import { FilterValues } from '../../../models/filter-values.model';
 import { CollectionAddCardBasketStatesService } from '../../../shared/services/collection-add-card-basket-states.service';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-card-list',
     standalone: true,
-    imports: [
-        CommonModule,
-        MatTableModule,
-        MatCheckboxModule,
-        MatPaginatorModule,
-        MatIconModule,
-        MatInputModule,
-        MatSelectModule,
-        MatSortModule,
-        MatButtonModule,
-        MatTooltipModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatDialogModule,
-    ],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatButtonModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    TranslateModule,
+  ],
     templateUrl: './collection-add-card-basket.component.html',
     styleUrls: ['./collection-add-card-basket.component.scss'],
 })
