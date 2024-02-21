@@ -123,7 +123,7 @@ export class CreateAccountComponent {
         const errorRegistration = this._translate.instant('Toasts.register-fail');
         this._snackbarService.openSnackBar( errorRegistration, SnackbarStatus.error);
 
-
+>>>>>>>>> Temporary merge branch 2
       }
     });
   }
