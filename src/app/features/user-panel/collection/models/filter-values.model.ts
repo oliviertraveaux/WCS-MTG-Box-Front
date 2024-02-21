@@ -1,4 +1,4 @@
-import {CardType} from "../../../shared/collection/enums/card-type.enum";
+import {CardType} from "../../../../shared/collection/enums/card-type.enum";
 
 export class FilterValues {
   constructor(
