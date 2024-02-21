@@ -11,12 +11,10 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 
 
-
-
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
 
 
 bootstrapApplication(AppComponent, {
@@ -37,5 +35,6 @@ bootstrapApplication(AppComponent, {
 
 
     ])
+
   ],
 }).catch((err) => console.error(err));

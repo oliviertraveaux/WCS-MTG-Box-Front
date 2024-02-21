@@ -7,6 +7,8 @@ import {RouterLink} from "@angular/router";
 import {LoginService} from "../../features/auth/shared/services/login.service";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
+
+
 @Component({
   selector: 'app-topbar',
   standalone: true,
@@ -16,6 +18,7 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 export class TopbarComponent {
 
   constructor(protected authService: LoginService, private translate : TranslateService) {
+
   }
 
   isLoggedIn(): boolean {
@@ -26,6 +29,7 @@ export class TopbarComponent {
 
     this.authService.logout();
   }
+
 
   switchLanguage(language: string) {
     this.translate.use(language);

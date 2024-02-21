@@ -18,7 +18,11 @@
         🇬🇧
       </button>
 
+
+      <a *ngIf="authService.isAuthenticated()" (click)="logout()">Déconnexion</a>
+
+      <a *ngIf="!authService.isAuthenticated()" routerLink="login">Connexion</a>
+
     </div>
   </div>
 </mat-toolbar>
-

@@ -29,7 +29,9 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
   standalone: true,
   imports: [
     CommonModule, MatStepperModule, MatInputModule, MatSelectModule, MatButtonModule,
+
     FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatIconModule, TranslateModule
+
   ],
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.scss']
@@ -40,7 +42,9 @@ export class CreateAccountComponent {
   private _formBuilder = inject(FormBuilder);
   private _registerService = inject(RegisterService);
   private _router = inject(Router);
+
   private _translate = inject(TranslateService);
+
 
   isLinear = false;
   isConfirmPasswordHidden = true;
@@ -84,8 +88,10 @@ export class CreateAccountComponent {
       this.isUsernameAvailable && this.isEmailAvailable) {
 
       if (this.passwordFormGroup.value.password !== this.confirmPasswordFormGroup.value.confirmPassword) {
+
         const passwordMismatch = this._translate.instant('Toasts.passwords-match');
         this._snackbarService.openSnackBar(passwordMismatch, SnackbarStatus.error);
+
         return;
       }
       this.performRegistration();
@@ -104,16 +110,20 @@ export class CreateAccountComponent {
 
     this._registerService.register(formData).subscribe({
       next: (response) => {
+
         const successRegistration = this._translate.instant('Toasts.register-success');
         this._snackbarService.openSnackBar(successRegistration, SnackbarStatus.success);
+
         setTimeout(() => {
           this._router.navigate(['/login'], {queryParams: {username: formData.username}});
         }, 1200);
       },
       error: () => {
+
         const errorRegistration = this._translate.instant('Toasts.register-fail');
         this._snackbarService.openSnackBar( errorRegistration, SnackbarStatus.error);
 
+     
       }
     });
   }
@@ -130,8 +140,10 @@ export class CreateAccountComponent {
       return registerService.checkAvailability(control.value, '').pipe(
         map(response => {
           if (!response.isAvailable) {
+
             const usernameNotAvailable = this._translate.instant('Toasts.username-not-available');
             this._snackbarService.openSnackBar(usernameNotAvailable, SnackbarStatus.error);
+
             return {usernameUnavailable: true};
           }
           return null;
@@ -151,6 +163,7 @@ export class CreateAccountComponent {
           if (!response.isAvailable) {
             const emailUnavailable = this._translate.instant('Toasts.email-not-available');
             this._snackbarService.openSnackBar(emailUnavailable, SnackbarStatus.error);
+
             return {emailUnavailable: true};
           }
           return null;

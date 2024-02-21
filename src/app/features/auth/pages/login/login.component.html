@@ -4,19 +4,25 @@
     <img src="./assets/images/background/mtg-background.png" class="rounded-full  ">
 
     <mat-form-field appearance="fill" class="login-form-field w-full mt-2">
+
       <mat-label>{{ 'Login.username' | translate }}</mat-label>
+
       <input matInput type="text" formControlName="username">
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="login-form-field w-full">
+
       <mat-label>{{ 'Login.password' | translate }}</mat-label>
+
       <input matInput type="password" formControlName="password">
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit"  class="login-button w-full py-2">
+<
       {{ 'Login.login' | translate }}
     </button>
   </form>
 
   <p class="text-center "><a href="/register" class="text-blue-500 hover:underline">{{ 'Login.no-account' | translate }}</a></p>
+
 </section>
