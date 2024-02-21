@@ -20,6 +20,8 @@ import {Router} from "@angular/router";
 import {map, Observable, of} from "rxjs";
 import {RegistrationFormData} from "../../models/auth.model";
 import {SnackbarService, SnackbarStatus} from "@shared";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
+
 
 
 @Component({
@@ -27,7 +29,9 @@ import {SnackbarService, SnackbarStatus} from "@shared";
   standalone: true,
   imports: [
     CommonModule, MatStepperModule, MatInputModule, MatSelectModule, MatButtonModule,
-    FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatIconModule
+
+    FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatIconModule, TranslateModule
+
   ],
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.scss']
@@ -38,6 +42,9 @@ export class CreateAccountComponent {
   private _formBuilder = inject(FormBuilder);
   private _registerService = inject(RegisterService);
   private _router = inject(Router);
+
+  private _translate = inject(TranslateService);
+
 
   isLinear = false;
   isConfirmPasswordHidden = true;
@@ -81,7 +88,10 @@ export class CreateAccountComponent {
       this.isUsernameAvailable && this.isEmailAvailable) {
 
       if (this.passwordFormGroup.value.password !== this.confirmPasswordFormGroup.value.confirmPassword) {
-        this._snackbarService.openSnackBar(" Les mots de passe ne correspondent pas", SnackbarStatus.error);
+
+        const passwordMismatch = this._translate.instant('Toasts.passwords-match');
+        this._snackbarService.openSnackBar(passwordMismatch, SnackbarStatus.error);
+
         return;
       }
       this.performRegistration();
@@ -100,13 +110,19 @@ export class CreateAccountComponent {
 
     this._registerService.register(formData).subscribe({
       next: (response) => {
-        this._snackbarService.openSnackBar(' Inscription réussie', SnackbarStatus.success);
+
+        const successRegistration = this._translate.instant('Toasts.register-sucess');
+        this._snackbarService.openSnackBar(successRegistration, SnackbarStatus.success);
+
         setTimeout(() => {
           this._router.navigate(['/login'], {queryParams: {username: formData.username}});
         }, 1200);
       },
       error: () => {
-        this._snackbarService.openSnackBar(" Erreur lors de l'inscription", SnackbarStatus.error);
+
+        const errorRegistration = this._translate.instant('Toasts.register-fail');
+        this._snackbarService.openSnackBar( errorRegistration, SnackbarStatus.error);
+
       }
     });
   }
@@ -123,7 +139,10 @@ export class CreateAccountComponent {
       return registerService.checkAvailability(control.value, '').pipe(
         map(response => {
           if (!response.isAvailable) {
-            this._snackbarService.openSnackBar(" Le nom d'utilisateur est déjà utilisé", SnackbarStatus.error);
+
+            const usernameNotAvailable = this._translate.instant('Toasts.username-not-available');
+            this._snackbarService.openSnackBar(usernameNotAvailable, SnackbarStatus.error);
+
             return {usernameUnavailable: true};
           }
           return null;
@@ -141,7 +160,9 @@ export class CreateAccountComponent {
       return registerService.checkAvailability('', control.value).pipe(
         map(response => {
           if (!response.isAvailable) {
-            this._snackbarService.openSnackBar(" L'adresse email est déjà utilisée", SnackbarStatus.error);
+            const emailUnavailable = this._translate.instant('Toasts.email-not-available');
+            this._snackbarService.openSnackBar(emailUnavailable, SnackbarStatus.error);
+
             return {emailUnavailable: true};
           }
           return null;

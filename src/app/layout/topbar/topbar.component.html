@@ -1,15 +1,25 @@
 <mat-toolbar color="primary">
   <div class="flex w-full justify-between items-center px-2 sm:px-16">
-    <a routerLink="">MTGBox</a>
+    <a routerLink="">{{ 'Topbar.title' | translate }}</a>
     <div class="flex gap-4 justify-end items-center">
       <button mat-raised-button aria-label="Compléter ou créer une collection." routerLink="collection/add">
         <mat-icon>add</mat-icon>
-        Ajouter
+        {{ 'Topbar.add' | translate }}
       </button>
 
-      <a *ngIf="authService.isAuthenticated()" (click)="logout()">Déconnexion</a>
+      <a *ngIf="authService.isAuthenticated()" (click)="logout()">{{ 'Topbar.logout' | translate }}</a>
 
-      <a *ngIf="!authService.isAuthenticated()" routerLink="login">Connexion</a>
+      <a *ngIf="!authService.isAuthenticated()" routerLink="login">{{ 'Topbar.login' | translate }}</a>
+
+      <button mat-button (click)="switchLanguage('fr')" class="p-1 border-none mr-1">
+        🇫🇷
+      </button>
+      <button mat-button (click)="switchLanguage('en')" class="p-1 border-none">
+        🇬🇧
+      </button>
+
+
+
     </div>
   </div>
 </mat-toolbar>

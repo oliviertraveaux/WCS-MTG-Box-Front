@@ -18,24 +18,26 @@ import { SearchQuery } from '../../models/search-query.model';
 import { CollectionAddCardBasketService } from '../../shared/services/collection-add-card-basket.service';
 import { CollectionAddCardSearchFormService } from '../../shared/services/collection-add-card-search-form.service';
 import { CollectionAddCardSearchResultsService } from '../../shared/services/collection-add-card-search-results.service';
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-page',
     standalone: true,
-    imports: [
-        CommonModule,
-        CollectionAddCardSearchResultsComponent,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        CollectionAddCardSearchFormComponent,
-        MatSidenavModule,
-        MatIconModule,
-        RouterOutlet,
-        MatListModule,
-        MatOptionModule,
-        CollectionAddCardBasketComponent,
-    ],
+  imports: [
+    CommonModule,
+    CollectionAddCardSearchResultsComponent,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    CollectionAddCardSearchFormComponent,
+    MatSidenavModule,
+    MatIconModule,
+    RouterOutlet,
+    MatListModule,
+    MatOptionModule,
+    CollectionAddCardBasketComponent,
+    TranslateModule,
+  ],
     templateUrl: './collection-add-card-page.component.html',
 })
 export class CollectionAddCardPageComponent implements OnInit {

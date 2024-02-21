@@ -4,6 +4,8 @@ import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {CookieService} from "ngx-cookie-service";
 
+import {HttpClient} from "@angular/common/http";
+
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimations(),   CookieService ]
+  providers: [provideRouter(routes), provideAnimations(), HttpClient, CookieService ]
 };

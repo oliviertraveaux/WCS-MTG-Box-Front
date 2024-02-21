@@ -9,10 +9,15 @@ import { MatButtonModule } from "@angular/material/button";
 import {LoginData} from "../../models/auth.model";
 import {SnackbarService, SnackbarStatus} from "@shared";
 
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
+
+
+
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatSnackBarModule, MatInputModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatSnackBarModule, MatInputModule, MatButtonModule, TranslateModule],
+
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -24,6 +29,8 @@ export class LoginComponent {
   private _router: Router  = inject(Router);
   private _snackbarService = inject(SnackbarService);
   private _route: ActivatedRoute = inject(ActivatedRoute);
+  private _translate = inject(TranslateService);
+
 
 
   loginForm = this._fb.group({
@@ -48,12 +55,21 @@ export class LoginComponent {
       const formData: LoginData = this.loginForm.value as LoginData;
       this._authService.login(formData).subscribe({
         next: (token) => {
-          this._snackbarService.openSnackBar('Connexion réussie. Bienvenue !', SnackbarStatus.success);
+
+          const logged = this._translate.instant('Toasts.login-success');
+
+          this._snackbarService.openSnackBar(logged, SnackbarStatus.success);
+
           setTimeout(() => this._router.navigate(['/profil']), 1200);
         },
         error: (error) => {
           console.error(error);
-          this._snackbarService.openSnackBar("Échec de la connexion. Veuillez réessayer.", SnackbarStatus.error);
+
+          const logFailed = this._translate.instant('Toasts.login-fail');
+          this._snackbarService.openSnackBar(logFailed, SnackbarStatus.error);
+
+         
+
         }
       });
     }

@@ -21,21 +21,23 @@ import { SearchQuery } from '../../../models/search-query.model';
 import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
 import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card-search-results-states.service';
 import { CollectionAddCardSearchResultsService } from '../../../shared/services/collection-add-card-search-results.service';
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-search-form',
     standalone: true,
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatAutocompleteModule,
-        MatIconModule,
-        getSearchResultTextPipe,
-    ],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatIconModule,
+    getSearchResultTextPipe,
+    TranslateModule,
+  ],
     templateUrl: './collection-add-card-search-form.component.html',
 })
 export class CollectionAddCardSearchFormComponent implements OnInit {
