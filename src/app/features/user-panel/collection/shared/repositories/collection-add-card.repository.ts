@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ENVIRONMENT } from '../../../../../env';
+import { ENVIRONMENT } from '../../../../../../env';
 import { ApiCard } from '../../models/card-api.model';
 import { SearchQuery } from '../../models/search-query.model';
 

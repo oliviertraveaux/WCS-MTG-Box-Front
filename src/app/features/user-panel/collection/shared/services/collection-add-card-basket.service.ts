@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { CardQuality, UserCard } from '@shared';
 import { v4 as uuidv4 } from 'uuid';
-import userCardsMock from '../../../../shared/collection/mocks/user-cards.mock';
+import userCardsMock from '../../../../../shared/collection/mocks/user-cards.mock';
 import { ApiCard } from '../../models/card-api.model';
 import { CollectionAddCardBasketStatesService } from './collection-add-card-basket-states.service';
 import { CollectionAddCardSearchFormService } from './collection-add-card-search-form.service';

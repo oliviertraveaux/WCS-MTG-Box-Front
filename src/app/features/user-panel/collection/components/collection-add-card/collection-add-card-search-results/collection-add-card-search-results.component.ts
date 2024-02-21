@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CardSkeletonComponent, GetRaritySymbolPipe, getSearchResultTextPipe } from '@shared';
 import { Observable } from 'rxjs';
-import { RequestStatus } from '../../../../../shared/enums/request-status.enum';
+import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
 import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card-search-results-states.service';
 import { CollectionAddCardSearchResultComponent } from '../collection-add-card-search-result/collection-add-card-search-result.component';
 
