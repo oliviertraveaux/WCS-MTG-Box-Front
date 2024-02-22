@@ -20,10 +20,4 @@ export class CollectionAddCardSearchResultsService {
             this._searchCardsStatesService.setSearchRequestStatus(RequestStatus.success);
         });
     }
-
-    readCardTypes(): void {
-        this._collectionAddCardRepository
-            .getCardTypes()
-            .subscribe((cardTypes) => this._searchCardsStatesService.setCardTypes(cardTypes));
-    }
 }

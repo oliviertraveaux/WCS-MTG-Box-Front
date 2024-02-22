@@ -8,9 +8,9 @@ export class GetTranslatedCardNamePipe implements PipeTransform {
     transform(card: ApiCard, language: string): string {
         switch (language) {
             case 'French':
-                const frenchCard = card.foreignNames.find((card) => card.language === 'French');
+                const frenchCard = card.foreignNames?.find((card) => card.language === 'French');
                 return frenchCard?.name ?? card.name;
-            case '':
+            case 'English':
                 return card.name;
             default:
                 return card.name;

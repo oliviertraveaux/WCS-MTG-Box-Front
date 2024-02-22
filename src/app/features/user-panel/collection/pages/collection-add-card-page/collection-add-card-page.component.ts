@@ -1,4 +1,3 @@
-import { Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -48,10 +47,6 @@ export class CollectionAddCardPageComponent implements OnInit {
     private _cardBasketService = inject(CollectionAddCardBasketService);
     private _destroyRef = inject(DestroyRef);
 
-    protected readonly Breakpoints = Breakpoints;
-
-    readonly currentBreakpoint$ = this._breakpointObserverService.currentBreakpoints;
-    readonly isMobile = this._breakpointObserverService.isMobile;
     readonly isTablet = this._breakpointObserverService.isTablet;
     readonly isDesktop = this._breakpointObserverService.isDesktop;
 

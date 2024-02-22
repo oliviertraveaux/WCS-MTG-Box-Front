@@ -7,7 +7,7 @@ import {
     ValidationErrors,
     ValidatorFn,
 } from '@angular/forms';
-import { CardColor, CardRarity } from '@shared';
+import { BasicFilter, CardColor, CardRarity } from '@shared';
 import { debounceTime } from 'rxjs';
 import { SearchQuery } from '../../models/search-query.model';
 
@@ -25,7 +25,7 @@ export class CollectionAddCardSearchFormService {
         cmc: [''],
         rarity: [''],
         type: [''],
-        color: [''],
+        colors: [''],
         text: [null, this.textValidator('text')],
         artist: [null, this.textValidator('artist')],
     });
@@ -43,7 +43,7 @@ export class CollectionAddCardSearchFormService {
         return this.searchForm.get('name')?.value;
     }
 
-    get languageControl(): string {
+    get languageControl(): BasicFilter {
         return this.searchForm.get('language')?.value;
     }
 
@@ -64,7 +64,7 @@ export class CollectionAddCardSearchFormService {
     }
 
     get colorControl(): CardColor | string {
-        return this.searchForm.get('color')?.value;
+        return this.searchForm.get('colors')?.value;
     }
 
     get textControl(): string {
@@ -81,14 +81,23 @@ export class CollectionAddCardSearchFormService {
             const value = this.searchForm.get(control)?.value;
             if (value !== null && value !== '') {
                 // @ts-ignore
-                requestParams[control] = value;
+                requestParams[control] =
+                    control === 'language' && value.name !== 'English' ? value.name : value;
             }
         }
         return requestParams;
     }
 
     reset(): void {
-        this.searchForm.reset();
+        this.searchForm.get('name')?.patchValue(null),
+            this.searchForm.get('language')?.patchValue(''),
+            this.searchForm.get('set')?.patchValue(''),
+            this.searchForm.get('cmc')?.patchValue(''),
+            this.searchForm.get('rarity')?.patchValue(''),
+            this.searchForm.get('type')?.patchValue(''),
+            this.searchForm.get('colors')?.patchValue(''),
+            this.searchForm.get('text')?.patchValue(null),
+            this.searchForm.get('artist')?.patchValue(null);
     }
 
     updateValidityWhenFormValueChanges(): void {
@@ -117,7 +126,6 @@ export class CollectionAddCardSearchFormService {
             if (!otherControlsHaveValues && (nameValue === null || nameValue.length < 3)) {
                 return { invalidName: true };
             }
-
             return null;
         };
     }
