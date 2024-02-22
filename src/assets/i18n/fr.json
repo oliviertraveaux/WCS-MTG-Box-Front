@@ -18,28 +18,48 @@
     "no-account": "Vous n'avez pas encore de compte?"
   },
   "Collection": {
-    "set": "Set",
-    "card-to-add": "Carte à ajouter",
-    "quality": "Qualité",
-    "delete": "Effacer",
-    "name": "Nom",
-    "reset": "Réinitialiser",
-    "color": "Couleur",
-    "language": "Langue",
-    "rarity": "Rareté",
-    "cmc_label": "CCM",
-    "type": "Type",
-    "set": "Edition",
-    "text": "Texte",
-    "artist": "Artiste",
-    "none": "Aucune",
-    "collection": "Collection",
-    "add-cards": "Ajouter une carte",
-    "search": "Rechercher",
-    "filters": "Filtres",
-    "add": "Ajouter",
-    "results": "résultats",
-    "result": "résultat"
+    "delete": "Supprimer",
+    "addCard": {
+      "searchTitle": "Rechercher",
+      "cardBasketTitle": "Cartes à ajouter",
+      "searchForm": {
+        "set": "Edition",
+        "quality": "Qualité",
+        "name": "Nom",
+        "color": "Couleur",
+        "rarity": "Rareté",
+        "language": "Langue",
+        "cmc_label": "CMC",
+        "type": "Type",
+        "text": "Texte",
+        "artist": "Artiste",
+        "none": "Aucun",
+        "search": "Rechercher",
+        "results": "resultats",
+        "result": "resulat",
+        "reset": "Réinitialiser"
+      },
+      "searchResult": {
+        "add": "Ajouter"
+      },
+      "cardBasket": {
+        "title": "Cartes à ajouter",
+        "reset": "Réinitialiser",
+        "add-cards": "Cartes à ajouter",
+        "save": "Sauvegarder",
+        "name": "Nom",
+        "set": "Edition",
+        "quality": "Qualité",
+        "delete": "Supprimer"
+      },
+      "toast": {
+        "card-added-singular": "Carte ajoutée",
+        "card-added-plural": " cartes ajoutées",
+        "card-saved-success-singular": "Carte sauvegardée",
+        "card-saved-success-plural": " cartes sauvegardées",
+        "card-saved-fail": "Une erreur est survenue"
+      }
+    }
   },
   "Topbar": {
     "title": "MTGBox",
@@ -54,10 +74,9 @@
     "register-sucess": "Inscription réussie'",
     "register-fail": "Erreur lors de l'inscription",
     "login-fail": "Échec de la connexion. Veuillez réessayer.",
-    "login-success": "Connexion réussie. Bienvenue !",
-    "card-added": "cartes ajoutées à votre collection"
+    "login-success": "Connexion réussie. Bienvenue !"
   },
-  "userPanel":{
+  "userPanel": {
     "menuLabels": {
       "userPanel": "mes infos",
       "profile": "profil",
@@ -67,6 +86,6 @@
       "offersMade": "offres effectuées",
       "messages": "messages"
     }
-}
+  }
 
 }

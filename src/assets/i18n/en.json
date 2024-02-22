@@ -18,28 +18,47 @@
     "no-account": "Don't have an account yet?"
   },
   "Collection": {
-    "set": "Set",
-    "card-to-add": "Card to Add",
-    "quality": "Quality",
     "delete": "Delete",
-    "name": "Name",
-    "reset": "RESET",
-    "color": "Color",
-    "rarity": "Rarity",
-    "language": "Language",
-    "cmc_label": "CMC",
-    "type": "Type",
-    "set": "Set",
-    "text": "Text",
-    "artist": "Artist",
-    "none": "None",
-    "collection": "Collection",
-    "add-cards": "Cards to Add",
-    "search": "Search",
-    "filters": "Filters",
-    "add": "Add",
-    "results": "results",
-    "result": "result"
+    "addCard": {
+      "searchTitle": "Search",
+      "cardBasketTitle": "Cards to add",
+      "searchForm": {
+        "set": "Set",
+        "quality": "Quality",
+        "name": "Name",
+        "color": "Color",
+        "rarity": "Rarity",
+        "language": "Language",
+        "cmc_label": "CMC",
+        "type": "Type",
+        "text": "Text",
+        "artist": "Artist",
+        "none": "None",
+        "search": "Search",
+        "results": "results",
+        "result": "result",
+        "reset": "RESET"
+      },
+      "searchResult": {
+        "add": "Add"
+      },
+      "cardBasket": {
+        "reset": "Reset",
+        "add-cards": "Cards to Add",
+        "save": "Save",
+        "name": "Name",
+        "set": "Set",
+        "quality": "Quality",
+        "delete": "Delete"
+      },
+      "toast": {
+        "card-added-singular": "Card added",
+        "card-added-plural": " cards added",
+        "card-saved-success-singular": "Card saved",
+        "card-saved-success-plural": " cards saved",
+        "card-saved-fail": "An error occurred saving cards"
+      }
+    }
   },
   "Topbar": {
     "title": "MTGBox",
@@ -54,8 +73,7 @@
     "register-sucess": "Registration successful",
     "register-fail": "Registration failed",
     "login-fail": "Login failed. Please try again.",
-    "login-success": "Login successful. Welcome!",
-    "card-added": "cards added to your collection"
+    "login-success": "Login successful. Welcome!"
   },
   "userPanel": {
     "menuLabels": {

@@ -17,6 +17,7 @@ export interface UserCard {
     };
     userInfo: {
         userId: number;
+        userCardId?: number;
         qualityId?: number;
         qualityName?: CardQuality;
         languageId?: number;

@@ -64,7 +64,6 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
     status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
 
     ngOnInit(): void {
-        console.log('form value', this._searchFormService.searchForm.value);
         this.searchForm = this._searchFormService.searchForm;
         this.isFormValid = this.searchForm.valid && this.searchForm.dirty;
         this._searchFormService.updateValidityWhenFormValueChanges();

@@ -6,7 +6,7 @@
             <button class="mr-4" mat-icon-button (click)="filterDrawer.toggle()">
                 <mat-icon>arrow_back</mat-icon>
             </button>
-            <h2>Filtres</h2>
+            <h2>{{ 'Collection.addCard.searchTitle' | translate }}</h2>
         </div>
         <div class="h-full-drawer">
             <app-collection-search-form />
@@ -19,7 +19,7 @@
             <button class="mr-4" mat-icon-button (click)="collectionDrawer.toggle()">
                 <mat-icon>arrow_back</mat-icon>
             </button>
-            <h2>Collection</h2>
+            <h2>{{ 'Collection.addCard.cardBasketTitle' | translate }}</h2>
         </div>
         <div class="h-full-drawer">
             <app-collection-card-list />
@@ -32,7 +32,9 @@
                 <!-- Title and filter button -->
 
                 <div class="flex items-center pb-2">
-                    <h3 class="w-full lg:w-7/12">{{ 'Collection.search' | translate }}</h3>
+                    <h3 class="w-full lg:w-7/12">
+                        {{ 'Collection.addCard.searchTitle' | translate }}
+                    </h3>
                     <button
                         mat-icon-button
                         color="primary"
@@ -43,7 +45,7 @@
                         <mat-icon>playlist_add_check</mat-icon>
                     </button>
                     <h3 class="pl-6 lg:w-5/12" *ngIf="isDesktop | async">
-                        {{ 'Collection.card-to-add' | translate }}
+                        {{ 'Collection.addCard.cardBasketTitle' | translate }}
                     </h3>
                 </div>
 

@@ -1,10 +1,10 @@
 <div class="flex h-full flex-col py-2">
     <form [formGroup]="searchForm" class="flex flex-wrap">
         <mat-form-field appearance="outline" class="w-3/4 pr-1.5 sm:w-3/12 sm:px-1.5">
-            <mat-label>{{ 'Collection.name' | translate }}</mat-label>
+            <mat-label>{{ 'Collection.addCard.searchForm.name' | translate }}</mat-label>
             <input
                 matInput
-                placeholder="{{ 'Collection.name' | translate }}"
+                placeholder="{{ 'Collection.addCard.searchForm.name' | translate }}"
                 (keydown.enter)="search()"
                 [value]="searchForm.value.name"
                 formControlName="name" />
@@ -18,7 +18,7 @@
             </button>
         </mat-form-field>
         <mat-form-field appearance="outline" class="w-1/4 sm:w-2/12 sm:px-1.5">
-            <mat-label>{{ 'Collection.language' | translate }}</mat-label>
+            <mat-label>{{ 'Collection.addCard.searchForm.language' | translate }}</mat-label>
             <mat-select formControlName="language">
                 <mat-option *ngFor="let language of cardLanguages" [value]="language">
                     {{ language.name | getLanguageAbbreviation }}
@@ -27,9 +27,9 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-1/4 sm:w-2/12 sm:px-1.5">
-            <mat-label>{{ 'Collection.color' | translate }}</mat-label>
+            <mat-label>{{ 'Collection.addCard.searchForm.color' | translate }}</mat-label>
             <mat-select formControlName="colors">
-                <mat-option>{{ 'Collection.none' | translate }}</mat-option>
+                <mat-option>{{ 'Collection.addCard.searchForm.none' | translate }}</mat-option>
                 <mat-option *ngFor="let color of CARD_COLORS" [value]="color.value">
                     {{ color.name }}
                 </mat-option>
@@ -37,9 +37,9 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full sm:w-3/12 sm:px-1.5">
-            <mat-label>{{ 'Collection.rarity' | translate }}</mat-label>
+            <mat-label>{{ 'Collection.addCard.searchForm.rarity' | translate }}</mat-label>
             <mat-select formControlName="rarity">
-                <mat-option>{{ 'Collection.none' | translate }}</mat-option>
+                <mat-option>{{ 'Collection.addCard.searchForm.none' | translate }}</mat-option>
                 <mat-option *ngFor="let rarity of cardRarities" [value]="rarity.name">
                     {{ rarity.name }}
                 </mat-option>
@@ -47,20 +47,17 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full sm:w-2/12 sm:px-1.5">
-            <mat-label>{{ 'Collection.cmc_label' | translate }}</mat-label>
-            <input
-                min="0"
-                matInput
-                type="number"
-                [value]="searchForm.value.name"
-                formControlName="cmc" />
+            <mat-label>{{ 'Collection.addCard.searchForm.cmc_label' | translate }}</mat-label>
+            <input min="0" matInput type="number" formControlName="cmc" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full sm:w-1/4 sm:px-1.5">
-            <mat-label>{{ 'Collection.type' | translate }}</mat-label>
+            <mat-label>{{ 'Collection.addCard.searchForm.type' | translate }}</mat-label>
             <input type="text" matInput formControlName="type" [matAutocomplete]="type" />
             <mat-autocomplete #type="matAutocomplete">
-                <mat-option value="">{{ 'Collection.none' | translate }}</mat-option>
+                <mat-option value="">{{
+                    'Collection.addCard.searchForm.none' | translate
+                }}</mat-option>
                 <mat-option *ngFor="let type of filteredCardTypes | async" [value]="type">
                     {{ type }}
                 </mat-option>
@@ -68,10 +65,12 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full sm:w-1/4 sm:px-1.5">
-            <mat-label>{{ 'Collection.set' | translate }}</mat-label>
+            <mat-label>{{ 'Collection.addCard.searchForm.set' | translate }}</mat-label>
             <input type="text" matInput formControlName="set" [matAutocomplete]="set" />
             <mat-autocomplete #set="matAutocomplete">
-                <mat-option value="">{{ 'Collection.none' | translate }}</mat-option>
+                <mat-option value="">{{
+                    'Collection.addCard.searchForm.none' | translate
+                }}</mat-option>
                 <mat-option *ngFor="let set of filteredCardsSets | async" [value]="set.code">
                     {{ set.name }}
                 </mat-option>
@@ -79,12 +78,12 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full sm:w-1/4 sm:px-1.5">
-            <mat-label>{{ 'Collection.text' | translate }}</mat-label>
+            <mat-label>{{ 'Collection.addCard.searchForm.text' | translate }}</mat-label>
             <input matInput formControlName="text" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full sm:w-1/4 sm:px-1.5">
-            <mat-label>{{ 'Collection.artist' | translate }}</mat-label>
+            <mat-label>{{ 'Collection.addCard.searchForm.artist' | translate }}</mat-label>
             <input matInput formControlName="artist" />
         </mat-form-field>
     </form>
@@ -104,14 +103,14 @@
                 color="primary"
                 (click)="search()"
                 [disabled]="!isFormValid">
-                {{ 'Collection.search' | translate }}
+                {{ 'Collection.addCard.searchForm.search' | translate }}
             </button>
             <button
                 class="my-1 w-full sm:w-1/2"
                 mat-flat-button
                 (click)="reset()"
                 [disabled]="!isFormValid">
-                {{ 'Collection.reset' | translate }}
+                {{ 'Collection.addCard.searchForm.reset' | translate }}
             </button>
         </div>
     </div>

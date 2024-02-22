@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { CardQuality, UserCard } from '@shared';
+import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import userCardsMock from '../../../../../shared/collection/mocks/user-cards.mock';
 import { ApiCard } from '../../models/card-api.model';
+import { CollectionAddCardRepository } from '../repositories/collection-add-card.repository';
 import { CollectionAddCardBasketStatesService } from './collection-add-card-basket-states.service';
 import { CollectionAddCardSearchFormService } from './collection-add-card-search-form.service';
 
@@ -12,6 +13,7 @@ import { CollectionAddCardSearchFormService } from './collection-add-card-search
 export class CollectionAddCardBasketService {
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
     private _searchFormService = inject(CollectionAddCardSearchFormService);
+    private _collectionAddCardRepository = inject(CollectionAddCardRepository);
 
     updateCardBasket(updatedCard: UserCard): void {
         return this._cardBasketStateService.setCardBasket(
@@ -24,7 +26,7 @@ export class CollectionAddCardBasketService {
     }
 
     fromSearchResultToCardBasket(apiCard: ApiCard): UserCard {
-        const card = {
+        return {
             cardInfo: {
                 uniqueId: uuidv4(),
                 apiCardId: apiCard.cardIdApi,
@@ -51,12 +53,10 @@ export class CollectionAddCardBasketService {
                 languageId: this._searchFormService.languageControl.id || 1,
             },
         };
-        console.log('card', card);
-        return card;
     }
 
     fromCardBasketToCollection(): UserCard[] {
-        const result = this._cardBasketStateService.getCardBasketValue().map((card) => {
+        return this._cardBasketStateService.getCardBasketValue().map((card) => {
             const {
                 cardInfo: { uniqueId, ...restCardInfo },
                 userInfo: { qualityName, languageName, ...restUserInfo },
@@ -66,10 +66,6 @@ export class CollectionAddCardBasketService {
                 userInfo: restUserInfo,
             };
         });
-        // todo: send proper objetc when data ready
-        console.log(result);
-        console.log(userCardsMock);
-        return userCardsMock;
     }
 
     addCardsToCardBasket(cards: UserCard[]): void {
@@ -102,5 +98,9 @@ export class CollectionAddCardBasketService {
 
     emptyCardBasket(): void {
         this._cardBasketStateService.setCardBasket([]);
+    }
+
+    saveCardCollection(userCards: UserCard[]): Observable<UserCard[]> {
+        return this._collectionAddCardRepository.saveCards(userCards);
     }
 }

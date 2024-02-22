@@ -5,7 +5,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
     GetRarityClassPipe,
     GetRaritySymbolPipe,
@@ -14,8 +14,8 @@ import {
     UserCard,
 } from '@shared';
 import { ApiCard } from '../../../models/card-api.model';
-import { GetTranslatedCardImgPipe } from '../../../shared/pipes/get-translated-card-img-pipe';
-import { GetTranslatedCardNamePipe } from '../../../shared/pipes/get-translated-card-name-pipe';
+import { GetApiCardImgPipe } from '../../../shared/pipes/get-api-card-img.pipe';
+import { GetApiCardNamePipe } from '../../../shared/pipes/get-api-card-name.pipe';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
 import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
 
@@ -31,8 +31,8 @@ import { CollectionAddCardSearchFormService } from '../../../shared/services/col
         MatSelectModule,
         GetRarityClassPipe,
         MatSnackBarModule,
-        GetTranslatedCardImgPipe,
-        GetTranslatedCardNamePipe,
+        GetApiCardImgPipe,
+        GetApiCardNamePipe,
         TranslateModule,
     ],
     templateUrl: './collection-add-card-search-result.component.html',
@@ -44,6 +44,7 @@ export class CollectionAddCardSearchResultComponent {
     private _cardBasketService = inject(CollectionAddCardBasketService);
     private _snackbarService = inject(SnackbarService);
     private _searchFormService = inject(CollectionAddCardSearchFormService);
+    private _translate = inject(TranslateService);
 
     numberOfItems: number[] = Array.from({ length: 10 }, (_, index) => index + 1);
     selectedNumberOfItems: number = 0;
@@ -53,7 +54,6 @@ export class CollectionAddCardSearchResultComponent {
         if (selectedValue !== 0) {
             const cards: UserCard[] = [];
             for (let i = 0; i < selectedValue; i++) {
-                console.log('this.card', this.card);
                 const card: UserCard = this._cardBasketService.fromSearchResultToCardBasket(
                     this.card
                 );
@@ -67,8 +67,9 @@ export class CollectionAddCardSearchResultComponent {
     openSnackBarAddCard() {
         this._snackbarService.openSnackBar(
             this.selectedNumberOfItems > 1
-                ? this.selectedNumberOfItems + ' cartes ajoutées à votre collection'
-                : 'Carte ajoutée à votre collection',
+                ? this.selectedNumberOfItems +
+                      this._translate.instant('Collection.addCard.toast.card-added-plural')
+                : this._translate.instant('Collection.addCard.toast.card-added-singular'),
             SnackbarStatus.success
         );
     }
