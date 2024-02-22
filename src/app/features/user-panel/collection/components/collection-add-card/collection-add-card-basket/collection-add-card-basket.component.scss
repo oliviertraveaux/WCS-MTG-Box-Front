@@ -1,4 +1,4 @@
-@import "global-variables";
+@import "src/_global-variables";
 
 .mdc-data-table__cell, .mdc-data-table__header-cell {
   padding: 0 8px 0 8px;
@@ -51,6 +51,7 @@
     flex-grow: 1;
     display: flex;
     overflow: scroll;
+    scrollbar-width: none;
 
     &::-webkit-scrollbar {
       display: none;

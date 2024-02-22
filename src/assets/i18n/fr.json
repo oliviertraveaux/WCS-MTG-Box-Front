@@ -54,6 +54,17 @@
     "login-fail": "Échec de la connexion. Veuillez réessayer.",
     "login-success": "Connexion réussie. Bienvenue !",
     "card-added": "cartes ajoutées à votre collection"
-  }
+  },
+  "userPanel":{
+    "menuLabels": {
+      "userPanel": "mes infos",
+      "profile": "profil",
+      "collection": "collection",
+      "history": "historique",
+      "offersReceived": "offres reçues",
+      "offersMade": "offres effectuées",
+      "messages": "messages"
+    }
+}
 
 }

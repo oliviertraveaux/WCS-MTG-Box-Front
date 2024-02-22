@@ -17,11 +17,22 @@
             <a *ngIf="!authService.isAuthenticated()" routerLink="login">{{
                 'Topbar.login' | translate
             }}</a>
-
-            <button mat-button (click)="switchLanguage('fr')" class="mr-1 border-none p-1">
-                🇫🇷
-            </button>
-            <button mat-button (click)="switchLanguage('en')" class="border-none p-1">🇬🇧</button>
+            <mat-form-field appearance="outline" class="w-20 pt-4">
+                <mat-select
+                    [(ngModel)]="selectedLanguage"
+                    [title]="selectedLanguage"
+                    [placeholder]="selectedLanguage === 'fr' ? '🇫🇷' : '🇬🇧'"
+                    name="selectedLanguage"
+                    id="selectedLanguage">
+                    <mat-option
+                        *ngFor="let language of languages"
+                        [value]="language.name"
+                        [title]="language.name"
+                        (click)="switchLanguage(language.name)">
+                        {{ language.icon }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
 </mat-toolbar>

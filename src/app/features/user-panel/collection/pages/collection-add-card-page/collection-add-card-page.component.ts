@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { BreakpointObserverService } from '@shared';
 import { CollectionAddCardBasketComponent } from '../../components/collection-add-card/collection-add-card-basket/collection-add-card-basket.component';
 import { CollectionAddCardSearchFormComponent } from '../../components/collection-add-card/collection-add-card-search-form/collection-add-card-search-form.component';
@@ -18,27 +19,27 @@ import { SearchQuery } from '../../models/search-query.model';
 import { CollectionAddCardBasketService } from '../../shared/services/collection-add-card-basket.service';
 import { CollectionAddCardSearchFormService } from '../../shared/services/collection-add-card-search-form.service';
 import { CollectionAddCardSearchResultsService } from '../../shared/services/collection-add-card-search-results.service';
-import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-page',
     standalone: true,
-  imports: [
-    CommonModule,
-    CollectionAddCardSearchResultsComponent,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    CollectionAddCardSearchFormComponent,
-    MatSidenavModule,
-    MatIconModule,
-    RouterOutlet,
-    MatListModule,
-    MatOptionModule,
-    CollectionAddCardBasketComponent,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        CollectionAddCardSearchResultsComponent,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        CollectionAddCardSearchFormComponent,
+        MatSidenavModule,
+        MatIconModule,
+        RouterOutlet,
+        MatListModule,
+        MatOptionModule,
+        CollectionAddCardBasketComponent,
+        TranslateModule,
+    ],
     templateUrl: './collection-add-card-page.component.html',
+    styleUrls: ['./collection-add-card-page.component.scss'],
 })
 export class CollectionAddCardPageComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);
