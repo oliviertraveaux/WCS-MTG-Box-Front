@@ -54,5 +54,16 @@
     "login-fail": "Login failed. Please try again.",
     "login-success": "Login successful. Welcome!",
     "card-added": "cards added to your collection"
+  },
+  "userPanel": {
+    "menuLabels": {
+      "userPanel": "my data",
+      "profile": "profile",
+      "collection": "collection",
+      "history": "history",
+      "offersReceived": "offers received",
+      "offersMade": "offers made",
+      "messages": "messages"
+    }
   }
 }

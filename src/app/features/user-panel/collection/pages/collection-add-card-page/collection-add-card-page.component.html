@@ -32,7 +32,7 @@
                 <!-- Title and filter button -->
 
                 <div class="flex items-center pb-2">
-                    <h3 class="w-full lg:w-7/12">{{"Collection.search" | translate}}</h3>
+                    <h3 class="w-full lg:w-7/12">{{ 'Collection.search' | translate }}</h3>
                     <button
                         mat-icon-button
                         color="primary"
@@ -42,7 +42,9 @@
                         *ngIf="!(isDesktop | async)">
                         <mat-icon>playlist_add_check</mat-icon>
                     </button>
-                    <h3 class="pl-6 lg:w-5/12" *ngIf="isDesktop | async"> {{ "Collection.card-to-add" | translate}}</h3>
+                    <h3 class="pl-6 lg:w-5/12" *ngIf="isDesktop | async">
+                        {{ 'Collection.card-to-add' | translate }}
+                    </h3>
                 </div>
 
                 <!-- Name Filter MOBILE ONLY -->
@@ -85,9 +87,7 @@
                         </div>
 
                         <!-- Search Results -->
-                        <div class="scrollbar-hide flex h-full grow overflow-hidden">
-                            <app-collection-search-results />
-                        </div>
+                        <app-collection-search-results />
                     </div>
 
                     <!-- Divider TABLETT AND DESKTOP ONLY -->
@@ -98,7 +98,7 @@
 
                     <div
                         *ngIf="isDesktop | async"
-                        class="scrollbar-hide flex h-full grow overflow-hidden lg:w-5/12">
+                        class="flex h-full grow overflow-hidden scrollbar-hide lg:w-5/12">
                         <app-collection-card-list />
                     </div>
                 </div>
