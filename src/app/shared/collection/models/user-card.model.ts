@@ -2,7 +2,7 @@ import { CardQuality, CardRarity } from '@shared';
 
 export interface UserCard {
     cardInfo: {
-        uniqueId?: string;
+        uniqueId?: string | number;
         apiCardId: string;
         name: string;
         frenchName: string;
