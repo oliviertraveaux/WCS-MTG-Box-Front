@@ -14,31 +14,32 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BreakpointObserverService, CardQuality, UserCard } from '@shared';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { BreakpointObserverService, CardQuality, QualityFilter, UserCard } from '@shared';
 import { FilterValues } from '../../../models/filter-values.model';
 import { CollectionAddCardBasketStatesService } from '../../../shared/services/collection-add-card-basket-states.service';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
-import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-card-list',
     standalone: true,
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatCheckboxModule,
-    MatPaginatorModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatSortModule,
-    MatButtonModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatDialogModule,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatCheckboxModule,
+        MatPaginatorModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+        MatSortModule,
+        MatButtonModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatDialogModule,
+        TranslateModule,
+    ],
     templateUrl: './collection-add-card-basket.component.html',
     styleUrls: ['./collection-add-card-basket.component.scss'],
 })
@@ -50,6 +51,7 @@ export class CollectionAddCardBasketComponent implements OnInit {
     private _cardBasketService = inject(CollectionAddCardBasketService);
     private _liveAnnouncer = inject(LiveAnnouncer);
     private _breakpointObserverService = inject(BreakpointObserverService);
+    private _activatedRoute = inject(ActivatedRoute);
     private _destroyRef = inject(DestroyRef);
 
     protected readonly CardQuality = CardQuality;
@@ -58,7 +60,7 @@ export class CollectionAddCardBasketComponent implements OnInit {
     displayedColumns: string[] = ['show', 'name', 'set', 'quality', 'action'];
     CardsData = new MatTableDataSource<UserCard>([]);
     selectedCard: UserCard | null = null;
-
+    cardQuality: QualityFilter[] = [];
     nameFilter = new FormControl('');
     filterValues: FilterValues = {
         name: '',
@@ -83,6 +85,11 @@ export class CollectionAddCardBasketComponent implements OnInit {
         this._breakpointObserverService.breakpoint$
             .pipe(takeUntilDestroyed(this._destroyRef))
             .subscribe(() => this._breakpointObserverService.breakpointChanged());
+
+        this._activatedRoute.data.subscribe((response: any) => {
+            console.log('response', response);
+            this.cardQuality = response.filters.qualities;
+        });
     }
 
     ngAfterViewInit() {

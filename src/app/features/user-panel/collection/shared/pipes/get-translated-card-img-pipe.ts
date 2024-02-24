@@ -8,9 +8,9 @@ export class GetTranslatedCardImgPipe implements PipeTransform {
     transform(card: ApiCard, language: string): string {
         switch (language) {
             case 'French':
-                const frenchCard = card.foreignNames.find((card) => card.language === 'French');
+                const frenchCard = card.foreignNames?.find((card) => card.language === 'French');
                 return frenchCard?.imageUrl ?? card.imageUrl;
-            case '':
+            case 'English':
                 return card.imageUrl;
             default:
                 return card.imageUrl;

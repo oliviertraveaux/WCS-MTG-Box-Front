@@ -24,7 +24,7 @@ export class CollectionAddCardBasketService {
     }
 
     fromSearchResultToCardBasket(apiCard: ApiCard): UserCard {
-        return {
+        const card = {
             cardInfo: {
                 uniqueId: uuidv4(),
                 apiCardId: apiCard.cardIdApi,
@@ -44,13 +44,15 @@ export class CollectionAddCardBasketService {
                 artist: apiCard.artist,
             },
             userInfo: {
-                userId: 3565,
+                userId: 1,
                 qualityName: CardQuality.excellent,
-                qualityId: 1,
-                languageName: this._searchFormService.languageControl,
-                languageId: 1,
+                qualityId: 3,
+                languageName: this._searchFormService.languageControl.name || 'English',
+                languageId: this._searchFormService.languageControl.id || 1,
             },
         };
+        console.log('card', card);
+        return card;
     }
 
     fromCardBasketToCollection(): UserCard[] {

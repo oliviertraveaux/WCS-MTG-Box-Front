@@ -5,6 +5,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TranslateModule } from '@ngx-translate/core';
 import {
     GetRarityClassPipe,
     GetRaritySymbolPipe,
@@ -17,24 +18,23 @@ import { GetTranslatedCardImgPipe } from '../../../shared/pipes/get-translated-c
 import { GetTranslatedCardNamePipe } from '../../../shared/pipes/get-translated-card-name-pipe';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
 import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
-import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-search-card-result',
     standalone: true,
-  imports: [
-    CommonModule,
-    GetRaritySymbolPipe,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule,
-    GetRarityClassPipe,
-    MatSnackBarModule,
-    GetTranslatedCardImgPipe,
-    GetTranslatedCardNamePipe,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        GetRaritySymbolPipe,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatOptionModule,
+        MatSelectModule,
+        GetRarityClassPipe,
+        MatSnackBarModule,
+        GetTranslatedCardImgPipe,
+        GetTranslatedCardNamePipe,
+        TranslateModule,
+    ],
     templateUrl: './collection-add-card-search-result.component.html',
 })
 export class CollectionAddCardSearchResultComponent {
@@ -47,7 +47,7 @@ export class CollectionAddCardSearchResultComponent {
 
     numberOfItems: number[] = Array.from({ length: 10 }, (_, index) => index + 1);
     selectedNumberOfItems: number = 0;
-    language: string = this._searchFormService.languageControl;
+    language: string = this._searchFormService.languageControl.name;
 
     addCardsToBasket(selectedValue: number) {
         if (selectedValue !== 0) {
