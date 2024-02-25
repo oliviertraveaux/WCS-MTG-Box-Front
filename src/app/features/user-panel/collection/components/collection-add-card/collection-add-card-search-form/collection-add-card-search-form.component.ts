@@ -25,7 +25,7 @@ import { CollectionAddCardResultsStatesService } from '../../../shared/services/
 import { CollectionAddCardSearchResultsService } from '../../../shared/services/collection-add-card-search-results.service';
 
 @Component({
-    selector: 'app-collection-search-form',
+    selector: 'app-collection-add-card-search-form',
     standalone: true,
     imports: [
         CommonModule,

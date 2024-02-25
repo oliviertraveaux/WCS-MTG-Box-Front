@@ -75,7 +75,7 @@ export class CollectionAddCardBasketService {
         ]);
     }
 
-    removeCardFromCardBasket(uniqueId: string): void {
+    removeCardFromCardBasket(uniqueId: string | number): void {
         this._cardBasketStateService.setCardBasket(
             this._cardBasketStateService
                 .getCardBasketValue()
