@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { RequestStatus } from '../../../../../shared/enums/request-status.enum';
+import { RequestStatus } from '@shared';
 import { SearchQuery } from '../../models/search-query.model';
 import { CollectionAddCardRepository } from '../repositories/collection-add-card.repository';
 import { CollectionAddCardResultsStatesService } from './collection-add-card-search-results-states.service';
@@ -15,7 +15,6 @@ export class CollectionAddCardSearchResultsService {
         this._searchCardsStatesService.setCards([]);
         this._searchCardsStatesService.setSearchRequestStatus(RequestStatus.loading);
         this._collectionAddCardRepository.getCards(searchQuery).subscribe((apiCards) => {
-            console.log('apiCards', apiCards);
             this._searchCardsStatesService.setCards(apiCards);
             this._searchCardsStatesService.setSearchRequestStatus(RequestStatus.success);
         });

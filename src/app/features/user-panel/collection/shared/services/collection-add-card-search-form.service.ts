@@ -79,10 +79,9 @@ export class CollectionAddCardSearchFormService {
         let requestParams: SearchQuery = {};
         for (let control of Object.keys(this.searchForm.controls)) {
             const value = this.searchForm.get(control)?.value;
-            if (value !== null && value !== '') {
+            if (value !== null && value !== '' && value.name !== 'English') {
                 // @ts-ignore
-                requestParams[control] =
-                    control === 'language' && value.name !== 'English' ? value.name : value;
+                requestParams[control] = control === 'language' ? value.name : value;
             }
         }
         return requestParams;
@@ -98,6 +97,8 @@ export class CollectionAddCardSearchFormService {
             this.searchForm.get('colors')?.patchValue(''),
             this.searchForm.get('text')?.patchValue(null),
             this.searchForm.get('artist')?.patchValue(null);
+        this.searchForm.markAsUntouched();
+        this.searchForm.markAsPristine();
     }
 
     updateValidityWhenFormValueChanges(): void {
@@ -115,15 +116,15 @@ export class CollectionAddCardSearchFormService {
 
     textValidator(controlName: string): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
-            const nameValue = control.value;
+            const value = control.value;
             const otherControlsHaveValues =
                 this.searchForm &&
-                this.allControlsExcept([controlName]).some((control) => {
-                    const controlValue = this.searchForm.get(control)?.value;
-                    return controlValue !== null && controlValue !== '';
+                this.allControlsExcept([controlName]).some((otherControl) => {
+                    const otherControlValue = this.searchForm.get(otherControl)?.value;
+                    return otherControlValue !== null && otherControlValue !== '';
                 });
 
-            if (!otherControlsHaveValues && (nameValue === null || nameValue.length < 3)) {
+            if (!otherControlsHaveValues && (value === null || value.length < 3)) {
                 return { invalidName: true };
             }
             return null;

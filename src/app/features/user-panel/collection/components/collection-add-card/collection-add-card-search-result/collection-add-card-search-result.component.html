@@ -1,41 +1,39 @@
 <img
-
     width="100%"
-    [src]="card | getTranslatedCardImg: language"
-    class="card-img-top transition-transform transform hover:scale-105"
-    [alt]="card | getTranslatedCardName: language" />
-
+    [src]="card | getApiCardImg: language"
+    class="card-img-top transform transition-transform hover:scale-105"
+    [alt]="card | getApiCardName: language" />
 
 <div class="flex h-52 flex-col">
-  <div class="mt-2 flex justify-between align-middle">
-    <h4 class="my-2">{{ card | getTranslatedCardName: language }}</h4>
-    <span
-      class="my-2 border border-white text-sm font-bold"
-      [ngClass]="card.rarity | getRarityClass"
-    >{{ card.rarity | getRaritySymbol }}</span
-    >
-  </div>
-  <div class="flex flex-grow flex-col">
-    <p class="bg-silver text-sm">{{ card.setName | translate }}</p>
-    <p class="text-sm">{{ card.artist | translate }}</p>
-  </div>
-  <div class="flex items-center gap-2">
-    <mat-form-field class="mt-2 w-1/2" appearance="outline">
-      <mat-select [(value)]="selectedNumberOfItems" placeholder="0" #selectValue>
-        <mat-option>0</mat-option>
-        <mat-option *ngFor="let number of numberOfItems" [value]="number">{{
-            number
-          }}</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="mt-2 flex justify-between align-middle">
+        <h4 class="my-2">{{ card | getApiCardName: language }}</h4>
+        <span
+            class="my-2 border border-white text-sm font-bold"
+            [ngClass]="card.rarity | getRarityClass"
+            >{{ card.rarity | getRaritySymbol }}</span
+        >
+    </div>
+    <div class="flex flex-grow flex-col">
+        <p class="bg-silver text-sm">{{ card.setName | translate }}</p>
+        <p class="text-sm">{{ card.artist | translate }}</p>
+    </div>
+    <div class="flex items-center gap-2">
+        <mat-form-field class="mt-2 w-1/2" appearance="outline">
+            <mat-select [(value)]="selectedNumberOfItems" placeholder="0" #selectValue>
+                <mat-option>0</mat-option>
+                <mat-option *ngFor="let number of numberOfItems" [value]="number">{{
+                    number
+                }}</mat-option>
+            </mat-select>
+        </mat-form-field>
 
-    <button
-      class="1/2"
-      mat-flat-button
-      color="primary"
-      (click)="addCardsToBasket(selectValue.value)"
-      [disabled]="this.selectValue.value === 0">
-      {{ 'Collection.add' | translate }}
-    </button>
-  </div>
+        <button
+            class="1/2"
+            mat-flat-button
+            color="primary"
+            (click)="addCardsToBasket(selectValue.value)"
+            [disabled]="this.selectValue.value === 0">
+            {{ 'Collection.addCard.searchResult.add' | translate }}
+        </button>
+    </div>
 </div>

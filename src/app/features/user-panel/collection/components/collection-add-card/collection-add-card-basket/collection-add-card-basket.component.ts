@@ -15,9 +15,18 @@ import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-import { BreakpointObserverService, CardQuality, QualityFilter, UserCard } from '@shared';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import {
+    BreakpointObserverService,
+    CardQuality,
+    QualityFilter,
+    SnackbarService,
+    SnackbarStatus,
+    UserCard,
+} from '@shared';
 import { FilterValues } from '../../../models/filter-values.model';
+import { GetUserCardImgPipe } from '../../../shared/pipes/get-user-card-img.pipe';
+import { GetUserCardNamePipe } from '../../../shared/pipes/get-user-card-name.pipe';
 import { CollectionAddCardBasketStatesService } from '../../../shared/services/collection-add-card-basket-states.service';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
 
@@ -39,6 +48,8 @@ import { CollectionAddCardBasketService } from '../../../shared/services/collect
         MatAutocompleteModule,
         MatDialogModule,
         TranslateModule,
+        GetUserCardImgPipe,
+        GetUserCardNamePipe,
     ],
     templateUrl: './collection-add-card-basket.component.html',
     styleUrls: ['./collection-add-card-basket.component.scss'],
@@ -49,10 +60,12 @@ export class CollectionAddCardBasketComponent implements OnInit {
 
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
     private _cardBasketService = inject(CollectionAddCardBasketService);
+    private _snackbarService = inject(SnackbarService);
     private _liveAnnouncer = inject(LiveAnnouncer);
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _activatedRoute = inject(ActivatedRoute);
     private _destroyRef = inject(DestroyRef);
+    private _translate = inject(TranslateService);
 
     protected readonly CardQuality = CardQuality;
     protected readonly Object = Object;
@@ -87,7 +100,6 @@ export class CollectionAddCardBasketComponent implements OnInit {
             .subscribe(() => this._breakpointObserverService.breakpointChanged());
 
         this._activatedRoute.data.subscribe((response: any) => {
-            console.log('response', response);
             this.cardQuality = response.filters.qualities;
         });
     }
@@ -113,7 +125,11 @@ export class CollectionAddCardBasketComponent implements OnInit {
     createFilter(): (data: any, filter: string) => boolean {
         let filterFunction = function (data: any, filter: any): boolean {
             let searchTerms = JSON.parse(filter);
-            return data.cardInfo.name.toLowerCase().indexOf(searchTerms.name.toLowerCase()) !== -1;
+            return (
+                data.cardInfo.name.toLowerCase().indexOf(searchTerms.name.toLowerCase()) !== -1 ||
+                data.cardInfo.frenchName.toLowerCase().indexOf(searchTerms.name.toLowerCase()) !==
+                    -1
+            );
         };
         return filterFunction;
     }
@@ -138,7 +154,31 @@ export class CollectionAddCardBasketComponent implements OnInit {
     }
 
     save(): void {
-        this._cardBasketService.fromCardBasketToCollection();
+        const cards: UserCard[] = this._cardBasketService.fromCardBasketToCollection();
+        this._cardBasketService
+            .saveCardCollection(cards)
+            .pipe(takeUntilDestroyed(this._destroyRef))
+            .subscribe({
+                next: (response) => {
+                    this._snackbarService.openSnackBar(
+                        response.length > 1
+                            ? response.length +
+                                  this._translate.instant(
+                                      'Collection.addCard.toast.card-saved-success-plural'
+                                  )
+                            : this._translate.instant(
+                                  'Collection.addCard.toast.card-saved-success-singular'
+                              ),
+                        SnackbarStatus.success
+                    );
+                },
+                error: () => {
+                    const logFailed = this._translate.instant(
+                        'Collection.addCard.toast.card-saved-fail'
+                    );
+                    this._snackbarService.openSnackBar(logFailed, SnackbarStatus.error);
+                },
+            });
     }
 
     empty(): void {

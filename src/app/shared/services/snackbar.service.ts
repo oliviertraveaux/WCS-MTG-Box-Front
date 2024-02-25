@@ -9,7 +9,6 @@ export class SnackbarService {
     private _snackBar = inject(MatSnackBar);
 
     openSnackBar(message: string, status: SnackbarStatus) {
-        console.log(status);
         this._snackBar.open(message, 'Fermer', {
             duration: 3000,
             horizontalPosition: 'right',
