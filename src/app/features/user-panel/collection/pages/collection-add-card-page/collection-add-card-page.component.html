@@ -1,0 +1,109 @@
+<mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full">
+    <!--  Side panel filtres -->
+
+    <mat-drawer #filterDrawer class="h-full w-full px-4">
+        <div class="mt-2 flex h-16 items-center">
+            <button class="mr-4" mat-icon-button (click)="filterDrawer.toggle()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <h2>{{ 'Collection.addCard.searchTitle' | translate }}</h2>
+        </div>
+        <div class="h-full-drawer">
+            <app-collection-search-form />
+        </div>
+    </mat-drawer>
+
+    <!--  Side panel Collection -->
+    <mat-drawer #collectionDrawer position="end" class="w-full">
+        <div class="ml-2 mt-2 flex h-16 items-center sm:ml-8">
+            <button class="mr-4" mat-icon-button (click)="collectionDrawer.toggle()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <h2>{{ 'Collection.addCard.cardBasketTitle' | translate }}</h2>
+        </div>
+        <div class="h-full-drawer">
+            <app-collection-card-list />
+        </div>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div class="flex h-full w-screen justify-center">
+            <div class="flex h-full w-full flex-col px-4 pt-6 sm:px-8 lg:w-11/12 lg:px-0">
+                <!-- Title and filter button -->
+
+                <div class="flex items-center pb-2">
+                    <h3 class="w-full lg:w-7/12">
+                        {{ 'Collection.addCard.searchTitle' | translate }}
+                    </h3>
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        class="ml-3"
+                        [disabled]="isCardCollectionEmpty()"
+                        (click)="collectionDrawer.toggle()"
+                        *ngIf="!(isDesktop | async)">
+                        <mat-icon>playlist_add_check</mat-icon>
+                    </button>
+                    <h3 class="pl-6 lg:w-5/12" *ngIf="isDesktop | async">
+                        {{ 'Collection.addCard.cardBasketTitle' | translate }}
+                    </h3>
+                </div>
+
+                <!-- Name Filter MOBILE ONLY -->
+
+                <div class="flex items-center" *ngIf="!(isTablet | async)">
+                    <form class="w-full" [formGroup]="searchForm">
+                        <mat-form-field appearance="outline" class="flex w-full items-center">
+                            <mat-label>Name</mat-label>
+                            <input
+                                matInput
+                                placeholder="Sol Ring"
+                                (keydown.enter)="search()"
+                                [value]="searchForm.value.name"
+                                formControlName="name" />
+                            <button
+                                type="button"
+                                mat-icon-button
+                                matSuffix
+                                (click)="search()"
+                                [disabled]="searchForm.invalid">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </form>
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        class="ml-3"
+                        (click)="filterDrawer.toggle()">
+                        <mat-icon>filter_alt</mat-icon>
+                    </button>
+                </div>
+
+                <!-- filters TABLETT AND DESKTOP ONLY -->
+
+                <div class="h-full-form-and-results flex grow gap-8">
+                    <div class="flex flex-col lg:w-7/12">
+                        <div *ngIf="isTablet | async">
+                            <app-collection-search-form />
+                        </div>
+
+                        <!-- Search Results -->
+                        <app-collection-search-results />
+                    </div>
+
+                    <!-- Divider TABLETT AND DESKTOP ONLY -->
+
+                    <mat-divider *ngIf="isDesktop | async" [vertical]="true"></mat-divider>
+
+                    <!-- Collection list DESKTOP ONLY -->
+                    <div
+                        *ngIf="isDesktop | async"
+                        class="flex h-full grow overflow-hidden scrollbar-hide lg:w-5/12">
+                        <app-collection-card-list />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

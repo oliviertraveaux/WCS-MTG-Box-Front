@@ -1,0 +1,13 @@
+@import "src/_global-variables.scss";
+
+.toolbar-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  @include sm {
+    padding: 0 72px;
+  }
+}
+

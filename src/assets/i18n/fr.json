@@ -1,0 +1,91 @@
+{
+  "Register": {
+    "subscription": "Inscription",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "password": "Mot de passe",
+    "password-confirm": "Confirmer le mot de passe",
+    "postal-code": "Code Postal",
+    "city": "Ville",
+    "next": "Suivant",
+    "sign-up": "S'inscrire",
+    "reset": "Réinitialiser"
+  },
+  "Login": {
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "login": "Connexion",
+    "no-account": "Vous n'avez pas encore de compte?"
+  },
+  "Collection": {
+    "delete": "Supprimer",
+    "addCard": {
+      "searchTitle": "Rechercher",
+      "cardBasketTitle": "Cartes à ajouter",
+      "searchForm": {
+        "set": "Edition",
+        "quality": "Qualité",
+        "name": "Nom",
+        "color": "Couleur",
+        "rarity": "Rareté",
+        "language": "Langue",
+        "cmc_label": "CMC",
+        "type": "Type",
+        "text": "Texte",
+        "artist": "Artiste",
+        "none": "Aucun",
+        "search": "Rechercher",
+        "results": "resultats",
+        "result": "resulat",
+        "reset": "Réinitialiser"
+      },
+      "searchResult": {
+        "add": "Ajouter"
+      },
+      "cardBasket": {
+        "title": "Cartes à ajouter",
+        "reset": "Réinitialiser",
+        "add-cards": "Cartes à ajouter",
+        "save": "Sauvegarder",
+        "name": "Nom",
+        "set": "Edition",
+        "quality": "Qualité",
+        "delete": "Supprimer"
+      },
+      "toast": {
+        "card-added-singular": "Carte ajoutée",
+        "card-added-plural": " cartes ajoutées",
+        "card-saved-success-singular": "Carte sauvegardée",
+        "card-saved-success-plural": " cartes sauvegardées",
+        "card-saved-fail": "Une erreur est survenue"
+      }
+    }
+  },
+  "Topbar": {
+    "title": "MTGBox",
+    "add": "Ajouter",
+    "logout": "Déconnexion",
+    "login": "Connexion"
+  },
+  "Toasts": {
+    "username-not-available": "Le nom d'utilisateur est déjà utilisé",
+    "email-not-available": "L'email est déjà utilisé",
+    "passwords-match": " Les mots de passe ne correspondent pas",
+    "register-sucess": "Inscription réussie'",
+    "register-fail": "Erreur lors de l'inscription",
+    "login-fail": "Échec de la connexion. Veuillez réessayer.",
+    "login-success": "Connexion réussie. Bienvenue !"
+  },
+  "userPanel": {
+    "menuLabels": {
+      "userPanel": "mes infos",
+      "profile": "profil",
+      "collection": "collection",
+      "history": "historique",
+      "offersReceived": "offres reçues",
+      "offersMade": "offres effectuées",
+      "messages": "messages"
+    }
+  }
+
+}
