@@ -59,7 +59,7 @@ export class CollectionAddCardBasketService {
         return this._cardBasketStateService.getCardBasketValue().map((card) => {
             const {
                 cardInfo: { uniqueId, ...restCardInfo },
-                userInfo: { qualityName, languageName, ...restUserInfo },
+                userInfo: { qualityId, languageId, ...restUserInfo },
             } = card;
             return {
                 cardInfo: restCardInfo,
