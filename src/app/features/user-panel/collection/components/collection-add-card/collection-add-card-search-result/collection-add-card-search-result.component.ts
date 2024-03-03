@@ -20,7 +20,7 @@ import { CollectionAddCardBasketService } from '../../../shared/services/collect
 import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
 
 @Component({
-    selector: 'app-collection-search-card-result',
+    selector: 'app-collection-add-card-search-card-result',
     standalone: true,
     imports: [
         CommonModule,

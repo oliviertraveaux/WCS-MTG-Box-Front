@@ -86,6 +86,17 @@
       "offersMade": "offres effectuées",
       "messages": "messages"
     }
+  },
+  "ui": {
+    "cardBasket": {
+      "reset": "Reset",
+      "add-cards": "Cards to Add",
+      "save": "Save",
+      "name": "Name",
+      "set": "Set",
+      "quality": "Quality",
+      "delete": "Delete"
+    }
   }
 
 }
