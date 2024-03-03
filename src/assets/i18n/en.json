@@ -39,6 +39,10 @@
         "result": "result",
         "reset": "RESET"
       },
+      "searchResults": {
+        "totalResultTextPlural": " matching results",
+        "totalResultTextSingular": " matching result"
+      },
       "searchResult": {
         "add": "Add"
       },
