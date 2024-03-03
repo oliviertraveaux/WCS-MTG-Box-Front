@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {map, Observable, pipe, tap} from "rxjs";
+import {catchError, map, Observable, pipe, tap, throwError} from "rxjs";
 import { Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {ENVIRONMENT} from "../../../../../env";
@@ -12,6 +12,7 @@ import {ENVIRONMENT} from "../../../../../env";
 })
 export class LoginRepository {
   private loginUrl = `${ENVIRONMENT.apiLoginConfigurationURL}`;
+  private logoutUrl = `${ENVIRONMENT.apiLogoutConfigurationURL}`;
 
   constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
   }
@@ -38,10 +39,17 @@ export class LoginRepository {
     return localStorage.getItem('loggedIn') === 'true';
   }
 
-  logout() {
-    localStorage.setItem('loggedIn', 'false');
-    // this.cookieService.delete('token');   package pour gérer les cookies mais ne marche pas car le cookie n'est pas accessible par le navigateur
-    this.router.navigate(['/login']);
+  logout(): Observable<any> {
+    return this.http.post(this.logoutUrl, { withCredentials: true }).pipe(
+      tap(() => {
+        localStorage.removeItem('loggedIn');
+        this.router.navigate(['/login']);
+      })
+    );
   }
+
+
+
+
 
 }

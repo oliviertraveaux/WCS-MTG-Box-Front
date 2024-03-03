@@ -8,5 +8,6 @@ export const ENVIRONMENT = {
     apiRegisterConfigurationURL: `${apiConfigurationUrl}register`,
     apiCheckAvailabilityConfigurationURL: `${apiConfigurationUrl}check-availability`,
     apiFilterConfiurationUrl: `${apiConfigurationUrl}filters`,
+  apiLogoutConfigurationURL: `${apiConfigurationUrl}logout`,
     url: 'http://localhost:8080',
 };
