@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {LoginRepository} from "../repositories/login.repository";
 
 
@@ -20,7 +20,7 @@ export class LoginService {
     return this.authRepository.isAuthenticated()
   }
 
-  logout() {
-    this.authRepository.logout()
+  logout(): Subscription {
+    return this.authRepository.logout().subscribe()
   }
 }
