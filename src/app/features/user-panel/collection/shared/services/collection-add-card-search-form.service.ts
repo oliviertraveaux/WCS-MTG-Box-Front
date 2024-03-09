@@ -7,8 +7,10 @@ import {
     ValidationErrors,
     ValidatorFn,
 } from '@angular/forms';
-import { BasicFilter, CardColor, CardRarity } from '@shared';
 import { debounceTime } from 'rxjs';
+import { CardRarity } from '../../../../../shared/collection/enums/card-rarity.enum';
+import { CardColor } from '../../../../../shared/collection/models/card-color.model';
+import { BasicFilter } from '../../../../../shared/filter/models/basic-filter.interface';
 import { SearchQuery } from '../../models/search-query.model';
 
 @Injectable({

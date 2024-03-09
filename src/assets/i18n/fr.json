@@ -93,13 +93,13 @@
   },
   "ui": {
     "cardBasket": {
-      "reset": "Reset",
-      "add-cards": "Cards to Add",
-      "save": "Save",
-      "name": "Name",
-      "set": "Set",
-      "quality": "Quality",
-      "delete": "Delete"
+      "reset": "Vider",
+      "add-cards": "Cartes à ajouter",
+      "save": "Enregistrer",
+      "name": "Nom",
+      "set": "Edition",
+      "quality": "Qualité",
+      "delete": "Supprimer"
     }
   }
 

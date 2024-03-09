@@ -7,16 +7,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-    BasicFilter,
-    GetLanguageAbbreviationPipe,
-    getSearchResultTextPipe,
-    RequestStatus,
-    SetFilter,
-} from '@shared';
 import { Observable } from 'rxjs';
+import { GetLanguageAbbreviationPipe } from '../../../../../../shared/collection/pipes/get-language-abbreviation.pipe';
+import { getSearchResultTextPipe } from '../../../../../../shared/collection/pipes/get-search-result-text.pipe';
+import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
+import { BasicFilter } from '../../../../../../shared/filter/models/basic-filter.interface';
+import { SetFilter } from '../../../../../../shared/filter/models/set-filter.interface';
+import { FiltersStateService } from '../../../../../../shared/filter/services/filters-states.service';
 import { SearchFormComponent } from '../../../../../../shared/ui/search-form/search-form.component';
 import { SearchQuery } from '../../../models/search-query.model';
 import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
@@ -46,7 +44,7 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
     private _searchFormService = inject(CollectionAddCardSearchFormService);
     private _searchResultsService = inject(CollectionAddCardSearchResultsService);
     private _searchResultsStateService = inject(CollectionAddCardResultsStatesService);
-    private _activatedRoute = inject(ActivatedRoute);
+    private _filtersStateService = inject(FiltersStateService);
 
     searchForm!: FormGroup;
     cardTypes: string[] = [];
@@ -60,12 +58,10 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
     ngOnInit(): void {
         this.searchForm = this._searchFormService.searchForm;
         this._searchFormService.updateValidityWhenFormValueChanges();
-        this._activatedRoute.data.subscribe((response: any) => {
-            this.cardTypes = response.filters.types.map((type: any) => type.name);
-            this.cardRarities = response.filters.rarities;
-            this.cardLanguages = response.filters.languages;
-            this.cardSets = response.filters.sets;
-        });
+        this.cardTypes = this._filtersStateService.getTypesValue().map((type: any) => type.name);
+        this.cardRarities = this._filtersStateService.getRaritiesValue();
+        this.cardLanguages = this._filtersStateService.getLanguagesValue();
+        this.cardSets = this._filtersStateService.getSetsValue();
     }
 
     search() {

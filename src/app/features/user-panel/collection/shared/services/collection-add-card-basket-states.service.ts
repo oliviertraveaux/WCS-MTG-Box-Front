@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UserCard } from '@shared';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 
 @Injectable({
     providedIn: 'root',

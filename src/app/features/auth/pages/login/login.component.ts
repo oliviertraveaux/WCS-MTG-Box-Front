@@ -5,11 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SnackbarService, SnackbarStatus } from '@shared';
 import { LoginData } from '../../models/auth.model';
 import { LoginService } from '../../shared/services/login.service';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { SnackbarStatus } from '../../../../shared/enums/snackbar-status.enum';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 @Component({
     selector: 'app-login',

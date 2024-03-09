@@ -6,13 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import {
-    GetRarityClassPipe,
-    GetRaritySymbolPipe,
-    SnackbarService,
-    SnackbarStatus,
-    UserCard,
-} from '@shared';
+import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
+import { GetRarityClassPipe } from '../../../../../../shared/collection/pipes/get-rarity-class.pipe';
+import { GetRaritySymbolPipe } from '../../../../../../shared/collection/pipes/get-rarity-symbol.pipe';
+import { SnackbarStatus } from '../../../../../../shared/enums/snackbar-status.enum';
+import { SnackbarService } from '../../../../../../shared/services/snackbar.service';
 import { ApiCard } from '../../../models/card-api.model';
 import { GetApiCardImgPipe } from '../../../shared/pipes/get-api-card-img.pipe';
 import { GetApiCardNamePipe } from '../../../shared/pipes/get-api-card-name.pipe';

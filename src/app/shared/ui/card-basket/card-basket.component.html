@@ -70,7 +70,7 @@
                 <td mat-cell *matCellDef="let element">
                     <span (click)="showImage(element)"
                         >{{ element | getUserCardName }}
-                        {{ element.userInfo.languageId === 2 ? '(FR)' : '(EN)' }}</span
+                        {{ element.userInfo.languageName === 'French' ? '(FR)' : '(EN)' }}</span
                     >
                 </td>
             </ng-container>
@@ -98,7 +98,7 @@
                 </th>
                 <td mat-cell *matCellDef="let element">
                     <mat-form-field
-                        *ngIf="displaySelect; else elseQuality"
+                        *ngIf="!displaySelect; else elseQuality"
                         appearance="outline"
                         class="w-full">
                         <mat-select
@@ -109,7 +109,7 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <ng-template #elseQuality> {{ element.cardInfo.qualityId }}</ng-template>
+                    <ng-template #elseQuality> {{ element.userInfo.qualityName }}</ng-template>
                 </td>
             </ng-container>
 

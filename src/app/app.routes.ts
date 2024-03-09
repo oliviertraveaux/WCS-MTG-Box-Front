@@ -4,14 +4,12 @@ import { LoginComponent } from './features/auth/pages/login/login.component';
 import { AuthGuard } from './features/auth/shared/guards/auth.guard';
 import { SearchPageComponent } from './features/search/components/ui/search-page/search-page.component';
 import { USER_PANEL_ROUTES } from './features/user-panel/user-panel.route';
-import { filtersResolver } from './shared/filter/resolvers/filters.resolver';
 
 export const routes: Route[] = [
     {
         path: '',
         component: SearchPageComponent,
         canActivate: [AuthGuard],
-        resolve: { filters: filtersResolver },
     },
     { path: 'register', component: CreateAccountComponent },
     { path: 'login', component: LoginComponent },

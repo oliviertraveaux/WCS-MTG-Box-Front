@@ -24,11 +24,15 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { BreakpointObserverService, CardQuality, QualityFilter, UserCard } from '@shared';
 import { Observable, of } from 'rxjs';
 import { FilterValues } from '../../../features/user-panel/collection/models/filter-values.model';
 import { GetUserCardImgPipe } from '../../../features/user-panel/collection/shared/pipes/get-user-card-img.pipe';
 import { GetUserCardNamePipe } from '../../../features/user-panel/collection/shared/pipes/get-user-card-name.pipe';
+import { CardQuality } from '../../collection/enums/cardQuality';
+import { UserCard } from '../../collection/models/user-card.model';
+import { QualityFilter } from '../../filter/models/quality-filter.interface';
+import { FiltersStateService } from '../../filter/services/filters-states.service';
+import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
 
 @Component({
     selector: 'app-card-basket',
@@ -71,6 +75,7 @@ export class CardBasketComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _activatedRoute = inject(ActivatedRoute);
     private _destroyRef = inject(DestroyRef);
+    private _filtersStateService = inject(FiltersStateService);
 
     displayedColumns: string[] = ['show', 'name', 'set', 'quality', 'action'];
     cardsData = new MatTableDataSource<UserCard>([]);
@@ -99,10 +104,7 @@ export class CardBasketComponent implements OnInit {
             .pipe(takeUntilDestroyed(this._destroyRef))
             .subscribe(() => this._breakpointObserverService.breakpointChanged());
 
-        this._activatedRoute.data.subscribe((response: any) => {
-            console.log('response', response);
-            this.cardQuality = response.filters.qualities;
-        });
+        this.cardQuality = this._filtersStateService.getQualitiesValue();
     }
 
     ngAfterViewInit() {

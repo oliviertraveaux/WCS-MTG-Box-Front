@@ -8,10 +8,10 @@ import { Filters } from '../models/filters.interface';
     providedIn: 'root',
 })
 export class FilterRepository {
-    private http = inject(HttpClient);
+    private readonly http = inject(HttpClient);
 
     public getFilters(): Observable<Filters> {
-        const apiUrl = `${ENVIRONMENT.apiFilterConfiurationUrl}`;
+        const apiUrl = `${ENVIRONMENT.apiFilterConfigurationUrl}`;
         console.log('apiUrl', apiUrl);
 
         return this.http.get<Filters>(apiUrl);
