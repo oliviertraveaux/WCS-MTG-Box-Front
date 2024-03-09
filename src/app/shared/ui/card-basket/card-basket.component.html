@@ -102,9 +102,9 @@
                         appearance="outline"
                         class="w-full">
                         <mat-select
-                            [(value)]="element.userInfo.qualityId"
+                            [(value)]="element.userInfo.qualityName"
                             (selectionChange)="setQuality(element, $event.value)">
-                            <mat-option *ngFor="let quality of cardQuality" [value]="quality.id">
+                            <mat-option *ngFor="let quality of cardQuality" [value]="quality.name">
                                 {{ quality.name }}
                             </mat-option>
                         </mat-select>
