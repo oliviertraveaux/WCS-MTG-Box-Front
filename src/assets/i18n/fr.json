@@ -39,6 +39,10 @@
         "result": "resulat",
         "reset": "Réinitialiser"
       },
+      "searchResults": {
+        "totalResultTextPlural": " résultats correspondants",
+        "totalResultTextSingular": " résultat correspondant"
+      },
       "searchResult": {
         "add": "Ajouter"
       },
