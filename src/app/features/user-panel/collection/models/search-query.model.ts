@@ -1,4 +1,5 @@
-import { CardColor, CardRarity } from '@shared';
+import { CardRarity } from '../../../../shared/collection/enums/card-rarity.enum';
+import { CardColor } from '../../../../shared/collection/models/card-color.model';
 
 export interface SearchQuery {
     name?: string;

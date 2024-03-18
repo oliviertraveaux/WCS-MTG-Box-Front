@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { CardQuality, UserCard } from '@shared';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { CardQuality } from '../../../../../shared/collection/enums/cardQuality';
+import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 import { ApiCard } from '../../models/card-api.model';
 import { CollectionAddCardRepository } from '../repositories/collection-add-card.repository';
 import { CollectionAddCardBasketStatesService } from './collection-add-card-basket-states.service';

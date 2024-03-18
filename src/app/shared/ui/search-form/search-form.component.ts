@@ -10,16 +10,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-    BasicFilter,
-    CARD_COLORS,
-    GetLanguageAbbreviationPipe,
-    getSearchResultTextPipe,
-    RequestStatus,
-    SetFilter,
-} from '@shared';
 import { map, Observable, of, startWith } from 'rxjs';
 import { ApiCard } from '../../../features/user-panel/collection/models/card-api.model';
+import { CARD_COLORS } from '../../collection/constants/card-colors.const';
+import { GetLanguageAbbreviationPipe } from '../../collection/pipes/get-language-abbreviation.pipe';
+import { getSearchResultTextPipe } from '../../collection/pipes/get-search-result-text.pipe';
+import { RequestStatus } from '../../enums/request-status.enum';
+import { BasicFilter } from '../../filter/models/basic-filter.interface';
+import { SetFilter } from '../../filter/models/set-filter.interface';
 
 @Component({
     selector: 'app-search-form',
