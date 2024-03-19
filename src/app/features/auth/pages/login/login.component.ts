@@ -11,6 +11,8 @@ import { LoginService } from '../../shared/services/login.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SnackbarStatus } from '../../../../shared/enums/snackbar-status.enum';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
+import { ReconnectUserService } from '../../shared/services/reconnect-user.service';
 
 @Component({
     selector: 'app-login',
@@ -34,6 +36,7 @@ export class LoginComponent {
     private _snackbarService = inject(SnackbarService);
     private _route: ActivatedRoute = inject(ActivatedRoute);
     private _translate = inject(TranslateService);
+    private _reconnectUserService = inject(ReconnectUserService);
 
     loginForm = this._fb.group({
         username: ['', [Validators.required]],
@@ -47,6 +50,7 @@ export class LoginComponent {
                 this.loginForm.patchValue({ username });
             }
         });
+        console.log(inject(UserInfoStatesService).getUserInfo());
     }
 
     onLogin() {
@@ -55,14 +59,12 @@ export class LoginComponent {
             this._authService.login(formData).subscribe({
                 next: (token) => {
                     const logged = this._translate.instant('Toasts.login-success');
-
                     this._snackbarService.openSnackBar(logged, SnackbarStatus.success);
-
+                    this._reconnectUserService.getUserInfo();
                     setTimeout(() => this._router.navigate(['/user-panel/profile']), 1200);
                 },
                 error: (error) => {
                     console.error(error);
-
                     const logFailed = this._translate.instant('Toasts.login-fail');
                     this._snackbarService.openSnackBar(logFailed, SnackbarStatus.error);
                 },

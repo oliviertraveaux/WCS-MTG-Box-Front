@@ -9,5 +9,6 @@ export const ENVIRONMENT = {
     apiCheckAvailabilityConfigurationURL: `${apiConfigurationUrl}check-availability`,
     apiFilterConfigurationUrl: `${apiConfigurationUrl}filters`,
     apiLogoutConfigurationURL: `${apiConfigurationUrl}logout`,
+    apiVerifyTokenURL: `${apiConfigurationUrl}verify-token`,
     url: 'http://localhost:8080',
 };

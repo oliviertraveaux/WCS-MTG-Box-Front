@@ -12,7 +12,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { initializeAppFactory } from './app-initializer';
+import { initializeAppFilters, initializeAppUserInfo } from './app-initializer';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 
@@ -25,9 +25,13 @@ bootstrapApplication(AppComponent, {
         provideHttpClient(withInterceptors([]), withFetch()),
         {
             provide: APP_INITIALIZER,
-            useFactory: initializeAppFactory,
+            useFactory: initializeAppFilters,
             multi: true,
-            deps: [HttpClient],
+        },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeAppUserInfo,
+            multi: true,
         },
         provideAnimations(),
         provideRouter(routes),
