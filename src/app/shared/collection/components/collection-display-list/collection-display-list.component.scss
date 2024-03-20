@@ -1,0 +1,63 @@
+@import "src/_global-variables";
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  padding: 0 8px 0 8px;
+  @include sm {
+    padding: 0 16px 0 16px;
+  }
+  @include lg {
+    padding: 0 8px 0 16px;
+  }
+}
+
+.cdk-column-name {
+    max-width: 90px;
+  @include md {
+    max-width: 200px;
+  }
+}
+
+.cdk-column-set {
+    max-width: 48px;
+  @include lg {
+    max-width: 200px;
+  }
+}
+
+.cdk-column-quality {
+  max-width: 68px;
+  width: auto;
+}
+
+.cdk-column-rarity {
+  max-width: 50px;
+}
+
+.cdk-column-expand {
+  max-width: 50px;
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
