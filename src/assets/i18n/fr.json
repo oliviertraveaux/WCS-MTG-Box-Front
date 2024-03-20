@@ -100,6 +100,15 @@
       "set": "Edition",
       "quality": "Qualité",
       "delete": "Supprimer"
+    },
+    "collectionDisplayList": {
+      "name": "Nom",
+      "set": "Edition",
+      "quality": "Qualité",
+      "rarity": "Rareté",
+      "delete": "Supprimer",
+      "frenchNameTitle": "Nom Français",
+      "englishNameTitle": "Nom Anglais"
     }
   }
 

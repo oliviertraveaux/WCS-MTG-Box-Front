@@ -99,6 +99,15 @@
       "set": "Set",
       "quality": "Quality",
       "delete": "Delete"
+    },
+    "collectionDisplayList": {
+      "name": "Name",
+      "set": "Set",
+      "quality": "Quality",
+      "rarity": "Rarity",
+      "delete": "Delete",
+      "frenchNameTitle": "French Name",
+      "englishNameTitle": "English Name"
     }
   }
 }
