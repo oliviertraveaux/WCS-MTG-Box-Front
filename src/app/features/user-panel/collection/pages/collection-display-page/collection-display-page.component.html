@@ -1,1 +1,14 @@
-<p>collection-display-page works!</p>
+
+<ng-container *ngIf="cards$ | async as cards">
+  <div class=" mx-auto max-h-screen ">
+    <div class="flex flex-wrap justify-center">
+      <div class="p-2" *ngFor="let card of cards">
+        <app-collection-search-card-result
+          [card]="card"
+          (cardDeleted)="handleCardDeleted($event)">
+        </app-collection-search-card-result>
+      </div>
+    </div>
+    <mat-paginator [length]="totalLength" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="handlePageEvent($event)"></mat-paginator>
+  </div>
+</ng-container>

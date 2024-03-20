@@ -7,6 +7,7 @@ import { ApiCard } from '../../models/card-api.model';
 import { CollectionAddCardRepository } from '../repositories/collection-add-card.repository';
 import { CollectionAddCardBasketStatesService } from './collection-add-card-basket-states.service';
 import { CollectionAddCardSearchFormService } from './collection-add-card-search-form.service';
+import {UserInfoStatesService} from "../../../../../shared/user/services/user-info-states.service";
 
 @Injectable({
     providedIn: 'root',
@@ -15,6 +16,7 @@ export class CollectionAddCardBasketService {
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
     private _searchFormService = inject(CollectionAddCardSearchFormService);
     private _collectionAddCardRepository = inject(CollectionAddCardRepository);
+    private _userInfos = inject(UserInfoStatesService);
 
     updateCardBasket(updatedCard: UserCard): void {
         return this._cardBasketStateService.setCardBasket(
@@ -27,6 +29,7 @@ export class CollectionAddCardBasketService {
     }
 
     fromSearchResultToCardBasket(apiCard: ApiCard): UserCard {
+      let userId = this._userInfos.getUserInfo().id;
         return {
             cardInfo: {
                 uniqueId: uuidv4(),
@@ -47,7 +50,7 @@ export class CollectionAddCardBasketService {
                 artist: apiCard.artist,
             },
             userInfo: {
-                userId: 1,
+                userId: userId,
                 qualityName: CardQuality.excellent,
                 qualityId: 3,
                 languageName: this._searchFormService.languageControl.name || 'English',

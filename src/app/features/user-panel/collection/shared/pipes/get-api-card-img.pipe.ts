@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ApiCard } from '../../models/card-api.model';
+import {ApiCard} from '../../models/card-api.model';
 @Pipe({
     standalone: true,
     name: 'getApiCardImg',
@@ -16,4 +16,8 @@ export class GetApiCardImgPipe implements PipeTransform {
                 return card.imageUrl;
         }
     }
+
+
+
+
 }
