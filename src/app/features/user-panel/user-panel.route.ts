@@ -5,13 +5,16 @@ import { MessagesPageComponent } from './messages/pages/messages-page/messages-p
 import { OffersMadePageComponent } from './offers-made/pages/offers-made-page/offers-made-page.component';
 import { OffersReceivedPageComponent } from './offers-received/pages/offers-received-page/offers-received-page.component';
 import { ProfilePageComponent } from './profile/pages/profile-page/profile-page.component';
+import {
+  CollectionDisplayPageComponent
+} from "./collection/pages/collection-display-page/collection-display-page.component";
 
 export const USER_PANEL_ROUTES: Route[] = [
     {
         path: 'collection/add',
         component: CollectionAddCardPageComponent,
     },
-    { path: 'collection', component: CollectionDisplayListComponent },
+    { path: 'collection', component: CollectionDisplayPageComponent },
     { path: 'profile', component: ProfilePageComponent },
     { path: 'history', component: ProfilePageComponent },
     { path: 'offers-received', component: OffersReceivedPageComponent },
