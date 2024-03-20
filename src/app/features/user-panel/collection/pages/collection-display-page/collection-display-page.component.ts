@@ -11,11 +11,14 @@ import {UserCard} from "../../../../../shared/collection/models/user-card.model"
 import {
   CollectionAddCardSearchFormComponent
 } from "../../components/collection-add-card/collection-add-card-search-form/collection-add-card-search-form.component";
+import {
+  CollectionDisplayListComponent
+} from "../../../../../shared/collection/components/collection-display-list/collection-display-list.component";
 
 @Component({
   selector: 'app-collection-display-page',
   standalone: true,
-  imports: [CommonModule, CollectionAddCardSearchResultComponent, CollectionSearchResultComponent, MatPaginatorModule, SearchFormComponent, CollectionAddCardSearchFormComponent],
+  imports: [CommonModule, CollectionAddCardSearchResultComponent, CollectionSearchResultComponent, MatPaginatorModule, SearchFormComponent, CollectionAddCardSearchFormComponent, CollectionDisplayListComponent],
   templateUrl: './collection-display-page.component.html',
   styleUrls: ['./collection-display-page.component.scss']
 })
