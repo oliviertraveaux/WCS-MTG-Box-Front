@@ -9,7 +9,7 @@ import { CardSkeletonComponent } from '../../../../../../shared/collection/compo
 import { GetRaritySymbolPipe } from '../../../../../../shared/collection/pipes/get-rarity-symbol.pipe';
 import { getSearchResultTextPipe } from '../../../../../../shared/collection/pipes/get-search-result-text.pipe';
 import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
-import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card-search-results-states.service';
+import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card/collection-add-card-search-results-states.service';
 import { CollectionAddCardSearchResultComponent } from '../collection-add-card-search-result/collection-add-card-search-result.component';
 
 @Component({

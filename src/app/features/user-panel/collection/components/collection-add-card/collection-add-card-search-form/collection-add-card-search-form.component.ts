@@ -15,11 +15,11 @@ import { RequestStatus } from '../../../../../../shared/enums/request-status.enu
 import { BasicFilter } from '../../../../../../shared/filter/models/basic-filter.interface';
 import { SetFilter } from '../../../../../../shared/filter/models/set-filter.interface';
 import { FiltersStateService } from '../../../../../../shared/filter/services/filters-states.service';
+import { SearchFormAddCardCollectionService } from '../../../../../../shared/services/search-form/search-form-add-card-collection.service';
 import { SearchFormComponent } from '../../../../../../shared/ui/search-form/search-form.component';
 import { SearchQuery } from '../../../models/search-query.model';
-import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
-import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card-search-results-states.service';
-import { CollectionAddCardSearchResultsService } from '../../../shared/services/collection-add-card-search-results.service';
+import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card/collection-add-card-search-results-states.service';
+import { CollectionAddCardSearchResultsService } from '../../../shared/services/collection-add-card/collection-add-card-search-results.service';
 
 @Component({
     selector: 'app-collection-add-card-search-form',
@@ -41,7 +41,7 @@ import { CollectionAddCardSearchResultsService } from '../../../shared/services/
     templateUrl: './collection-add-card-search-form.component.html',
 })
 export class CollectionAddCardSearchFormComponent implements OnInit {
-    private _searchFormService = inject(CollectionAddCardSearchFormService);
+    private _searchFormService = inject(SearchFormAddCardCollectionService);
     private _searchResultsService = inject(CollectionAddCardSearchResultsService);
     private _searchResultsStateService = inject(CollectionAddCardResultsStatesService);
     private _filtersStateService = inject(FiltersStateService);
@@ -66,6 +66,7 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
 
     search() {
         const searchQuery: SearchQuery = this._searchFormService.getSearch();
+        console.log('search: ', searchQuery);
         this._searchResultsService.searchCards(searchQuery);
     }
 

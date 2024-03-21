@@ -7,8 +7,8 @@ import { UserCard } from '../../../../../../shared/collection/models/user-card.m
 import { SnackbarStatus } from '../../../../../../shared/enums/snackbar-status.enum';
 import { SnackbarService } from '../../../../../../shared/services/snackbar.service';
 import { CardBasketComponent } from '../../../../../../shared/ui/card-basket/card-basket.component';
-import { CollectionAddCardBasketStatesService } from '../../../shared/services/collection-add-card-basket-states.service';
-import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card-basket.service';
+import { CollectionAddCardBasketStatesService } from '../../../shared/services/collection-add-card/collection-add-card-basket-states.service';
+import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card/collection-add-card-basket.service';
 
 @Component({
     selector: 'app-collection-add-card-basket-list',
@@ -68,6 +68,7 @@ export class CollectionAddCardBasketComponent implements OnInit {
                               ),
                         SnackbarStatus.success
                     );
+                    this._cardBasketService.emptyCardBasket();
                 },
                 error: () => {
                     const logFailed = this._translate.instant(
