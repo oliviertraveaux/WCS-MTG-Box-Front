@@ -1,0 +1,26 @@
+<div class="flex flex-col h-full items-center m-3" >
+
+  <img [src]="card | getUserCardImg" class="transform transition-transform hover:scale-105 mb-2"
+       [alt]="card | getUserCardName " style="width: 230px; height: 330px;"/>
+  <div class="flex justify-between w-full mt-2">
+    <h4 class="text-base pr-2	">{{ card |  getUserCardName }}</h4>    <span
+    class="inline-block h-4 w-4 rounded-full bg-green-500 mr-4"></span>
+  </div>
+
+  <div class="flex  w-full justify-between">
+    <div class="w-full mt-1">
+      <p class="bg-silver text-sm">{{ card.cardInfo.setName | translate }}</p>
+      <div *ngIf="card.userInfo.qualityName" class="text-center inline-block">
+        <p [ngClass]="card.userInfo.qualityName | getQualityClass"
+           class="text-sm font-bold">{{ card.userInfo.qualityName }}</p>
+      </div>
+    </div>
+    <button (click)="deleteCard(card.userInfo.userCardId)" mat-icon-button aria-label="Delete card" class="p-3">
+      <mat-icon color="warn">delete</mat-icon>
+    </button>
+  </div>
+
+
+
+
+</div>
