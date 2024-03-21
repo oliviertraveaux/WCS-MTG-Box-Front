@@ -1,19 +1,19 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { CardQuality } from '../../../../../shared/collection/enums/cardQuality';
-import { UserCard } from '../../../../../shared/collection/models/user-card.model';
-import { ApiCard } from '../../models/card-api.model';
-import { CollectionAddCardRepository } from '../repositories/collection-add-card.repository';
+import { CardQuality } from '../../../../../../shared/collection/enums/cardQuality';
+import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
+import { SearchFormAddCardCollectionService } from '../../../../../../shared/services/search-form/search-form-add-card-collection.service';
+import { ApiCard } from '../../../models/card-api.model';
+import { CollectionAddCardRepository } from '../../repositories/collection-add-card.repository';
 import { CollectionAddCardBasketStatesService } from './collection-add-card-basket-states.service';
-import { CollectionAddCardSearchFormService } from './collection-add-card-search-form.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CollectionAddCardBasketService {
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
-    private _searchFormService = inject(CollectionAddCardSearchFormService);
+    private _searchFormService = inject(SearchFormAddCardCollectionService);
     private _collectionAddCardRepository = inject(CollectionAddCardRepository);
 
     updateCardBasket(updatedCard: UserCard): void {
