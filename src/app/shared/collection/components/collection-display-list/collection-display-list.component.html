@@ -1,4 +1,4 @@
-<div class="flex h-full w-full flex-col px-4 sm:px-8 lg:px-0 lg:py-2">
+<div class="flex h-full w-full flex-col px-4 sm:px-8 lg:px-0 lg:py-2" *ngIf="cards$ | async as cards">
     <div class="mat-elevation-z2">
         <table mat-table [dataSource]="cardsData" multiTemplateDataRows matSort>
             <ng-container matColumnDef="name">
@@ -24,11 +24,11 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     {{ 'ui.collectionDisplayList.quality' | translate }}
                 </th>
-                <td mat-cell *matCellDef="let row">{{ row.userInfo.qualityName }}</td>
+                <td mat-cell  [ngClass]="row.userInfo.qualityName | getQualityClass" *matCellDef="let row">{{ row.userInfo.qualityName }}</td>
             </ng-container>
 
             <ng-container matColumnDef="rarity">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header  >
                     {{ 'ui.collectionDisplayList.rarity' | translate }}
                 </th>
                 <td mat-cell *matCellDef="let row" [title]="row.cardInfo.rarity">
@@ -39,6 +39,15 @@
                     >
                 </td>
             </ng-container>
+          <ng-container matColumnDef="offer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'ui.collectionDisplayList.offer' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+    <span
+      class="inline-block h-4 w-4 rounded-full bg-green-500 mr-4"></span>
+            </td>
+          </ng-container>
             <!--          -->
             <ng-container matColumnDef="expand">
                 <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
@@ -92,7 +101,7 @@
                                 class="mx-4 w-1/2"
                                 mat-flat-button
                                 color="primary"
-                                (click)="onDelete(row.cardInfo.uniqueId)">
+                                (click)="onDelete(row.userInfo.userCardId)">
                                 {{ 'ui.collectionDisplayList.delete' | translate }}
                             </button>
                         </div>

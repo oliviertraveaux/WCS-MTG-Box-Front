@@ -107,7 +107,8 @@
       "rarity": "Rarity",
       "delete": "Delete",
       "frenchNameTitle": "French Name",
-      "englishNameTitle": "English Name"
+      "englishNameTitle": "English Name",
+      "offer": "Offer"
     }
   }
 }

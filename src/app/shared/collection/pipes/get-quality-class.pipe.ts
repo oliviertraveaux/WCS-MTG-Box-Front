@@ -9,11 +9,11 @@ export class GetQualityClassPipe implements PipeTransform {
   transform(quality: CardQuality): string {
     switch (quality) {
       case CardQuality.mint:
-        return 'text-yellow-600';
+        return 'text-purple-600';
       case CardQuality.nearMint:
-        return 'text-yellow-400';
+        return 'text-purple-400';
       case CardQuality.excellent:
-        return 'text-green-600';
+        return 'text-green-800';
       case CardQuality.good:
         return 'text-green-600';
       case CardQuality.lightPlayed:
