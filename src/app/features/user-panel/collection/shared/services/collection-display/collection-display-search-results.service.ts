@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { COLLECTION } from '../../../../../../shared/collection/components/collection-display-list/collection.mock';
+import { Observable, of, take, tap } from 'rxjs';
 import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
+import { CollectionCardsStateService } from '../../../../../../shared/collection/services/collection-cards-state.service';
+import { CollectionCardsService } from '../../../../../../shared/collection/services/collection-cards.service';
 import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
+import { UserInfoStatesService } from '../../../../../../shared/user/services/user-info-states.service';
 import { SearchQuery } from '../../../models/search-query.model';
 import { CollectionDisplaySearchResultsStatesService } from './collection-display-search-results-states.service';
-import {CollectionCardsStateService} from "../../../../../../shared/collection/services/collection-cards-state.service";
 
 @Injectable({
     providedIn: 'root',
@@ -13,6 +14,8 @@ import {CollectionCardsStateService} from "../../../../../../shared/collection/s
 export class CollectionDisplaySearchResultsService {
     private _searchCardsStatesService = inject(CollectionDisplaySearchResultsStatesService);
     private _collectionCardsStatesService = inject(CollectionCardsStateService);
+    private _collectionCardsService = inject(CollectionCardsService);
+    private _userInfoId = inject(UserInfoStatesService).getUserInfo().id;
 
     init() {
         this._searchCardsStatesService.setCards(this._collectionCardsStatesService.getCardsValue());
@@ -27,9 +30,25 @@ export class CollectionDisplaySearchResultsService {
         });
     }
 
+    deleteCard(userCardId: number): Observable<any> {
+        return this._collectionCardsService.deleteCard(userCardId).pipe(
+            tap(() =>
+                this._collectionCardsService
+                    .getCollectionCards(this._userInfoId)
+                    .pipe(
+                        take(1),
+                        tap(() => this.init())
+                    )
+                    .subscribe()
+            )
+        );
+    }
+
     private getCards(searchQuery: SearchQuery): Observable<UserCard[]> {
         let filteredCards: UserCard[] = [];
-        filteredCards = this._collectionCardsStatesService.getCardsValue().filter((card) => this.isMatchingFilter(searchQuery, card));
+        filteredCards = this._collectionCardsStatesService
+            .getCardsValue()
+            .filter((card) => this.isMatchingFilter(searchQuery, card));
         return of(filteredCards);
     }
 

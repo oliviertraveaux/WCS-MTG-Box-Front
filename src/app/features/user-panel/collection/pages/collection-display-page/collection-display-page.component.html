@@ -1,24 +1,28 @@
-<section>
+<section class="align flex h-full w-screen flex-col items-center justify-center">
+    <div class="flex h-full w-full flex-col px-4 pb-1 sm:px-8 lg:w-11/12 lg:px-0">
+        <div class="flex items-center pb-2">
+            <app-collection-display-search-form></app-collection-display-search-form>
+        </div>
+        <div>
+            <button class="mx-4 my-2" mat-flat-button color="primary" (click)="switchView()">
+                {{ switchDisplay ? 'Vue liste' : 'Vue Image' }}
+            </button>
+        </div>
+        <div class="w-full overflow-auto scrollbar-hide">
+            <app-collection-display-image *ngIf="switchDisplay">
+                <div class="p-2" *ngFor="let card of cards$ | async">
+                    <app-collection-display-search-result
+                        [card]="card"
+                        (cardDeleted)="handleCardDeleted($event)">
+                    </app-collection-display-search-result>
+                </div>
+            </app-collection-display-image>
 
-
-  <app-collection-display-search-form></app-collection-display-search-form>
-  <button (click)="switchView()">Switch View</button>
-  <div class="w-full ">
-
-    <app-collection-display-image *ngIf="switchDisplay">
-      <div class="p-2 " *ngFor="let card of (cards$ | async)">
-        <app-collection-display-search-result
-          [card]="card"
-          (cardDeleted)="handleCardDeleted($event)">
-        </app-collection-display-search-result>
-      </div>
-    </app-collection-display-image>
-
-    <app-collection-display-list *ngIf="!switchDisplay"
-                                 [cards$]="cards$"
-    >
-    </app-collection-display-list>
-
-  </div>
-
+            <app-collection-display-list
+                *ngIf="!switchDisplay"
+                [cards$]="cards$"
+                (cardToRemove)="handleCardDeleted($event)">
+            </app-collection-display-list>
+        </div>
+    </div>
 </section>
