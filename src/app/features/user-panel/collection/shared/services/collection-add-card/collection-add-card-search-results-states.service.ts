@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RequestStatus } from '../../../../../shared/enums/request-status.enum';
-import { ApiCard } from '../../models/card-api.model';
+import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
+import { ApiCard } from '../../../models/card-api.model';
 
 @Injectable({
     providedIn: 'root',

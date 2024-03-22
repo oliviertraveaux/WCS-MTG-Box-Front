@@ -39,6 +39,10 @@
         "result": "result",
         "reset": "RESET"
       },
+      "searchResults": {
+        "totalResultTextPlural": " matching results",
+        "totalResultTextSingular": " matching result"
+      },
       "searchResult": {
         "add": "Add"
       },
@@ -84,6 +88,26 @@
       "offersReceived": "offers received",
       "offersMade": "offers made",
       "messages": "messages"
+    }
+  },
+  "ui": {
+    "cardBasket": {
+      "reset": "Reset",
+      "add-cards": "Cards to Add",
+      "save": "Save",
+      "name": "Name",
+      "set": "Set",
+      "quality": "Quality",
+      "delete": "Delete"
+    },
+    "collectionDisplayList": {
+      "name": "Name",
+      "set": "Set",
+      "quality": "Quality",
+      "rarity": "Rarity",
+      "delete": "Delete",
+      "frenchNameTitle": "French Name",
+      "englishNameTitle": "English Name"
     }
   }
 }

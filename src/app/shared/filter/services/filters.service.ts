@@ -6,11 +6,11 @@ import { FilterRepository } from '../repositories/filter.repository';
 @Injectable({
     providedIn: 'root',
 })
-export class FilterService {
-    private filterRepository = inject(FilterRepository);
+export class FiltersService {
+    private readonly _filterRepository = inject(FilterRepository);
 
     public getFilters(): Observable<Filters> {
-        const result = this.filterRepository.getFilters();
+        const result = this._filterRepository.getFilters();
         console.log('result', result);
         return result;
     }

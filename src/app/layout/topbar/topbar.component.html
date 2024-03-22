@@ -10,14 +10,11 @@
                 {{ 'Topbar.add' | translate }}
             </button>
 
-            <a *ngIf="authService.isAuthenticated()" (click)="logout()">{{
-                'Topbar.logout' | translate
-            }}</a>
+          <a *ngIf="isLoggedIn()" (click)="logout()">{{ 'Topbar.logout' | translate }}</a>
 
-            <a *ngIf="!authService.isAuthenticated()" routerLink="login">{{
-                'Topbar.login' | translate
-            }}</a>
-            <mat-form-field appearance="outline" class="w-20 pt-4">
+          <a *ngIf="!isLoggedIn()" routerLink="login">{{ 'Topbar.login' | translate }}</a>
+
+          <mat-form-field appearance="outline" class="w-20 pt-4">
                 <mat-select
                     [(ngModel)]="selectedLanguage"
                     [title]="selectedLanguage"

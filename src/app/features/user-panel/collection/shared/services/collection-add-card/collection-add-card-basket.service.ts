@@ -1,19 +1,24 @@
 import { inject, Injectable } from '@angular/core';
-import { CardQuality, UserCard } from '@shared';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { ApiCard } from '../../models/card-api.model';
-import { CollectionAddCardRepository } from '../repositories/collection-add-card.repository';
+import { CardQuality } from '../../../../../../shared/collection/enums/cardQuality';
+import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
+import { SearchFormAddCardCollectionService } from '../../../../../../shared/services/search-form/search-form-add-card-collection.service';
+import { ApiCard } from '../../../models/card-api.model';
+import { CollectionAddCardRepository } from '../../repositories/collection-add-card.repository';
 import { CollectionAddCardBasketStatesService } from './collection-add-card-basket-states.service';
-import { CollectionAddCardSearchFormService } from './collection-add-card-search-form.service';
+import {UserInfoStatesService} from "../../../../../../shared/user/services/user-info-states.service";
 
 @Injectable({
     providedIn: 'root',
 })
 export class CollectionAddCardBasketService {
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
-    private _searchFormService = inject(CollectionAddCardSearchFormService);
+    private _searchFormService = inject(SearchFormAddCardCollectionService);
     private _collectionAddCardRepository = inject(CollectionAddCardRepository);
+    private userInfosId = inject(UserInfoStatesService).getUserInfo().id;
+
+
 
     updateCardBasket(updatedCard: UserCard): void {
         return this._cardBasketStateService.setCardBasket(
@@ -46,7 +51,7 @@ export class CollectionAddCardBasketService {
                 artist: apiCard.artist,
             },
             userInfo: {
-                userId: 1,
+                userId: this.userInfosId,
                 qualityName: CardQuality.excellent,
                 qualityId: 3,
                 languageName: this._searchFormService.languageControl.name || 'English',
@@ -59,7 +64,7 @@ export class CollectionAddCardBasketService {
         return this._cardBasketStateService.getCardBasketValue().map((card) => {
             const {
                 cardInfo: { uniqueId, ...restCardInfo },
-                userInfo: { qualityName, languageName, ...restUserInfo },
+                userInfo: { qualityId, languageId, ...restUserInfo },
             } = card;
             return {
                 cardInfo: restCardInfo,
@@ -75,7 +80,7 @@ export class CollectionAddCardBasketService {
         ]);
     }
 
-    removeCardFromCardBasket(uniqueId: string): void {
+    removeCardFromCardBasket(uniqueId: string | number): void {
         this._cardBasketStateService.setCardBasket(
             this._cardBasketStateService
                 .getCardBasketValue()

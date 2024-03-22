@@ -13,7 +13,7 @@
 
     <ng-template #content>
         <div class="flex w-1/2 flex-col p-2 sm:w-1/4" *ngFor="let card of cards$ | async">
-            <app-collection-search-card-result [card]="card" />
+            <app-collection-add-card-search-card-result [card]="card" />
         </div>
     </ng-template>
 </div>

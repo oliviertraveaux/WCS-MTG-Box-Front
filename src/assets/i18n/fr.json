@@ -39,6 +39,10 @@
         "result": "resulat",
         "reset": "Réinitialiser"
       },
+      "searchResults": {
+        "totalResultTextPlural": " résultats correspondants",
+        "totalResultTextSingular": " résultat correspondant"
+      },
       "searchResult": {
         "add": "Ajouter"
       },
@@ -85,6 +89,26 @@
       "offersReceived": "offres reçues",
       "offersMade": "offres effectuées",
       "messages": "messages"
+    }
+  },
+  "ui": {
+    "cardBasket": {
+      "reset": "Vider",
+      "add-cards": "Cartes à ajouter",
+      "save": "Enregistrer",
+      "name": "Nom",
+      "set": "Edition",
+      "quality": "Qualité",
+      "delete": "Supprimer"
+    },
+    "collectionDisplayList": {
+      "name": "Nom",
+      "set": "Edition",
+      "quality": "Qualité",
+      "rarity": "Rareté",
+      "delete": "Supprimer",
+      "frenchNameTitle": "Nom Français",
+      "englishNameTitle": "Nom Anglais"
     }
   }
 

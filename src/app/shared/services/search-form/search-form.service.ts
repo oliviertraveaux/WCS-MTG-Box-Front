@@ -7,14 +7,16 @@ import {
     ValidationErrors,
     ValidatorFn,
 } from '@angular/forms';
-import { BasicFilter, CardColor, CardRarity } from '@shared';
 import { debounceTime } from 'rxjs';
-import { SearchQuery } from '../../models/search-query.model';
+import { SearchQuery } from '../../../features/user-panel/collection/models/search-query.model';
+import { CardRarity } from '../../collection/enums/card-rarity.enum';
+import { CardColor } from '../../collection/models/card-color.model';
+import { BasicFilter } from '../../filter/models/basic-filter.interface';
 
 @Injectable({
     providedIn: 'root',
 })
-export class CollectionAddCardSearchFormService {
+export class SearchFormService {
     private _fb = inject(FormBuilder);
     private _destroyRef = inject(DestroyRef);
 
@@ -79,7 +81,8 @@ export class CollectionAddCardSearchFormService {
         let requestParams: SearchQuery = {};
         for (let control of Object.keys(this.searchForm.controls)) {
             const value = this.searchForm.get(control)?.value;
-            if (value !== null && value !== '' && value.name !== 'English') {
+            console.log('value', value);
+            if (value !== null && value !== '') {
                 // @ts-ignore
                 requestParams[control] = control === 'language' ? value.name : value;
             }

@@ -1,8 +1,9 @@
-import { CardQuality, CardRarity } from '@shared';
+import { CardRarity } from '../enums/card-rarity.enum';
+import { CardQuality } from '../enums/cardQuality';
 
 export interface UserCard {
     cardInfo: {
-        uniqueId?: string;
+        uniqueId?: string | number;
         apiCardId: string;
         name: string;
         frenchName: string;

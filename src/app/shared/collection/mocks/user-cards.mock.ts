@@ -1,4 +1,5 @@
-import { CardRarity, UserCard } from '@shared';
+import { CardRarity } from '../enums/card-rarity.enum';
+import { UserCard } from '../models/user-card.model';
 
 const userCardsMock: UserCard[] = [
     {
