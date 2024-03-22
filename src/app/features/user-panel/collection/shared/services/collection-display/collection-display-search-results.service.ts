@@ -5,15 +5,17 @@ import { UserCard } from '../../../../../../shared/collection/models/user-card.m
 import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
 import { SearchQuery } from '../../../models/search-query.model';
 import { CollectionDisplaySearchResultsStatesService } from './collection-display-search-results-states.service';
+import {CollectionCardsStateService} from "../../../../../../shared/collection/services/collection-cards-state.service";
 
 @Injectable({
     providedIn: 'root',
 })
 export class CollectionDisplaySearchResultsService {
     private _searchCardsStatesService = inject(CollectionDisplaySearchResultsStatesService);
+    private _collectionCardsStatesService = inject(CollectionCardsStateService);
 
     init() {
-        this._searchCardsStatesService.setCards(COLLECTION);
+        this._searchCardsStatesService.setCards(this._collectionCardsStatesService.getCardsValue());
     }
 
     searchCards(searchQuery: SearchQuery) {
@@ -27,7 +29,7 @@ export class CollectionDisplaySearchResultsService {
 
     private getCards(searchQuery: SearchQuery): Observable<UserCard[]> {
         let filteredCards: UserCard[] = [];
-        filteredCards = COLLECTION.filter((card) => this.isMatchingFilter(searchQuery, card));
+        filteredCards = this._collectionCardsStatesService.getCardsValue().filter((card) => this.isMatchingFilter(searchQuery, card));
         return of(filteredCards);
     }
 
