@@ -69,7 +69,7 @@ export class CollectionDisplayListComponent implements OnInit {
     readonly isDesktop = this._breakpointObserverService.isDesktop;
 
     @Input() cards$: Observable<UserCard[]> = of([]);
-    @Output() cardToRemove = new EventEmitter<string | number>();
+    @Output() cardToRemove = new EventEmitter<number>();
 
     displayedColumns: string[] = ['name', 'quality', 'set', 'rarity', 'expand'];
     displayedColumnsWithExpand: string[] = [...this.displayedColumns, 'expand'];

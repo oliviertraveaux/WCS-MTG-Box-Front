@@ -11,7 +11,7 @@
 }
 
 .cdk-column-name {
-    max-width: 90px;
+    max-width: 80px;
   @include md {
     max-width: 200px;
   }
@@ -30,11 +30,11 @@
 }
 
 .cdk-column-rarity {
-  max-width: 50px;
+  max-width: 40px;
 }
 
 .cdk-column-expand {
-  max-width: 50px;
+  max-width: 0;
 }
 
 table {
