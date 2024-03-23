@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LoginData } from '../../models/auth.model';
 import { LoginService } from '../../shared/services/login.service';
 
@@ -24,10 +24,12 @@ import { ReconnectUserService } from '../../shared/services/reconnect-user.servi
         MatInputModule,
         MatButtonModule,
         TranslateModule,
+        RouterLink,
     ],
 
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
     private _fb: FormBuilder = inject(FormBuilder);

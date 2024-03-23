@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
@@ -18,6 +18,7 @@ import { CollectionDisplaySearchResultsService } from '../../../shared/services/
     imports: [CommonModule, SearchFormComponent],
     templateUrl: './collection-display-search-form.component.html',
     styleUrls: ['./collection-display-search-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionDisplaySearchFormComponent implements OnInit {
     private _searchFormService = inject(SearchFormService);

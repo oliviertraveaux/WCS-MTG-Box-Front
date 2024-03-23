@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
@@ -16,6 +16,7 @@ import { CollectionAddCardBasketService } from '../../../shared/services/collect
     imports: [CommonModule, CardBasketComponent],
     templateUrl: './collection-add-card-basket.component.html',
     styleUrls: ['./collection-add-card-basket.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionAddCardBasketComponent implements OnInit {
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
@@ -23,8 +24,6 @@ export class CollectionAddCardBasketComponent implements OnInit {
     private _destroyRef = inject(DestroyRef);
     private _snackbarService = inject(SnackbarService);
     private _translate = inject(TranslateService);
-
-    protected readonly Object = Object;
 
     cards$: Observable<UserCard[]> = of([]);
 
