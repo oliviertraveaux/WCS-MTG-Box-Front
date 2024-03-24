@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Observable, map, of } from 'rxjs';
 import { SnackbarStatus } from '../../../../shared/enums/snackbar-status.enum';
-import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { AlertService } from '../../../../shared/services/alert.service';
 import { RegistrationFormData } from '../../models/auth.model';
 import { RegisterService } from '../../shared/services/register.service';
 
@@ -47,7 +47,7 @@ import { RegisterService } from '../../shared/services/register.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateAccountComponent {
-    private _snackbarService = inject(SnackbarService);
+    private _alertService = inject(AlertService);
     private _formBuilder = inject(FormBuilder);
     private _registerService = inject(RegisterService);
     private _router = inject(Router);
@@ -71,7 +71,7 @@ export class CreateAccountComponent {
                 asyncValidators: [
                     this.checkUsernameAvailabilityValidator(
                         this._registerService,
-                        this._snackbarService
+                        this._alertService
                     ),
                 ],
                 updateOn: 'blur',
@@ -84,10 +84,7 @@ export class CreateAccountComponent {
             {
                 validators: [Validators.required, Validators.email],
                 asyncValidators: [
-                    this.checkEmailAvailabilityValidator(
-                        this._registerService,
-                        this._snackbarService
-                    ),
+                    this.checkEmailAvailabilityValidator(this._registerService, this._alertService),
                 ],
                 updateOn: 'blur',
             },
@@ -122,7 +119,7 @@ export class CreateAccountComponent {
                 this.confirmPasswordFormGroup.value.confirmPassword
             ) {
                 const passwordMismatch = this._translate.instant('Toasts.passwords-match');
-                this._snackbarService.openSnackBar(passwordMismatch, SnackbarStatus.error);
+                this._alertService.openSnackBar(passwordMismatch, SnackbarStatus.error);
 
                 return;
             }
@@ -142,7 +139,7 @@ export class CreateAccountComponent {
         this._registerService.register(formData).subscribe({
             next: (response) => {
                 const successRegistration = this._translate.instant('Toasts.register-sucess');
-                this._snackbarService.openSnackBar(successRegistration, SnackbarStatus.success);
+                this._alertService.openSnackBar(successRegistration, SnackbarStatus.success);
 
                 setTimeout(() => {
                     this._router.navigate(['/login'], {
@@ -152,7 +149,7 @@ export class CreateAccountComponent {
             },
             error: () => {
                 const errorRegistration = this._translate.instant('Toasts.register-fail');
-                this._snackbarService.openSnackBar(errorRegistration, SnackbarStatus.error);
+                this._alertService.openSnackBar(errorRegistration, SnackbarStatus.error);
             },
         });
     }
@@ -161,7 +158,7 @@ export class CreateAccountComponent {
 
     checkUsernameAvailabilityValidator(
         registerService: RegisterService,
-        snackBar: SnackbarService
+        snackBar: AlertService
     ): AsyncValidatorFn {
         return (control: AbstractControl): Observable<ValidationErrors | null> => {
             if (!control.value) {
@@ -173,10 +170,7 @@ export class CreateAccountComponent {
                         const usernameNotAvailable = this._translate.instant(
                             'Toasts.username-not-available'
                         );
-                        this._snackbarService.openSnackBar(
-                            usernameNotAvailable,
-                            SnackbarStatus.error
-                        );
+                        this._alertService.openSnackBar(usernameNotAvailable, SnackbarStatus.error);
 
                         return { usernameUnavailable: true };
                     }
@@ -188,7 +182,7 @@ export class CreateAccountComponent {
 
     checkEmailAvailabilityValidator(
         registerService: RegisterService,
-        snackBar: SnackbarService
+        snackBar: AlertService
     ): AsyncValidatorFn {
         return (control: AbstractControl): Observable<ValidationErrors | null> => {
             if (!control.value) {
@@ -200,7 +194,7 @@ export class CreateAccountComponent {
                         const emailUnavailable = this._translate.instant(
                             'Toasts.email-not-available'
                         );
-                        this._snackbarService.openSnackBar(emailUnavailable, SnackbarStatus.error);
+                        this._alertService.openSnackBar(emailUnavailable, SnackbarStatus.error);
 
                         return { emailUnavailable: true };
                     }

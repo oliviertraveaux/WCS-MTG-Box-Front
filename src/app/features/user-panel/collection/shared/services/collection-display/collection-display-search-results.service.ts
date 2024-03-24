@@ -1,9 +1,12 @@
 import { inject, Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, take, tap } from 'rxjs';
 import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
 import { CollectionCardsStateService } from '../../../../../../shared/collection/services/collection-cards-state.service';
 import { CollectionCardsService } from '../../../../../../shared/collection/services/collection-cards.service';
 import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
+import { SnackbarStatus } from '../../../../../../shared/enums/snackbar-status.enum';
+import { AlertService } from '../../../../../../shared/services/alert.service';
 import { UserInfoStatesService } from '../../../../../../shared/user/services/user-info-states.service';
 import { SearchQuery } from '../../../models/search-query.model';
 import { CollectionDisplaySearchResultsStatesService } from './collection-display-search-results-states.service';
@@ -16,6 +19,8 @@ export class CollectionDisplaySearchResultsService {
     private _collectionCardsStatesService = inject(CollectionCardsStateService);
     private _collectionCardsService = inject(CollectionCardsService);
     private _userInfoId = inject(UserInfoStatesService).getUserInfo().id;
+    private _alertService = inject(AlertService);
+    private _translate = inject(TranslateService);
 
     init() {
         this._searchCardsStatesService.setCards(this._collectionCardsStatesService.getCardsValue());
@@ -39,7 +44,20 @@ export class CollectionDisplaySearchResultsService {
                         take(1),
                         tap(() => this.init())
                     )
-                    .subscribe()
+                    .subscribe({
+                        next: (response) => {
+                            this._alertService.openSnackBar(
+                                this._translate.instant('Toasts.confirm-delete-success'),
+                                SnackbarStatus.success
+                            );
+                        },
+                        error: () => {
+                            this._alertService.openSnackBar(
+                                this._translate.instant('Toasts.confirm-delete-fail'),
+                                SnackbarStatus.error
+                            );
+                        },
+                    })
             )
         );
     }

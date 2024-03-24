@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
 import { SnackbarStatus } from '../../../../../../shared/enums/snackbar-status.enum';
-import { SnackbarService } from '../../../../../../shared/services/snackbar.service';
+import { AlertService } from '../../../../../../shared/services/alert.service';
 import { CardBasketComponent } from '../../../../../../shared/ui/card-basket/card-basket.component';
 import { CollectionAddCardBasketStatesService } from '../../../shared/services/collection-add-card/collection-add-card-basket-states.service';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card/collection-add-card-basket.service';
@@ -22,7 +22,7 @@ export class CollectionAddCardBasketComponent implements OnInit {
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
     private _cardBasketService = inject(CollectionAddCardBasketService);
     private _destroyRef = inject(DestroyRef);
-    private _snackbarService = inject(SnackbarService);
+    private _alertService = inject(AlertService);
     private _translate = inject(TranslateService);
 
     cards$: Observable<UserCard[]> = of([]);
@@ -56,7 +56,7 @@ export class CollectionAddCardBasketComponent implements OnInit {
             .pipe(takeUntilDestroyed(this._destroyRef))
             .subscribe({
                 next: (response) => {
-                    this._snackbarService.openSnackBar(
+                    this._alertService.openSnackBar(
                         response.length > 1
                             ? response.length +
                                   this._translate.instant(
@@ -73,7 +73,7 @@ export class CollectionAddCardBasketComponent implements OnInit {
                     const logFailed = this._translate.instant(
                         'Collection.addCard.toast.card-saved-fail'
                     );
-                    this._snackbarService.openSnackBar(logFailed, SnackbarStatus.error);
+                    this._alertService.openSnackBar(logFailed, SnackbarStatus.error);
                 },
             });
     }

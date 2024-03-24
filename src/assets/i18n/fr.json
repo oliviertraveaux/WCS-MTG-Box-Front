@@ -78,7 +78,17 @@
     "register-sucess": "Inscription réussie'",
     "register-fail": "Erreur lors de l'inscription",
     "login-fail": "Échec de la connexion. Veuillez réessayer.",
-    "login-success": "Connexion réussie. Bienvenue !"
+    "login-success": "Connexion réussie. Bienvenue !",
+    "confirm-delete-success": "Carte supprimée",
+    "confirm-delete-fail": "Une erreur est survenue"
+  },
+  "Modal": {
+    "confirm-delete": {
+      "title": "Supprimer la carte",
+      "message": "Etes-vous sur de vouloir supprimer cette carte ?",
+      "cancel": "Abandonner",
+      "confirm": "Confirmer"
+    }
   },
   "userPanel": {
     "menuLabels": {

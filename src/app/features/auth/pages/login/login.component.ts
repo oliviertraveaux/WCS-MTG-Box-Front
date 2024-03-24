@@ -10,7 +10,7 @@ import { LoginService } from '../../shared/services/login.service';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SnackbarStatus } from '../../../../shared/enums/snackbar-status.enum';
-import { SnackbarService } from '../../../../shared/services/snackbar.service';
+import { AlertService } from '../../../../shared/services/alert.service';
 import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
 import { ReconnectUserService } from '../../shared/services/reconnect-user.service';
 
@@ -35,7 +35,7 @@ export class LoginComponent {
     private _fb: FormBuilder = inject(FormBuilder);
     private _authService: LoginService = inject(LoginService);
     private _router: Router = inject(Router);
-    private _snackbarService = inject(SnackbarService);
+    private _alertService = inject(AlertService);
     private _route: ActivatedRoute = inject(ActivatedRoute);
     private _translate = inject(TranslateService);
     private _reconnectUserService = inject(ReconnectUserService);
@@ -61,14 +61,14 @@ export class LoginComponent {
             this._authService.login(formData).subscribe({
                 next: (token) => {
                     const logged = this._translate.instant('Toasts.login-success');
-                    this._snackbarService.openSnackBar(logged, SnackbarStatus.success);
+                    this._alertService.openSnackBar(logged, SnackbarStatus.success);
                     this._reconnectUserService.getUserInfo();
                     setTimeout(() => this._router.navigate(['/user-panel/profile']), 1200);
                 },
                 error: (error) => {
                     console.error(error);
                     const logFailed = this._translate.instant('Toasts.login-fail');
-                    this._snackbarService.openSnackBar(logFailed, SnackbarStatus.error);
+                    this._alertService.openSnackBar(logFailed, SnackbarStatus.error);
                 },
             });
         }

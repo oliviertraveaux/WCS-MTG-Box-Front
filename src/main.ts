@@ -6,6 +6,7 @@ import {
     withInterceptors,
 } from '@angular/common/http';
 import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -35,8 +36,7 @@ bootstrapApplication(AppComponent, {
         },
         provideAnimations(),
         provideRouter(routes),
-        importProvidersFrom([MatSnackBarModule]),
-        importProvidersFrom(HttpClientModule),
+        importProvidersFrom([MatSnackBarModule, MatDialogModule, HttpClientModule]),
         importProvidersFrom([
             TranslateModule.forRoot({
                 loader: {
