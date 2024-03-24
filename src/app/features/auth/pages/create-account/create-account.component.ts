@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
     AbstractControl,
     AsyncValidatorFn,
@@ -44,6 +44,7 @@ import { RegisterService } from '../../shared/services/register.service';
     ],
     templateUrl: './create-account.component.html',
     styleUrls: ['./create-account.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateAccountComponent {
     private _snackbarService = inject(SnackbarService);

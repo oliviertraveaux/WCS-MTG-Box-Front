@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -28,6 +28,7 @@ import { CollectionAddCardSearchResultComponent } from '../collection-add-card-s
     ],
     templateUrl: './collection-add-card-search-results.component.html',
     styleUrls: ['./collection-add-card-search-results.components.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionAddCardSearchResultsComponent implements OnInit {
     private _searchResultsStateService = inject(CollectionAddCardResultsStatesService);

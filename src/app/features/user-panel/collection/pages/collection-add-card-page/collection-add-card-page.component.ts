@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -39,6 +39,7 @@ import { CollectionAddCardSearchResultsService } from '../../shared/services/col
     ],
     templateUrl: './collection-add-card-page.component.html',
     styleUrls: ['./collection-add-card-page.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionAddCardPageComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);

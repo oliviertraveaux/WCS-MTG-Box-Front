@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
+    ChangeDetectionStrategy,
     Component,
     DestroyRef,
     EventEmitter,
@@ -61,6 +62,7 @@ import { GetRaritySymbolPipe } from '../../pipes/get-rarity-symbol.pipe';
             transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
         ]),
     ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionDisplayListComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);

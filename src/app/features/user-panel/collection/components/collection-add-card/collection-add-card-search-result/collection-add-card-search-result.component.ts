@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,6 +34,7 @@ import { CollectionAddCardBasketService } from '../../../shared/services/collect
         TranslateModule,
     ],
     templateUrl: './collection-add-card-search-result.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionAddCardSearchResultComponent {
     @ViewChild('selectValue') selectValue: any;

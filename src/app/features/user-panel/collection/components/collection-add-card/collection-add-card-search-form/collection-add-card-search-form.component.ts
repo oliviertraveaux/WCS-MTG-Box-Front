@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -39,6 +39,7 @@ import { CollectionAddCardSearchResultsService } from '../../../shared/services/
         SearchFormComponent,
     ],
     templateUrl: './collection-add-card-search-form.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionAddCardSearchFormComponent implements OnInit {
     private _searchFormService = inject(SearchFormAddCardCollectionService);
@@ -66,7 +67,6 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
 
     search() {
         const searchQuery: SearchQuery = this._searchFormService.getSearch();
-        console.log('search: ', searchQuery);
         this._searchResultsService.searchCards(searchQuery);
     }
 
