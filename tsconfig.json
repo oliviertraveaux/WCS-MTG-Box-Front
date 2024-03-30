@@ -25,7 +25,8 @@
     ],
     "paths": {
       "@shared": ["./src/app/shared/index.ts"]
-    }
+    },
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
