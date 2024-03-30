@@ -10,8 +10,8 @@ import { UserCard } from '../../../../../../shared/collection/models/user-card.m
 import { GetRarityClassPipe } from '../../../../../../shared/collection/pipes/get-rarity-class.pipe';
 import { GetRaritySymbolPipe } from '../../../../../../shared/collection/pipes/get-rarity-symbol.pipe';
 import { SnackbarStatus } from '../../../../../../shared/enums/snackbar-status.enum';
+import { AlertService } from '../../../../../../shared/services/alert.service';
 import { SearchFormAddCardCollectionService } from '../../../../../../shared/services/search-form/search-form-add-card-collection.service';
-import { SnackbarService } from '../../../../../../shared/services/snackbar.service';
 import { ApiCard } from '../../../models/card-api.model';
 import { GetApiCardImgPipe } from '../../../shared/pipes/get-api-card-img.pipe';
 import { GetApiCardNamePipe } from '../../../shared/pipes/get-api-card-name.pipe';
@@ -41,7 +41,7 @@ export class CollectionAddCardSearchResultComponent {
     @Input({ required: true }) card!: ApiCard;
 
     private _cardBasketService = inject(CollectionAddCardBasketService);
-    private _snackbarService = inject(SnackbarService);
+    private _alertService = inject(AlertService);
     private _searchFormService = inject(SearchFormAddCardCollectionService);
     private _translate = inject(TranslateService);
 
@@ -64,7 +64,7 @@ export class CollectionAddCardSearchResultComponent {
     }
 
     openSnackBarAddCard() {
-        this._snackbarService.openSnackBar(
+        this._alertService.openSnackBar(
             this.selectedNumberOfItems > 1
                 ? this.selectedNumberOfItems +
                       this._translate.instant('Collection.addCard.toast.card-added-plural')

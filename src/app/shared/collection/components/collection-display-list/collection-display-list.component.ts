@@ -20,12 +20,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { GetApiCardImgPipe } from '../../../../features/user-panel/collection/shared/pipes/get-api-card-img.pipe';
 import { GetApiCardNamePipe } from '../../../../features/user-panel/collection/shared/pipes/get-api-card-name.pipe';
 import { GetUserCardImgPipe } from '../../../../features/user-panel/collection/shared/pipes/get-user-card-img.pipe';
 import { GetUserCardNamePipe } from '../../../../features/user-panel/collection/shared/pipes/get-user-card-name.pipe';
+import { AlertService } from '../../../services/alert.service';
 import { BreakpointObserverService } from '../../../services/breakpoint-observer.service';
 import { UserCard } from '../../models/user-card.model';
 import { GetRarityClassPipe } from '../../pipes/get-rarity-class.pipe';
@@ -67,6 +68,8 @@ import { GetRaritySymbolPipe } from '../../pipes/get-rarity-symbol.pipe';
 export class CollectionDisplayListComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _destroyRef = inject(DestroyRef);
+    private _alertService = inject(AlertService);
+    private _translate = inject(TranslateService);
 
     readonly isDesktop = this._breakpointObserverService.isDesktop;
 
@@ -104,7 +107,16 @@ export class CollectionDisplayListComponent implements OnInit {
     }
 
     onDelete(uniqueId: number): void {
-        console.log('delete card: ', uniqueId);
-        this.cardToRemove.emit(uniqueId);
+        this._alertService
+            .openConfirmDialog(
+                this._translate.instant('Modal.confirm-delete.title'),
+                this._translate.instant('Modal.confirm-delete.message')
+            )
+            .subscribe((result) => {
+                if (result) {
+                    console.log('delete card: ', uniqueId);
+                    this.cardToRemove.emit(uniqueId);
+                }
+            });
     }
 }

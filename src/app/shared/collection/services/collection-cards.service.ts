@@ -18,7 +18,7 @@ export class CollectionCardsService {
         );
     }
 
-    deleteCard(userCardId: number | undefined): Observable<any> {
+    deleteCard(userCardId: number | undefined): Observable<void> {
         return this._collectionCard.deleteCard(userCardId);
     }
 }
