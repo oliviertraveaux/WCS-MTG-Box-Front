@@ -1,48 +1,77 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
-import { CollectionDisplayImageComponent } from '../../../../../shared/collection/components/collection-display-image/collection-display-image.component';
-import { CollectionDisplayListComponent } from '../../../../../shared/collection/components/collection-display-list/collection-display-list.component';
-import { CollectionCardsService } from '../../../../../shared/collection/services/collection-cards.service';
-import { CollectionAddCardSearchFormComponent } from '../../components/collection-add-card/collection-add-card-search-form/collection-add-card-search-form.component';
-import { CollectionDisplaySearchFormComponent } from '../../components/collection-display/collection-display-search-form/collection-display-search-form.component';
-import { CollectionDisplaySearchResultComponent } from '../../components/collection-display/collection-display-search-result/collection-display-search-result.component';
-import { CollectionDisplaySearchResultsStatesService } from '../../shared/services/collection-display/collection-display-search-results-states.service';
-import { CollectionDisplaySearchResultsService } from '../../shared/services/collection-display/collection-display-search-results.service';
+import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
+import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import {map, Observable} from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { CollectionDisplaySearchResultsService } from "../../shared/services/collection-display/collection-display-search-results.service";
+import { CollectionDisplaySearchResultsStatesService } from "../../shared/services/collection-display/collection-display-search-results-states.service";
+import {
+  CollectionDisplaySearchFormComponent
+} from "../../components/collection-display/collection-display-search-form/collection-display-search-form.component";
+import {
+  CollectionDisplayImageComponent
+} from "../../../../../shared/collection/components/collection-display-image/collection-display-image.component";
+import {
+  CollectionDisplaySearchResultComponent
+} from "../../components/collection-display/collection-display-search-result/collection-display-search-result.component";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
+import {
+  CollectionDisplayListComponent
+} from "../../../../../shared/collection/components/collection-display-list/collection-display-list.component";
+import {PaginationComponent} from "../../../../../shared/ui/pagination/pagination.component";
 
 @Component({
-    selector: 'app-collection-display-page',
-    standalone: true,
-    imports: [
-        CommonModule,
-        CollectionDisplayImageComponent,
-        CollectionDisplaySearchResultComponent,
-        CollectionDisplayListComponent,
-        CollectionAddCardSearchFormComponent,
-        CollectionDisplaySearchFormComponent,
-        MatButtonModule,
-        TranslateModule,
-    ],
-    templateUrl: './collection-display-page.component.html',
-    styleUrls: ['./collection-display-page.component.scss'],
+  selector: 'app-collection-display-page',
+  templateUrl: './collection-display-page.component.html',
+  standalone: true,
+  imports: [
+    CollectionDisplaySearchFormComponent,
+    CollectionDisplayImageComponent,
+    CollectionDisplaySearchResultComponent,
+    MatPaginatorModule,
+    AsyncPipe,
+    PaginationComponent,   CollectionDisplayListComponent,
+    NgForOf,
+    NgIf
+  ],
+  styleUrls: ['./collection-display-page.component.scss']
 })
 export class CollectionDisplayPageComponent implements OnInit {
-    private _searchResultsService = inject(CollectionDisplaySearchResultsService);
-    private _collectionCardsService = inject(CollectionCardsService);
-    cards$ = inject(CollectionDisplaySearchResultsStatesService).getCards$();
-    switchDisplay = false;
+  cards$: Observable<any[]>;
+  displayedCards$: Observable<any[]>;
+  switchDisplay = false;
+  pageSize = 10;
+  pageIndex = 0;
 
-    ngOnInit() {
-        this._searchResultsService.init();
-    }
+  private _searchResultsService = inject(CollectionDisplaySearchResultsService);
+  private _statesService = inject(CollectionDisplaySearchResultsStatesService);
 
-    handleCardDeleted(userCardId: number) {
-        this._searchResultsService.deleteCard(userCardId as number).subscribe();
-        console.log('cardId to delete', userCardId);
-    }
+  constructor(private cdr: ChangeDetectorRef) {
+    this.cards$ = this._statesService.getCards$();
+    this.displayedCards$ = this.cards$;
+  }
 
-    switchView() {
-        this.switchDisplay = !this.switchDisplay;
-    }
+  ngOnInit() {
+    this._searchResultsService.init();
+
+  }
+
+  handleCardDeleted(userCardId: number) {
+    console.log('Card ID to delete', userCardId);
+  }
+
+  handlePageEvent(event: { startIndex: number; endIndex: number }) {
+    this.displayedCards$ = this.cards$.pipe(
+      map(cards => {
+        console.log(`Affichage des cartes de ${event.startIndex} à ${event.endIndex} sur un total de ${cards.length} cartes.`);
+        return cards.slice(event.startIndex, event.endIndex);
+      })
+    );
+  }
+
+  switchView() {
+    this.switchDisplay = !this.switchDisplay;}
+
+
+
+
 }

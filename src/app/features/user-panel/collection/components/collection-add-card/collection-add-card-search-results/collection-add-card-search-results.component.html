@@ -12,8 +12,19 @@
     <!-- Cards -->
 
     <ng-template #content>
-        <div class="flex w-1/2 flex-col p-2 sm:w-1/4" *ngFor="let card of cards$ | async">
+      <div class ="flex flex-col"></div>
+        <div class="flex w-1/2 flex-col p-2 sm:w-1/4" *ngFor="let card of displayedCards$ | async">
             <app-collection-add-card-search-card-result [card]="card" />
         </div>
     </ng-template>
+
+  <app-pagination
+    [length]="(cards$ | async)?.length ?? 0"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    (page)="handlePageEvent($event)"
+  ></app-pagination>
+
+
 </div>
+
