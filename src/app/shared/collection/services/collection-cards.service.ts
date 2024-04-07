@@ -21,4 +21,8 @@ export class CollectionCardsService {
     deleteCard(userCardId: number | undefined): Observable<void> {
         return this._collectionCard.deleteCard(userCardId);
     }
+
+    deleteCards(userCardsIds: number[]): Observable<void> {
+        return this._collectionCard.deleteCards(userCardsIds);
+    }
 }

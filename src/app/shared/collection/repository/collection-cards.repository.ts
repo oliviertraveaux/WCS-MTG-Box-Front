@@ -20,4 +20,9 @@ export class CollectionCardsRepository {
         const url = `${this.apiCollectionCardsUrl}/usercard/${userCardId}`;
         return this.http.delete(url);
     }
+
+    public deleteCards(userCardsIds: number[]): Observable<void> {
+        const url = `${this.apiCollectionCardsUrl}/usercards`;
+        return this.http.delete<void>(url, { body: userCardsIds });
+    }
 }

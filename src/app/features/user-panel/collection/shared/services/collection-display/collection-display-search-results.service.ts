@@ -36,32 +36,41 @@ export class CollectionDisplaySearchResultsService {
     }
 
     deleteCard(userCardId: number): Observable<any> {
-        return this._collectionCardsService.deleteCard(userCardId).pipe(
-            tap(() =>
-                this._collectionCardsService
-                    .getCollectionCards(this._userInfoId)
-                    .pipe(
-                        take(1),
-                        tap(() => this.init())
-                    )
-                    .subscribe({
-                        next: (response) => {
-                            this._alertService.openSnackBar(
-                                this._translate.instant('Toasts.confirm-delete-success'),
-                                SnackbarStatus.success
-                            );
-                        },
-                        error: () => {
-                            this._alertService.openSnackBar(
-                                this._translate.instant('Toasts.confirm-delete-fail'),
-                                SnackbarStatus.error
-                            );
-                        },
-                    })
-            )
+        return this._collectionCardsService
+            .deleteCard(userCardId)
+            .pipe(tap(() => this.handleDeleteResponse()));
+    }
+
+    deleteCards(userCardIdList: number[]): Observable<void> {
+        return this._collectionCardsService
+            .deleteCards(userCardIdList)
+            .pipe(tap(() => this.handleDeleteResponse()));
+    }
+
+    private handleDeleteResponse() {
+        this._collectionCardsService
+            .getCollectionCards(this._userInfoId)
+            .pipe(take(1))
+            .subscribe({
+                next: () => this.handleDeleteSuccess(),
+                error: () => this.handleDeleteError(),
+            });
+    }
+
+    private handleDeleteSuccess() {
+        this.init();
+        this._alertService.openSnackBar(
+            this._translate.instant('Toasts.confirm-delete-success'),
+            SnackbarStatus.success
         );
     }
 
+    private handleDeleteError() {
+        this._alertService.openSnackBar(
+            this._translate.instant('Toasts.confirm-delete-fail'),
+            SnackbarStatus.error
+        );
+    }
     private getCards(searchQuery: SearchQuery): Observable<UserCard[]> {
         let filteredCards: UserCard[] = [];
         filteredCards = this._collectionCardsStatesService
@@ -97,5 +106,9 @@ export class CollectionDisplaySearchResultsService {
             return card.cardInfo.frenchName.toLowerCase().includes(searchQueryName.toLowerCase());
         }
         return card.cardInfo.name.toLowerCase().includes(searchQueryName.toLowerCase());
+    }
+
+    resetSelection() {
+        this._searchCardsStatesService.setSelectedCards([]);
     }
 }
