@@ -10,12 +10,18 @@
         </div>
         <div class="w-full overflow-auto scrollbar-hide">
             <app-collection-display-image *ngIf="switchDisplay">
-                <div class="p-2" *ngFor="let card of cards$ | async">
+                <div class="p-2" *ngFor="let card of displayedCards$ | async">
                     <app-collection-display-search-result
                         [card]="card"
                         (cardDeleted)="handleCardDeleted($event)">
                     </app-collection-display-search-result>
                 </div>
+              <app-pagination
+                [length]="(cards$ | async)?.length ?? 0"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                (page)="handlePageEvent($event)"
+              ></app-pagination>
             </app-collection-display-image>
 
             <app-collection-display-list
