@@ -72,31 +72,30 @@ export class CollectionDisplaySearchResultsService {
 
     private isMatchingFilter(searchQuery: SearchQuery, card: UserCard) {
         let result = true;
-        if (searchQuery.name) {
-            result =
-                result &&
-                card.cardInfo.name
-                    .toLowerCase()
-                    .includes(searchQuery.name?.toLowerCase() as string);
-        }
         if (searchQuery.language) {
             result =
                 result &&
-                card.userInfo.languageName!.toLowerCase() ===
-                    (searchQuery.language?.toLowerCase() as string);
+                card.userInfo.languageName!.toLowerCase() === searchQuery.language.toLowerCase();
+        }
+        if (searchQuery.name) {
+            result = result && this.matchLanguageName(searchQuery.name, card);
         }
         if (searchQuery.set) {
             result =
                 result &&
-                card.cardInfo.setAbbreviation.toLowerCase() ===
-                    (searchQuery.set?.toLowerCase() as string);
+                card.cardInfo.setAbbreviation.toLowerCase() === searchQuery.set.toLowerCase();
         }
         if (searchQuery.rarity) {
             result =
-                result &&
-                card.cardInfo.rarity.toLowerCase() ===
-                    (searchQuery.rarity?.toLowerCase() as string);
+                result && card.cardInfo.rarity.toLowerCase() === searchQuery.rarity.toLowerCase();
         }
         return result;
+    }
+
+    private matchLanguageName(searchQueryName: string, card: UserCard): boolean {
+        if (card.userInfo.languageName === 'French') {
+            return card.cardInfo.frenchName.toLowerCase().includes(searchQueryName.toLowerCase());
+        }
+        return card.cardInfo.name.toLowerCase().includes(searchQueryName.toLowerCase());
     }
 }

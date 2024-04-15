@@ -12,7 +12,6 @@ export class FilterRepository {
 
     public getFilters(): Observable<Filters> {
         const apiUrl = `${ENVIRONMENT.apiFilterConfigurationUrl}`;
-        console.log('apiUrl', apiUrl);
 
         return this.http.get<Filters>(apiUrl);
     }

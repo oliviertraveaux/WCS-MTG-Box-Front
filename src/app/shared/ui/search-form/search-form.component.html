@@ -1,4 +1,4 @@
-<div class="flex h-full flex-col">
+<div class="flex h-full min-w-fit flex-col pt-2">
     <form [formGroup]="searchForm" class="dense-3 field-max-width flex flex-wrap">
         <div class="flex w-full flex-wrap">
             <!-- Name -->
@@ -22,145 +22,163 @@
                     <mat-icon>search</mat-icon>
                 </button>
             </mat-form-field>
-
             <!-- Language -->
+            <ng-container *ngIf="moreFilters">
+                <mat-form-field
+                    *ngIf="hasLanguage"
+                    appearance="outline"
+                    class="w-1/3 sm:w-auto sm:flex-shrink-[2] sm:flex-grow-[1] sm:px-1.5">
+                    <mat-label>{{
+                        'Collection.addCard.searchForm.language' | translate
+                    }}</mat-label>
+                    <mat-select formControlName="language">
+                        <mat-option *ngFor="let language of cardLanguages" [value]="language">
+                            {{ language.name | getLanguageAbbreviation }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <mat-form-field
-                *ngIf="hasLanguage"
-                appearance="outline"
-                class="w-1/3 sm:w-auto sm:flex-shrink-[2] sm:flex-grow-[1] sm:px-1.5">
-                <mat-label>{{ 'Collection.addCard.searchForm.language' | translate }}</mat-label>
-                <mat-select formControlName="language">
-                    <mat-option *ngFor="let language of cardLanguages" [value]="language">
-                        {{ language.name | getLanguageAbbreviation }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+                <!-- Set -->
 
-            <!-- Set -->
+                <mat-form-field
+                    *ngIf="hasSet"
+                    appearance="outline"
+                    class="w-full sm:w-auto sm:flex-shrink-[1] sm:grow-[2] sm:px-1.5">
+                    <mat-label>{{ 'Collection.addCard.searchForm.set' | translate }}</mat-label>
+                    <input type="text" matInput formControlName="set" [matAutocomplete]="set" />
+                    <mat-autocomplete #set="matAutocomplete">
+                        <mat-option value="">{{
+                            'Collection.addCard.searchForm.none' | translate
+                        }}</mat-option>
+                        <mat-option
+                            *ngFor="let set of filteredCardsSets | async"
+                            [value]="set.code">
+                            {{ set.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
 
-            <mat-form-field
-                *ngIf="hasSet"
-                appearance="outline"
-                class="w-full sm:w-auto sm:flex-shrink-[1] sm:grow-[2] sm:px-1.5">
-                <mat-label>{{ 'Collection.addCard.searchForm.set' | translate }}</mat-label>
-                <input type="text" matInput formControlName="set" [matAutocomplete]="set" />
-                <mat-autocomplete #set="matAutocomplete">
-                    <mat-option value="">{{
-                        'Collection.addCard.searchForm.none' | translate
-                    }}</mat-option>
-                    <mat-option *ngFor="let set of filteredCardsSets | async" [value]="set.code">
-                        {{ set.name }}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
+                <!-- Rarity -->
 
-            <!-- Rarity -->
+                <mat-form-field
+                    *ngIf="hasRarity"
+                    appearance="outline"
+                    class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[3] sm:px-1.5">
+                    <mat-label>{{ 'Collection.addCard.searchForm.rarity' | translate }}</mat-label>
+                    <mat-select formControlName="rarity">
+                        <mat-option>{{
+                            'Collection.addCard.searchForm.none' | translate
+                        }}</mat-option>
+                        <mat-option *ngFor="let rarity of cardRarities" [value]="rarity.name">
+                            {{ rarity.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!--        </div>-->
 
-            <mat-form-field
-                *ngIf="hasRarity"
-                appearance="outline"
-                class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[3] sm:px-1.5">
-                <mat-label>{{ 'Collection.addCard.searchForm.rarity' | translate }}</mat-label>
-                <mat-select formControlName="rarity">
-                    <mat-option>{{ 'Collection.addCard.searchForm.none' | translate }}</mat-option>
-                    <mat-option *ngFor="let rarity of cardRarities" [value]="rarity.name">
-                        {{ rarity.name }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
+                <!--        <div class="flex w-full flex-wrap sm:flex-nowrap">-->
+                <!-- Type -->
 
-        <div class="flex w-full flex-wrap sm:flex-nowrap">
-            <!-- Type -->
+                <mat-form-field
+                    *ngIf="hasType"
+                    appearance="outline"
+                    class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
+                    <mat-label>{{ 'Collection.addCard.searchForm.type' | translate }}</mat-label>
+                    <input type="text" matInput formControlName="type" [matAutocomplete]="type" />
+                    <mat-autocomplete #type="matAutocomplete">
+                        <mat-option value="">{{
+                            'Collection.addCard.searchForm.none' | translate
+                        }}</mat-option>
+                        <mat-option *ngFor="let type of filteredCardTypes | async" [value]="type">
+                            {{ type }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
 
-            <mat-form-field
-                *ngIf="hasType"
-                appearance="outline"
-                class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
-                <mat-label>{{ 'Collection.addCard.searchForm.type' | translate }}</mat-label>
-                <input type="text" matInput formControlName="type" [matAutocomplete]="type" />
-                <mat-autocomplete #type="matAutocomplete">
-                    <mat-option value="">{{
-                        'Collection.addCard.searchForm.none' | translate
-                    }}</mat-option>
-                    <mat-option *ngFor="let type of filteredCardTypes | async" [value]="type">
-                        {{ type }}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
+                <!-- Colors -->
 
-            <!-- Colors -->
+                <mat-form-field
+                    *ngIf="hasColor"
+                    appearance="outline"
+                    class="w-1/2 pr-1.5 sm:w-auto sm:flex-shrink-[2] sm:flex-grow-[1] sm:px-1.5">
+                    <mat-label>{{ 'Collection.addCard.searchForm.color' | translate }}</mat-label>
+                    <mat-select formControlName="colors">
+                        <mat-option>{{
+                            'Collection.addCard.searchForm.none' | translate
+                        }}</mat-option>
+                        <mat-option *ngFor="let color of CARD_COLORS" [value]="color.value">
+                            {{ color.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <mat-form-field
-                *ngIf="hasColor"
-                appearance="outline"
-                class="w-1/2 pr-1.5 sm:w-auto sm:flex-shrink-[2] sm:flex-grow-[1] sm:px-1.5">
-                <mat-label>{{ 'Collection.addCard.searchForm.color' | translate }}</mat-label>
-                <mat-select formControlName="colors">
-                    <mat-option>{{ 'Collection.addCard.searchForm.none' | translate }}</mat-option>
-                    <mat-option *ngFor="let color of CARD_COLORS" [value]="color.value">
-                        {{ color.name }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+                <!-- ManaCost -->
 
-            <!-- ManaCost -->
+                <mat-form-field
+                    *ngIf="hasManaCost"
+                    appearance="outline"
+                    class="w-1/2 sm:w-auto sm:flex-shrink-[2] sm:flex-grow-[1] sm:px-1.5">
+                    <mat-label>{{
+                        'Collection.addCard.searchForm.cmc_label' | translate
+                    }}</mat-label>
+                    <input min="0" matInput type="number" formControlName="cmc" />
+                </mat-form-field>
 
-            <mat-form-field
-                *ngIf="hasManaCost"
-                appearance="outline"
-                class="w-1/2 sm:w-auto sm:flex-shrink-[2] sm:flex-grow-[1] sm:px-1.5">
-                <mat-label>{{ 'Collection.addCard.searchForm.cmc_label' | translate }}</mat-label>
-                <input min="0" matInput type="number" formControlName="cmc" />
-            </mat-form-field>
+                <!-- Text -->
 
-            <!-- Text -->
+                <mat-form-field
+                    *ngIf="hasText"
+                    appearance="outline"
+                    class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
+                    <mat-label>{{ 'Collection.addCard.searchForm.text' | translate }}</mat-label>
+                    <input matInput formControlName="text" />
+                </mat-form-field>
 
-            <mat-form-field
-                *ngIf="hasText"
-                appearance="outline"
-                class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
-                <mat-label>{{ 'Collection.addCard.searchForm.text' | translate }}</mat-label>
-                <input matInput formControlName="text" />
-            </mat-form-field>
+                <!-- Artist -->
 
-            <!-- Artist -->
-
-            <mat-form-field
-                *ngIf="hasArtist"
-                appearance="outline"
-                class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
-                <mat-label>{{ 'Collection.addCard.searchForm.artist' | translate }}</mat-label>
-                <input matInput formControlName="artist" />
-            </mat-form-field>
+                <mat-form-field
+                    *ngIf="hasArtist"
+                    appearance="outline"
+                    class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
+                    <mat-label>{{ 'Collection.addCard.searchForm.artist' | translate }}</mat-label>
+                    <input matInput formControlName="artist" />
+                </mat-form-field>
+            </ng-container>
         </div>
     </form>
-    <div class="flex-grow"></div>
+    <!--    <div class="flex-grow"></div>-->
 
-    <div class="flex w-full flex-col sm:flex-row sm:justify-end">
-        <div
-            class="flex w-full justify-center pb-2 text-xs sm:w-1/2 sm:items-center sm:justify-start sm:pb-0">
-            <p *ngIf="(status$ | async) === RequestStatus.success && (cards$ | async)">
-                {{ (cards$ | async)?.length ?? 0 | getSearchResultText }}
-            </p>
-        </div>
-        <div class="flex w-full flex-col gap-2 sm:w-1/2 sm:flex-row-reverse">
+    <div class="flex w-full flex-col sm:flex-row">
+        <div class="flex w-full flex-col gap-2 sm:w-fit sm:flex-row">
             <button
-                class="my-1 w-full sm:w-1/2"
+                *ngIf="(isDesktop | async) || (isTablet | async)"
+                class="my-1 w-fit"
+                mat-flat-button
+                color="primary"
+                (click)="switchFilterView()">
+                {{ moreFilters ? '-' : '+' }}<mat-icon>tune</mat-icon>
+            </button>
+            <button
+                class="my-1 w-full px-1 sm:w-fit"
+                mat-stroked-button
+                (click)="reset()"
+                [disabled]="!isFormValid">
+                {{ 'Collection.addCard.searchForm.reset' | translate }}
+            </button>
+            <button
+                class="my-1 w-full sm:w-fit"
                 mat-flat-button
                 color="primary"
                 (click)="search()"
                 [disabled]="!isFormValid">
                 {{ 'Collection.addCard.searchForm.search' | translate }}
             </button>
-            <button
-                class="my-1 w-full sm:w-1/2"
-                mat-flat-button
-                (click)="reset()"
-                [disabled]="!isFormValid">
-                {{ 'Collection.addCard.searchForm.reset' | translate }}
-            </button>
+        </div>
+        <div
+            class="flex w-full justify-center pb-2 text-xs sm:ml-2 sm:w-fit sm:items-center sm:justify-start sm:pb-0">
+            <p *ngIf="(status$ | async) === RequestStatus.success && (cards$ | async)">
+                {{ (cards$ | async)?.length ?? 0 | getSearchResultText }}
+            </p>
         </div>
     </div>
 </div>

@@ -19,7 +19,6 @@ export class CollectionAddCardRepository {
 
         // For debug purpose
         const apiUrlWithParams = `${this.apiCardsUrl}?${params.toString()}`;
-        console.log('from repo', apiUrlWithParams);
 
         return this.http.get<ApiCard[]>(this.apiCardsUrl, { params });
     }

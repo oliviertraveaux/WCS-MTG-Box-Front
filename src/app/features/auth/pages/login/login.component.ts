@@ -11,7 +11,6 @@ import { LoginService } from '../../shared/services/login.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SnackbarStatus } from '../../../../shared/enums/snackbar-status.enum';
 import { AlertService } from '../../../../shared/services/alert.service';
-import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
 import { ReconnectUserService } from '../../shared/services/reconnect-user.service';
 
 @Component({
@@ -52,7 +51,6 @@ export class LoginComponent {
                 this.loginForm.patchValue({ username });
             }
         });
-        console.log(inject(UserInfoStatesService).getUserInfo());
     }
 
     onLogin() {

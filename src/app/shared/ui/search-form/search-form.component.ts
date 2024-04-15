@@ -10,14 +10,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
-import { map, Observable, of, startWith } from 'rxjs';
+import { distinctUntilChanged, map, Observable, of, startWith, tap } from 'rxjs';
 import { ApiCard } from '../../../features/user-panel/collection/models/card-api.model';
 import { CARD_COLORS } from '../../collection/constants/card-colors.const';
+import { UserCard } from '../../collection/models/user-card.model';
 import { GetLanguageAbbreviationPipe } from '../../collection/pipes/get-language-abbreviation.pipe';
 import { getSearchResultTextPipe } from '../../collection/pipes/get-search-result-text.pipe';
 import { RequestStatus } from '../../enums/request-status.enum';
 import { BasicFilter } from '../../filter/models/basic-filter.interface';
 import { SetFilter } from '../../filter/models/set-filter.interface';
+import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
 
 @Component({
     selector: 'app-search-form',
@@ -40,6 +42,7 @@ import { SetFilter } from '../../filter/models/set-filter.interface';
     styleUrls: ['./search-form.component.scss'],
 })
 export class SearchFormComponent implements OnInit {
+    private _breakpointObserverService = inject(BreakpointObserverService);
     private _destroyRef = inject(DestroyRef);
 
     @Input({ required: true }) searchForm!: FormGroup;
@@ -47,7 +50,7 @@ export class SearchFormComponent implements OnInit {
     @Input() cardRarities: BasicFilter[] = [];
     @Input() cardLanguages: BasicFilter[] = [];
     @Input() cardSets: SetFilter[] = [];
-    @Input() cards$: Observable<ApiCard[]> = of([]);
+    @Input() cards$: Observable<ApiCard[] | UserCard[]> = of([]);
     @Input() status$!: Observable<RequestStatus>;
     @Input() hasLanguage: boolean = true;
     @Input() hasColor: boolean = true;
@@ -63,12 +66,27 @@ export class SearchFormComponent implements OnInit {
 
     protected readonly CARD_COLORS = CARD_COLORS;
     protected readonly RequestStatus = RequestStatus;
+    readonly isDesktop = this._breakpointObserverService.isDesktop;
+    readonly isTablet = this._breakpointObserverService.isTablet;
 
     filteredCardsSets!: Observable<SetFilter[]> | undefined;
     filteredCardTypes!: Observable<string[]> | undefined;
     isFormValid!: boolean;
+    moreFilters: boolean = false;
 
     ngOnInit(): void {
+        this._breakpointObserverService.breakpoint$
+            .pipe(takeUntilDestroyed(this._destroyRef))
+            .subscribe(() => this._breakpointObserverService.breakpointChanged());
+
+        this._breakpointObserverService.isTablet
+            .pipe(
+                takeUntilDestroyed(this._destroyRef),
+                distinctUntilChanged(),
+                tap((isTablet) => (!isTablet ? this.switchToMobileView() : null))
+            )
+            .subscribe();
+
         this.isFormValid = this.searchForm.valid && this.searchForm.dirty;
 
         this.searchForm.valueChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
@@ -92,6 +110,16 @@ export class SearchFormComponent implements OnInit {
     }
 
     reset() {
+        this.resetParams.emit();
+    }
+
+    switchFilterView() {
+        this.moreFilters = !this.moreFilters;
+        this.resetParams.emit();
+    }
+
+    switchToMobileView() {
+        this.moreFilters = true;
         this.resetParams.emit();
     }
 

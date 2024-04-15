@@ -81,7 +81,6 @@ export class SearchFormService {
         let requestParams: SearchQuery = {};
         for (let control of Object.keys(this.searchForm.controls)) {
             const value = this.searchForm.get(control)?.value;
-            console.log('value', value);
             if (value !== null && value !== '') {
                 // @ts-ignore
                 requestParams[control] = control === 'language' ? value.name : value;
