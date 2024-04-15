@@ -12,6 +12,8 @@ import { RequestStatus } from '../../../../../../shared/enums/request-status.enu
 import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card/collection-add-card-search-results-states.service';
 import { CollectionAddCardSearchResultComponent } from '../collection-add-card-search-result/collection-add-card-search-result.component';
 import {PaginationComponent} from "../../../../../../shared/collection/components/pagination/pagination.component";
+import {UserCard} from "../../../../../../shared/collection/models/user-card.model";
+import {ApiCard} from "../../../models/card-api.model";
 
 @Component({
     selector: 'app-collection-add-card-search-results',
@@ -35,10 +37,10 @@ import {PaginationComponent} from "../../../../../../shared/collection/component
 export class CollectionAddCardSearchResultsComponent implements OnInit {
     private _searchResultsStateService = inject(CollectionAddCardResultsStatesService);
     protected readonly RequestStatus = RequestStatus;
-  pageSize = 10;
-  pageIndex = 0;
+    pageSize : number = 10;
+    pageIndex : number = 0;
     cards$!: Observable<any>;
-  displayedCards$: Observable<any[]> = of([]);
+    displayedImageCards$: Observable<ApiCard[]> = of([]);
     status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
     readonly numberOfItemsInSelectList: number[] = Array.from(
         { length: 10 },
@@ -49,11 +51,11 @@ export class CollectionAddCardSearchResultsComponent implements OnInit {
         this.cards$ = this._searchResultsStateService.getCards$();
       this.updateDisplayedCards();
     }
-  handlePageEvent({ startIndex, endIndex }: { startIndex: number, endIndex: number }) {
+  displayImageHandlePage({ startIndex, endIndex }: { startIndex: number, endIndex: number }) {
     this.pageIndex = startIndex / endIndex;
     this.pageSize = endIndex - startIndex;
 
-    this.displayedCards$ = this.cards$.pipe(
+    this.displayedImageCards$ = this.cards$.pipe(
       map(cards => {
         return cards.slice(startIndex, endIndex);
       })
@@ -63,7 +65,7 @@ export class CollectionAddCardSearchResultsComponent implements OnInit {
 
 
   updateDisplayedCards() {
-    this.displayedCards$ = this.cards$.pipe(
+    this.displayedImageCards$ = this.cards$.pipe(
       map(cards => {
         const startIndex = this.pageIndex * this.pageSize;
         const endIndex = startIndex + this.pageSize;

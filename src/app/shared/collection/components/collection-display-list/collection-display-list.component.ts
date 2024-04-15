@@ -29,6 +29,7 @@ import { GetUserCardNamePipe } from '../../../../features/user-panel/collection/
 import { AlertService } from '../../../services/alert.service';
 import { BreakpointObserverService } from '../../../services/breakpoint-observer.service';
 import { UserCard } from '../../models/user-card.model';
+import { GetQualityClassPipe } from '../../pipes/get-quality.pipe';
 import { GetRarityClassPipe } from '../../pipes/get-rarity-class.pipe';
 import { GetRaritySymbolPipe } from '../../pipes/get-rarity-symbol.pipe';
 
@@ -53,6 +54,7 @@ import { GetRaritySymbolPipe } from '../../pipes/get-rarity-symbol.pipe';
         GetRarityClassPipe,
         GetRaritySymbolPipe,
         MatListModule,
+        GetQualityClassPipe,
     ],
     templateUrl: './collection-display-list.component.html',
     styleUrls: ['./collection-display-list.component.scss'],
@@ -72,6 +74,7 @@ export class CollectionDisplayListComponent implements OnInit {
     private _translate = inject(TranslateService);
 
     readonly isDesktop = this._breakpointObserverService.isDesktop;
+    // readonly isDesktop = of(true);
 
     @Input() cards$: Observable<UserCard[]> = of([]);
     @Output() cardToRemove = new EventEmitter<number>();
@@ -79,6 +82,7 @@ export class CollectionDisplayListComponent implements OnInit {
     displayedColumns: string[] = ['name', 'quality', 'set', 'rarity', 'expand'];
     displayedColumnsWithExpand: string[] = [...this.displayedColumns, 'expand'];
     expandedElement?: UserCard | null;
+    selectedCard: UserCard | null = null;
 
     cardsData: MatTableDataSource<UserCard> = new MatTableDataSource<UserCard>([]);
 
@@ -102,8 +106,6 @@ export class CollectionDisplayListComponent implements OnInit {
 
     onClick(row: UserCard): void {
         this.expandedElement = this.expandedElement === row ? null : row;
-        console.log('row: ', row);
-        console.log('expanded elem: ', this.expandedElement);
     }
 
     onDelete(uniqueId: number): void {
@@ -114,9 +116,16 @@ export class CollectionDisplayListComponent implements OnInit {
             )
             .subscribe((result) => {
                 if (result) {
-                    console.log('delete card: ', uniqueId);
                     this.cardToRemove.emit(uniqueId);
                 }
             });
+    }
+
+    showImage(card: UserCard): void {
+        this.selectedCard = card;
+    }
+
+    closeImage(): void {
+        this.selectedCard = null;
     }
 }

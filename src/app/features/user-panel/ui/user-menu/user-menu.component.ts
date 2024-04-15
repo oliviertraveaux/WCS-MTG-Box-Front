@@ -16,4 +16,7 @@ export class UserMenuComponent {
     toggleNavbar() {
         this.showMenu = !this.showMenu;
     }
+    closeNavbar() {
+        this.showMenu = false;
+    }
 }

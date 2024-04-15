@@ -1,6 +1,28 @@
-<div class="dense-2 flex h-full w-full flex-col px-4 sm:px-8 lg:px-0 lg:py-2">
+<div
+    class="absolute inset-0 z-10 flex w-screen items-center justify-center overflow-hidden"
+    *ngIf="selectedCard"
+    (click)="closeImage()">
+    <div class="absolute z-20 flex flex-col items-center justify-center gap-4">
+        <div>
+            <mat-icon class="text-white">close</mat-icon>
+        </div>
+        <img
+            [src]="selectedCard | getUserCardImg"
+            [alt]="selectedCard | getUserCardName"
+            class="w-64" />
+    </div>
+    <div class="h-screen w-screen bg-gray-900 opacity-70"></div>
+</div>
+
+<div class="flex h-full w-full flex-col px-4 sm:px-8 lg:px-0 lg:py-2">
     <div class="mat-elevation-z2">
-        <table mat-table [dataSource]="cardsData" multiTemplateDataRows matSort>
+        <table
+            fixedLayout="true"
+            mat-table
+            [dataSource]="cardsData"
+            multiTemplateDataRows
+            matSort
+            class="w-full">
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     {{ 'ui.collectionDisplayList.name' | translate }}
@@ -24,7 +46,12 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     {{ 'ui.collectionDisplayList.quality' | translate }}
                 </th>
-                <td mat-cell *matCellDef="let row">{{ row.userInfo.qualityName }}</td>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                    [ngClass]="row.userInfo.qualityName | getQualityClass">
+                    {{ row.userInfo.qualityName }}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="rarity">
@@ -51,18 +78,19 @@
             </ng-container>
             <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
             <ng-container matColumnDef="expandedDetail">
-                <td mat-cell *matCellDef="let row" [colSpan]="displayedColumnsWithExpand.length">
+                <td mat-cell *matCellDef="let row" [colSpan]="5">
                     <div
                         class="element-detail"
                         [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'">
                         <img
-                            *ngIf="isDesktop | async; else mobilePic"
+                            *ngIf="isDesktop | async as desktop; else mobilePic"
                             [ngSrc]="row | getUserCardImg"
                             class="py-1"
                             style="object-fit: contain"
                             [alt]="row | getUserCardImg"
                             [width]="265"
-                            [height]="370" />
+                            [height]="370"
+                            (click)="!desktop ? showImage(row) : null" />
                         <ng-template #mobilePic>
                             <img
                                 [ngSrc]="row | getUserCardImg"
@@ -70,21 +98,24 @@
                                 style="object-fit: contain"
                                 [alt]="row | getUserCardImg"
                                 [width]="199"
-                                [height]="278" />
+                                [height]="278"
+                                (click)="showImage(row)" />
                         </ng-template>
                         <div class="flex flex-col">
-                            <mat-list>
+                            <mat-list class="dense-3">
                                 <mat-list-item>
                                     <span matListItemTitle>{{
                                         'ui.collectionDisplayList.englishNameTitle' | translate
                                     }}</span>
-                                    <span matListItemLine>{{ row.cardInfo.name }}</span>
+                                    <span matListItemLine class="!whitespace-normal">{{
+                                        row.cardInfo.name
+                                    }}</span>
                                 </mat-list-item>
                                 <mat-list-item>
                                     <span matListItemTitle>{{
                                         'ui.collectionDisplayList.frenchNameTitle' | translate
                                     }}</span>
-                                    <span matListItemLine>{{
+                                    <span matListItemLine class="!whitespace-normal">{{
                                         row.cardInfo.frenchName ? row.cardInfo.frenchName : ''
                                     }}</span>
                                 </mat-list-item>
@@ -92,7 +123,9 @@
                                     <span matListItemTitle>
                                         {{ 'ui.collectionDisplayList.set' | translate }}</span
                                     >
-                                    <span matListItemLine> {{ row.cardInfo.setName }} </span>
+                                    <span matListItemLine class="!whitespace-normal">
+                                        {{ row.cardInfo.setName }}
+                                    </span>
                                 </mat-list-item>
                             </mat-list>
                             <button

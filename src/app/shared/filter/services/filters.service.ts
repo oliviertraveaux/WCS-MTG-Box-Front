@@ -10,8 +10,6 @@ export class FiltersService {
     private readonly _filterRepository = inject(FilterRepository);
 
     public getFilters(): Observable<Filters> {
-        const result = this._filterRepository.getFilters();
-        console.log('result', result);
-        return result;
+        return this._filterRepository.getFilters();
     }
 }
