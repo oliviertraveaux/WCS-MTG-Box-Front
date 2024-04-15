@@ -1,29 +1,28 @@
 <div class="flex w-full flex-wrap py-4">
-  <!-- Card skeleton -->
+    <!-- Card skeleton -->
 
-  <ng-container
-    *ngIf="(status$ | async) === RequestStatus.loading; else content"
-    class="flex w-full gap-2">
-    <div class="w-1/2 sm:w-1/4" *ngFor="let item of numberOfItemsInSelectList">
-      <app-card-skelton/>
-    </div>
-  </ng-container>
+    <ng-container
+        *ngIf="(status$ | async) === RequestStatus.loading; else content"
+        class="flex w-full gap-2">
+        <div class="w-1/2 sm:w-1/4" *ngFor="let item of numberOfItemsInSelectList">
+            <app-card-skelton />
+        </div>
+    </ng-container>
 
-  <!-- Cards -->
+    <!-- Cards -->
 
-  <ng-template #content>
-    <div class="flex flex-col"></div>
-    <div class="flex w-1/2 flex-col p-2 sm:w-1/4" *ngFor="let card of displayedImageCards$ | async">
-      <app-collection-add-card-search-card-result [card]="card"/>
-    </div>
-  </ng-template>
+    <ng-template #content>
+        <div class="flex flex-col"></div>
+        <div
+            class="flex w-1/2 flex-col p-2 sm:w-1/4"
+            *ngFor="let card of displayedImageCards$ | async">
+            <app-collection-add-card-search-card-result [card]="card" />
+        </div>
+    </ng-template>
 
-  <app-pagination
-    [length]="(cards$ | async)?.length ?? 0"
-    [pageSize]="pageSize"
-    [pageIndex]="pageIndex"
-    (page)="displayImageHandlePage($event)"
-  ></app-pagination>
-
-
+    <app-pagination
+        [length]="(cards$ | async)?.length ?? 0"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        (page)="displayImageHandlePage($event)"></app-pagination>
 </div>

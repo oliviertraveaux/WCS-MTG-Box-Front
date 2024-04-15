@@ -1,6 +1,7 @@
 <mat-paginator
-  [length]="length"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
-  (page)="handlePageEvent($event)"
-></mat-paginator>
+    class="demo-paginator"
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [showFirstLastButtons]="!!length"
+    (page)="handlePageEvent($event)"></mat-paginator>
