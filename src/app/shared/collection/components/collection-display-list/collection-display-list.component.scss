@@ -10,31 +10,11 @@
   }
 }
 
-.cdk-column-name {
-    max-width: 80px;
-  @include md {
-    max-width: 200px;
-  }
-}
-
-.cdk-column-set {
-    max-width: 48px;
-  @include lg {
-    max-width: 200px;
-  }
-}
-
-.cdk-column-quality {
-  max-width: 68px;
-  width: auto;
-}
-
-.cdk-column-rarity {
-  max-width: 40px;
-}
-
 .cdk-column-expand {
-  max-width: 0;
+  @media only screen and (max-width: $screen-sm) {
+    max-width: 0;
+    width: 0;
+  }
 }
 
 table {
@@ -60,4 +40,8 @@ tr.element-row:not(.example-expanded-row):active {
 .element-detail {
   overflow: hidden;
   display: flex;
+}
+
+.mdc-list-item.mdc-list-item--with-two-lines {
+  height:auto;
 }

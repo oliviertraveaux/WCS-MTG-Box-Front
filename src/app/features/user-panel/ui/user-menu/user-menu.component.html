@@ -1,5 +1,4 @@
-<nav
-    class="relative mb-3 flex flex-wrap items-center justify-between bg-secondary-color-500 px-2 py-3">
+<nav class="relative flex flex-wrap items-center justify-between bg-secondary-color-500 px-2 py-3">
     <div class="container mx-auto flex flex-wrap items-center justify-between px-4">
         <div
             class="relative flex w-full justify-between px-4 lg:static lg:block lg:w-auto lg:justify-start">
@@ -22,6 +21,7 @@
                 <li class="nav-item">
                     <a
                         class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
+                        (click)="closeNavbar(); $event.preventDefault()"
                         routerLink="/user-panel/profile">
                         <i
                             class="fab fa-facebook-square leading-lg text-lg text-white opacity-75"></i
@@ -31,6 +31,7 @@
                 <li class="nav-item">
                     <a
                         class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
+                        (click)="closeNavbar(); $event.preventDefault()"
                         routerLink="/user-panel/collection">
                         <i class="fab fa-twitter leading-lg text-lg text-white opacity-75"></i
                         ><span class="ml-2">
@@ -41,6 +42,7 @@
                 <li class="nav-item">
                     <a
                         class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
+                        (click)="closeNavbar(); $event.preventDefault()"
                         routerLink="/user-panel/history">
                         <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i
                         ><span class="ml-2"> {{ 'userPanel.menuLabels.history' | translate }}</span>
@@ -49,6 +51,7 @@
                 <li class="nav-item">
                     <a
                         class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
+                        (click)="closeNavbar(); $event.preventDefault()"
                         routerLink="/user-panel/offers-received">
                         <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i
                         ><span class="ml-2">
@@ -59,6 +62,7 @@
                 <li class="nav-item">
                     <a
                         class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
+                        (click)="closeNavbar(); $event.preventDefault()"
                         routerLink="/user-panel/offers-made">
                         <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i
                         ><span class="ml-2">
@@ -69,6 +73,7 @@
                 <li class="nav-item">
                     <a
                         class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
+                        (click)="closeNavbar(); $event.preventDefault()"
                         routerLink="/user-panel/messages">
                         <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i
                         ><span class="ml-2">

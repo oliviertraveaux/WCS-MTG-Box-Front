@@ -1,28 +1,89 @@
-<section class="align flex h-full w-screen flex-col items-center justify-center">
-    <div class="flex h-full w-full flex-col px-4 pb-1 sm:px-8 lg:w-11/12 lg:px-0">
-        <div class="flex items-center pb-2">
-            <app-collection-display-search-form></app-collection-display-search-form>
-        </div>
-        <div>
-            <button class="mx-4 my-2" mat-flat-button color="primary" (click)="switchView()">
-                {{ switchDisplay ? 'Vue liste' : 'Vue Image' }}
+<mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full">
+    <mat-drawer #filterDrawer class="h-full w-full px-4">
+        <div class="mt-2 flex h-16 items-center">
+            <button class="mr-4" mat-icon-button (click)="filterDrawer.toggle()">
+                <mat-icon>arrow_back</mat-icon>
             </button>
+            <h2>{{ 'Collection.addCard.searchTitle' | translate }}</h2>
         </div>
-        <div class="w-full overflow-auto scrollbar-hide">
-            <app-collection-display-image *ngIf="switchDisplay">
-                <div class="p-2" *ngFor="let card of cards$ | async">
-                    <app-collection-display-search-result
-                        [card]="card"
-                        (cardDeleted)="handleCardDeleted($event)">
-                    </app-collection-display-search-result>
+        <div class="h-full-drawer">
+            <app-collection-display-search-form />
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <section class="align flex h-full w-screen flex-col items-center justify-center">
+            <div class="flex h-full w-full flex-col px-4 pb-1 sm:px-8 lg:w-11/12 lg:px-0">
+                <div class="flex items-center pb-2">
+                    <div class="mt-2 flex items-center px-4" *ngIf="!(isTablet | async)">
+                        <form class="w-full" [formGroup]="searchForm">
+                            <mat-form-field appearance="outline" class="flex w-full items-center">
+                                <mat-label>Name</mat-label>
+                                <input
+                                    matInput
+                                    placeholder="Sol Ring"
+                                    (keydown.enter)="search()"
+                                    [value]="searchForm.value.name"
+                                    formControlName="name" />
+                                <button
+                                    type="button"
+                                    mat-icon-button
+                                    matSuffix
+                                    (click)="search()"
+                                    [disabled]="searchForm.invalid">
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </form>
+                        <button
+                            mat-icon-button
+                            color="primary"
+                            class="ml-3"
+                            (click)="filterDrawer.toggle()">
+                            <mat-icon>filter_alt</mat-icon>
+                        </button>
+                    </div>
+                    <ng-container *ngIf="isTablet || isDesktop | async">
+                        <app-collection-display-search-form></app-collection-display-search-form>
+                    </ng-container>
                 </div>
-            </app-collection-display-image>
+                <div class="flex">
+                    <button
+                        class="my-2 ms-4"
+                        mat-flat-button
+                        color="primary"
+                        [disabled]="listDisplay"
+                        (click)="switchView()">
+                        <mat-icon>lists</mat-icon>{{ 'Liste' }}
+                    </button>
+                    <button
+                        class="my-2 ms-1"
+                        mat-flat-button
+                        color="primary"
+                        [disabled]="!listDisplay"
+                        (click)="switchView()">
+                        <mat-icon>grid_view</mat-icon>{{ 'Grille' }}
+                    </button>
+                </div>
+                <div class="w-full overflow-auto scrollbar-hide">
+                    <ng-container *ngIf="!listDisplay">
+                        <app-collection-display-image>
+                            <div class="p-2" *ngFor="let card of cards$ | async">
+                                <app-collection-display-search-result
+                                    [card]="card"
+                                    (cardDeleted)="handleCardDeleted($event)">
+                                </app-collection-display-search-result>
+                            </div>
+                        </app-collection-display-image>
+                    </ng-container>
 
-            <app-collection-display-list
-                *ngIf="!switchDisplay"
-                [cards$]="cards$"
-                (cardToRemove)="handleCardDeleted($event)">
-            </app-collection-display-list>
-        </div>
-    </div>
-</section>
+                    <ng-container *ngIf="listDisplay">
+                        <app-collection-display-list
+                            [cards$]="cards$"
+                            (cardToRemove)="handleCardDeleted($event)">
+                        </app-collection-display-list>
+                    </ng-container>
+                </div>
+            </div>
+        </section>
+    </mat-drawer-content>
+</mat-drawer-container>

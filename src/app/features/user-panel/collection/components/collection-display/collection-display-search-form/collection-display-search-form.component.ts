@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
 import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
 import { BasicFilter } from '../../../../../../shared/filter/models/basic-filter.interface';
 import { SetFilter } from '../../../../../../shared/filter/models/set-filter.interface';
@@ -31,7 +32,7 @@ export class CollectionDisplaySearchFormComponent implements OnInit {
     cardLanguages: BasicFilter[] = [];
     cardSets: SetFilter[] = [];
 
-    cards$: Observable<any> = this._searchResultsStateService.getCards$();
+    cards$: Observable<UserCard[]> = this._searchResultsStateService.getCards$();
     status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
 
     ngOnInit(): void {
