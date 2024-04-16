@@ -77,7 +77,13 @@ export class CardBasketComponent implements OnInit {
     private _destroyRef = inject(DestroyRef);
     private _filtersStateService = inject(FiltersStateService);
 
-    displayedColumns: string[] = ['show', 'name', 'set', 'quality', 'action'];
+    displayedColumns: string[] = [
+        'show',
+        'cardInfo.name',
+        'cardInfo.setAbbreviation',
+        'userInfo.qualityName',
+        'action',
+    ];
     cardsData = new MatTableDataSource<UserCard>([]);
     selectedCard: UserCard | null = null;
     cardQuality: QualityFilter[] = [];
@@ -105,6 +111,20 @@ export class CardBasketComponent implements OnInit {
             .subscribe(() => this._breakpointObserverService.breakpointChanged());
 
         this.cardQuality = this._filtersStateService.getQualitiesValue();
+
+        this.cardsData.sortingDataAccessor = (item, property) => {
+            // Split '.' to allow accessing property of nested object
+            if (property.includes('.')) {
+                const accessor = property.split('.');
+                let value: any = item;
+                accessor.forEach((a) => {
+                    value = value[a];
+                });
+                return value;
+            }
+            // Access as normal (non nested object) not working with userCard
+            // return item[property];
+        };
     }
 
     ngAfterViewInit() {

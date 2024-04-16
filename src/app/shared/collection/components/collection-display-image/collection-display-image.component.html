@@ -1,10 +1,9 @@
 <ng-container>
-  <div class="mx-auto min-h-screen h-full max-h-screen">
-    <div class="flex flex-wrap justify-center h-full">
-
-      <ng-content>
-
-      </ng-content>
+    <div class="mx-auto h-full max-h-screen min-h-screen">
+        <ng-content select="[additionalContentTop]"></ng-content>
+        <div class="flex flex-wrap justify-center">
+            <ng-content></ng-content>
+        </div>
+        <ng-content select="[additionalContentBottom]"></ng-content>
     </div>
-  </div>
 </ng-container>

@@ -1,4 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
     ChangeDetectionStrategy,
@@ -18,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
@@ -72,14 +73,20 @@ export class CollectionDisplayListComponent implements OnInit {
     private _destroyRef = inject(DestroyRef);
     private _alertService = inject(AlertService);
     private _translate = inject(TranslateService);
+    private _liveAnnouncer = inject(LiveAnnouncer);
 
     readonly isDesktop = this._breakpointObserverService.isDesktop;
-    // readonly isDesktop = of(true);
 
     @Input() cards$: Observable<UserCard[]> = of([]);
     @Output() cardToRemove = new EventEmitter<number>();
 
-    displayedColumns: string[] = ['name', 'quality', 'set', 'rarity', 'expand'];
+    displayedColumns: string[] = [
+        'cardInfo.name',
+        'userInfo.qualityName',
+        'cardInfo.setName',
+        'cardInfo.rarity',
+        'expand',
+    ];
     displayedColumnsWithExpand: string[] = [...this.displayedColumns, 'expand'];
     expandedElement?: UserCard | null;
     selectedCard: UserCard | null = null;
@@ -97,6 +104,20 @@ export class CollectionDisplayListComponent implements OnInit {
         this._breakpointObserverService.breakpoint$
             .pipe(takeUntilDestroyed(this._destroyRef))
             .subscribe(() => this._breakpointObserverService.breakpointChanged());
+
+        this.cardsData.sortingDataAccessor = (item, property) => {
+            // Split '.' to allow accessing property of nested object
+            if (property.includes('.')) {
+                const accessor = property.split('.');
+                let value: any = item;
+                accessor.forEach((a) => {
+                    value = value[a];
+                });
+                return value;
+            }
+            // Access as normal (non nested object) not working with userCard
+            // return item[property];
+        };
     }
 
     ngAfterViewInit() {
@@ -127,5 +148,18 @@ export class CollectionDisplayListComponent implements OnInit {
 
     closeImage(): void {
         this.selectedCard = null;
+    }
+
+    /** Announce the change in sort state for assistive technology. */
+    announceSortChange(sortState: Sort) {
+        // This example uses English messages. If your application supports
+        // multiple language, you would internationalize these strings.
+        // Furthermore, you can customize the message to add additional
+        // details about the values being sorted.
+        if (sortState.direction) {
+            this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+        } else {
+            this._liveAnnouncer.announce('Sorting cleared');
+        }
     }
 }

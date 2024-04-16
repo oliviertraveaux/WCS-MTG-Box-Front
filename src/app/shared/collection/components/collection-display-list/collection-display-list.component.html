@@ -22,9 +22,14 @@
             [dataSource]="cardsData"
             multiTemplateDataRows
             matSort
+            (matSortChange)="announceSortChange($event)"
             class="w-full">
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container matColumnDef="cardInfo.name">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by name">
                     {{ 'ui.collectionDisplayList.name' | translate }}
                 </th>
                 <td mat-cell *matCellDef="let row">
@@ -33,8 +38,12 @@
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="set">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container matColumnDef="cardInfo.setName">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by set">
                     {{ 'ui.collectionDisplayList.set' | translate }}
                 </th>
                 <td mat-cell *matCellDef="let row" [title]="row.cardInfo.setName">
@@ -42,8 +51,12 @@
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="quality">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container matColumnDef="userInfo.qualityName">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by quality">
                     {{ 'ui.collectionDisplayList.quality' | translate }}
                 </th>
                 <td
@@ -54,8 +67,12 @@
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="rarity">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container matColumnDef="cardInfo.rarity">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by rarity">
                     {{ 'ui.collectionDisplayList.rarity' | translate }}
                 </th>
                 <td mat-cell *matCellDef="let row" [title]="row.cardInfo.rarity">
