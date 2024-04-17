@@ -60,7 +60,7 @@ export class LoginComponent {
                 next: (token) => {
                     const logged = this._translate.instant('Toasts.login-success');
                     this._alertService.openSnackBar(logged, SnackbarStatus.success);
-                    this._reconnectUserService.getUserInfo();
+                    this._reconnectUserService.getUserInfoAfterLogin();
                     setTimeout(() => this._router.navigate(['/user-panel/profile']), 1200);
                 },
                 error: (error) => {

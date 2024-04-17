@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { take } from 'rxjs';
+import { catchError, map, of, take, tap } from 'rxjs';
+import { UserInfo } from '../../../../shared/user/models/user-info.interface';
 import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
 import { VerifyTokenRepository } from '../repositories/verify-token.repository';
 import { LoginService } from './login.service';
@@ -13,6 +14,17 @@ export class ReconnectUserService {
     private _loginService = inject(LoginService);
 
     getUserInfo() {
+        return this._verifyTokenRepository.verifyToken().pipe(
+            take(1),
+            catchError((err) => of(true)),
+            tap((userInfo) =>
+                userInfo ? this._userInfoStateService.setUserInfo(userInfo as UserInfo) : null
+            ),
+            map((userInfo) => !!userInfo)
+        );
+    }
+
+    getUserInfoAfterLogin() {
         this._verifyTokenRepository
             .verifyToken()
             .pipe(take(1))
