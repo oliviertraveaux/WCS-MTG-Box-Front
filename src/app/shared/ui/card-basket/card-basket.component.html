@@ -49,7 +49,7 @@
             [dataSource]="cardsData"
             matSort
             (matSortChange)="announceSortChange($event)"
-            class="w-full">
+            class="dense-3 w-full">
             <ng-container matColumnDef="show">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let element">
@@ -100,7 +100,7 @@
                     <mat-form-field
                         *ngIf="displaySelect; else elseQuality"
                         appearance="outline"
-                        class="w-full">
+                        class="quality-select h-[50px] pt-1">
                         <mat-select
                             [(value)]="element.userInfo.qualityName"
                             (selectionChange)="setQuality(element, $event.value)">

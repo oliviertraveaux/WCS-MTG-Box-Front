@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ReconnectUserService } from './app/features/auth/shared/services/reconnect-user.service';
 import { Filters } from './app/shared/filter/models/filters.interface';
 import { FiltersStateService } from './app/shared/filter/services/filters-states.service';
@@ -21,7 +21,6 @@ export function initializeAppUserInfo(
     reconnectUserService = inject(ReconnectUserService)
 ): () => Observable<boolean> {
     return () => {
-        reconnectUserService.getUserInfo();
-        return of(true);
+        return reconnectUserService.getUserInfo();
     };
 }
