@@ -8,8 +8,12 @@ import { USER_PANEL_ROUTES } from './features/user-panel/user-panel.route';
 export const routes: Route[] = [
     {
         path: '',
+        pathMatch: 'full',
+        redirectTo: 'home',
+    },
+    {
+        path: 'home',
         component: HomePageComponent,
-        canActivate: [AuthGuard],
     },
     { path: 'register', component: CreateAccountComponent },
     { path: 'login', component: LoginComponent },
@@ -21,5 +25,9 @@ export const routes: Route[] = [
             ),
         children: USER_PANEL_ROUTES,
         canActivate: [AuthGuard],
+    },
+    {
+        path: '**',
+        redirectTo: 'home',
     },
 ];
