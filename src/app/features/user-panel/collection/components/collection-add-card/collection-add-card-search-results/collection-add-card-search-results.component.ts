@@ -35,16 +35,17 @@ import { CollectionAddCardSearchResultComponent } from '../collection-add-card-s
 })
 export class CollectionAddCardSearchResultsComponent implements OnInit {
     private _searchResultsStateService = inject(CollectionAddCardResultsStatesService);
+
     protected readonly RequestStatus = RequestStatus;
+    readonly numberOfItemsInSelectList: number[] = Array.from(
+        { length: 10 },
+        (_, index) => index + 1
+    );
     pageSize: number = 10;
     pageIndex: number = 0;
     cards$!: Observable<any>;
     displayedImageCards$: Observable<ApiCard[]> = of([]);
     status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
-    readonly numberOfItemsInSelectList: number[] = Array.from(
-        { length: 10 },
-        (_, index) => index + 1
-    );
 
     ngOnInit(): void {
         this.cards$ = this._searchResultsStateService.getCards$();

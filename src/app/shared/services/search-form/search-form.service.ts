@@ -91,14 +91,14 @@ export class SearchFormService {
 
     reset(): void {
         this.searchForm.get('name')?.patchValue(null),
-            this.searchForm.get('language')?.patchValue(''),
-            this.searchForm.get('set')?.patchValue(''),
-            this.searchForm.get('cmc')?.patchValue(''),
-            this.searchForm.get('rarity')?.patchValue(''),
-            this.searchForm.get('type')?.patchValue(''),
-            this.searchForm.get('colors')?.patchValue(''),
-            this.searchForm.get('text')?.patchValue(null),
-            this.searchForm.get('artist')?.patchValue(null);
+            this.searchForm.get('language')?.patchValue('');
+        this.searchForm.get('set')?.patchValue('');
+        this.searchForm.get('cmc')?.patchValue('');
+        this.searchForm.get('rarity')?.patchValue('');
+        this.searchForm.get('type')?.patchValue('');
+        this.searchForm.get('colors')?.patchValue('');
+        this.searchForm.get('text')?.patchValue(null);
+        this.searchForm.get('artist')?.patchValue(null);
         this.searchForm.markAsUntouched();
         this.searchForm.markAsPristine();
     }

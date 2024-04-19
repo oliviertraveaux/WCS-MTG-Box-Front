@@ -46,33 +46,57 @@
                         <app-collection-display-search-form></app-collection-display-search-form>
                     </ng-container>
                 </div>
-                <div class="flex">
-                    <button
-                        class="my-2 ms-4"
-                        mat-flat-button
-                        color="primary"
-                        [disabled]="listDisplay"
-                        (click)="switchView()">
-                        <mat-icon>lists</mat-icon>
-                        {{ 'Liste' }}
-                    </button>
-                    <button
-                        class="my-2 ms-1"
-                        mat-flat-button
-                        color="primary"
-                        [disabled]="!listDisplay"
-                        (click)="switchView()">
-                        <mat-icon>grid_view</mat-icon>
-                        {{ 'Grille' }}
-                    </button>
+                <div class="flex justify-between">
+                    <div>
+                        <button
+                            class="my-2"
+                            mat-flat-button
+                            color="primary"
+                            [disabled]="listDisplay"
+                            (click)="switchView()">
+                            <mat-icon>lists</mat-icon>{{ 'Liste' }}
+                        </button>
+                        <button
+                            class="m-2"
+                            mat-flat-button
+                            color="primary"
+                            [disabled]="!listDisplay"
+                            (click)="switchView()">
+                            <mat-icon>grid_view</mat-icon>{{ 'Grille' }}
+                        </button>
+                    </div>
+
+                    <div class="flex items-center">
+                        <mat-checkbox
+                            (change)="$event ? masterToggle() : null"
+                            [checked]="isChecked()"
+                            [indeterminate]="isIndeterminate()">
+                        </mat-checkbox>
+                        <button
+                            class="my-2 ml-2"
+                            mat-flat-button
+                            [disabled]="!selection.hasValue()"
+                            (click)="removeSelection()">
+                            <mat-icon>delete_sweep</mat-icon>
+                            <span *ngIf="isTablet || isDesktop | async">{{
+                                'Collection.delete' | translate
+                            }}</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="w-full overflow-auto scrollbar-hide">
                     <ng-container *ngIf="!listDisplay">
-                        <app-collection-display-image>
+                        <app-collection-display-image
+                            [selection]="selection"
+                            [cards]="cards$ | async"
+                            [isAllSelected]="(isAllSelected | async)!"
+                            (updateSelection)="handleSelection($event)">
                             <div class="p-2" *ngFor="let card of displayedImageCards$ | async">
                                 <app-collection-display-search-result
                                     [card]="card"
-                                    (cardDeleted)="handleCardDeleted($event)">
+                                    [selection]="selection"
+                                    (updateSelection)="handleSelection($event)"
+                                    (cardToRemove)="removeSelection($event)">
                                 </app-collection-display-search-result>
                             </div>
                             <app-pagination
@@ -83,11 +107,13 @@
                                 (page)="displayImageHandlePage($event)"></app-pagination>
                         </app-collection-display-image>
                     </ng-container>
-
                     <ng-container *ngIf="listDisplay">
                         <app-collection-display-list
                             [cards$]="cards$"
-                            (cardToRemove)="handleCardDeleted($event)">
+                            [selection]="selection"
+                            [isAllSelected]="(isAllSelected | async)!"
+                            (updateSelection)="handleSelection($event)"
+                            (cardToRemove)="removeSelection($event)">
                         </app-collection-display-list>
                     </ng-container>
                 </div>

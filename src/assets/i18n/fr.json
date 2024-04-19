@@ -79,13 +79,13 @@
     "register-fail": "Erreur lors de l'inscription",
     "login-fail": "Échec de la connexion. Veuillez réessayer.",
     "login-success": "Connexion réussie. Bienvenue !",
-    "confirm-delete-success": "Carte supprimée",
+    "confirm-delete-success": "Suppression confirmée",
     "confirm-delete-fail": "Une erreur est survenue"
   },
   "Modal": {
     "confirm-delete": {
-      "title": "Supprimer la carte",
-      "message": "Etes-vous sur de vouloir supprimer cette carte ?",
+      "title": "Supprimer la sélection",
+      "message": "Etes-vous sur de vouloir supprimer cette selection ?",
       "cancel": "Abandonner",
       "confirm": "Confirmer"
     }

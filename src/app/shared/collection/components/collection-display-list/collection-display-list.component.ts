@@ -1,8 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SelectionModel } from '@angular/cdk/collections';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     DestroyRef,
     EventEmitter,
@@ -14,6 +16,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -56,6 +59,7 @@ import { GetRaritySymbolPipe } from '../../pipes/get-rarity-symbol.pipe';
         GetRaritySymbolPipe,
         MatListModule,
         GetQualityClassPipe,
+        MatCheckboxModule,
     ],
     templateUrl: './collection-display-list.component.html',
     styleUrls: ['./collection-display-list.component.scss'],
@@ -73,14 +77,19 @@ export class CollectionDisplayListComponent implements OnInit {
     private _destroyRef = inject(DestroyRef);
     private _alertService = inject(AlertService);
     private _translate = inject(TranslateService);
+  private changeDetectorRef = inject(ChangeDetectorRef);
     private _liveAnnouncer = inject(LiveAnnouncer);
 
     readonly isDesktop = this._breakpointObserverService.isDesktop;
 
     @Input() cards$: Observable<UserCard[]> = of([]);
+    @Input() selection!: SelectionModel<UserCard>;
+    @Input() isAllSelected!: boolean;
     @Output() cardToRemove = new EventEmitter<number>();
+    @Output() updateSelection = new EventEmitter<UserCard[]>();
 
     displayedColumns: string[] = [
+        'select',
         'cardInfo.name',
         'userInfo.qualityName',
         'cardInfo.setName',
@@ -130,16 +139,13 @@ export class CollectionDisplayListComponent implements OnInit {
     }
 
     onDelete(uniqueId: number): void {
-        this._alertService
-            .openConfirmDialog(
-                this._translate.instant('Modal.confirm-delete.title'),
-                this._translate.instant('Modal.confirm-delete.message')
-            )
-            .subscribe((result) => {
-                if (result) {
-                    this.cardToRemove.emit(uniqueId);
-                }
-            });
+        this.cardToRemove.emit(uniqueId);
+    }
+
+    toggleSelection(row: UserCard) {
+        this.selection.toggle(row);
+        this.updateSelection.emit(this.selection.selected);
+        this.changeDetectorRef.detectChanges();
     }
 
     showImage(card: UserCard): void {
