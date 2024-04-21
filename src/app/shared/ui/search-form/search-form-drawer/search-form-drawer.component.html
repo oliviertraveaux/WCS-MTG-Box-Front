@@ -1,0 +1,9 @@
+<div class="mt-2 flex h-16 items-center">
+    <button class="mr-4" mat-icon-button (click)="toggleDrawer.emit()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>{{ 'Collection.addCard.searchTitle' | translate }}</h2>
+</div>
+<div class="h-full-drawer">
+    <ng-content></ng-content>
+</div>
