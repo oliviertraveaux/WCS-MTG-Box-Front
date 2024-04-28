@@ -93,14 +93,12 @@
           <ng-template matStepLabel>{{ 'Register.postal-code' | translate }}</ng-template>
           <mat-form-field>
             <mat-label>{{ 'Register.postal-code' | translate }}</mat-label>
-
-            <input matInput formControlName="postCode" required>
+            <mat-select formControlName="postCode" required>
+              <mat-option *ngFor="let department of departments" [value]="department.code">{{department.code}} - {{department.name}}</mat-option>
+            </mat-select>
           </mat-form-field>
           <div>
-
-
             <button mat-raised-button color="accent" matStepperNext [disabled]="!postCodeFormGroup.valid">{{ 'Register.next' | translate }}</button>
-
           </div>
         </form>
       </mat-step>
