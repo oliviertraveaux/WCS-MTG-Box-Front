@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { SelectionModel } from '@angular/cdk/collections';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
     ChangeDetectionStrategy,
@@ -24,13 +24,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { GetApiCardImgPipe } from '../../../../features/user-panel/collection/shared/pipes/get-api-card-img.pipe';
 import { GetApiCardNamePipe } from '../../../../features/user-panel/collection/shared/pipes/get-api-card-name.pipe';
 import { GetUserCardImgPipe } from '../../../../features/user-panel/collection/shared/pipes/get-user-card-img.pipe';
 import { GetUserCardNamePipe } from '../../../../features/user-panel/collection/shared/pipes/get-user-card-name.pipe';
-import { AlertService } from '../../../services/alert.service';
 import { BreakpointObserverService } from '../../../services/breakpoint-observer.service';
 import { UserCard } from '../../models/user-card.model';
 import { GetQualityClassPipe } from '../../pipes/get-quality.pipe';
@@ -68,6 +67,7 @@ import { GetRaritySymbolPipe } from '../../pipes/get-rarity-symbol.pipe';
             state('collapsed', style({ height: '0px', minHeight: '0' })),
             state('expanded', style({ height: '*' })),
             transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+            transition('expanded <=> void', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
         ]),
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -75,9 +75,7 @@ import { GetRaritySymbolPipe } from '../../pipes/get-rarity-symbol.pipe';
 export class CollectionDisplayListComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _destroyRef = inject(DestroyRef);
-    private _alertService = inject(AlertService);
-    private _translate = inject(TranslateService);
-  private changeDetectorRef = inject(ChangeDetectorRef);
+    private changeDetectorRef = inject(ChangeDetectorRef);
     private _liveAnnouncer = inject(LiveAnnouncer);
 
     readonly isDesktop = this._breakpointObserverService.isDesktop;
@@ -113,6 +111,11 @@ export class CollectionDisplayListComponent implements OnInit {
         this._breakpointObserverService.breakpoint$
             .pipe(takeUntilDestroyed(this._destroyRef))
             .subscribe(() => this._breakpointObserverService.breakpointChanged());
+    }
+
+    ngAfterViewInit() {
+        this.cardsData.paginator = this.paginator;
+        this.cardsData.sort = this.sort;
 
         this.cardsData.sortingDataAccessor = (item, property) => {
             // Split '.' to allow accessing property of nested object
@@ -125,13 +128,9 @@ export class CollectionDisplayListComponent implements OnInit {
                 return value;
             }
             // Access as normal (non nested object) not working with userCard
-            // return item[property];
+            // @ts-ignore
+            return item[property];
         };
-    }
-
-    ngAfterViewInit() {
-        this.cardsData.paginator = this.paginator;
-        this.cardsData.sort = this.sort;
     }
 
     onClick(row: UserCard): void {
