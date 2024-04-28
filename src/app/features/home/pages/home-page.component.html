@@ -20,16 +20,20 @@
         </app-search-form-drawer>
     </mat-drawer>
     <mat-drawer-content>
-        <div class="flex h-full w-screen flex-col px-20 py-3">
-            <h2>{{ 'home.search-title' | translate }}</h2>
-            <app-search-form-name-only
-                (search)="search()"
-                (toggleFilterDrawer)="toggleFilterDrawer()">
-            </app-search-form-name-only>
-            <ng-container *ngIf="isTablet || isDesktop | async">
-                <app-home-search-form></app-home-search-form>
-            </ng-container>
-            <div class="flex-grow bg-blue-400"></div>
-        </div>
+        <section class="align flex h-full w-screen flex-col items-center justify-center">
+            <div class="flex h-full w-full flex-col px-4 pb-1 sm:px-8 lg:w-11/12 lg:px-0">
+                <h2>{{ 'home.search-title' | translate }}</h2>
+                <app-search-form-name-only
+                    (search)="search()"
+                    (toggleFilterDrawer)="toggleFilterDrawer()">
+                </app-search-form-name-only>
+                <ng-container *ngIf="isTablet || isDesktop | async">
+                    <app-home-search-form></app-home-search-form>
+                </ng-container>
+
+                <app-home-search-results [resultCards$]="cardResults$"></app-home-search-results>
+                <div class="flex-grow bg-blue-400"></div>
+            </div>
+        </section>
     </mat-drawer-content>
 </mat-drawer-container>

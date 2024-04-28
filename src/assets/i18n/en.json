@@ -121,7 +121,9 @@
       "rarity": "Rarity",
       "delete": "Delete",
       "frenchNameTitle": "French Name",
-      "englishNameTitle": "English Name"
+      "englishNameTitle": "English Name",
+      "noResults": "No data matching the filter"
+
     }
   },
 
@@ -130,6 +132,17 @@
     "search-title": "Search cards",
     "toast": {
       "search-cards-error": "Something wrong happened during the search"
+    },
+    "searchResultList": {
+      "name": "Name",
+      "set": "Set",
+      "quality": "Quality",
+      "rarity": "Rarity",
+      "delete": "Delete",
+      "frenchNameTitle": "French Name",
+      "englishNameTitle": "English Name",
+      "quantity": "quantity",
+      "noResults": "No data matching the filter"
     }
   },
   "ResetPassword": {

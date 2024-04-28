@@ -12,6 +12,6 @@ export const ENVIRONMENT = {
     apiVerifyTokenURL: `${apiConfigurationUrl}verify-token`,
   apiPasswordForgottenConfigurationURL: `${apiConfigurationUrl}password-forgotten`,
   apiNewPasswordConfigurationURL: `${apiConfigurationUrl}new-password`,
-
+    apiMarketCardsURL: `${apiConfigurationUrl}marketcards`,
     url: 'http://localhost:8080',
 };

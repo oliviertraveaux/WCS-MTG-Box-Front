@@ -10,7 +10,7 @@ import { HomeCardSearchResult } from '../../models/home-search-results.model';
 })
 export class HomeSearchRepository {
     private http = inject(HttpClient);
-    private homeSearchUrl: string = ENVIRONMENT.apiCardsConfigurationURL;
+    private homeSearchUrl: string = ENVIRONMENT.apiMarketCardsURL;
 
     public getCards(searchQuery: SearchQuery): Observable<HomeCardSearchResult[]> {
         const params = new HttpParams({ fromObject: searchQuery } as HttpParamsOptions);
