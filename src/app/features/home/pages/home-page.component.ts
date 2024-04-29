@@ -21,5 +21,9 @@ import { RouterLink } from '@angular/router';
     styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent {
-    showFiller = false;
+
+
+
+
+
 }
