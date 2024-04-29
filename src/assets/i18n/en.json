@@ -119,5 +119,12 @@
       "frenchNameTitle": "French Name",
       "englishNameTitle": "English Name"
     }
+  },
+
+  "home": {
+    "search-title": "Search cards",
+    "toast": {
+      "search-cards-error": "Something wrong happened during the search"
+    }
   }
 }

@@ -143,6 +143,20 @@
                     <mat-label>{{ 'Collection.addCard.searchForm.artist' | translate }}</mat-label>
                     <input matInput formControlName="artist" />
                 </mat-form-field>
+
+                <!-- location -->
+                <mat-form-field
+                    *ngIf="hasLocation"
+                    appearance="outline"
+                    class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
+                    <mat-label>location</mat-label>
+                    <input matInput formControlName="location" />
+                </mat-form-field>
+
+                <!-- recentlyConnected -->
+                <mat-checkbox *ngIf="hasRecentlyConnected" formControlName="recentlyConnected"
+                    >recently connected</mat-checkbox
+                >
             </ng-container>
         </div>
     </form>

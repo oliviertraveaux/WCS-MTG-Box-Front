@@ -1,0 +1,24 @@
+<div class="flex items-center" *ngIf="!(isTablet | async)">
+    <form class="w-full" [formGroup]="searchForm">
+        <mat-form-field appearance="outline" class="flex w-full items-center">
+            <mat-label>Name</mat-label>
+            <input
+                matInput
+                placeholder="Sol Ring"
+                (keydown.enter)="search.emit()"
+                [value]="searchForm.value.name"
+                formControlName="name" />
+            <button
+                type="button"
+                mat-icon-button
+                matSuffix
+                (click)="search.emit()"
+                [disabled]="searchForm.invalid">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+    <button mat-icon-button color="primary" class="ml-3" (click)="toggleFilterDrawer.emit()">
+        <mat-icon>filter_alt</mat-icon>
+    </button>
+</div>

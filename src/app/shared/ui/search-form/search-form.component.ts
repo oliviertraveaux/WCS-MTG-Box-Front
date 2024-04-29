@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,6 +38,7 @@ import { BreakpointObserverService } from '../../services/breakpoint-observer.se
         ReactiveFormsModule,
         TranslateModule,
         getSearchResultTextPipe,
+        MatCheckboxModule,
     ],
     templateUrl: './search-form.component.html',
     styleUrls: ['./search-form.component.scss'],
@@ -52,14 +54,16 @@ export class SearchFormComponent implements OnInit {
     @Input() cardSets: SetFilter[] = [];
     @Input() cards$: Observable<ApiCard[] | UserCard[]> = of([]);
     @Input() status$!: Observable<RequestStatus>;
-    @Input() hasLanguage: boolean = true;
-    @Input() hasColor: boolean = true;
-    @Input() hasRarity: boolean = true;
-    @Input() hasManaCost: boolean = true;
-    @Input() hasType: boolean = true;
-    @Input() hasSet: boolean = true;
-    @Input() hasText: boolean = true;
-    @Input() hasArtist: boolean = true;
+    @Input() hasLanguage: boolean = false;
+    @Input() hasColor: boolean = false;
+    @Input() hasRarity: boolean = false;
+    @Input() hasManaCost: boolean = false;
+    @Input() hasType: boolean = false;
+    @Input() hasSet: boolean = false;
+    @Input() hasText: boolean = false;
+    @Input() hasArtist: boolean = false;
+    @Input() hasLocation: boolean = false;
+    @Input() hasRecentlyConnected: boolean = false;
 
     @Output() resetParams = new EventEmitter();
     @Output() searchCards = new EventEmitter();

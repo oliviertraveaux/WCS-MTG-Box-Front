@@ -120,6 +120,13 @@
       "frenchNameTitle": "Nom Français",
       "englishNameTitle": "Nom Anglais"
     }
+  },
+
+  "home": {
+    "search-title": "Rechercher des cartes",
+    "toast": {
+      "search-cards-error": "Une erreur est survenue pendant la recherche"
+    }
   }
 
 }
