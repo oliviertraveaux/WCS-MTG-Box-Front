@@ -11,4 +11,6 @@ export interface SearchQuery {
     colors?: CardColor | string;
     text?: string;
     artist?: string;
+    location?: number | string;
+    recentlyConnected?: boolean;
 }

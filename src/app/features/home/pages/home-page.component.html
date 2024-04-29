@@ -7,8 +7,29 @@
     </video>
     <div class="absolute inset-0 bg-black opacity-20"></div>
     <div class="absolute inset-0 flex flex-col items-center justify-center">
-      <h1 class="text-6xl font-bold text-white uppercase tracking-wide outline">MTG Box</h1>
-      <button mat-raised-button color="primary" class=" m-2 py-2 px-4  hover:bg-blue-700 text-white font-bold rounded" >Accéder aux cartes</button>
+      <h1 class="text-6xl font-bold mb-4 text-white uppercase tracking-wide outline">MTG Box</h1>
+      <button mat-raised-button color="primary" class="m-2 py-2 px-4 hover:bg-blue-700 text-white font-bold rounded" (click)="scrollToDrawer()">{{ 'home.access-to-cards' | translate }}</button>
     </div>
   </div>
 </div>
+
+<mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full" id="drawerContainer">
+    <mat-drawer #filterDrawer class="h-full w-full px-4">
+        <app-search-form-drawer (toggleDrawer)="toggleFilterDrawer()">
+            <app-home-search-form></app-home-search-form>
+        </app-search-form-drawer>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="flex h-full w-screen flex-col px-20 py-3">
+            <h2>{{ 'home.search-title' | translate }}</h2>
+            <app-search-form-name-only
+                (search)="search()"
+                (toggleFilterDrawer)="toggleFilterDrawer()">
+            </app-search-form-name-only>
+            <ng-container *ngIf="isTablet || isDesktop | async">
+                <app-home-search-form></app-home-search-form>
+            </ng-container>
+            <div class="flex-grow bg-blue-400"></div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
