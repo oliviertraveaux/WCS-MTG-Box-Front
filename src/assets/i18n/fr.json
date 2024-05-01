@@ -80,7 +80,9 @@
     "login-fail": "Échec de la connexion. Veuillez réessayer.",
     "login-success": "Connexion réussie. Bienvenue !",
     "confirm-delete-success": "Suppression confirmée",
-    "confirm-delete-fail": "Une erreur est survenue"
+    "confirm-delete-fail": "Une erreur est survenue",
+    "confirm-mail-password" : "L'email a été envoyé",
+    "mail-password-fail": "Une erreur a eu lieu pendant l'envoi du mail"
   },
   "Modal": {
     "confirm-delete": {
@@ -121,13 +123,33 @@
       "englishNameTitle": "Nom Anglais"
     }
   },
-
   "home": {
-    "access-to-cards" : "Accéder aux cartes",
+    "access-to-cards": "Accéder aux cartes",
     "search-title": "Rechercher des cartes",
     "toast": {
       "search-cards-error": "Une erreur est survenue pendant la recherche"
     }
+  },
+  "ResetPassword": {
+    "forgot-password": "Mot de passe oublié ?",
+    "title": "Réinitialiser le mot de passe",
+    "content": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "email": "Email",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "valid-email": "Veuillez entrer une adresse email valide",
+    "reset-password": "Réinitialiser le mot de passe",
+    "new-password": "Nouveau mot de passe",
+    "password-required": "Le mot de passe est requis",
+    "password-length": "Le mot de passe doit comporter au moins 6 caractères",
+    "confirm-password": "Confirmer le mot de passe",
+    "password-match": "Les mots de passe doivent correspondre",
+    "update-password": "Mettre à jour le mot de passe"
   }
-
 }
+
+
+
+
+
+

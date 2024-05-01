@@ -43,7 +43,6 @@ import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
     MatSnackBarModule,
     MatIconModule,
     TranslateModule,
-    NgxMatSelectSearchModule,
   ],
     templateUrl: './create-account.component.html',
     styleUrls: ['./create-account.component.scss'],

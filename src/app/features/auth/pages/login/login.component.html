@@ -17,7 +17,10 @@
             <input matInput type="password" formControlName="password" />
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" class="login-button w-full py-2">
+      <a   class="text-xs text-gray-500 cursor-pointer hover:underline" (click)="openForgotPasswordDialog()">{{ 'ResetPassword.forgot-password' | translate }}</a>
+
+
+      <button mat-raised-button color="primary" type="submit" class="login-button w-full py-2">
             {{ 'Login.login' | translate }}
         </button>
     </form>

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title class="text-lg font-semibold text-gray-900">{{ 'ResetPassword.title' | translate }}</h2>
+<mat-dialog-content class="mat-typography p-4">
+  <p class="mb-4">{{ 'ResetPassword.content' | translate }}</p>
+  <form [formGroup]="emailForm" (ngSubmit)="requestReset()" class="space-y-6">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label class="text-gray-700">{{ 'ResetPassword.email' | translate }}</mat-label>
+      <input matInput formControlName="emailForgotten" type="email" required class="w-full">
+      <mat-error *ngIf="emailForm.controls['emailForgotten'].errors && emailForm.controls['emailForgotten'].touched">
+        <span class="text-red-500 text-sm">{{ 'ResetPassword.valid-email' | translate }}</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-dialog-actions class="flex justify-end space-x-4">
+      <button mat-button mat-dialog-close class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md">{{ 'ResetPassword.cancel' | translate }}</button>
+      <button  mat-raised-button color="primary" type="submit" [disabled]="!emailForm.valid" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md disabled:bg-blue-300">{{ 'ResetPassword.submit' | translate }}</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

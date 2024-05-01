@@ -79,7 +79,11 @@
     "login-fail": "Login failed. Please try again.",
     "login-success": "Login successful. Welcome!",
     "confirm-delete-success": "Deleted successfully",
-    "confirm-delete-fail": "Something wrong happened"
+    "confirm-delete-fail": "Something wrong happened",
+    "confirm-mail-password" : "Email has been sent",
+    "mail-password-fail": "Something wrong happened",
+    "reset-password-success": "Password reset successful",
+    "reset-password-fail": "Password reset failed"
   },
   "Modal": {
     "confirm-delete": {
@@ -127,5 +131,22 @@
     "toast": {
       "search-cards-error": "Something wrong happened during the search"
     }
+  },
+  "ResetPassword": {
+    "forgot-password": "Forgot Password ?",
+    "title": "Reset Password",
+    "content": "Enter your email address and we'll send you a link to reset your password.",
+    "email": "Email",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "valid-email": "Please enter a valid email address",
+    "reset-password" : "Reset Password",
+    "new-password" : "New Password",
+    "password-required" : "Password is required",
+    "password-length" : "Password must be at least 6 characters",
+    "confirm-password" : "Confirm Password",
+    "password-match" : "Passwords must match",
+    "update-password" : "Update Password"
+
   }
 }
