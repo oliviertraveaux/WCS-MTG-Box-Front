@@ -12,6 +12,8 @@ import { UserInfoStatesService } from '../../../../shared/user/services/user-inf
 export class LoginRepository {
     private loginUrl = `${ENVIRONMENT.apiLoginConfigurationURL}`;
     private logoutUrl = `${ENVIRONMENT.apiLogoutConfigurationURL}`;
+    private passwordForgottenUrl= `${ENVIRONMENT.apiPasswordForgottenConfigurationURL}`;
+    private newPasswordUrl= `${ENVIRONMENT.apiNewPasswordConfigurationURL}`;
     private userInfoStatesService = inject(UserInfoStatesService);
 
     constructor(
@@ -48,4 +50,18 @@ export class LoginRepository {
             })
         );
     }
+
+  requestPasswordReset(email: string): Observable<any> {
+    return this.http.post(`${this.passwordForgottenUrl}/${email}`, {});
+  }
+
+  resetPassword(token: string, newPasswordData: { plainPassword: string, plainPasswordVerification: string }): Observable<any> {
+    return this.http.post(`${this.newPasswordUrl}/${token}`, newPasswordData, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
+
+
+
+
 }

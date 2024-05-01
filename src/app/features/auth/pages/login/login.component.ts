@@ -12,6 +12,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SnackbarStatus } from '../../../../shared/enums/snackbar-status.enum';
 import { AlertService } from '../../../../shared/services/alert.service';
 import { ReconnectUserService } from '../../shared/services/reconnect-user.service';
+import {MatDialog} from "@angular/material/dialog";
+import {
+  ModalForgottenPassword
+} from "../forgotten-password/forgotten-password/modal-email/modal-email-forgotten/modal-email-forgotten.component";
 
 @Component({
     selector: 'app-login',
@@ -38,6 +42,7 @@ export class LoginComponent {
     private _route: ActivatedRoute = inject(ActivatedRoute);
     private _translate = inject(TranslateService);
     private _reconnectUserService = inject(ReconnectUserService);
+    private  dialog = inject( MatDialog)
 
     loginForm = this._fb.group({
         username: ['', [Validators.required]],
@@ -71,4 +76,15 @@ export class LoginComponent {
             });
         }
     }
+
+  openForgotPasswordDialog() {
+    const dialogRef = this.dialog.open(ModalForgottenPassword, {
+      width: '400px' // Set your desired width here
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed. Result:', result);
+    });
+  }
+
 }

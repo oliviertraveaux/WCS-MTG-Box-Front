@@ -10,5 +10,8 @@ export const ENVIRONMENT = {
     apiFilterConfigurationUrl: `${apiConfigurationUrl}filters`,
     apiLogoutConfigurationURL: `${apiConfigurationUrl}logout`,
     apiVerifyTokenURL: `${apiConfigurationUrl}verify-token`,
+  apiPasswordForgottenConfigurationURL: `${apiConfigurationUrl}password-forgotten`,
+  apiNewPasswordConfigurationURL: `${apiConfigurationUrl}new-password`,
+
     url: 'http://localhost:8080',
 };
