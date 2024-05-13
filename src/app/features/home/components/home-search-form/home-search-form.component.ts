@@ -32,7 +32,7 @@ export class HomeSearchFormComponent implements OnInit {
     status$: Observable<RequestStatus> = of(RequestStatus.initial);
 
     ngOnInit(): void {
-        this.searchForm = this._searchFormService.searchForm;
+        this.searchForm = this._searchFormService.initForm();
         this._searchFormService.updateValidityWhenFormValueChanges();
         this.cardRarities = this._filtersStateService.getRaritiesValue();
         this.cardLanguages = this._filtersStateService.getLanguagesValue();
