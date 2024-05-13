@@ -118,7 +118,9 @@
       "rarity": "Rareté",
       "delete": "Supprimer",
       "frenchNameTitle": "Nom Français",
-      "englishNameTitle": "Nom Anglais"
+      "englishNameTitle": "Nom Anglais",
+      "noResults": "Aucun résultats"
+
     }
   },
 
@@ -126,6 +128,17 @@
     "search-title": "Rechercher des cartes",
     "toast": {
       "search-cards-error": "Une erreur est survenue pendant la recherche"
+    },
+    "searchResultList": {
+      "name": "Nom",
+      "set": "Edition",
+      "quality": "Qualité",
+      "rarity": "Rareté",
+      "delete": "Supprimer",
+      "frenchNameTitle": "Nom Français",
+      "englishNameTitle": "Nom Anglais",
+      "quantity": "quantité",
+      "noResults": "Aucun résultats"
     }
   }
 

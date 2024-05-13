@@ -1,24 +1,27 @@
 import { CardRarity } from '../../../shared/collection/enums/card-rarity.enum';
-import { UserCard } from '../../../shared/collection/models/user-card.model';
-
-export interface HomeCardSearchResults {
-    HomeCardSearchResults: HomeCardSearchResult[];
-}
+import { CardQuality } from '../../../shared/collection/enums/cardQuality';
 
 export interface HomeCardSearchResult {
-    cardId: string;
+    cardId: number;
     name: string;
     frenchName: string;
     imageUrl: string;
     frenchImageUrl: string;
     setName: string;
-    setNameAbbreviation: string;
+    setAbbreviation: string;
     rarity: CardRarity;
-    UserCardsOnMarket: UserCardOnMarket[];
+    artist: string;
+    text: string;
+    userCardsOnMarket: UserCardOnMarket[];
 }
 
 export interface UserCardOnMarket {
-    userCard: UserCard;
-    localisation: string;
+    userId: number;
+    userName: string;
+    qualityName: CardQuality;
+    language: string;
+    userCardId: number;
+    city: string;
+    department: number;
     hasAnOffer: boolean;
 }
