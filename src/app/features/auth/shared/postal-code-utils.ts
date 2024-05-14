@@ -1,5 +1,5 @@
 export const francePostalCodes: any = [
-
+  {name: "Other", code: "0"},
   {name: "Ain", code: "01"},
   {name: "Aisne", code: "02"},
   {name: "Allier", code: "03"},
@@ -99,7 +99,7 @@ export const francePostalCodes: any = [
   {name: "Martinique", code: "972"},
   {name: "Guyane", code: "973"},
   {name: "La Réunion", code: "974"},
-  {name: "Mayotte", code: "976"},
-  {name: "Other", code: "100"}
+  {name: "Mayotte", code: "976"}
+
 
 ];

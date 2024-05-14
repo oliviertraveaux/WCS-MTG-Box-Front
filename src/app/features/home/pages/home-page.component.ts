@@ -74,6 +74,16 @@ export class HomePageComponent implements OnInit {
         const searchQuery: SearchQuery = this._searchFormService.getSearch();
         this._homeSearchResultService.searchCards(searchQuery);
     }
+
+  toggleFilterDrawer() {
+    this.filterDrawer.toggle();
+  }
+
+  scrollToDrawer() {
+    const drawerContainer = document.getElementById('drawerContainer');
+    if (drawerContainer) {
+      drawerContainer.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    }
   }
 
 }

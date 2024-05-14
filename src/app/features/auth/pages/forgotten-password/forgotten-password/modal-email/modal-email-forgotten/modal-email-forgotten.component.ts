@@ -19,12 +19,14 @@ import {SnackbarStatus} from "../../../../../../../shared/enums/snackbar-status.
 })
 
 export class ModalForgottenPassword {
+
+  private _loginService = inject(LoginService);
+  private _fb = inject(FormBuilder);
+  private _dialogRef = inject(MatDialogRef<ModalForgottenPassword>);
+
   constructor(
-    private loginService: LoginService,
-    private fb: FormBuilder,
-    private dialogRef: MatDialogRef<ModalForgottenPassword>
   ) {
-    this.emailForm = this.fb.group({
+    this.emailForm = this._fb.group({
       emailForgotten: ['', [Validators.required, Validators.email]]
     });
   }
@@ -36,7 +38,7 @@ export class ModalForgottenPassword {
 
   requestReset() {
     if (this.emailForm.valid) {
-      this.loginService.requestPasswordReset(this.emailForm.value.emailForgotten).subscribe({
+      this._loginService.requestPasswordReset(this.emailForm.value.emailForgotten).subscribe({
         next: () => {
           this.showSuccessMessage();
         },
@@ -51,7 +53,7 @@ export class ModalForgottenPassword {
   private showSuccessMessage() {
     const successMessage = this._translate.instant('Toasts.confirm-mail-password');
     this._alertService.openSnackBar(successMessage, SnackbarStatus.success);
-    setTimeout(() => this.dialogRef.close(), 2000);
+    setTimeout(() => this._dialogRef.close(), 2000);
   }
 
 

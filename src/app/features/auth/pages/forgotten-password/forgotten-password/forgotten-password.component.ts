@@ -1,7 +1,6 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import { LoginRepository } from "../../../shared/repositories/login.repository";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
@@ -9,8 +8,6 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {LoginService} from "../../../shared/services/login.service";
 import {AlertService} from "../../../../../shared/services/alert.service";
 import {SnackbarStatus} from "../../../../../shared/enums/snackbar-status.enum";
-import {MatDialogRef} from "@angular/material/dialog";
-import {ModalForgottenPassword} from "./modal-email/modal-email-forgotten/modal-email-forgotten.component";
 
 @Component({
   selector: 'app-forgotten-password',
@@ -24,32 +21,31 @@ import {ModalForgottenPassword} from "./modal-email/modal-email-forgotten/modal-
 
   ],
   templateUrl: './forgotten-password.component.html',
-  styleUrls: ['./forgotten-password.component.scss']
+  styleUrls: ['./forgotten-password.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ForgottenPasswordComponent implements OnInit {
 
   private _alertService = inject(AlertService);
   private _router: Router = inject(Router);
   private _translate = inject(TranslateService);
-
+  private _loginService = inject(LoginService);
+  private _fb: FormBuilder = inject(FormBuilder);
+  private _route: ActivatedRoute = inject(ActivatedRoute);
   form!: FormGroup;
   message: string = '';
 
-  constructor(
-    private loginService: LoginService,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-  ) {}
+
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this._route.params.subscribe(params => {
       const token = params['token'];
       this.initializeForm(token);
     });
   }
 
   initializeForm(token: string) {
-    this.form = this.fb.group({
+    this.form = this._fb.group({
       token: [token, Validators.required],
       newPassword: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required]
@@ -62,7 +58,7 @@ export class ForgottenPasswordComponent implements OnInit {
         plainPassword: this.form.value.newPassword,
         plainPasswordVerification: this.form.value.confirmPassword
       };
-      this.loginService.resetPassword(this.form.value.token, payload).subscribe({
+      this._loginService.resetPassword(this.form.value.token, payload).subscribe({
         next: () => {
           const successMessage = this._translate.instant('Toasts.reset-password-success');
           this._alertService.openSnackBar(successMessage, SnackbarStatus.success);

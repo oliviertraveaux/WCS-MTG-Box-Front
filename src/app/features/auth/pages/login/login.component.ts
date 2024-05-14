@@ -42,7 +42,7 @@ export class LoginComponent {
     private _route: ActivatedRoute = inject(ActivatedRoute);
     private _translate = inject(TranslateService);
     private _reconnectUserService = inject(ReconnectUserService);
-    private  dialog = inject( MatDialog)
+    private  _dialog = inject( MatDialog)
 
     loginForm = this._fb.group({
         username: ['', [Validators.required]],
@@ -78,7 +78,7 @@ export class LoginComponent {
     }
 
   openForgotPasswordDialog() {
-    const dialogRef = this.dialog.open(ModalForgottenPassword, {
+    const dialogRef = this._dialog.open(ModalForgottenPassword, {
       width: '400px' // Set your desired width here
     });
 
