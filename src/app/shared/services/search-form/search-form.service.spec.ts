@@ -132,16 +132,27 @@ describe('SearchFormService', () => {
             expect(searchFormServiceMock.searchForm.value).toEqual(expected);
         });
     });
-    describe('textValidator"', () => {
-        it('should return invalid if name length is under 3', () => {
-            const searchForm = formBuilderMock.group({
-                name: ['ca', searchFormServiceMock.textValidator('name')],
-                language: ['french'],
-            });
+    describe('initForm', () => {
+        it('should check validity when name and set have no value', () => {
+            searchFormServiceMock.initForm();
+            searchFormServiceMock.searchForm.get('artist')?.patchValue('bbb');
+            searchFormServiceMock.searchForm.get('rarity')?.patchValue(CardRarity.rare);
+            searchFormServiceMock.searchForm.get('cmc')?.patchValue(1);
 
-            searchFormServiceMock.searchForm = searchForm;
+            expect(searchFormServiceMock.searchForm.get('language')?.disabled).toBe(true);
+            expect(searchFormServiceMock.searchForm.get('rarity')?.valid).toBe(false);
+            expect(searchFormServiceMock.searchForm.get('cmc')?.valid).toBe(false);
+            expect(searchFormServiceMock.searchForm.get('artist')?.valid).toBe(true);
+        });
+        it('should check validity when name has value', () => {
+            searchFormServiceMock.initForm();
+            searchFormServiceMock.searchForm.get('name')?.patchValue('aa');
+            searchFormServiceMock.searchForm.get('rarity')?.patchValue(CardRarity.rare);
+            searchFormServiceMock.searchForm.get('cmc')?.patchValue(1);
 
-            expect(searchForm.valid).toBe(false);
+            expect(searchFormServiceMock.searchForm.get('rarity')?.valid).toBe(true);
+            expect(searchFormServiceMock.searchForm.get('name')?.valid).toBe(false);
+            expect(searchFormServiceMock.searchForm.get('cmc')?.valid).toBe(true);
         });
     });
 });

@@ -37,7 +37,12 @@
         "search": "Rechercher",
         "results": "resultats",
         "result": "resulat",
-        "reset": "Réinitialiser"
+        "reset": "Réinitialiser",
+        "error": {
+          "minLength": "3 caractères min.",
+          "nameOrSetMissing": "Nom ou édition requis.",
+          "language": "Nom requis."
+        }
       },
       "searchResults": {
         "totalResultTextPlural": " résultats correspondants",

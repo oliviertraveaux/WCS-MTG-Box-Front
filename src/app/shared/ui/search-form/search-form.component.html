@@ -2,7 +2,6 @@
     <form [formGroup]="searchForm" class="dense-3 field-max-width flex flex-wrap">
         <div class="flex w-full flex-wrap">
             <!-- Name -->
-
             <mat-form-field
                 appearance="outline"
                 class="w-2/3 pr-1.5 sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[1] sm:px-1.5">
@@ -18,10 +17,14 @@
                     mat-icon-button
                     matSuffix
                     (click)="search()"
-                    [disabled]="searchForm.invalid">
+                    [disabled]="!(isFormValid | async)">
                     <mat-icon>search</mat-icon>
                 </button>
+                <mat-error *ngIf="searchForm.get('name')?.invalid" class="dense-3 text-xs">
+                    {{ 'Collection.addCard.searchForm.error.minLength' | translate }}
+                </mat-error>
             </mat-form-field>
+
             <!-- Language -->
             <ng-container *ngIf="moreFilters">
                 <mat-form-field
@@ -36,6 +39,9 @@
                             {{ language.name | getLanguageAbbreviation }}
                         </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="searchForm.get('language')?.invalid" class="dense-3 text-xs">
+                        {{ 'Collection.addCard.searchForm.error.language' | translate }}
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- Set -->
@@ -73,10 +79,11 @@
                             {{ rarity.name }}
                         </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="searchForm.get('rarity')?.invalid" class="dense-3 text-xs">
+                        {{ 'Collection.addCard.searchForm.error.nameOrSetMissing' | translate }}
+                    </mat-error>
                 </mat-form-field>
-                <!--        </div>-->
 
-                <!--        <div class="flex w-full flex-wrap sm:flex-nowrap">-->
                 <!-- Type -->
 
                 <mat-form-field
@@ -93,6 +100,9 @@
                             {{ type }}
                         </mat-option>
                     </mat-autocomplete>
+                    <mat-error *ngIf="searchForm.get('type')?.invalid" class="dense-3 text-xs">
+                        {{ 'Collection.addCard.searchForm.error.nameOrSetMissing' | translate }}
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- Colors -->
@@ -110,6 +120,9 @@
                             {{ color.name }}
                         </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="searchForm.get('colors')?.invalid" class="dense-3 text-xs">
+                        {{ 'Collection.addCard.searchForm.error.nameOrSetMissing' | translate }}
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- ManaCost -->
@@ -122,6 +135,9 @@
                         'Collection.addCard.searchForm.cmc_label' | translate
                     }}</mat-label>
                     <input min="0" matInput type="number" formControlName="cmc" />
+                    <mat-error *ngIf="searchForm.get('cmc')?.invalid" class="dense-3 text-xs">
+                        {{ 'Collection.addCard.searchForm.error.nameOrSetMissing' | translate }}
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- Text -->
@@ -132,6 +148,9 @@
                     class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
                     <mat-label>{{ 'Collection.addCard.searchForm.text' | translate }}</mat-label>
                     <input matInput formControlName="text" />
+                    <mat-error *ngIf="searchForm.get('text')?.invalid" class="dense-3 text-xs">
+                        {{ 'Collection.addCard.searchForm.error.minLength' | translate }}
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- Artist -->
@@ -142,6 +161,9 @@
                     class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[2] sm:px-1.5">
                     <mat-label>{{ 'Collection.addCard.searchForm.artist' | translate }}</mat-label>
                     <input matInput formControlName="artist" />
+                    <mat-error *ngIf="searchForm.get('artist')?.invalid" class="dense-3 text-xs">
+                        {{ 'Collection.addCard.searchForm.error.minLength' | translate }}
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- location -->
@@ -160,7 +182,6 @@
             </ng-container>
         </div>
     </form>
-    <!--    <div class="flex-grow"></div>-->
 
     <div class="flex w-full flex-col sm:flex-row">
         <div class="flex w-full flex-col gap-2 sm:w-fit sm:flex-row">
@@ -184,7 +205,7 @@
                 mat-flat-button
                 color="primary"
                 (click)="search()"
-                [disabled]="!isFormValid">
+                [disabled]="!(isFormValid | async)">
                 {{ 'Collection.addCard.searchForm.search' | translate }}
             </button>
         </div>
