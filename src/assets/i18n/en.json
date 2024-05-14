@@ -37,7 +37,12 @@
         "search": "Search",
         "results": "results",
         "result": "result",
-        "reset": "RESET"
+        "reset": "RESET",
+        "error": {
+          "minLength": "3 characters min.",
+          "nameOrSetMissing": "Name or set required.",
+          "language": "Name required."
+        }
       },
       "searchResults": {
         "totalResultTextPlural": " matching results",

@@ -57,7 +57,7 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
     status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
 
     ngOnInit(): void {
-        this.searchForm = this._searchFormService.searchForm;
+        this.searchForm = this._searchFormService.initForm();
         this._searchFormService.updateValidityWhenFormValueChanges();
         this.cardTypes = this._filtersStateService.getTypesValue().map((type: any) => type.name);
         this.cardRarities = this._filtersStateService.getRaritiesValue();

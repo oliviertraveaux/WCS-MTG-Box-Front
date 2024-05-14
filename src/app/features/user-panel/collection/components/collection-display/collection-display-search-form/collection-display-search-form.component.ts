@@ -31,16 +31,20 @@ export class CollectionDisplaySearchFormComponent implements OnInit {
     cardRarities: BasicFilter[] = [];
     cardLanguages: BasicFilter[] = [];
     cardSets: SetFilter[] = [];
+    valid: boolean = false;
 
     cards$: Observable<UserCard[]> = this._searchResultsStateService.getCards$();
     status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
 
     ngOnInit(): void {
-        this.searchForm = this._searchFormService.searchForm;
+        this.searchForm = this._searchFormService.initForm();
         this._searchFormService.updateValidityWhenFormValueChanges();
         this.cardRarities = this._filtersStateService.getRaritiesValue();
         this.cardLanguages = this._filtersStateService.getLanguagesValue();
         this.cardSets = this._filtersStateService.getSetsValue();
+        this.searchForm.valueChanges.subscribe(() => {
+            this.valid = this.searchForm.valid;
+        });
     }
 
     search() {

@@ -6,8 +6,9 @@ import {
     FormGroup,
     ValidationErrors,
     ValidatorFn,
+    Validators,
 } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs';
 import { SearchQuery } from '../../../features/user-panel/collection/models/search-query.model';
 import { CardRarity } from '../../collection/enums/card-rarity.enum';
 import { CardColor } from '../../collection/models/card-color.model';
@@ -21,22 +22,22 @@ export class SearchFormService {
     private _destroyRef = inject(DestroyRef);
 
     searchForm: FormGroup = this._fb.group({
-        name: [null, this.textValidator('name')],
-        language: [''],
+        name: [null],
+        language: [{ value: '', disabled: true }],
         set: [''],
         cmc: [''],
         rarity: [''],
         type: [''],
         colors: [''],
-        text: [null, this.textValidator('text')],
-        artist: [null, this.textValidator('artist')],
+        text: [null],
+        artist: [null],
     });
 
     allControlsExcept(controlNames: string[]): string[] {
         return (
             this.searchForm &&
             Object.keys(this.searchForm.controls).filter(
-                (control) => !controlNames.includes(control)
+                (control: string) => !controlNames.includes(control)
             )
         );
     }
@@ -90,8 +91,8 @@ export class SearchFormService {
     }
 
     reset(): void {
-        this.searchForm.get('name')?.patchValue(null),
-            this.searchForm.get('language')?.patchValue('');
+        this.searchForm.get('name')?.patchValue(null);
+        this.searchForm.get('language')?.patchValue('');
         this.searchForm.get('set')?.patchValue('');
         this.searchForm.get('cmc')?.patchValue('');
         this.searchForm.get('rarity')?.patchValue('');
@@ -107,29 +108,45 @@ export class SearchFormService {
         for (let control of Object.keys(this.searchForm.controls)) {
             this.searchForm
                 .get(control)
-                ?.valueChanges.pipe(takeUntilDestroyed(this._destroyRef), debounceTime(300))
+                ?.valueChanges.pipe(takeUntilDestroyed(this._destroyRef), distinctUntilChanged())
                 .subscribe(() => {
                     for (let ctrl of this.allControlsExcept([control])) {
                         this.searchForm.get(ctrl)?.updateValueAndValidity();
                     }
+                    this.searchForm.updateValueAndValidity();
                 });
         }
     }
 
-    textValidator(controlName: string): ValidatorFn {
+    oneControlHasValueValidator(controlNameList: string[]): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
-            const value = control.value;
-            const otherControlsHaveValues =
-                this.searchForm &&
-                this.allControlsExcept([controlName]).some((otherControl) => {
-                    const otherControlValue = this.searchForm.get(otherControl)?.value;
-                    return otherControlValue !== null && otherControlValue !== '';
-                });
-
-            if (!otherControlsHaveValues && (value === null || value.length < 3)) {
-                return { invalidName: true };
+            const controlList = controlNameList.map(
+                (controlName) => this.searchForm.get(controlName)?.value
+            );
+            if (control.value && controlList.every((controlValue) => !controlValue)) {
+                return { invalidOneControlHasValue: true };
             }
             return null;
         };
+    }
+
+    initForm(): FormGroup {
+        this.searchForm.get('name')?.addValidators(Validators.minLength(3));
+        this.searchForm.get('artist')?.addValidators(Validators.minLength(3));
+        this.searchForm.get('text')?.addValidators(Validators.minLength(3));
+        this.searchForm
+            .get('rarity')
+            ?.addValidators(this.oneControlHasValueValidator(['name', 'set']));
+        this.searchForm
+            .get('cmc')
+            ?.addValidators(this.oneControlHasValueValidator(['name', 'set']));
+        this.searchForm
+            .get('type')
+            ?.addValidators(this.oneControlHasValueValidator(['name', 'set']));
+        this.searchForm
+            .get('colors')
+            ?.addValidators(this.oneControlHasValueValidator(['name', 'set']));
+        this.searchForm.get('language')?.addValidators(this.oneControlHasValueValidator(['name']));
+        return this.searchForm;
     }
 }
