@@ -1,4 +1,19 @@
-<mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full">
+<div class="flex h-full w-full flex-col min-w-full">
+  <!-- Video Background -->
+  <div class="relative bg-gray-900 hero bg-cover bg-center bg-no-repeat" style="position: relative; overflow: hidden;">
+    <video autoplay muted loop class="absolute w-full h-full object-cover" >
+      <source src="./assets/video/hero.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="absolute inset-0 bg-black opacity-20"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center">
+      <h1 class="text-6xl font-bold mb-4 text-white uppercase tracking-wide outline">MTG Box</h1>
+      <button mat-raised-button color="primary" class="m-2 py-2 px-4 hover:bg-blue-700 text-white font-bold rounded" (click)="scrollToDrawer()">{{ 'home.access-to-cards' | translate }}</button>
+    </div>
+  </div>
+</div>
+
+<mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full" id="drawerContainer">
     <mat-drawer #filterDrawer class="h-full w-full px-4">
         <app-search-form-drawer (toggleDrawer)="toggleFilterDrawer()">
             <app-home-search-form></app-home-search-form>

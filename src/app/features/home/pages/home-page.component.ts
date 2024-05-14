@@ -59,8 +59,8 @@ export class HomePageComponent implements OnInit {
     private _homeSearchResultService = inject(HomeSearchResultsService);
     private _homeSearchResultStatesService = inject(HomeSearchResultsStatesService);
 
-    readonly isTablet = this._breakpointObserverService.isTablet;
-    readonly isDesktop = this._breakpointObserverService.isDesktop;
+  readonly isTablet = this._breakpointObserverService.isTablet;
+  readonly isDesktop = this._breakpointObserverService.isDesktop;
 
     searchForm = this._searchFormService.searchForm;
     cardResults$!: Observable<HomeCardSearchResult[]>;
@@ -75,7 +75,15 @@ export class HomePageComponent implements OnInit {
         this._homeSearchResultService.searchCards(searchQuery);
     }
 
-    toggleFilterDrawer() {
-        this.filterDrawer.toggle();
+  toggleFilterDrawer() {
+    this.filterDrawer.toggle();
+  }
+
+  scrollToDrawer() {
+    const drawerContainer = document.getElementById('drawerContainer');
+    if (drawerContainer) {
+      drawerContainer.scrollIntoView({behavior: 'smooth', block: 'nearest'});
     }
+  }
+
 }
