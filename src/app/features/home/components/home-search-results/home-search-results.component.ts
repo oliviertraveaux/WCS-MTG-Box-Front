@@ -27,6 +27,7 @@ import { BreakpointObserverService } from '../../../../shared/services/breakpoin
 import { GetUserCardImgPipe } from '../../../user-panel/collection/shared/pipes/get-user-card-img.pipe';
 import { GetUserCardNamePipe } from '../../../user-panel/collection/shared/pipes/get-user-card-name.pipe';
 import { HomeCardSearchResult, UserCardOnMarket } from '../../models/home-search-results.model';
+import { HomeSearchResultComponent } from '../home-search-result/home-search-result.component';
 
 @Component({
     selector: 'app-home-search-results',
@@ -47,6 +48,7 @@ import { HomeCardSearchResult, UserCardOnMarket } from '../../models/home-search
         MatSortModule,
         NgOptimizedImage,
         MatPaginatorModule,
+        HomeSearchResultComponent,
     ],
     templateUrl: './home-search-results.component.html',
     styleUrls: ['./home-search-results.component.scss'],
@@ -67,6 +69,7 @@ export class HomeSearchResultsComponent implements OnInit {
 
     readonly isDesktop = this._breakpointObserverService.isDesktop;
     @Input() resultCards$: Observable<HomeCardSearchResult[]> = of([]);
+    @Input() isFrenchSearch: boolean = false;
 
     displayedColumns: string[] = ['name', 'setName', 'rarity', 'quantity'];
     displayedColumnsWithExpand: string[] = [...this.displayedColumns, 'expand'];
@@ -99,13 +102,18 @@ export class HomeSearchResultsComponent implements OnInit {
                 let value: any = item;
                 accessor.forEach((a) => {
                     value = value[a];
-                    console.log('value:', value);
                 });
 
                 return value;
             }
             if (property == 'quantity') {
                 return item.userCardsOnMarket.length;
+            }
+
+            if (property == 'name') {
+                if (this.isFrenchSearch) {
+                    return item.frenchName;
+                } else return item.name;
             }
             // Access as normal (non nested object)
             // @ts-ignore
@@ -114,7 +122,6 @@ export class HomeSearchResultsComponent implements OnInit {
     }
 
     onClick(row: UserCardOnMarket): void {
-        console.log('test onclick: ', this.expandedElement);
         this.expandedElement = this.expandedElement === row ? null : row;
     }
 

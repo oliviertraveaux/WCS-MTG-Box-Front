@@ -1,0 +1,132 @@
+<div class="my-2 flex w-full flex-col px-2 md:flex-row">
+    <div class="mb-2 flex grow flex-row lg:mb-0">
+        <img
+            *ngIf="isDesktop | async; else mobilePic"
+            [ngSrc]="isFrenchSearch ? resultCard.frenchImageUrl : resultCard.imageUrl"
+            class="py-1"
+            style="object-fit: contain"
+            [alt]="resultCard.imageUrl"
+            [width]="265"
+            [height]="370" />
+        <ng-template #mobilePic>
+            <img
+                [ngSrc]="isFrenchSearch ? resultCard.frenchImageUrl : resultCard.imageUrl"
+                class="py-1"
+                style="object-fit: contain"
+                [alt]="resultCard.imageUrl"
+                [width]="199"
+                [height]="278" />
+        </ng-template>
+        <div class="flex flex-col">
+            <mat-list class="dense-3">
+                <mat-list-item>
+                    <span matListItemTitle>{{
+                        'home.searchResultLists.englishNameTitle' | translate
+                    }}</span>
+                    <span matListItemLine class="!whitespace-normal">{{ resultCard.name }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                    <span matListItemTitle>{{
+                        'home.searchResultLists.frenchNameTitle' | translate
+                    }}</span>
+                    <span matListItemLine class="!whitespace-normal">{{
+                        resultCard.frenchName ? resultCard.frenchName : ''
+                    }}</span>
+                </mat-list-item>
+                <mat-list-item>
+                    <span matListItemTitle> {{ 'home.searchResultLists.set' | translate }}</span>
+                    <span matListItemLine class="!whitespace-normal">
+                        {{ resultCard.setName }}
+                    </span>
+                </mat-list-item>
+                <mat-list-item>
+                    <span matListItemTitle> {{ 'home.searchResultLists.artist' | translate }}</span>
+                    <span matListItemLine class="!whitespace-normal">
+                        {{ resultCard.artist }}
+                    </span>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+
+    <div class="mat-elevation-z2 mt-2 grow">
+        <table
+            mat-table
+            [dataSource]="resultData"
+            matSort
+            (matSortChange)="announceSortChange($event)"
+            class="dense-3 w-full">
+            <ng-container matColumnDef="userName">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by userName">
+                    {{ 'home.searchResultLists.userName' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.userName }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quality">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by quality">
+                    {{ 'home.searchResultLists.quality' | translate }}
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let element"
+                    [ngClass]="element.quality | getQualityClass">
+                    {{ element.quality }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="city">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by city">
+                    {{ 'home.searchResultLists.city' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.city }} ({{ element.department }})
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="language">
+                <th mat-header-cell *matHeaderCellDef>
+                    {{ 'home.searchResultLists.language' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.language === 'French' ? 'FR' : 'EN' }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button
+                        mat-icon-button
+                        matTooltip="voir annonce"
+                        matTooltipPosition="right"
+                        class="material-icons app-toolbar-menu delete-button"
+                        (click)="navigateToAnnounce(element.userCardId)">
+                        <mat-icon> arrow_forward </mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" class="h-8"></tr>
+        </table>
+        <mat-paginator
+            class="pb-2"
+            [pageSizeOptions]="[5, 10, 20]"
+            [showFirstLastButtons]="!!resultData.data.length"></mat-paginator>
+    </div>
+</div>

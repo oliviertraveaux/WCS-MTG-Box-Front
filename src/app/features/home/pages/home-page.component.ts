@@ -6,10 +6,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { RequestStatus } from '../../../shared/enums/request-status.enum';
 import { BreakpointObserverService } from '../../../shared/services/breakpoint-observer.service';
 import { SearchFormHomeService } from '../../../shared/services/search-form/search-form-home.service';
 import { SearchFormService } from '../../../shared/services/search-form/search-form.service';
@@ -42,6 +44,7 @@ import { HomeSearchResultsService } from '../shared/services/home-search-results
         TranslateModule,
         SearchFormNameOnlyComponent,
         HomeSearchResultsComponent,
+        MatProgressSpinnerModule,
     ],
     providers: [
         SearchFormHomeService,
@@ -59,11 +62,17 @@ export class HomePageComponent implements OnInit {
     private _homeSearchResultService = inject(HomeSearchResultsService);
     private _homeSearchResultStatesService = inject(HomeSearchResultsStatesService);
 
-  readonly isTablet = this._breakpointObserverService.isTablet;
-  readonly isDesktop = this._breakpointObserverService.isDesktop;
+    protected readonly RequestStatus = RequestStatus;
+
+    readonly isTablet = this._breakpointObserverService.isTablet;
+    readonly isDesktop = this._breakpointObserverService.isDesktop;
 
     searchForm = this._searchFormService.searchForm;
     cardResults$!: Observable<HomeCardSearchResult[]>;
+
+    isFrenchSearch: Observable<boolean> = this._homeSearchResultStatesService.getIsFrenchSearch$();
+    status$: Observable<RequestStatus> =
+        this._homeSearchResultStatesService.getSearchRequestStatus$();
 
     ngOnInit() {
         this.cardResults$ = this._homeSearchResultStatesService.getHomeCards$();
@@ -71,6 +80,9 @@ export class HomePageComponent implements OnInit {
     }
 
     search() {
+        this._homeSearchResultStatesService.setIsFrenchSearch(
+            this._searchFormService.languageControl.name === 'French'
+        );
         const searchQuery: SearchQuery = this._searchFormService.getSearch();
         this._homeSearchResultService.searchCards(searchQuery);
     }
@@ -82,8 +94,13 @@ export class HomePageComponent implements OnInit {
   scrollToDrawer() {
     const drawerContainer = document.getElementById('drawerContainer');
     if (drawerContainer) {
-      drawerContainer.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      drawerContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
 
+    searchStarted() {
+        this._homeSearchResultStatesService.setIsFrenchSearch(
+            this._searchFormService.languageControl.name === 'French'
+        );
+    }
 }

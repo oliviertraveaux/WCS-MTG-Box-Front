@@ -19,7 +19,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 3,
                 userName: 'Romain',
-                qualityName: CardQuality.good,
+                quality: CardQuality.good,
                 language: 'English',
                 userCardId: 45,
                 department: 31,
@@ -29,7 +29,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 3,
                 userName: 'Romain',
-                qualityName: CardQuality.good,
+                quality: CardQuality.good,
                 language: 'French',
                 userCardId: 46,
                 department: 31000,
@@ -40,7 +40,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 3,
                 userName: 'Romain',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'French',
                 userCardId: 47,
                 department: 31000,
@@ -51,7 +51,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 4,
                 userName: 'Olivier',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'French',
                 userCardId: 60,
                 department: 33000,
@@ -62,7 +62,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 4,
                 userName: 'Olivier',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'English',
                 userCardId: 61,
                 department: 33000,
@@ -73,7 +73,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 4,
                 userName: 'Olivier',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'English',
                 userCardId: 62,
                 department: 33000,
@@ -98,7 +98,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 3,
                 userName: 'Romain',
-                qualityName: CardQuality.excellent,
+                quality: CardQuality.excellent,
                 language: 'English',
                 userCardId: 70,
                 department: 31000,
@@ -109,7 +109,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 4,
                 userName: 'Olivier',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'French',
                 userCardId: 81,
                 department: 33000,
@@ -134,7 +134,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 3,
                 userName: 'Romain',
-                qualityName: CardQuality.excellent,
+                quality: CardQuality.excellent,
                 language: 'English',
                 userCardId: 70,
                 department: 31000,
@@ -145,7 +145,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 4,
                 userName: 'Olivier',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'French',
                 userCardId: 81,
                 department: 33000,
@@ -170,7 +170,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 3,
                 userName: 'Romain',
-                qualityName: CardQuality.excellent,
+                quality: CardQuality.excellent,
                 language: 'English',
                 userCardId: 70,
                 department: 31000,
@@ -181,7 +181,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 4,
                 userName: 'Olivier',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'French',
                 userCardId: 81,
                 department: 33000,
@@ -206,7 +206,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 3,
                 userName: 'Romain',
-                qualityName: CardQuality.excellent,
+                quality: CardQuality.excellent,
                 language: 'English',
                 userCardId: 70,
                 department: 31000,
@@ -217,7 +217,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 4,
                 userName: 'Olivier',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'French',
                 userCardId: 81,
                 department: 33000,
@@ -242,7 +242,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 3,
                 userName: 'Romain',
-                qualityName: CardQuality.excellent,
+                quality: CardQuality.excellent,
                 language: 'English',
                 userCardId: 70,
                 department: 31000,
@@ -253,7 +253,7 @@ const HOME_RESULTS_1: HomeCardSearchResult[] = [
             {
                 userId: 4,
                 userName: 'Olivier',
-                qualityName: CardQuality.nearMint,
+                quality: CardQuality.nearMint,
                 language: 'French',
                 userCardId: 81,
                 department: 33000,
