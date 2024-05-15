@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    inject,
+    OnInit,
+    Output,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { RequestStatus } from '../../../../shared/enums/request-status.enum';
@@ -19,6 +26,8 @@ import { HomeSearchResultsService } from '../../shared/services/home-search-resu
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeSearchFormComponent implements OnInit {
+    @Output() searchStarted = new EventEmitter();
+
     private _searchFormService = inject(SearchFormHomeService);
     private _searchResultsService = inject(HomeSearchResultsService);
     private _filtersStateService = inject(FiltersStateService);
@@ -41,6 +50,7 @@ export class HomeSearchFormComponent implements OnInit {
     }
 
     search() {
+        this.searchStarted.emit();
         const searchQuery: SearchQuery = this._searchFormService.getSearch();
         this._searchResultsService.searchCards(searchQuery);
     }

@@ -136,16 +136,20 @@
     "toast": {
       "search-cards-error": "Une erreur est survenue pendant la recherche"
     },
-    "searchResultList": {
+    "searchResultLists": {
       "name": "Nom",
       "set": "Edition",
       "quality": "Qualité",
       "rarity": "Rareté",
-      "delete": "Supprimer",
       "frenchNameTitle": "Nom Français",
       "englishNameTitle": "Nom Anglais",
-      "quantity": "quantité",
-      "noResults": "Aucun résultats"
+      "quantity": "Quantité",
+      "noResults": "Aucun résultats",
+      "artist": "Artiste",
+      "city": "Ville",
+      "info":"Info",
+      "language": "langue",
+      "userName": "Nom"
     }
   },
   "ResetPassword": {

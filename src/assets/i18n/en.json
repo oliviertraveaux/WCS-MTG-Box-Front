@@ -138,16 +138,20 @@
     "toast": {
       "search-cards-error": "Something wrong happened during the search"
     },
-    "searchResultList": {
+    "searchResultLists": {
       "name": "Name",
       "set": "Set",
       "quality": "Quality",
       "rarity": "Rarity",
-      "delete": "Delete",
       "frenchNameTitle": "French Name",
       "englishNameTitle": "English Name",
-      "quantity": "quantity",
-      "noResults": "No data matching the filter"
+      "quantity": "Quantity",
+      "noResults": "No data matching the filter",
+      "artist": "Artist",
+      "city": "City",
+      "info":"Info",
+      "language": "language",
+      "userName": "User"
     }
   },
   "ResetPassword": {

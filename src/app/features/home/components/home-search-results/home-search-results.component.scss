@@ -5,9 +5,6 @@
   @include sm {
     padding: 0 16px 0 16px;
   }
-  @include lg {
-    padding: 0 8px 0 16px;
-  }
 }
 
 .cdk-column-expand {
@@ -27,11 +24,21 @@ tr.example-detail-row {
 
 tr.element-row:not(.example-expanded-row):hover {
   background: whitesmoke;
+
 }
 
 tr.element-row:not(.example-expanded-row):active {
   background: #efefef;
 }
+
+tr.element-row:is(.example-expanded-row) {
+  background-color: #d0a386;
+}
+
+tr.element-detail:is(.example-expanded-row) {
+  border: 5px solid #d0a386;
+}
+
 
 .element-row td {
   border-bottom-width: 0;
@@ -40,8 +47,10 @@ tr.element-row:not(.example-expanded-row):active {
 .element-detail {
   overflow: hidden;
   display: flex;
+
 }
 
 .mdc-list-item.mdc-list-item--with-two-lines {
   height:auto;
 }
+

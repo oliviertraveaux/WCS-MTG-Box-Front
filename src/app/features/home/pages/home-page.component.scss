@@ -1,5 +1,10 @@
 @import "src/_global-variables.scss";
 
+:host{
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 .hero {
 

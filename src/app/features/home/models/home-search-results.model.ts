@@ -18,7 +18,7 @@ export interface HomeCardSearchResult {
 export interface UserCardOnMarket {
     userId: number;
     userName: string;
-    qualityName: CardQuality;
+    quality: CardQuality;
     language: string;
     userCardId: number;
     city: string;

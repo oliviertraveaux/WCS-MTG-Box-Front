@@ -16,7 +16,7 @@
 <mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full" id="drawerContainer">
     <mat-drawer #filterDrawer class="h-full w-full px-4">
         <app-search-form-drawer (toggleDrawer)="toggleFilterDrawer()">
-            <app-home-search-form></app-home-search-form>
+            <app-home-search-form (searchStarted)="searchStarted()"></app-home-search-form>
         </app-search-form-drawer>
     </mat-drawer>
     <mat-drawer-content>
@@ -28,12 +28,19 @@
                     (toggleFilterDrawer)="toggleFilterDrawer()">
                 </app-search-form-name-only>
                 <ng-container *ngIf="isTablet || isDesktop | async">
-                    <app-home-search-form></app-home-search-form>
+                    <app-home-search-form (searchStarted)="searchStarted()"></app-home-search-form>
                 </ng-container>
 
-                <app-home-search-results [resultCards$]="cardResults$"></app-home-search-results>
+                <app-home-search-results
+                    *ngIf="(status$ | async) !== RequestStatus.loading; else loading"
+                    [isFrenchSearch]="!!(isFrenchSearch | async)"
+                    class="overflow-y-auto scrollbar-hide"
+                    [resultCards$]="cardResults$"></app-home-search-results>
                 <div class="flex-grow bg-blue-400"></div>
             </div>
         </section>
     </mat-drawer-content>
 </mat-drawer-container>
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>

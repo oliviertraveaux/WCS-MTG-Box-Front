@@ -9,6 +9,7 @@ import { HomeCardSearchResult } from '../../models/home-search-results.model';
 export class HomeSearchResultsStatesService {
     private _homeCards$ = new BehaviorSubject<HomeCardSearchResult[]>([]);
     private _searchRequestStatus$ = new BehaviorSubject<RequestStatus>(RequestStatus.initial);
+    private _isFrenchSearch$ = new BehaviorSubject<boolean>(false);
 
     getHomeCards$(): Observable<HomeCardSearchResult[]> {
         return this._homeCards$;
@@ -32,5 +33,17 @@ export class HomeSearchResultsStatesService {
 
     setSearchRequestStatus(status: RequestStatus): void {
         this._searchRequestStatus$.next(status);
+    }
+
+    getIsFrenchSearch$(): Observable<boolean> {
+        return this._isFrenchSearch$;
+    }
+
+    getIsFrenchSearchValue(): boolean {
+        return this._isFrenchSearch$.getValue();
+    }
+
+    setIsFrenchSearch(value: boolean): void {
+        this._isFrenchSearch$.next(value);
     }
 }

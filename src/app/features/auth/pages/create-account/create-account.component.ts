@@ -22,28 +22,27 @@ import { Observable, map, of } from 'rxjs';
 import { SnackbarStatus } from '../../../../shared/enums/snackbar-status.enum';
 import { AlertService } from '../../../../shared/services/alert.service';
 import { RegistrationFormData } from '../../models/auth.model';
+import { francePostalCodes } from '../../shared/postal-code-utils';
 import { RegisterService } from '../../shared/services/register.service';
-import {francePostalCodes} from "../../shared/postal-code-utils";
-import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 
 @Component({
     selector: 'app-create-account',
     standalone: true,
-  imports: [
-    CommonModule,
-    MatStepperModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
+    imports: [
+        CommonModule,
+        MatStepperModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule,
 
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatIconModule,
-    TranslateModule,
-  ],
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSnackBarModule,
+        MatIconModule,
+        TranslateModule,
+    ],
     templateUrl: './create-account.component.html',
     styleUrls: ['./create-account.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,7 +59,7 @@ export class CreateAccountComponent {
     isConfirmPasswordHidden = true;
     isUsernameAvailable: boolean = true;
     isEmailAvailable: boolean = true;
-  departments: any = francePostalCodes;
+    departments: any = francePostalCodes;
 
     userNameFormGroup = this._formBuilder.group({
         userName: [

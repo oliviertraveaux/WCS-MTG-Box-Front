@@ -72,7 +72,7 @@
                     class="w-full sm:w-auto sm:flex-shrink-[1] sm:flex-grow-[3] sm:px-1.5">
                     <mat-label>{{ 'Collection.addCard.searchForm.rarity' | translate }}</mat-label>
                     <mat-select formControlName="rarity">
-                        <mat-option>{{
+                        <mat-option [value]="null">{{
                             'Collection.addCard.searchForm.none' | translate
                         }}</mat-option>
                         <mat-option *ngFor="let rarity of cardRarities" [value]="rarity.name">
@@ -113,7 +113,7 @@
                     class="w-1/2 pr-1.5 sm:w-auto sm:flex-shrink-[2] sm:flex-grow-[1] sm:px-1.5">
                     <mat-label>{{ 'Collection.addCard.searchForm.color' | translate }}</mat-label>
                     <mat-select formControlName="colors">
-                        <mat-option>{{
+                        <mat-option [value]="null">{{
                             'Collection.addCard.searchForm.none' | translate
                         }}</mat-option>
                         <mat-option *ngFor="let color of CARD_COLORS" [value]="color.value">
