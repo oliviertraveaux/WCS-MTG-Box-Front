@@ -5,7 +5,7 @@
     "email": "Email",
     "password": "Mot de passe",
     "password-confirm": "Confirmer le mot de passe",
-    "postal-code": "Code Postal",
+    "department": "Département",
     "city": "Ville",
     "next": "Suivant",
     "sign-up": "S'inscrire",
@@ -163,6 +163,33 @@
     "confirm-password": "Confirmer le mot de passe",
     "password-match": "Les mots de passe doivent correspondre",
     "update-password": "Mettre à jour le mot de passe"
+  },
+
+  "UpdateProfile": {
+    "title": "Modifier les Informations de l'Utilisateur",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "department": "Département",
+    "city": "Ville",
+    "active": "Collection visible",
+    "toast": {
+      "update-success": "Profil mis à jour",
+      "update-fail": "Une erreur est survenue",
+      "username" : "Le nom a bien été modifié !",
+      "userInfos" : "Modifications effectuées",
+      "userPassword" : "Le mot de passe a bien été modifié"
+    },
+    "save": "Enregistrer",
+    "password": "Mot de passe",
+    "password-modify": "Modifier le mot de passe",
+    "password-current": "Mot de passe actuel",
+    "password-invalid" : "Mot de passe invalide",
+    "password-new": "Nouveau mot de passe",
+    "password-confirm": "Confirmer le  nouveau mot de passe",
+    "password-modified" : "Mot de passe modifié",
+    "delete-account " : "Supprimer le compte",
+    "change-username-info" : "Une fois le nom modifié, vous allez être déconnecté et vous devrez vous reconnecter avec le nouveau nom",
+    "change-username-title" : "Changement du nom d'utilisateur"
   }
 }
 

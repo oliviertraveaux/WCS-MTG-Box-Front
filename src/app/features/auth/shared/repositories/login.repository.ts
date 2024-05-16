@@ -51,6 +51,11 @@ export class LoginRepository {
         );
     }
 
+  loginLogout(): Observable<any> {
+    return this.http.post(this.logoutUrl, { withCredentials: true });
+  }
+
+
   requestPasswordReset(email: string): Observable<any> {
     return this.http.post(`${this.passwordForgottenUrl}/${email}`, {});
   }

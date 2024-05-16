@@ -24,6 +24,11 @@ export class LoginService {
     return this.authRepository.logout().subscribe()
   }
 
+  loginLogout(): Observable<any> {
+    return this.authRepository.loginLogout();
+  }
+
+
   requestPasswordReset(email: string): Observable<any> {
     return this.authRepository.requestPasswordReset(email);
   }

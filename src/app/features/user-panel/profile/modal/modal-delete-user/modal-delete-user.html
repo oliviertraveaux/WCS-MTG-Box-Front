@@ -1,0 +1,21 @@
+<h3 mat-dialog-title class="text-lg font-semibold text-gray-900">Attention la suppression de votre compte entrainera la supprission de toutes vos données </h3>
+<mat-dialog-content class="mat-typography p-4">
+  <form [formGroup]="passwordForm" (ngSubmit)="deleteUser()" class="space-y-6">
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label class="text-gray-700">Entrez votre mot de passe pour confirmer</mat-label>
+      <input matInput formControlName="currentPassword" type="password" required class="w-full">
+      <mat-error *ngIf="passwordForm.controls['currentPassword'].errors && passwordForm.controls['currentPassword'].touched">
+        <span class="text-red-500 text-sm">{{ 'UpdateProfile.password-invalid' | translate }}</span>
+      </mat-error>
+    </mat-form-field>
+
+
+
+
+    <button mat-button mat-dialog-close class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md">{{ 'ResetPassword.cancel' | translate }}</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!passwordForm.valid" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md disabled:bg-blue-300">{{ 'ResetPassword.submit' | translate }}</button>
+  </form>
+
+
+  </mat-dialog-content>

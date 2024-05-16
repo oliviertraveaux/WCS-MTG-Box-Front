@@ -9,13 +9,14 @@ import {LoginService} from "../../../../../shared/services/login.service";
 import {AlertService} from "../../../../../../../shared/services/alert.service";
 import {ActivatedRoute} from "@angular/router";
 import {SnackbarStatus} from "../../../../../../../shared/enums/snackbar-status.enum";
+import {NgIf} from "@angular/common";
 
 
 @Component({
   selector: 'modal-email-forgotten',
   templateUrl: 'modal-email-forgotten.html',
   standalone: true,
-  imports: [MatButtonModule, MatDialogModule, ReactiveFormsModule, MatInputModule, TranslateModule],
+  imports: [MatButtonModule, MatDialogModule, ReactiveFormsModule, MatInputModule, TranslateModule, NgIf],
 })
 
 export class ModalForgottenPassword {

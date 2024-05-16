@@ -4,7 +4,7 @@ export interface UserInfo {
     email: string;
     isActive: boolean;
     isBanned: boolean;
-    postCode: number;
+    department: number;
     city: string;
     lastConnectionDate: Date;
     creationDate: Date;

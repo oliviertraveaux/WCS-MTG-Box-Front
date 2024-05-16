@@ -5,7 +5,7 @@
     "email": "Email",
     "password": "Password",
     "password-confirm": "Confirm Password",
-    "postal-code": "Postal Code",
+    "department": "Department",
     "city": "City",
     "next": "Next",
     "sign-up": "Sign Up",
@@ -166,5 +166,22 @@
     "password-match" : "Passwords must match",
     "update-password" : "Update Password"
 
+  },
+  "UpdateProfile": {
+    "title": "Edit User Information",
+    "username": "Username",
+    "email": "Email",
+    "department": "Department",
+    "city": "City",
+    "active": "Visible collection",
+    "toast": {
+      "update-success": "Profile updated",
+      "update-fail": "An error occurred"
+    },
+    "save": "Save",
+    "password": "Password",
+    "delete-account": "Delete Account"
   }
 }
+
+
