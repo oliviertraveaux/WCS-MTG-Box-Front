@@ -19,6 +19,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { GetQualityClassPipe } from '../../../../shared/collection/pipes/get-quality.pipe';
 import { BreakpointObserverService } from '../../../../shared/services/breakpoint-observer.service';
@@ -43,6 +44,7 @@ import { HomeCardSearchResult, UserCardOnMarket } from '../../models/home-search
         MatPaginatorModule,
         MatTooltipModule,
         GetQualityClassPipe,
+        RouterLink,
     ],
     templateUrl: './home-search-result.component.html',
     styleUrls: ['./home-search-result.component.scss'],

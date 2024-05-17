@@ -1,0 +1,22 @@
+@import "src/_global-variables";
+
+.example-list-wrapping {
+  max-width: 250px;
+  @include lg {
+    max-width: 350px;
+  }
+}
+
+.example-card {
+  margin-left: 16px;
+  margin-right: 16px;
+
+  @include lg {
+    max-width: 1024px;
+    height: 400px;
+  }
+}
+
+.mdc-list-item--with-two-lines .mdc-list-item__primary-text {
+  margin-top: -4px;
+}
