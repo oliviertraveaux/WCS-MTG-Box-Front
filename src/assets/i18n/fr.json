@@ -149,7 +149,8 @@
       "city": "Ville",
       "info":"Info",
       "language": "langue",
-      "userName": "Nom"
+      "userName": "Nom",
+      "go-to-ad-tooltip": "Voir annonce"
     }
   },
   "ResetPassword": {
@@ -167,6 +168,26 @@
     "confirm-password": "Confirmer le mot de passe",
     "password-match": "Les mots de passe doivent correspondre",
     "update-password": "Mettre à jour le mot de passe"
+  },
+  "card-ad": {
+    "name": "Nom",
+    "set": "Edition",
+    "quality": "Qualité",
+    "rarity": "Rareté",
+    "frenchNameTitle": "Nom Français",
+    "englishNameTitle": "Nom Anglais",
+    "artist": "Artiste",
+    "text": "texte",
+    "city": "Ville",
+    "language": "langue",
+    "userName": "Nom",
+    "make-an-offer-button": "Faire un offre",
+    "ongoing-offers-title": "Offre(s) en cours"
+  },
+  "page-not-found": {
+    "title1": "404",
+    "title2": "Cette page n'existe pas!",
+    "button-text": "Retour à l'accueil"
   }
 }
 

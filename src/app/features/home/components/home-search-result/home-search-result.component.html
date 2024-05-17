@@ -110,14 +110,12 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element">
-                    <button
-                        mat-icon-button
-                        matTooltip="voir annonce"
-                        matTooltipPosition="right"
-                        class="material-icons app-toolbar-menu delete-button"
-                        (click)="navigateToAnnounce(element.userCardId)">
+                    <a
+                        [routerLink]="['/card-ad', element.userCardId]"
+                        [matTooltip]="'home.searchResultLists.go-to-ad-tooltip' | translate"
+                        matTooltipPosition="right">
                         <mat-icon> arrow_forward </mat-icon>
-                    </button>
+                    </a>
                 </td>
             </ng-container>
 

@@ -151,7 +151,8 @@
       "city": "City",
       "info":"Info",
       "language": "language",
-      "userName": "User"
+      "userName": "User",
+      "go-to-ad-tooltip": "Go to ad"
     }
   },
   "ResetPassword": {
@@ -169,6 +170,26 @@
     "confirm-password" : "Confirm Password",
     "password-match" : "Passwords must match",
     "update-password" : "Update Password"
-
+  },
+  "card-ad": {
+    "name": "Name",
+    "set": "Set",
+    "quality": "Quality",
+    "rarity": "Rarity",
+    "frenchNameTitle": "French Name",
+    "englishNameTitle": "English Name",
+    "quantity": "Quantity",
+    "artist": "Artist",
+    "text": "text",
+    "city": "City",
+    "language": "language",
+    "userName": "User",
+    "make-an-offer-button": "Make an offer",
+    "ongoing-offers-title": "Ongoing offer(s)"
+  },
+  "page-not-found": {
+    "title1": "404",
+    "title2": "Page not found!",
+    "button-text": "Retour à l'accueil"
   }
 }
