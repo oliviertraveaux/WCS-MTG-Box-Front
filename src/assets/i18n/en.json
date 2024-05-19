@@ -185,7 +185,13 @@
     "language": "language",
     "userName": "User",
     "make-an-offer-button": "Make an offer",
-    "ongoing-offers-title": "Ongoing offer(s)"
+    "ongoing-offers-title": "Ongoing offer(s)",
+    "offer-list": {
+      "userName": "User",
+      "city": "City",
+      "quantity": "Quantity",
+      "no-offer-message": "There are currently no offers for this card"
+    }
   },
   "page-not-found": {
     "title1": "404",

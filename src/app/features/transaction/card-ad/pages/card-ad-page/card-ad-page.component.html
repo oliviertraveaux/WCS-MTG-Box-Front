@@ -10,6 +10,9 @@
         <h2 class="p-4 text-primary-color-500">
             {{ 'card-ad.ongoing-offers-title' | translate }}
         </h2>
+        <app-card-ad-ongoing-offers
+            *ngIf="!(isLoading$ | async); else loading"
+            [cardAdOffers$]="cardAdOffers$"></app-card-ad-ongoing-offers>
     </ng-container>
     <ng-template #loading>
         <mat-spinner></mat-spinner>
