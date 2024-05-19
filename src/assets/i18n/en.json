@@ -193,6 +193,14 @@
       "no-offer-message": "There are currently no offers for this card"
     }
   },
+"transaction": {
+  "offer": {
+    "toast": {
+      "offer-created-success": "Your offer has been submitted",
+      "offer-created-fail": "An error occurred submitting your offer"
+    }
+  }
+},
   "page-not-found": {
     "title1": "404",
     "title2": "Page not found!",

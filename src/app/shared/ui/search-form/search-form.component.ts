@@ -74,6 +74,7 @@ export class SearchFormComponent implements OnInit {
     @Input() hasArtist: boolean = false;
     @Input() hasLocation: boolean = false;
     @Input() hasRecentlyConnected: boolean = false;
+    @Input() hasActionButtons: boolean = true;
 
     @Output() resetParams = new EventEmitter();
     @Output() searchCards = new EventEmitter();
@@ -86,9 +87,10 @@ export class SearchFormComponent implements OnInit {
     filteredCardsSets!: Observable<SetFilter[]> | undefined;
     filteredCardTypes!: Observable<string[]> | undefined;
     isFormValid!: Observable<boolean>;
-    moreFilters: boolean = false;
+    moreFilters!: boolean;
 
     ngOnInit(): void {
+        this.moreFilters = !this.hasActionButtons;
         this._breakpointObserverService.breakpoint$
             .pipe(takeUntilDestroyed(this._destroyRef))
             .subscribe(() => this._breakpointObserverService.breakpointChanged());

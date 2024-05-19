@@ -15,5 +15,7 @@ export const ENVIRONMENT = {
     apiMarketCardsURL: `${apiConfigurationUrl}marketcards`,
     apiCardAdURL: `${apiConfigurationUrl}card-ad`,
     apiCardAdOffersURL: `${apiConfigurationUrl}offer/card-ad`,
+    apiOffer: `${apiConfigurationUrl}offer`,
+    apiUser: `${apiConfigurationUrl}users`,
     url: 'http://localhost:8080',
 };

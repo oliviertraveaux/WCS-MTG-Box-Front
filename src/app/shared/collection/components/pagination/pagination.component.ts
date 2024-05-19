@@ -7,13 +7,14 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
     standalone: true,
     imports: [CommonModule, MatPaginatorModule],
     templateUrl: './pagination.component.html',
-    styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
     @Input() length: number = 0;
     @Input() pageSize: number = 10;
     @Input() pageIndex: number = 0;
     @Input() pageSizeOptions: number[] = [10, 20, 50];
+    @Input() hidePageSize: boolean = false;
+    @Input() showFirstLastButtons: boolean = true;
     @Output() page = new EventEmitter<{ startIndex: number; endIndex: number }>();
 
     handlePageEvent(event: PageEvent) {

@@ -1,7 +1,9 @@
 <mat-paginator
-    class="demo-paginator"
+    *ngIf="length"
+    class="w-full"
     [length]="length"
     [pageSize]="pageSize"
     [pageSizeOptions]="pageSizeOptions"
-    [showFirstLastButtons]="!!length"
+    [showFirstLastButtons]="!!length && showFirstLastButtons"
+    [hidePageSize]="hidePageSize"
     (page)="handlePageEvent($event)"></mat-paginator>

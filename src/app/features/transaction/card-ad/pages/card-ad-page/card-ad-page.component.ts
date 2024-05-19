@@ -28,30 +28,30 @@ import { CardAdService } from '../../shared/services/card-ad.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardAdPageComponent {
-    cardAdService = inject(CardAdService);
-    cardAdStatesService = inject(CardAdStatesService);
-    route = inject(ActivatedRoute);
-    router = inject(Router);
+    private _cardAdService = inject(CardAdService);
+    private _route = inject(ActivatedRoute);
+    private _router = inject(Router);
+    private _cardAdStatesService = inject(CardAdStatesService);
     isNotfound: boolean = false;
 
     cardAd$!: Observable<CardAdInfo>;
-    cardAdOffers$: Observable<Offer[]> = this.cardAdStatesService.getCardAdOffer$();
-    isLoading$: Observable<boolean> = this.cardAdStatesService.getIsLoading$();
+    cardAdOffers$: Observable<Offer[]> = this._cardAdStatesService.getCardAdOffer$();
+    isLoading$: Observable<boolean> = this._cardAdStatesService.getIsLoading$();
     ngOnInit() {
-        const id = this.route.snapshot.paramMap.get('id')!;
-        this.cardAd$ = this.cardAdService.getCardAd(parseInt(id)).pipe(
+        const id = this._route.snapshot.paramMap.get('id')!;
+        this.cardAd$ = this._cardAdService.getCardAd(parseInt(id)).pipe(
             tap({
                 error: () =>
-                    this.router.navigate(['page-not-found'], {
+                    this._router.navigate(['page-not-found'], {
                         skipLocationChange: true,
                     }),
             })
         );
 
-        this.cardAdService.getCardAdOffers(parseInt(id));
+        this._cardAdService.getCardAdOffers(parseInt(id));
     }
 
     onMakeAnOffer() {
-        console.log('make an offer');
+        this._router.navigate(['make-offer'], { relativeTo: this._route });
     }
 }

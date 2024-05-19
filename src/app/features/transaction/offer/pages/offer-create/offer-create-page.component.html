@@ -1,0 +1,124 @@
+<mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full">
+    <!--  Side panel Collection -->
+    <mat-drawer #collectionDrawer position="end" class="w-full">
+        <div class="ml-2 mt-2 flex h-16 items-center sm:ml-8">
+            <button class="mr-4" mat-icon-button (click)="collectionDrawer.toggle()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <h2>Votre offre</h2>
+        </div>
+        <div class="h-full-drawer">
+            <app-offer-card-basket />
+        </div>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div class="flex h-full w-screen justify-center">
+            <div class="flex h-full w-full flex-col px-4 sm:px-8 lg:w-11/12 lg:px-0">
+                <app-offer-create-info-bar
+                    *ngIf="isInfoBarVisible$ | async"
+                    [cardAd]="cardAd$ | async"
+                    [cardOwner]="cardOwner$ | async" />
+
+                <!-- Title and filter button -->
+
+                <div class="flex items-center pb-2 lg:pt-4">
+                    <h3 class="w-full lg:w-7/12">Select cards</h3>
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        class="ml-3"
+                        [disabled]="false"
+                        (click)="collectionDrawer.toggle()"
+                        *ngIf="!(isDesktop | async)">
+                        <mat-icon>playlist_add_check</mat-icon>
+                    </button>
+                    <h3 class="pl-6 lg:w-5/12" *ngIf="isDesktop | async">Votre offre</h3>
+                </div>
+
+                <!-- filters TABLETT AND DESKTOP ONLY -->
+
+                <div class="h-full-form-and-results flex grow gap-8">
+                    <div class="flex max-w-full flex-col lg:w-7/12">
+                        <app-offer-collection-search-form />
+                        <div class="flex justify-between">
+                            <div>
+                                <button
+                                    class="my-2"
+                                    mat-flat-button
+                                    color="primary"
+                                    [disabled]="listDisplay"
+                                    (click)="switchView()">
+                                    <mat-icon>lists</mat-icon>{{ 'Liste' }}
+                                </button>
+                                <button
+                                    class="m-2"
+                                    mat-flat-button
+                                    color="primary"
+                                    [disabled]="!listDisplay"
+                                    (click)="switchView()">
+                                    <mat-icon>grid_view</mat-icon>{{ 'Grille' }}
+                                </button>
+                            </div>
+                            <div class="flex items-center">
+                                <mat-checkbox
+                                    (change)="$event ? masterToggle() : null"
+                                    [checked]="(isAllSelected$ | async)!"
+                                    [indeterminate]="(isIndeterminate$ | async)!">
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <!-- Search Results -->
+                        <div class="w-full overflow-auto scrollbar-hide">
+                            <ng-container *ngIf="!listDisplay">
+                                <app-collection-display-image
+                                    [selection]="selection"
+                                    [cards]="cards$ | async"
+                                    [isAllSelected]="(isAllSelected$ | async)!"
+                                    (updateSelection)="handleSelection($event)">
+                                    <div
+                                        class="p-2"
+                                        *ngFor="let card of displayedImageCards$ | async">
+                                        <app-collection-display-search-result
+                                            [card]="card"
+                                            [selection]="selection"
+                                            [hasRemoveButton]="false"
+                                            (updateSelection)="handleSelection($event)">
+                                        </app-collection-display-search-result>
+                                    </div>
+                                    <app-pagination
+                                        additionalContentBottom
+                                        [length]="(cards$ | async)?.length ?? 0"
+                                        [pageSize]="pageSize"
+                                        [pageIndex]="pageIndex"
+                                        (page)="displayImageHandlePage($event)" />
+                                </app-collection-display-image>
+                            </ng-container>
+                            <ng-container *ngIf="listDisplay">
+                                <app-collection-display-list
+                                    [pageSize]="pageSize"
+                                    [cards$]="cards$"
+                                    [selection]="selection"
+                                    [isAllSelected]="(isAllSelected$ | async)!"
+                                    [hasActionButton]="false"
+                                    (updateSelection)="handleSelection($event)">
+                                </app-collection-display-list>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <!-- Divider TABLETT AND DESKTOP ONLY -->
+
+                    <mat-divider *ngIf="isDesktop | async" [vertical]="true"></mat-divider>
+
+                    <!-- Offer  DESKTOP ONLY -->
+                    <div
+                        *ngIf="isDesktop | async"
+                        class="flex h-full grow overflow-hidden scrollbar-hide lg:w-5/12">
+                        <app-offer-card-basket />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
