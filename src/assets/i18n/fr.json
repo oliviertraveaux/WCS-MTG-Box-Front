@@ -182,7 +182,13 @@
     "language": "langue",
     "userName": "Nom",
     "make-an-offer-button": "Faire un offre",
-    "ongoing-offers-title": "Offre(s) en cours"
+    "ongoing-offers-title": "Offre(s) en cours",
+    "offer-list": {
+      "userName": "Nom",
+      "city": "Ville",
+      "quantity": "Quantité",
+      "no-offer-message": "Il n'y a pas d'offre pour cette carte"
+    }
   },
   "page-not-found": {
     "title1": "404",

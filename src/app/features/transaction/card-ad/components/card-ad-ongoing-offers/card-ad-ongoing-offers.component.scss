@@ -1,0 +1,55 @@
+@import "src/_global-variables";
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  padding: 0 8px 0 8px;
+  @include sm {
+    padding: 0 16px 0 16px;
+  }
+}
+
+.cdk-column-expand {
+  @media only screen and (max-width: $screen-sm) {
+    max-width: 0;
+    width: 0;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+
+}
+
+tr.element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+tr.element-row:is(.example-expanded-row) {
+  background-color: #d0a386;
+}
+
+tr.element-detail:is(.example-expanded-row) {
+  border: 5px solid #d0a386;
+}
+
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+
+}
+
+.mdc-list-item.mdc-list-item--with-two-lines {
+  height:auto;
+}
