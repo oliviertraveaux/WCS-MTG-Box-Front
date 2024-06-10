@@ -205,5 +205,36 @@
     "title1": "404",
     "title2": "Page not found!",
     "button-text": "Retour à l'accueil"
+  },
+  "UpdateProfile": {
+    "title": "Edit User Information",
+    "username": "Username",
+    "email": "Email",
+    "department": "Department",
+    "city": "City",
+    "active": "Collection Visible",
+    "toast": {
+      "update-success": "Profile Updated",
+      "update-fail": "An error occurred",
+      "username": "Username successfully changed!",
+      "userInfos": "Changes saved",
+      "userPassword": "Password successfully changed"
+    },
+    "save": "Save",
+    "password": "Password",
+    "password-modify": "Change Password",
+    "password-current": "Current Password",
+    "password-invalid": "Invalid Password",
+    "password-new": "New Password",
+    "password-confirm": "Confirm New Password",
+    "password-modified": "Password changed",
+    "delete-account": "Delete Account",
+    "change-username-info": "Are you sure you want to change your username to: {{username}}?",
+    "change-username-title": "Change Username",
+    "delete-user": {
+      "info": "Warning: Deleting your account will result in the deletion of all your data.",
+      "password": "Enter your password to confirm"
+    }
+
   }
 }

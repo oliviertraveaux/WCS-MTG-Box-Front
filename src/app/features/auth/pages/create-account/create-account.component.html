@@ -26,7 +26,7 @@
           <ng-template matStepLabel>{{ 'Register.email' | translate }}</ng-template>
           <mat-form-field>
             <mat-label>{{ 'Register.email' | translate }}</mat-label>
-    
+
             <input matInput formControlName="email" required  (input)="isEmailAvailable = true">
           </mat-form-field>
           <div>
@@ -87,18 +87,18 @@
       </mat-step>
 
 
-      <!-- Code Postal -->
-      <mat-step [stepControl]="postCodeFormGroup">
-        <form [formGroup]="postCodeFormGroup">
-          <ng-template matStepLabel>{{ 'Register.postal-code' | translate }}</ng-template>
+      <!-- Département -->
+      <mat-step [stepControl]= "departmentFormGroup">
+        <form [formGroup]="departmentFormGroup">
+          <ng-template matStepLabel>{{ 'Register.department' | translate }}</ng-template>
           <mat-form-field>
-            <mat-label>{{ 'Register.postal-code' | translate }}</mat-label>
-            <mat-select formControlName="postCode" required>
+            <mat-label>{{ 'Register.department' | translate }}</mat-label>
+            <mat-select formControlName="department" required>
               <mat-option *ngFor="let department of departments" [value]="department.code">{{department.code}} - {{department.name}}</mat-option>
             </mat-select>
           </mat-form-field>
           <div>
-            <button mat-raised-button color="accent" matStepperNext [disabled]="!postCodeFormGroup.valid">{{ 'Register.next' | translate }}</button>
+            <button mat-raised-button color="accent" matStepperNext [disabled]="!departmentFormGroup.valid">{{ 'Register.next' | translate }}</button>
           </div>
         </form>
       </mat-step>
@@ -111,7 +111,7 @@
           <mat-form-field>
             <mat-label>{{ 'Register.city' | translate }}</mat-label>
 
-     
+
             <input matInput formControlName="city" required>
           </mat-form-field>
           <div>
@@ -131,7 +131,7 @@
                         !emailFormGroup.valid ||
                         !passwordFormGroup.valid ||
                         !confirmPasswordFormGroup.valid ||
-                        !postCodeFormGroup.valid ||
+                        !departmentFormGroup.valid ||
 
                         !cityFormGroup.valid">{{ 'Register.sign-up' | translate }}</button>
         <button mat-raised-button color="primary" type="button" (click)="stepper.reset()">{{ 'Register.reset' | translate }}</button>
