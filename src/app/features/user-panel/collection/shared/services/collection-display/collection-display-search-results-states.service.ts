@@ -17,9 +17,16 @@ export class CollectionDisplaySearchResultsStatesService {
         })
     );
 
+    private _isIndeterminate$ = combineLatest([this._isAllSelected$, this._selectedCards$]).pipe(
+        map(([isAllSelected, selectedCards]) => {
+            return !isAllSelected && selectedCards.length > 0;
+        })
+    );
+
     getCards$(): Observable<UserCard[]> {
         return this._cards$;
     }
+
     getCardsValue(): UserCard[] {
         return this._cards$.getValue();
     }
@@ -54,5 +61,9 @@ export class CollectionDisplaySearchResultsStatesService {
 
     getIsAllSelected$(): Observable<boolean> {
         return this._isAllSelected$;
+    }
+
+    getIsIndeterminate$(): Observable<boolean> {
+        return this._isIndeterminate$;
     }
 }

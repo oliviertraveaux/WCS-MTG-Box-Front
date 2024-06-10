@@ -1,0 +1,8 @@
+<app-card-basket
+    [cards$]="cards$"
+    [isCardListSavable]="!isCardBasketEmpty()"
+    [isCardListEmpty]="isCardBasketEmpty()"
+    (cardToRemove)="removeRow($event)"
+    (saveCards)="createOffer()"
+    (emptyCardBasket)="emptyCardBasket()">
+</app-card-basket>

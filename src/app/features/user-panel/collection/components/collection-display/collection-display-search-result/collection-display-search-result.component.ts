@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CollectionDisplayImageComponent } from '../../../../../../shared/collection/components/collection-display-image/collection-display-image.component';
 import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
 import { GetQualityClassPipe } from '../../../../../../shared/collection/pipes/get-quality.pipe';
+import { GetTruncateTextPipe } from '../../../../../../shared/collection/pipes/get-truncate-text.pipe';
 import { GetUserCardImgPipe } from '../../../shared/pipes/get-user-card-img.pipe';
 import { GetUserCardNamePipe } from '../../../shared/pipes/get-user-card-name.pipe';
 
@@ -24,6 +25,7 @@ import { GetUserCardNamePipe } from '../../../shared/pipes/get-user-card-name.pi
         MatButtonModule,
         MatCheckboxModule,
         CollectionDisplayImageComponent,
+        GetTruncateTextPipe,
     ],
     templateUrl: './collection-display-search-result.component.html',
     styleUrls: ['./collection-display-search-result.component.scss'],
@@ -32,6 +34,7 @@ import { GetUserCardNamePipe } from '../../../shared/pipes/get-user-card-name.pi
 export class CollectionDisplaySearchResultComponent {
     @Input({ required: true }) card!: UserCard;
     @Input() selection!: SelectionModel<UserCard>;
+    @Input() hasRemoveButton: Boolean = true;
     @Output() updateSelection = new EventEmitter<UserCard[]>();
     @Output() cardToRemove = new EventEmitter<number>();
 

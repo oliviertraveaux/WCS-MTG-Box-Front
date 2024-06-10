@@ -69,8 +69,8 @@
                     <div class="flex items-center">
                         <mat-checkbox
                             (change)="$event ? masterToggle() : null"
-                            [checked]="isChecked()"
-                            [indeterminate]="isIndeterminate()">
+                            [checked]="(isAllSelected$ | async)!"
+                            [indeterminate]="(isIndeterminate$ | async)!">
                         </mat-checkbox>
                         <button
                             class="my-2 ml-2"
@@ -89,7 +89,7 @@
                         <app-collection-display-image
                             [selection]="selection"
                             [cards]="cards$ | async"
-                            [isAllSelected]="(isAllSelected | async)!"
+                            [isAllSelected]="(isAllSelected$ | async)!"
                             (updateSelection)="handleSelection($event)">
                             <div class="p-2" *ngFor="let card of displayedImageCards$ | async">
                                 <app-collection-display-search-result
@@ -111,7 +111,7 @@
                         <app-collection-display-list
                             [cards$]="cards$"
                             [selection]="selection"
-                            [isAllSelected]="(isAllSelected | async)!"
+                            [isAllSelected]="(isAllSelected$ | async)!"
                             (updateSelection)="handleSelection($event)"
                             (cardToRemove)="removeSelection($event)">
                         </app-collection-display-list>

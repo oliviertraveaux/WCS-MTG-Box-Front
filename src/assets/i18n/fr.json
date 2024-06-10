@@ -190,6 +190,14 @@
       "no-offer-message": "Il n'y a pas d'offre pour cette carte"
     }
   },
+  "transaction": {
+    "offer": {
+      "toast": {
+        "offer-created-success": "Votre offre a été envoyée",
+        "offer-created-fail": "Une erreur est survenue"
+      }
+    }
+  },
   "page-not-found": {
     "title1": "404",
     "title2": "Cette page n'existe pas!",

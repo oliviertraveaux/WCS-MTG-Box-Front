@@ -1,6 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
 import {
+    AfterViewInit,
     Component,
     DestroyRef,
     EventEmitter,
@@ -58,7 +59,7 @@ import { BreakpointObserverService } from '../../services/breakpoint-observer.se
     templateUrl: './card-basket.component.html',
     styleUrls: ['./card-basket.component.scss'],
 })
-export class CardBasketComponent implements OnInit {
+export class CardBasketComponent implements OnInit, AfterViewInit {
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
 
@@ -141,8 +142,9 @@ export class CardBasketComponent implements OnInit {
         }
     }
 
-    removeRow(uniqueId: string | number): void {
-        this.cardToRemove.emit(uniqueId);
+    removeRow(userCard: UserCard): void {
+        const id = userCard.userInfo.userCardId || userCard.cardInfo.uniqueId;
+        this.cardToRemove.emit(id);
     }
 
     createFilter(): (data: any, filter: string) => boolean {

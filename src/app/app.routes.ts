@@ -5,6 +5,8 @@ import { LoginComponent } from './features/auth/pages/login/login.component';
 import { AuthGuard } from './features/auth/shared/guards/auth.guard';
 import { HomePageComponent } from './features/home/pages/home-page.component';
 import { CardAdPageComponent } from './features/transaction/card-ad/pages/card-ad-page/card-ad-page.component';
+import { OfferCreatePageComponent } from './features/transaction/offer/pages/offer-create/offer-create-page.component';
+import { collectionDisplayResolver } from './features/user-panel/collection/shared/services/collection-display/collection-display.resolver';
 import { USER_PANEL_ROUTES } from './features/user-panel/user-panel.route';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 
@@ -31,7 +33,16 @@ export const routes: Route[] = [
         children: USER_PANEL_ROUTES,
         canActivate: [AuthGuard],
     },
-    { path: 'card-ad/:id', component: CardAdPageComponent },
+    {
+        path: 'card-ad/:id',
+        component: CardAdPageComponent,
+    },
+    {
+        path: 'card-ad/:id/make-offer',
+        component: OfferCreatePageComponent,
+        canActivate: [AuthGuard],
+        resolve: { collection: collectionDisplayResolver },
+    },
     {
         path: 'page-not-found',
         component: PageNotFoundComponent,

@@ -4,11 +4,10 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    DestroyRef,
     inject,
+    OnDestroy,
     OnInit,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -58,13 +57,12 @@ import { CollectionDisplaySearchResultsService } from '../../shared/services/col
     styleUrls: ['./collection-display-page.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CollectionDisplayPageComponent implements OnInit {
+export class CollectionDisplayPageComponent implements OnInit, OnDestroy {
     private _collectionDisplayService = inject(CollectionDisplaySearchResultsService);
     private _collectionDisplayStatesService = inject(CollectionDisplaySearchResultsStatesService);
     private _alertService = inject(AlertService);
     private _translate = inject(TranslateService);
     private _changeDetectorRef = inject(ChangeDetectorRef);
-    private _destroyRef = inject(DestroyRef);
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _searchFormService = inject(SearchFormService);
 
@@ -73,22 +71,23 @@ export class CollectionDisplayPageComponent implements OnInit {
 
     cards$!: Observable<UserCard[]>;
     selection!: SelectionModel<UserCard>;
-    isAllSelected: Observable<boolean> = of(false);
+    isAllSelected$: Observable<boolean> = of(false);
+    isIndeterminate$: Observable<boolean> = of(false);
     listDisplay = false;
     searchForm = this._searchFormService.searchForm;
     displayedImageCards$: Observable<UserCard[]> = of([]);
     pageSize: number = 10;
     pageIndex: number = 0;
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._collectionDisplayService.init();
         this.cards$ = this._collectionDisplayStatesService.getCards$();
+        this.isIndeterminate$ = this._collectionDisplayStatesService.getIsIndeterminate$();
+        this.isAllSelected$ = this._collectionDisplayStatesService.getIsAllSelected$();
         this._collectionDisplayStatesService.getSelectedCards().subscribe((selected) => {
             this.selection = new SelectionModel<UserCard>(true, selected);
         });
-        this._collectionDisplayStatesService.getIsAllSelected$().subscribe((isAllSelected) => {
-            this.isAllSelected = of(isAllSelected);
-        });
+
         this._searchFormService.updateValidityWhenFormValueChanges();
 
         this.displayedImageCards$ = this.cards$.pipe(
@@ -99,15 +98,6 @@ export class CollectionDisplayPageComponent implements OnInit {
                 })
             )
         );
-
-        this.cards$.pipe(takeUntilDestroyed(this._destroyRef)).subscribe((cards) => {
-            const selectedCards = cards.filter((card) =>
-                this.selection.selected.some(
-                    (selectedCard) => selectedCard.userInfo.userCardId === card.userInfo.userCardId
-                )
-            );
-            this.selection = new SelectionModel<UserCard>(true, selectedCards);
-        });
     }
     removeSelection(userCardId?: number) {
         this._alertService
@@ -153,7 +143,7 @@ export class CollectionDisplayPageComponent implements OnInit {
     }
 
     masterToggle() {
-        this.isAllSelected
+        this.isAllSelected$
             .pipe(
                 take(1),
                 tap((isAllSelected) => {
@@ -167,22 +157,6 @@ export class CollectionDisplayPageComponent implements OnInit {
                 tap(() => this.handleSelection(this.selection.selected))
             )
             .subscribe();
-    }
-
-    isChecked() {
-        let isChecked: boolean = false;
-        this.isAllSelected.pipe(take(1)).subscribe((isAllSelected) => {
-            isChecked = isAllSelected && this.selection.hasValue();
-        });
-        return isChecked;
-    }
-
-    isIndeterminate() {
-        let isIndeterminate: boolean = false;
-        this.isAllSelected.pipe(take(1)).subscribe((isAllSelected) => {
-            isIndeterminate = !isAllSelected && this.selection.hasValue();
-        });
-        return isIndeterminate;
     }
 
     search() {
@@ -201,5 +175,9 @@ export class CollectionDisplayPageComponent implements OnInit {
     switchView() {
         this.listDisplay = !this.listDisplay;
         this._changeDetectorRef.detectChanges();
+    }
+
+    ngOnDestroy(): void {
+        this._collectionDisplayStatesService.setSelectedCards([]);
     }
 }

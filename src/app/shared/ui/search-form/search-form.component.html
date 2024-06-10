@@ -184,7 +184,7 @@
     </form>
 
     <div class="flex w-full flex-col sm:flex-row">
-        <div class="flex w-full flex-col gap-2 sm:w-fit sm:flex-row">
+        <div *ngIf="hasActionButtons" class="flex w-full flex-col gap-2 sm:w-fit sm:flex-row">
             <button
                 *ngIf="(isDesktop | async) || (isTablet | async)"
                 class="my-1 w-fit"

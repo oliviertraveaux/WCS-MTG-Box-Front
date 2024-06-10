@@ -83,6 +83,9 @@ export class CollectionDisplayListComponent implements OnInit {
     @Input() cards$: Observable<UserCard[]> = of([]);
     @Input() selection!: SelectionModel<UserCard>;
     @Input() isAllSelected!: boolean;
+    @Input() hasActionButton: boolean = true;
+    @Input() pageSize!: number;
+
     @Output() cardToRemove = new EventEmitter<number>();
     @Output() updateSelection = new EventEmitter<UserCard[]>();
 
