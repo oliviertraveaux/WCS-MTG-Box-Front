@@ -1,6 +1,6 @@
 import { CardRarity } from '../../../../shared/collection/enums/card-rarity.enum';
 import { CardQuality } from '../../../../shared/collection/enums/cardQuality';
-import { CardAdInfo } from '../models/card-ad.info';
+import { CardAdInfo } from '../models/card-ad-info';
 
 const CARD_AD_1: CardAdInfo = {
     cardId: 10,

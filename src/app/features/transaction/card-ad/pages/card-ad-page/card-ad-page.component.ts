@@ -6,9 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, tap } from 'rxjs';
 import { Offer } from '../../../../../shared/offer/models/offer.model';
-import { CardAdInfoComponent } from '../../components/card-ad-info/card-ad-info.component';
+import { CardAdCardInfoComponent } from '../../components/card-ad-card-info/card-ad-card-info.component';
 import { CardAdOngoingOffersComponent } from '../../components/card-ad-ongoing-offers/card-ad-ongoing-offers.component';
-import { CardAdInfo } from '../../models/card-ad.info';
+import { CardAdInfo } from '../../models/card-ad-info';
 import { CardAdStatesService } from '../../shared/services/card-ad-states.service';
 import { CardAdService } from '../../shared/services/card-ad.service';
 
@@ -17,7 +17,7 @@ import { CardAdService } from '../../shared/services/card-ad.service';
     standalone: true,
     imports: [
         CommonModule,
-        CardAdInfoComponent,
+        CardAdCardInfoComponent,
         MatButtonModule,
         TranslateModule,
         MatProgressSpinnerModule,

@@ -1,0 +1,28 @@
+<div class="flex w-full flex-col py-4">
+    <div class="flex w-full justify-center">
+        <div class="mx-4 flex w-full flex-wrap p-2">
+            <div
+                *ngFor="let offerCard of cards; let i = index"
+                (click)="showCardInfo(i)"
+                class="cursor-pointer"
+                [ngClass]="{
+                    'rounded-md border-4 border-solid border-secondary-color-300': cardIndex === i
+                }">
+                <img
+                    [ngSrc]="
+                        offerCard.userInfo.languageName === 'French'
+                            ? offerCard.cardInfo.frenchImageUrl
+                            : offerCard.cardInfo.imageUrl
+                    "
+                    class="py-1"
+                    style="object-fit: contain"
+                    [alt]="offerCard.cardInfo.imageUrl"
+                    [width]="185"
+                    [height]="258" />
+            </div>
+        </div>
+    </div>
+    <app-card-ad-info
+        [isCardAdWantedCard]="false"
+        [cardAdInfo]="userCardToCardAd(card)"></app-card-ad-info>
+</div>

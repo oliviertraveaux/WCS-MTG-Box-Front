@@ -36,7 +36,7 @@ import { CollectionAddCardSearchFormComponent } from '../../../../user-panel/col
 import { CollectionDisplaySearchResultComponent } from '../../../../user-panel/collection/components/collection-display/collection-display-search-result/collection-display-search-result.component';
 import { CollectionDisplaySearchResultsStatesService } from '../../../../user-panel/collection/shared/services/collection-display/collection-display-search-results-states.service';
 import { CollectionDisplaySearchResultsService } from '../../../../user-panel/collection/shared/services/collection-display/collection-display-search-results.service';
-import { CardAdInfo } from '../../../card-ad/models/card-ad.info';
+import { CardAdInfo } from '../../../card-ad/models/card-ad-info';
 import { CardAdService } from '../../../card-ad/shared/services/card-ad.service';
 import { OfferCardBasketComponent } from '../../components/offer-card-basket/offer-card-basket.component';
 import { OfferCollectionSearchFormComponent } from '../../components/offer-collection-search-form/offer-collection-search-form.component';

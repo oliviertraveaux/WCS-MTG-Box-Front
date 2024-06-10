@@ -9,7 +9,7 @@ import { GetQualityClassPipe } from '../../../../../shared/collection/pipes/get-
 import { GetRarityClassPipe } from '../../../../../shared/collection/pipes/get-rarity-class.pipe';
 import { GetRaritySymbolPipe } from '../../../../../shared/collection/pipes/get-rarity-symbol.pipe';
 import { BreakpointObserverService } from '../../../../../shared/services/breakpoint-observer.service';
-import { CardAdInfo } from '../../models/card-ad.info';
+import { CardAdInfo } from '../../models/card-ad-info';
 
 @Component({
     selector: 'app-card-ad-info',
@@ -25,12 +25,13 @@ import { CardAdInfo } from '../../models/card-ad.info';
         MatButtonModule,
         GetQualityClassPipe,
     ],
-    templateUrl: './card-ad-info.component.html',
-    styleUrls: ['./card-ad-info.component.scss'],
+    templateUrl: './card-ad-card-info.component.html',
+    styleUrls: ['./card-ad-card-info.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardAdInfoComponent {
+export class CardAdCardInfoComponent {
     @Input() cardAdInfo!: CardAdInfo;
+    @Input() isCardAdWantedCard: boolean = true;
 
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _destroyRef = inject(DestroyRef);
