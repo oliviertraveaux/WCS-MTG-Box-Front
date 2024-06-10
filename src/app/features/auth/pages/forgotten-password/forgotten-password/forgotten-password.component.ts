@@ -47,7 +47,7 @@ export class ForgottenPasswordComponent implements OnInit {
   initializeForm(token: string) {
     this.form = this._fb.group({
       token: [token, Validators.required],
-      newPassword: ['', [Validators.required, Validators.minLength(8)]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
   }

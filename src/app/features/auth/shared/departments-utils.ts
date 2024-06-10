@@ -1,5 +1,5 @@
-export const francePostalCodes: any = [
-  {name: "Other", code: "0"},
+export const franceDepartments: any = [
+  {name: "Other", code: 0},
   {name: "Ain", code: "01"},
   {name: "Aisne", code: "02"},
   {name: "Allier", code: "03"},

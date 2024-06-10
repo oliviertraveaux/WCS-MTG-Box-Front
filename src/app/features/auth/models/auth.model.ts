@@ -5,6 +5,6 @@ export interface LoginData {
 
 export interface RegistrationFormData extends LoginData {
   email: string;
-  postCode: number;
+  department: number;
   city: string;
 }
