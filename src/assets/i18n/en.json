@@ -195,9 +195,16 @@
   },
 "transaction": {
   "offer": {
+      "collection-title": "Select cards",
+      "basket-title": "Your offer",
     "toast": {
       "offer-created-success": "Your offer has been submitted",
       "offer-created-fail": "An error occurred submitting your offer"
+    },
+    "card-info-bar": {
+      "make-offer-to": "You are making an offer to ",
+      "make-offer-for": "for the card ",
+      "see-ad": "see add"
     }
   }
 },

@@ -4,8 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, map, of, tap } from 'rxjs';
 import { Offer } from '../../../../../shared/offer/models/offer.model';
+import { UserInfoStatesService } from '../../../../../shared/user/services/user-info-states.service';
 import { CardAdCardInfoComponent } from '../../components/card-ad-card-info/card-ad-card-info.component';
 import { CardAdOngoingOffersComponent } from '../../components/card-ad-ongoing-offers/card-ad-ongoing-offers.component';
 import { CardAdInfo } from '../../models/card-ad-info';
@@ -28,6 +29,7 @@ import { CardAdService } from '../../shared/services/card-ad.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardAdPageComponent {
+    private userId = inject(UserInfoStatesService).getUserInfo().id;
     private _cardAdService = inject(CardAdService);
     private _route = inject(ActivatedRoute);
     private _router = inject(Router);
@@ -37,6 +39,7 @@ export class CardAdPageComponent {
     cardAd$!: Observable<CardAdInfo>;
     cardAdOffers$: Observable<Offer[]> = this._cardAdStatesService.getCardAdOffer$();
     isLoading$: Observable<boolean> = this._cardAdStatesService.getIsLoading$();
+    isButtonDisabled$: Observable<boolean> = of(false);
     ngOnInit() {
         const id = this._route.snapshot.paramMap.get('id')!;
         this.cardAd$ = this._cardAdService.getCardAd(parseInt(id)).pipe(
@@ -46,6 +49,9 @@ export class CardAdPageComponent {
                         skipLocationChange: true,
                     }),
             })
+        );
+        this.isButtonDisabled$ = this.cardAd$.pipe(
+            map((cardAd) => cardAd.userCard.userId === this.userId)
         );
 
         this._cardAdService.getCardAdOffers(parseInt(id));

@@ -192,9 +192,16 @@
   },
   "transaction": {
     "offer": {
+      "collection-title": "Sélectionnez des cartes",
+      "basket-title": "Votre offre",
       "toast": {
         "offer-created-success": "Votre offre a été envoyée",
         "offer-created-fail": "Une erreur est survenue"
+      },
+      "card-info-bar": {
+        "make-offer-to": "Vous faites une offre à  ",
+        "make-offer-for": "pour la carte  ",
+        "see-ad": "voir l'offre"
       }
     }
   },

@@ -6,7 +6,12 @@
         </h2>
         <app-card-ad-info [cardAdInfo]="cardAd"></app-card-ad-info>
         <div>
-            <button class="m-4" mat-flat-button color="primary" (click)="onMakeAnOffer()">
+            <button
+                class="m-4"
+                mat-flat-button
+                color="primary"
+                (click)="onMakeAnOffer()"
+                [disabled]="(isButtonDisabled$ | async)!">
                 {{ 'card-ad.make-an-offer-button' | translate }}
             </button>
         </div>
