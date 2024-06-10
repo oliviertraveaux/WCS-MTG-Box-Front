@@ -5,9 +5,9 @@ import {
     ChangeDetectionStrategy,
     Component,
     DestroyRef,
-    inject,
     Input,
     ViewChild,
+    inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,6 +22,8 @@ import { GetRaritySymbolPipe } from '../../../../../shared/collection/pipes/get-
 import { Offer } from '../../../../../shared/offer/models/offer.model';
 import { BreakpointObserverService } from '../../../../../shared/services/breakpoint-observer.service';
 import { HomeSearchResultComponent } from '../../../../home/components/home-search-result/home-search-result.component';
+import { CardAdOfferDesktopComponent } from '../../../offer/components/card-ad-offer/card-ad-offer-desktop/card-ad-offer-desktop.component';
+import { CardAdOfferMobileComponent } from '../../../offer/components/card-ad-offer/card-ad-offer-mobile/card-ad-offer-mobile.component';
 
 @Component({
     selector: 'app-card-ad-ongoing-offers',
@@ -37,6 +39,8 @@ import { HomeSearchResultComponent } from '../../../../home/components/home-sear
         MatSortModule,
         MatTableModule,
         TranslateModule,
+        CardAdOfferMobileComponent,
+        CardAdOfferDesktopComponent,
     ],
     templateUrl: './card-ad-ongoing-offers.component.html',
     styleUrls: ['./card-ad-ongoing-offers.component.scss'],

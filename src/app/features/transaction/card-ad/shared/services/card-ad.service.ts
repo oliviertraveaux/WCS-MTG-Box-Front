@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { SnackbarStatus } from '../../../../../shared/enums/snackbar-status.enum';
 import { OfferRepositoryService } from '../../../../../shared/offer/repository/offer.repository.service';
 import { AlertService } from '../../../../../shared/services/alert.service';
-import { CardAdInfo } from '../../models/card-ad.info';
+import { CardAdInfo } from '../../models/card-ad-info';
 import { CardAdRepositoryService } from '../repositories/card-ad.repository.service';
 import { CardAdStatesService } from './card-ad-states.service';
 

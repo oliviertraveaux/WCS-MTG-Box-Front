@@ -1,0 +1,95 @@
+<div class="flex w-full flex-col py-4">
+    <div class="flex flex-grow flex-col items-center justify-center">
+        <ng-container *ngFor="let cardToShow of cards; let i = index">
+            <img
+                *ngIf="i === cardIndex"
+                [ngSrc]="
+                    cardToShow.userInfo.languageName === 'French'
+                        ? cardToShow.cardInfo.frenchImageUrl
+                        : cardToShow.cardInfo.imageUrl
+                "
+                class="py-1"
+                [@changeCard]="moveRight ? 'moveRight' : 'moveLeft'"
+                style="object-fit: contain"
+                [alt]="cardToShow.cardInfo.imageUrl"
+                [width]="265"
+                [height]="370" />
+        </ng-container>
+        <div>{{ cardIndex + 1 }} / {{ cards.length }}</div>
+        <div class="flex items-center justify-center">
+            <button class="z-10 m-2" mat-flat-button color="primary" (click)="onShowPreviousCard()">
+                <mat-icon class="m-0"> arrow_back_ios </mat-icon>
+            </button>
+            <button
+                class="scroll-button z-10 m-2"
+                mat-flat-button
+                color="primary"
+                (click)="onShowNextCard()">
+                <mat-icon class="m-0"> arrow_forward_ios </mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="w-full">
+        <mat-list class="dense-3 example-list-wrapping">
+            <mat-list-item>
+                <span matListItemTitle>{{ 'card-ad.englishNameTitle' | translate }}</span>
+                <span matListItemLine class="!whitespace-normal">{{
+                    cards[cardIndex].cardInfo.name
+                }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>{{ 'card-ad.frenchNameTitle' | translate }}</span>
+                <span matListItemLine class="!whitespace-normal">{{
+                    cards[cardIndex].cardInfo.frenchName ? cards[cardIndex].cardInfo.frenchName : ''
+                }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>{{ 'card-ad.set' | translate }}</span>
+                <span matListItemLine class="!whitespace-normal">{{
+                    cards[cardIndex].cardInfo.setName
+                }}</span>
+            </mat-list-item>
+            <div class="flex">
+                <mat-list-item>
+                    <span matListItemTitle>{{ 'card-ad.rarity' | translate }}</span>
+                    <span
+                        matListItemLine
+                        class="rarity !whitespace-normal"
+                        [ngClass]="cards[cardIndex].cardInfo.rarity | getRarityClass"
+                        >{{ cards[cardIndex].cardInfo.rarity }}
+                    </span>
+                </mat-list-item>
+                <mat-list-item>
+                    <span matListItemTitle>{{ 'card-ad.quality' | translate }}</span>
+                    <span
+                        matListItemLine
+                        class="!whitespace-normal"
+                        [ngClass]="cards[cardIndex].userInfo.qualityName! | getQualityClass"
+                        >{{ cards[cardIndex].userInfo.qualityName }}
+                    </span>
+                </mat-list-item>
+            </div>
+            <div class="flex">
+                <mat-list-item>
+                    <span matListItemTitle>{{ 'card-ad.language' | translate }}</span>
+                    <span matListItemLine class="!whitespace-normal"
+                        >{{ cards[cardIndex].userInfo.languageName }}
+                    </span>
+                </mat-list-item>
+                <mat-list-item>
+                    <span matListItemTitle>{{ 'card-ad.artist' | translate }}</span>
+                    <span matListItemLine class="!whitespace-normal"
+                        >{{ cards[cardIndex].cardInfo.artist }}
+                    </span>
+                </mat-list-item>
+            </div>
+
+            <mat-list-item lines="5">
+                <span matListItemTitle>{{ 'card-ad.text' | translate }}</span>
+                <span matListItemLine class="!whitespace-normal">{{
+                    cards[cardIndex].cardInfo.text
+                }}</span>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>

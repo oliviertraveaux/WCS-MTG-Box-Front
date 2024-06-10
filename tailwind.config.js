@@ -45,6 +45,14 @@ module.exports = {
                 },
             },
         },
+        container: {
+            center: true,
+            maxWidth: {
+                md: '900px',
+                lg: '1024px',
+                xlg: '1280px',
+            },
+        },
     },
     plugins: [require('tailwind-scrollbar-hide')],
 };

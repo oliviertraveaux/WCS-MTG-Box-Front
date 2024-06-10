@@ -1,18 +1,22 @@
-<div class="py-4">
+<div
+    class="container flex h-full w-full flex-col overflow-y-auto pb-1 scrollbar-hide sm:px-8 lg:w-8/12 lg:px-0">
     <ng-container *ngIf="cardAd$ | async as cardAd; else loading">
         <h2 class="p-4 text-primary-color-500">
             {{ cardAd.userCard.language === 'French' ? cardAd.frenchName : cardAd.name }}
         </h2>
         <app-card-ad-info [cardAdInfo]="cardAd"></app-card-ad-info>
-        <button class="m-4" mat-flat-button color="primary" (click)="onMakeAnOffer()">
-            {{ 'card-ad.make-an-offer-button' | translate }}
-        </button>
+        <div>
+            <button class="m-4" mat-flat-button color="primary" (click)="onMakeAnOffer()">
+                {{ 'card-ad.make-an-offer-button' | translate }}
+            </button>
+        </div>
         <h2 class="p-4 text-primary-color-500">
             {{ 'card-ad.ongoing-offers-title' | translate }}
         </h2>
         <app-card-ad-ongoing-offers
             *ngIf="!(isLoading$ | async); else loading"
-            [cardAdOffers$]="cardAdOffers$"></app-card-ad-ongoing-offers>
+            [cardAdOffers$]="cardAdOffers$">
+        </app-card-ad-ongoing-offers>
     </ng-container>
     <ng-template #loading>
         <mat-spinner></mat-spinner>

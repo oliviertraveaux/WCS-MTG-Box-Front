@@ -5,7 +5,7 @@
     "email": "Email",
     "password": "Password",
     "password-confirm": "Confirm Password",
-    "postal-code": "Postal Code",
+    "department": "Department",
     "city": "City",
     "next": "Next",
     "sign-up": "Sign Up",

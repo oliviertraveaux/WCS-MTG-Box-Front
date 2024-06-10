@@ -1,4 +1,4 @@
-<div class="flex h-full w-full flex-col py-2">
+<div class="m-4 flex h-full flex-col py-2">
     <div class="mat-elevation-z2">
         <table
             fixedLayout="true"
@@ -65,7 +65,17 @@
                     <div
                         class="element-detail"
                         [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'">
-                        offer details
+                        <ng-container *ngIf="isDesktop | async; else mobileOffers">
+                            <app-card-ad-offer-desktop
+                                class="w-full"
+                                [offerCards]="row"></app-card-ad-offer-desktop>
+                        </ng-container>
+
+                        <ng-template #mobileOffers>
+                            <app-card-ad-offer-mobile
+                                class="w-full"
+                                [offerCards]="row"></app-card-ad-offer-mobile>
+                        </ng-template>
                     </div>
                 </td>
             </ng-container>
