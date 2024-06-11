@@ -8,7 +8,7 @@ import { OfferCreation } from '../models/offer-creation-data.model';
 @Injectable({
     providedIn: 'root',
 })
-export class OfferCardBasketService {
+export class OfferService {
     private _offerRepositoryService = inject(OfferRepositoryService);
 
     createOffer(
