@@ -1,8 +1,11 @@
 <div class="mt-2 flex h-8 w-7/12 items-center rounded bg-primary-color-100 px-2.5 py-1 text-xs">
     <span
-        >🎁 You are making an offer to {{ cardOwner?.username! }} for {{ cardAd?.name }} ({{
-            cardAd?.userCard?.quality | getQualityAbbreviation
-        }})!
-        <span class="cursor-pointer underline" routerLink="../"> See ad</span>
+        >🎁 {{ 'transaction.offer.card-info-bar.make-offer-to' | translate }}
+        {{ cardOwner?.username! }}
+        {{ 'transaction.offer.card-info-bar.make-offer-for' | translate }}
+        {{ cardAd?.name }} ({{ cardAd?.userCard?.quality | getQualityAbbreviation }})!
+        <span class="cursor-pointer underline" (click)="openCardAdInfoDialog()">
+            {{ 'transaction.offer.card-info-bar.see-ad' | translate }}</span
+        >
     </span>
 </div>
