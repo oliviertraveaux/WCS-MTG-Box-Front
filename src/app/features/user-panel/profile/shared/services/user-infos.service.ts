@@ -27,4 +27,8 @@ export class UserInfosService {
   verifyPassword(userId: number, password: string): Observable<boolean> {
     return this.userInfoRepository.verifyPassword(userId, password);
   }
+
+  deleteUser(userId: number): Observable<void> {
+    return this.userInfoRepository.deleteUser(userId);
+  }
 }

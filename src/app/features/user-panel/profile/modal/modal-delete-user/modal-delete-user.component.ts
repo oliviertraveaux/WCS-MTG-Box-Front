@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -7,9 +7,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { AlertService } from '../../../../../shared/services/alert.service';
 import { SnackbarStatus } from '../../../../../shared/enums/snackbar-status.enum';
-import {UserInfosService} from "../../shared/services/user-infos.service";
-import {UserInfoStatesService} from "../../../../../shared/user/services/user-info-states.service";
-import {NgIf} from "@angular/common";
+import { UserInfosService } from "../../shared/services/user-infos.service";
+import { UserInfoStatesService } from "../../../../../shared/user/services/user-info-states.service";
+import { NgIf } from "@angular/common";
+import {Subscription, take} from 'rxjs';
+import {LoginService} from "../../../../auth/shared/services/login.service";
+
 
 @Component({
   selector: 'modal-delete-user',
@@ -17,56 +20,62 @@ import {NgIf} from "@angular/common";
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, ReactiveFormsModule, MatInputModule, TranslateModule, NgIf],
 })
-export class ModalDeleteUser implements OnInit  {
-  private _fb = inject(FormBuilder);
-  private _dialogRef = inject(MatDialogRef<ModalDeleteUser>);
-  private _alertService = inject(AlertService);
-  private _translate = inject(TranslateService);
-  private _userInfoStatesService = inject(UserInfoStatesService);
-  private _userInfosService = inject(UserInfosService);
-  userId!: number;
-  passwordForm: FormGroup;
+export class ModalDeleteUser implements OnInit {
+  constructor(
+      private  _fb: FormBuilder,
+      private  _dialogRef: MatDialogRef<ModalDeleteUser>,
+      private  _alertService: AlertService,
+      private  _translate: TranslateService,
+      private  _authService: LoginService,
+      private  _userInfoStatesService: UserInfoStatesService,
+      private  _userInfosService: UserInfosService,
+  ) { }
 
-  constructor() {
+  userId!: number;
+  passwordForm!: FormGroup;
+
+  ngOnInit() {
     this.passwordForm = this._fb.group({
       currentPassword: ['', [Validators.required]],
     });
+
+    this._userInfoStatesService.getUserInfo$()
+        .pipe(take(1))
+        .subscribe((userInfo: any) => {
+          this.userId = userInfo.id;
+        });
   }
-
-  ngOnInit() {
-    this._userInfoStatesService.getUserInfo$().subscribe((userInfo: any) => {
-      this.userId = userInfo.id;
-    });
-  }
-
-
-
-
-
 
   deleteUser() {
     if (this.passwordForm.valid) {
       const password = this.passwordForm.get('currentPassword')?.value;
-      this._userInfosService.verifyPassword(this.userId, password).subscribe((isPasswordValid: boolean) => {
-        if (isPasswordValid) {
-          //pour delete USER
-          this.showSuccessMessage();
-        } else {
-          this.wrongPassword();
-        }
-      });
+
+      this._userInfosService.verifyPassword(this.userId, password)
+          .pipe(take(1))
+          .subscribe((isPasswordValid: boolean) => {
+            if (isPasswordValid) {
+              this._userInfosService.deleteUser(this.userId)
+                  .pipe(take(1))
+                  .subscribe(() => {
+                    this.showSuccessMessage();
+                    this._authService.logout();
+                  });
+            } else {
+              this.wrongPassword();
+            }
+          });
     }
   }
 
   private showSuccessMessage() {
-    const successMessage = this._translate.instant('UpdateProfile.password-modified');
+    const successMessage = this._translate.instant('UpdateProfile.deleted-account');
     this._alertService.openSnackBar(successMessage, SnackbarStatus.success);
-    setTimeout(() => this._dialogRef.close(), 2000);
+    setTimeout(() => this._dialogRef.close(), 1000);
   }
 
   private wrongPassword() {
-    const successMessage = this._translate.instant('UpdateProfile.password-invalid');
-    this._alertService.openSnackBar(successMessage, SnackbarStatus.error);
-    setTimeout(() =>  2000);
+    const errorMessage = this._translate.instant('UpdateProfile.password-invalid');
+    this._alertService.openSnackBar(errorMessage, SnackbarStatus.error);
+    setTimeout(() => {}, 2000);
   }
 }
