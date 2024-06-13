@@ -4,15 +4,15 @@
             <button class="mr-4" mat-icon-button (click)="filterDrawer.toggle()">
                 <mat-icon>arrow_back</mat-icon>
             </button>
-            <h2>{{ 'Collection.addCard.searchTitle' | translate }}</h2>
+            <h3>{{ 'Collection.addCard.searchTitle' | translate }}</h3>
         </div>
         <div class="h-full-drawer">
             <app-collection-display-search-form />
         </div>
     </mat-drawer>
     <mat-drawer-content>
-        <section class="align flex h-full w-screen flex-col items-center justify-center">
-            <div class="flex h-full w-full flex-col px-4 pb-1 sm:px-8 lg:w-11/12 lg:px-0">
+        <section class="container flex h-full flex-col items-center justify-center">
+            <div class="flex h-full w-full flex-col pb-1">
                 <div class="flex items-center pb-2">
                     <div class="mt-2 flex items-center px-4" *ngIf="!(isTablet | async)">
                         <form class="w-full" [formGroup]="searchForm">

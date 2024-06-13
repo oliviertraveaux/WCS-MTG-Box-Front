@@ -104,8 +104,8 @@
       "profile": "profile",
       "collection": "collection",
       "history": "history",
-      "offersReceived": "offers received",
-      "offersMade": "offers made",
+      "offers-received": "offers received",
+      "offers-made": "offers made",
       "messages": "messages"
     }
   },

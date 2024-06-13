@@ -18,6 +18,11 @@
 
 $dark-primary-text: rgba(black, 0.87);
 $light-primary-text: white;
+$primary-color: #0c4f6f;
+$secondary-color: #d0a386;
+$table-row-color-even: #f5f5f5;
+$table-selected-row-color: #c0c0c0;
+$background-body: #fafafa;//#eeeeee57;
 
 $mtgbox-blue-palette: (
   50 : #e2eaee,
@@ -112,6 +117,7 @@ $WCS-MTG-Box-Front-theme: mat.define-light-theme((
 
 html, body {
   height: 100%;
+  background-color: $background-body;
 }
 
 h1,
@@ -127,6 +133,14 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+h1,
+h2,
+h3 {
+  color: $primary-color;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -137,6 +151,8 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+/*material angular*/
 
 .mat-mdc-snack-bar-container {
   --mat-mdc-snack-bar-button-color: #fff;
@@ -153,6 +169,43 @@ a {
   .mat-mdc-button .mdc-button__label, .mat-mdc-unelevated-button .mdc-button__label, .mat-mdc-raised-button .mdc-button__label, .mat-mdc-outlined-button .mdc-button__label, .mat-mdc-stroked-button .mdc-button__label, .mat-mdc-icon-button .mdc-button__label, .mat-mdc-fab .mdc-button__label, .mat-mdc-mini-fab .mdc-button__label, .mat-mdc-icon-button .mdc-button__label, .mat-mdc-fab .mdc-button__label, .mat-mdc-mini-fab .mdc-button__label {
     color: #fff;
   }
+}
+
+tr.mat-mdc-header-row {
+  color:$light-primary-text;
+  background-color: $primary-color ;
+
+}
+
+table:not(.with-expand) {
+  tr.mat-mdc-row:nth-child(even) {
+    background-color: $table-row-color-even;
+  }
+}
+
+table.with-expand {
+  tr.mat-mdc-row:nth-child(4n+3){
+    background-color: $table-row-color-even;
+  }
+  tr.element-row:is(.example-expanded-row) {
+    background-color: $table-selected-row-color;
+  }
+
+  tr.element-detail:is(.example-expanded-row) {
+    border: 5px solid #d0a386;
+  }
+}
+
+tr.element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.mat-sort-header-arrow{
+  color:$light-primary-text;
 }
 
 .dense-1 {

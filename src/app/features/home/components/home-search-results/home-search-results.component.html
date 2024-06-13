@@ -7,7 +7,7 @@
             multiTemplateDataRows
             matSort
             (matSortChange)="announceSortChange($event)"
-            class="w-full">
+            class="with-expand dense-3 w-full">
             <ng-container matColumnDef="name">
                 <th
                     mat-header-cell
@@ -113,6 +113,7 @@
         </table>
 
         <mat-paginator
+            *ngIf="resultData.data.length > 5"
             [pageSizeOptions]="[5, 10, 25, 50]"
             [showFirstLastButtons]="!!resultData.data.length"
             aria-label="Select page of users"></mat-paginator>

@@ -7,7 +7,7 @@ module.exports = {
     theme: {
         screens: {
             xs: { max: '599.98px' },
-            // => @media (min-width: 599.98px) { ... }
+            // => @media (max-width: 599.98px) { ... }
             sm: '600px',
             // => @media (min-width: 600px) { ... }
             md: '960px',
@@ -16,6 +16,17 @@ module.exports = {
             // => @media (min-width: 1280px) { ... }
             xlg: '1920px',
             // => @media (min-width: 1920px) { ... }
+        },
+        container: {
+            center: true,
+            padding: {
+                DEFAULT: '0.5rem',
+                sm: '1rem',
+                md: '4rem',
+                lg: '8rem',
+                xl: '10rem',
+                xlg: '16rem',
+            },
         },
         extend: {
             colors: {
@@ -43,14 +54,6 @@ module.exports = {
                     800: '#a55e38',
                     900: '#974b28',
                 },
-            },
-        },
-        container: {
-            center: true,
-            maxWidth: {
-                md: '900px',
-                lg: '1024px',
-                xlg: '1280px',
             },
         },
     },

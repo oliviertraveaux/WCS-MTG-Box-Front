@@ -1,4 +1,4 @@
-<mat-card class="example-card my-2">
+<mat-card class="example-card dense-3 my-2">
     <mat-card-content class="h-full">
         <div class="mb-2 flex h-full flex-col items-center lg:mb-0 lg:flex-row">
             <img
@@ -57,7 +57,7 @@
                         </mat-list-item>
                     </ng-container>
                 </mat-list>
-                <mat-list>
+                <mat-list class="dense-3">
                     <ng-container *ngIf="isCardAdWantedCard">
                         <mat-list-item>
                             <span matListItemTitle>{{ 'card-ad.userName' | translate }}</span>
@@ -65,9 +65,9 @@
                                 cardAdInfo.userCard.userName
                             }}</span>
                         </mat-list-item>
-                        <mat-list-item>
+                        <mat-list-item lines="2">
                             <span matListItemTitle>{{ 'card-ad.city' | translate }}</span>
-                            <span matListItemLine class="!whitespace-normal"
+                            <span matListItemLine
                                 >{{ cardAdInfo.userCard.city }} ({{
                                     cardAdInfo.userCard.department
                                 }})</span
