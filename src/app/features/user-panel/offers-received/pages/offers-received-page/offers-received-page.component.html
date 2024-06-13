@@ -1,1 +1,13 @@
-<p>offers-received-page works!</p>
+<div class="container overflow-auto scrollbar-hide">
+    <h3>Offres reçues</h3>
+    <app-filter-offer-bar
+        (filterByPending)="filterBy('pending')"
+        (filterByAccepted)="filterBy('accepted')"
+        (resetFilter)="filterBy('')" />
+    <div
+        class="flex min-h-full w-full flex-col justify-center gap-2 overflow-auto py-2 scrollbar-hide">
+        <ng-container *ngFor="let offerReceived of filtreredOffersReceived$ | async">
+            <offer-card [offer]="offerReceived" />
+        </ng-container>
+    </div>
+</div>

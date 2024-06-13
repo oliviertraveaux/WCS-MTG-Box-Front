@@ -16,7 +16,7 @@
                 [height]="370" />
         </ng-container>
         <div>{{ cardIndex + 1 }} / {{ cards.length }}</div>
-        <div class="flex items-center justify-center">
+        <div *ngIf="offerCards.userCards.length > 1" class="flex items-center justify-center">
             <button class="z-10 m-2" mat-flat-button color="primary" (click)="onShowPreviousCard()">
                 <mat-icon class="m-0"> arrow_back_ios </mat-icon>
             </button>

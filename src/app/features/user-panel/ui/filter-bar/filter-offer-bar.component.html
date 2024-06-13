@@ -1,0 +1,22 @@
+<mat-chip-listbox>
+    <mat-chip-option
+        class="text-xs"
+        dense="3"
+        selected
+        (keydown.enter)="resetFilters()"
+        (click)="resetFilters()"
+        >All</mat-chip-option
+    >
+    <mat-chip-option
+        class="text-xs"
+        (keydown.enter)="onFilterByPending()"
+        (click)="onFilterByPending()"
+        >Pending</mat-chip-option
+    >
+    <mat-chip-option
+        class="text-xs"
+        (keydown.enter)="onFilterByConfirmed()"
+        (click)="onFilterByConfirmed()"
+        >{{ confirmChipText }}</mat-chip-option
+    >
+</mat-chip-listbox>

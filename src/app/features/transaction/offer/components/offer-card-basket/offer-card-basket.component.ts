@@ -6,11 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 import { SnackbarStatus } from '../../../../../shared/enums/snackbar-status.enum';
+import { OfferService } from '../../../../../shared/offer/services/offer.service';
 import { AlertService } from '../../../../../shared/services/alert.service';
 import { CardBasketComponent } from '../../../../../shared/ui/card-basket/card-basket.component';
 import { UserInfoStatesService } from '../../../../../shared/user/services/user-info-states.service';
 import { CollectionDisplaySearchResultsStatesService } from '../../../../user-panel/collection/shared/services/collection-display/collection-display-search-results-states.service';
-import { OfferService } from '../../shared/services/offer.service';
 
 @Component({
     selector: 'app-offer-card-basket',
