@@ -16,7 +16,11 @@ export class CollectionAddCardBasketService {
     private _cardBasketStateService = inject(CollectionAddCardBasketStatesService);
     private _searchFormService = inject(SearchFormAddCardCollectionService);
     private _collectionAddCardRepository = inject(CollectionAddCardRepository);
-    private _userInfosId = inject(UserInfoStatesService).getUserInfo().id;
+    private _userInfoStatesService = inject(UserInfoStatesService);
+
+    private getUserInfosId(): number {
+    return this._userInfoStatesService.getUserInfo().id;
+  }
 
     updateCardBasket(updatedCard: UserCard): void {
         return this._cardBasketStateService.setCardBasket(
@@ -29,6 +33,7 @@ export class CollectionAddCardBasketService {
     }
 
     fromSearchResultToCardBasket(apiCard: ApiCard): UserCard {
+      const userInfosId = this.getUserInfosId();
         return {
             cardInfo: {
                 uniqueId: uuidv4(),
@@ -49,7 +54,7 @@ export class CollectionAddCardBasketService {
                 artist: apiCard.artist,
             },
             userInfo: {
-                userId: this._userInfosId,
+                userId: userInfosId,
                 qualityName: CardQuality.excellent,
                 qualityId: 3,
                 languageName: this._searchFormService.languageControl.name || 'English',

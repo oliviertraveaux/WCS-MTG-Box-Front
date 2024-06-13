@@ -21,5 +21,6 @@ export const ENVIRONMENT = {
   apiUpdatePasswordURL: `${apiConfigurationUrl}users/update-password`,
   apiUpdateUserURL: `${apiConfigurationUrl}users/update-infos`,
   apiVerifyPasswordURL: `${apiConfigurationUrl}users/verify-password`,
+  apiDeleteUserURL: `${apiConfigurationUrl}users/delete`,
     url: 'http://localhost:8080',
 };

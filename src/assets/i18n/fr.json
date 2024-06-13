@@ -215,6 +215,7 @@
     "username": "Nom d'utilisateur",
     "email": "Email",
     "delete-account": "Supprimer le compte",
+    "deleted-account": "Le compte a bien été supprimé",
     "department": "Département",
     "city": "Ville",
     "active": "Collection visible",

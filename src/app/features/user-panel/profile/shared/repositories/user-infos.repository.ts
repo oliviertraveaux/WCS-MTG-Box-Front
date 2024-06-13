@@ -13,6 +13,7 @@ export class UserInfosRepository {
   private apiUrlUpdatePassword = ENVIRONMENT.apiUpdatePasswordURL;
   private apiUrlUpdateUser = ENVIRONMENT.apiUpdateUserURL;
   private  apiUrlVerifyPassword = ENVIRONMENT.apiVerifyPasswordURL;
+  private apiUrlDeleteUser= ENVIRONMENT.apiDeleteUserURL;
 
 
   updateUsername(userId: number, newUsername: string): Observable<void> {
@@ -38,4 +39,10 @@ export class UserInfosRepository {
     const headers = new HttpHeaders({ 'Content-Type': 'text/plain' });
     return this.http.post<boolean>(url, password, { headers });
   }
+
+  deleteUser(userId: number): Observable<any> {
+    const url = `${this.apiUrlDeleteUser}/${userId}`;
+    return this.http.delete(url);
+  }
 }
+

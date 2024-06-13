@@ -5,6 +5,7 @@ import { Observable, map, tap } from 'rxjs';
 import { ENVIRONMENT } from '../../../../../env';
 import { UserInfo } from '../../../../shared/user/models/user-info.interface';
 import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
+import {CollectionCardsStateService} from "../../../../shared/collection/services/collection-cards-state.service";
 
 @Injectable({
     providedIn: 'root',
@@ -15,6 +16,7 @@ export class LoginRepository {
     private passwordForgottenUrl= `${ENVIRONMENT.apiPasswordForgottenConfigurationURL}`;
     private newPasswordUrl= `${ENVIRONMENT.apiNewPasswordConfigurationURL}`;
     private userInfoStatesService = inject(UserInfoStatesService);
+  private collectionCardState = inject (CollectionCardsStateService);
 
     constructor(
         private http: HttpClient,
@@ -46,6 +48,8 @@ export class LoginRepository {
         return this.http.post(this.logoutUrl, { withCredentials: true }).pipe(
             tap(() => {
                 this.userInfoStatesService.setUserInfo({} as UserInfo);
+              this.collectionCardState.setCards([])
+
                 this.router.navigate(['/login']);
             })
         );

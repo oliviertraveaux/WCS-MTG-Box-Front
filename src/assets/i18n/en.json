@@ -217,6 +217,8 @@
     "title": "Edit User Information",
     "username": "Username",
     "email": "Email",
+    "delete-account": "Delete account",
+    "deleted-account": "The account has been successfully deleted",
     "department": "Department",
     "city": "City",
     "active": "Collection Visible",
