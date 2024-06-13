@@ -103,8 +103,8 @@
       "profile": "profil",
       "collection": "collection",
       "history": "historique",
-      "offersReceived": "offres reçues",
-      "offersMade": "offres effectuées",
+      "offers-received": "offres reçues",
+      "offers-made": "offres effectuées",
       "messages": "messages"
     }
   },

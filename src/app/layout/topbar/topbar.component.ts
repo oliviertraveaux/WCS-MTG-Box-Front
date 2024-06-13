@@ -27,6 +27,7 @@ import { LoginService } from '../../features/auth/shared/services/login.service'
         FormsModule,
     ],
     templateUrl: './topbar.component.html',
+    styleUrls: ['./topbar.component.scss'],
 })
 export class TopbarComponent {
     selectedLanguage: string | null =
@@ -39,6 +40,7 @@ export class TopbarComponent {
             ? { name: 'fr', icon: '🇫🇷' }
             : { name: 'en', icon: '🇬🇧' },
     ];
+
     constructor(
         protected authService: LoginService,
         private translate: TranslateService

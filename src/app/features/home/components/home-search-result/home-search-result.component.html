@@ -1,22 +1,13 @@
 <div class="my-2 flex w-full flex-col px-2 md:flex-row">
-    <div class="mb-2 flex grow flex-row lg:mb-0">
+    <div
+        class="mb-2 flex grow flex-col items-center justify-center lg:mb-0 lg:flex-row lg:items-start">
         <img
-            *ngIf="isDesktop | async; else mobilePic"
             [ngSrc]="isFrenchSearch ? resultCard.frenchImageUrl : resultCard.imageUrl"
             class="py-1"
             style="object-fit: contain"
             [alt]="resultCard.imageUrl"
             [width]="265"
             [height]="370" />
-        <ng-template #mobilePic>
-            <img
-                [ngSrc]="isFrenchSearch ? resultCard.frenchImageUrl : resultCard.imageUrl"
-                class="py-1"
-                style="object-fit: contain"
-                [alt]="resultCard.imageUrl"
-                [width]="199"
-                [height]="278" />
-        </ng-template>
         <div class="flex flex-col">
             <mat-list class="dense-3">
                 <mat-list-item>
@@ -123,6 +114,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns" class="h-8"></tr>
         </table>
         <mat-paginator
+            *ngIf="resultData.data.length > 5"
             class="pb-2"
             [pageSizeOptions]="[5, 10, 20]"
             [showFirstLastButtons]="!!resultData.data.length"></mat-paginator>

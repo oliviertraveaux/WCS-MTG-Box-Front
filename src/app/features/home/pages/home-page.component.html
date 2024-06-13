@@ -1,16 +1,26 @@
-<div class="flex h-full w-full flex-col min-w-full">
-  <!-- Video Background -->
-  <div class="relative bg-gray-900 hero bg-cover bg-center bg-no-repeat" style="position: relative; overflow: hidden;">
-    <video autoplay muted loop class="absolute w-full h-full object-cover" >
-      <source src="./assets/video/hero.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="absolute inset-0 bg-black opacity-20"></div>
-    <div class="absolute inset-0 flex flex-col items-center justify-center">
-      <h1 class="text-6xl font-bold mb-4 text-white uppercase tracking-wide outline">MTG Box</h1>
-      <button mat-raised-button color="primary" class="m-2 py-2 px-4 hover:bg-blue-700 text-white font-bold rounded" (click)="scrollToDrawer()">{{ 'home.access-to-cards' | translate }}</button>
+<div class="flex h-full w-full min-w-full flex-col">
+    <!-- Video Background -->
+    <div
+        class="hero relative bg-gray-900 bg-cover bg-center bg-no-repeat"
+        style="position: relative; overflow: hidden">
+        <video autoplay muted loop class="absolute h-full w-full object-cover">
+            <source src="./assets/video/hero.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <h1 class="mb-4 text-6xl font-bold uppercase tracking-wide text-white outline">
+                MTG Box
+            </h1>
+            <button
+                mat-raised-button
+                color="primary"
+                class="m-2 rounded px-4 py-2 font-bold text-white hover:bg-blue-700"
+                (click)="scrollToDrawer()">
+                {{ 'home.access-to-cards' | translate }}
+            </button>
+        </div>
     </div>
-  </div>
 </div>
 
 <mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full" id="drawerContainer">
@@ -20,9 +30,9 @@
         </app-search-form-drawer>
     </mat-drawer>
     <mat-drawer-content>
-        <section class="align flex h-full w-screen flex-col items-center justify-center">
-            <div class="flex h-full w-full flex-col px-4 pb-1 sm:px-8 lg:w-11/12 lg:px-0">
-                <h2>{{ 'home.search-title' | translate }}</h2>
+        <section class="align container flex h-full flex-col items-center justify-center">
+            <div class="flex h-full w-full flex-col pb-1">
+                <h3>{{ 'home.search-title' | translate }}</h3>
                 <app-search-form-name-only
                     (search)="search()"
                     (toggleFilterDrawer)="toggleFilterDrawer()">
@@ -36,11 +46,13 @@
                     [isFrenchSearch]="!!(isFrenchSearch | async)"
                     class="overflow-y-auto scrollbar-hide"
                     [resultCards$]="cardResults$"></app-home-search-results>
-                <div class="flex-grow bg-blue-400"></div>
+                <!--                <div class="flex-grow bg-blue-400"></div>-->
             </div>
         </section>
     </mat-drawer-content>
 </mat-drawer-container>
 <ng-template #loading>
-    <mat-spinner></mat-spinner>
+    <div class="flex h-full w-full items-center justify-center">
+        <mat-spinner></mat-spinner>
+    </div>
 </ng-template>
