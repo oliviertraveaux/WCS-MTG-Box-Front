@@ -237,7 +237,6 @@
     "password-new": "New Password",
     "password-confirm": "Confirm New Password",
     "password-modified": "Password changed",
-    "delete-account": "Delete Account",
     "change-username-info": "Are you sure you want to change your username to: {{username}}?",
     "change-username-title": "Change Username",
     "delete-user": {
@@ -245,5 +244,16 @@
       "password": "Enter your password to confirm"
     }
 
+  },
+  "BreadCrumb": {
+    "card_ad": "View a card",
+    "add": "Add cards",
+    "make-offer": "Make an offer",
+    "profile": "Edit my profile",
+    "collection": "My collection",
+    "offers-received": "Offers received",
+    "offers-made": "Offers made",
+    "history": "Offer history",
+    "page-not-found": "Page not found"
   }
 }
