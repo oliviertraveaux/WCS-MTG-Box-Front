@@ -1,8 +1,16 @@
-<div>
+
+<div class="flex  flex-col justify-center items-center">
+  <img src="./assets/images/background/giphy.webp" alt="Animated 404" class="w-64 h-auto mb-6">
+
+
+
     <h1>{{ 'page-not-found.title1' | translate }}</h1>
     <h1>{{ 'page-not-found.title2' | translate }}</h1>
-    <button class="m-4 flex" mat-flat-button color="primary" (click)="redirectToHome()">
+  <img src="./assets/images/background/404.jpeg" alt="Page not found" class=" object-cover transform transition-transform hover:scale-105">
+
+  <button class="m-4 flex" mat-flat-button color="primary" (click)="redirectToHome()">
         <mat-icon>arrow_back</mat-icon>
         <span> {{ 'page-not-found.button-text' | translate }} </span>
     </button>
+
 </div>

@@ -240,6 +240,17 @@
       "info" : "Attention la suppression de votre compte entrainera la suppression de toutes vos données",
       "password" : "Entre votre mot de passe pour confirmer"
     }
+  },
+  "BreadCrumb": {
+    "card_ad": "Consulter une carte",
+    "add": "Ajouter des cartes",
+    "make-offer": "Faire une offre",
+    "profile": "Modifier mon profil",
+    "collection": "Ma collection",
+    "offers-received": "Offres reçues",
+    "offers-made": "Offres effectuées",
+    "history": "Historique des offres",
+    "page-not-found": "Page non trouvée"
   }
 
 }
