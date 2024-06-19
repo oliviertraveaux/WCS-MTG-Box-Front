@@ -18,19 +18,18 @@
             [ngClass]="{ hidden: !showMenu, flex: showMenu }"
             class="items-center lg:flex lg:flex-grow">
             <ul class="mr-auto flex list-none flex-col lg:flex-row">
-                <li class="nav-item">
-                    <a
-                        class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
-                        [ngClass]="{
-                            underline: currentPage === '/user-panel/profile'
+              <li class="nav-item">
+                <a
+                  class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
+                  [ngClass]="{
+                            underline: currentPage === '/user-panel/add'
                         }"
-                        (click)="closeNavbar(); $event.preventDefault()"
-                        routerLink="/user-panel/profile">
-                        <i
-                            class="fab fa-facebook-square leading-lg text-lg text-white opacity-75"></i>
-                        <span class=""> {{ 'userPanel.menuLabels.profile' | translate }}</span>
-                    </a>
-                </li>
+                  (click)="closeNavbar(); $event.preventDefault()"
+                  routerLink="/user-panel/add">
+                  <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
+                  <span class="">{{ 'userPanel.menuLabels.add-card' | translate }}</span>
+                </a>
+              </li>
                 <li class="nav-item">
                     <a
                         class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
@@ -83,18 +82,19 @@
                         <span class="">{{ 'userPanel.menuLabels.offers-made' | translate }}</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a
-                        class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
-                        [ngClass]="{
-                            underline: currentPage === '/user-panel/messages'
+              <li class="nav-item">
+                <a
+                  class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
+                  [ngClass]="{
+                            underline: currentPage === '/user-panel/profile'
                         }"
-                        (click)="closeNavbar(); $event.preventDefault()"
-                        routerLink="/user-panel/messages">
-                        <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
-                        <span class="">{{ 'userPanel.menuLabels.messages' | translate }}</span>
-                    </a>
-                </li>
+                  (click)="closeNavbar(); $event.preventDefault()"
+                  routerLink="/user-panel/profile">
+                  <i
+                    class="fab fa-facebook-square leading-lg text-lg text-white opacity-75"></i>
+                  <span class=""> {{ 'userPanel.menuLabels.profile' | translate }}</span>
+                </a>
+              </li>
             </ul>
         </div>
     </div>
