@@ -6,11 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 import { SnackbarStatus } from '../../../../../shared/enums/snackbar-status.enum';
+import { OfferService } from '../../../../../shared/offer/services/offer.service';
 import { AlertService } from '../../../../../shared/services/alert.service';
 import { CardBasketComponent } from '../../../../../shared/ui/card-basket/card-basket.component';
 import { UserInfoStatesService } from '../../../../../shared/user/services/user-info-states.service';
 import { CollectionDisplaySearchResultsStatesService } from '../../../../user-panel/collection/shared/services/collection-display/collection-display-search-results-states.service';
-import { OfferCardBasketService } from '../../shared/services/offer-card-basket.service';
 
 @Component({
     selector: 'app-offer-card-basket',
@@ -22,7 +22,7 @@ import { OfferCardBasketService } from '../../shared/services/offer-card-basket.
 export class OfferCardBasketComponent implements OnInit {
     public _collectionDisplayStatesService = inject(CollectionDisplaySearchResultsStatesService);
     private _userId = inject(UserInfoStatesService).getUserInfo().id;
-    private _offerCardBasketService = inject(OfferCardBasketService);
+    private _offerService = inject(OfferService);
     private _destroyRef = inject(DestroyRef);
     private _alertService = inject(AlertService);
     private _translate = inject(TranslateService);
@@ -48,7 +48,7 @@ export class OfferCardBasketComponent implements OnInit {
     }
 
     createOffer(): void {
-        this._offerCardBasketService
+        this._offerService
             .createOffer(
                 this._userId,
                 parseInt(this._route.snapshot.paramMap.get('id')!),

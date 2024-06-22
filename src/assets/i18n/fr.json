@@ -194,9 +194,17 @@
     "offer": {
       "collection-title": "Sélectionnez des cartes",
       "basket-title": "Votre offre",
+      "confirm-button-text-accept": "Accepter",
+      "confirm-button-text-accepted": "Acceptée",
+      "confirm-button-text-validate": "Valider",
+      "confirm-button-text-validated": "Validée",
       "toast": {
         "offer-created-success": "Votre offre a été envoyée",
-        "offer-created-fail": "Une erreur est survenue"
+        "offer-created-fail": "Une erreur est survenue",
+        "offer-accepted-success": "Offre acceptée",
+        "offer-accepted-fail": "Une erreur est survenue lors de l'acceptation",
+        "offer-validated-success": "Offre validée",
+        "offer-validated-fail": "Une erreur est survenue lors de la validation"
       },
       "card-info-bar": {
         "make-offer-to": "Vous faites une offre à  ",

@@ -1,0 +1,8 @@
+<mat-dialog-content class="h-full">
+    <app-card-ad-offer-desktop
+        *ngIf="isDesktop | async; else mobileTemplate"
+        [offerCards]="data.offer" />
+    <ng-template #mobileTemplate>
+        <app-card-ad-offer-mobile [offerCards]="data.offer" />
+    </ng-template>
+</mat-dialog-content>
