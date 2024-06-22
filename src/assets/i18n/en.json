@@ -106,9 +106,20 @@
       "history": "history",
       "offers-received": "offers received",
       "offers-made": "offers made",
-      "messages": "messages"
+      "messages": "messages",
+      "admin": "admin"
+    },
+    "admin": {
+      "title": "Users administration",
+      "toast": {
+        "get-users-fail": "An error occured",
+        "user-updated-success": "User updated",
+        "user-updated-fail": "An error occured",
+        "confirm-dialog-text": "Are you sure you want to modify this user: {{username}} ?",
+        "confirm-dialog-title": "Confirm"
+      }
     }
-  },
+},
   "ui": {
     "cardBasket": {
       "reset": "Reset",

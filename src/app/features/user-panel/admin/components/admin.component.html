@@ -1,0 +1,91 @@
+<mat-form-field appearance="outline" class="dense-3">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
+</mat-form-field>
+
+<table
+    mat-table
+    [dataSource]="dataSource"
+    (matSortChange)="announceSortChange($event)"
+    matSort
+    class="dense-3 w-full">
+    <ng-container matColumnDef="userName">
+        <th
+            mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by user name"
+            mat-sort-header>
+            Username
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by email" mat-sort-header>
+            Email
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="isActive">
+        <th
+            mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by active status"
+            mat-sort-header>
+            Active
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <app-active-cell [isActive]="element.isActive" />
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="isBanned">
+        <th
+            mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by ban status"
+            mat-sort-header>
+            Banned
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <app-banned-cell [user]="element" />
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="role.type">
+        <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by role" mat-sort-header>
+            Role
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <app-role-cell [user]="element" />
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="lastConnectionDate">
+        <th
+            mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by last connection date"
+            mat-sort-header>
+            Last Connection
+        </th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.lastConnectionDate | date: 'dd/MM/yyyy' }}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="creationDate">
+        <th
+            mat-header-cell
+            *matHeaderCellDef
+            sortActionDescription="Sort by creation date"
+            mat-sort-header>
+            Creation date
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.creationDate | date: 'dd/MM/yyyy' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="save">
+        <th mat-header-cell *matHeaderCellDef r>Save</th>
+        <td mat-cell *matCellDef="let element">
+            <app-save-cell [user]="element" [users]="users" (save)="saveUser(element)" />
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-paginator class="pb-2" pageSize="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>

@@ -1,0 +1,4 @@
+<div class="container overflow-auto scrollbar-hide">
+    <h3>{{ 'userPanel.admin.title' | translate }}</h3>
+    <app-admin [users]="(users | async)!"></app-admin>
+</div>
