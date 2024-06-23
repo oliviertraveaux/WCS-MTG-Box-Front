@@ -34,6 +34,8 @@ export const routes: Route[] = [
         children: USER_PANEL_ROUTES,
         canActivate: [AuthGuard],
     },
+  { path: 'collection', redirectTo: 'user-panel/collection', pathMatch: 'full' },
+
     {
         path: 'card-ad/:id',
         component: CardAdPageComponent,
