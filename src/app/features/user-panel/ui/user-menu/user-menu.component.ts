@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { filter, map, tap } from 'rxjs';
+import { UserRole } from '../../../../shared/user/enums/user-role.enum';
+import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
 
 @Component({
     selector: 'app-user-menu',
@@ -14,12 +16,15 @@ import { filter, map, tap } from 'rxjs';
     styleUrls: ['./user-menu.component.scss'],
 })
 export class UserMenuComponent {
+    private readonly _userInfoStatesService = inject(UserInfoStatesService);
     private _router = inject(Router);
     private _destroyRef = inject(DestroyRef);
     currentPage?: string = this._router.url;
     mobileMenuInfo?: string;
+    isUserAdmin!: boolean;
 
     ngOnInit() {
+        this.isUserAdmin = this._userInfoStatesService.getUserInfo().role.type === UserRole.ADMIN;
         this._router.events
             .pipe(
                 filter((event) => event instanceof NavigationEnd),

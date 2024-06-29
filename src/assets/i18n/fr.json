@@ -105,8 +105,19 @@
       "history": "historique",
       "offers-received": "offres reçues",
       "offers-made": "offres effectuées",
-      "messages": "messages"
+      "messages": "messages",
+      "admin": "admin"
+    },
+  "admin": {
+    "title": "Administration des utilisateurs",
+    "toast": {
+      "get-users-fail": "Une erreur est survenue",
+      "user-updated-success": "Utilisateur mis à jour",
+      "user-updated-fail": "An error occured",
+      "confirm-dialog-text": "Etes vous sur de vouloir modifier l'utilisateur : {{username}} ?",
+      "confirm-dialog-title": "Confirmer"
     }
+  }
   },
   "ui": {
     "cardBasket": {
@@ -127,7 +138,6 @@
       "frenchNameTitle": "Nom Français",
       "englishNameTitle": "Nom Anglais",
       "noResults": "Aucun résultats"
-
     }
   },
   "home": {

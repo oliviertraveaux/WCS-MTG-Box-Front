@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { Route } from '@angular/router';
 import { SearchFormService } from '../../shared/services/search-form/search-form.service';
+import { AdminPageComponent } from './admin/pages/admin-page.component';
 import { CollectionAddCardPageComponent } from './collection/pages/collection-add-card-page/collection-add-card-page.component';
 import { CollectionDisplayPageComponent } from './collection/pages/collection-display-page/collection-display-page.component';
 import { collectionAddCardGuard } from './collection/shared/services/collection-add-card/collection-add-card.guard';
@@ -29,4 +30,5 @@ export const USER_PANEL_ROUTES: Route[] = [
     { path: 'offers-received', component: OffersReceivedPageComponent },
     { path: 'offers-made', component: OffersMadePageComponent },
     { path: 'messages', component: MessagesPageComponent },
+    { path: 'admin', component: AdminPageComponent },
 ];

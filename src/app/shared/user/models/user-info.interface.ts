@@ -1,3 +1,5 @@
+import { UserRole } from '../enums/user-role.enum';
+
 export interface UserInfo {
     id: number;
     username: string;
@@ -10,7 +12,7 @@ export interface UserInfo {
     creationDate: Date;
     role: {
         id: number;
-        type: string;
+        type: UserRole;
     };
     avatar: any;
 }

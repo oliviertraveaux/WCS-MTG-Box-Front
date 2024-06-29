@@ -1,0 +1,11 @@
+@import "src/_global-variables";
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  padding: 0 8px 0 8px;
+  @include sm {
+    padding: 0 16px 0 16px;
+  }
+  @include lg {
+    padding: 0 8px 0 16px;
+  }
+}
