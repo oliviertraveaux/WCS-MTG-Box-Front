@@ -9,9 +9,9 @@ export class GetIsConfirmButtonDisabledPipe implements PipeTransform {
     transform(offerStatus: OfferStatus): boolean {
         switch (offerStatus) {
             case OfferStatus.accepted:
-                return true;
-            case OfferStatus.pending:
                 return false;
+            case OfferStatus.pending:
+                return true;
             default:
                 return true;
         }

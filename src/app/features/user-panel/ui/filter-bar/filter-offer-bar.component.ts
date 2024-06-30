@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
+import { TranslateModule } from '@ngx-translate/core';
 import { OfferCardComponent } from '../../offers-received/components/offer-card/offer-card-component';
 
 @Component({
     selector: 'app-filter-offer-bar',
     standalone: true,
-    imports: [CommonModule, OfferCardComponent, MatChipsModule],
+    imports: [CommonModule, OfferCardComponent, MatChipsModule, TranslateModule],
     templateUrl: './filter-offer-bar.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

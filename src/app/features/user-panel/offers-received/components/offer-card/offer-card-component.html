@@ -2,7 +2,10 @@
     <div class="divider flex px-4 text-xs text-gray-400">
         <span>{{ offer.createdDate | date}}</span>
         <span>{{ offer.wantedUserCard.cardInfo.name | getTruncateText: 25 }}</span>
-        <span>{{ offer.userName | getTruncateText: 15}}</span>
+        <span
+            >{{ (getPage()==='offers-received' ? offer.userName :
+            offer.wantedUserCard.userInfo.userName!) | getTruncateText: 15}}</span
+        >
     </div>
     <div class="flex flex-col md:flex-row">
         <div class="flex items-center justify-between px-4 py-2.5 md:justify-start md:gap-8">
@@ -40,7 +43,11 @@
             </div>
         </div>
         <div *ngIf="hasActionBar" class="flex w-full items-center justify-end">
-            <offer-card-actions [offer]="offer" [hasAcceptButton]="true" />
+            <offer-card-actions
+                [offer]="offer"
+                [hasAcceptButton]="hasAcceptButton"
+                [hasDeleteButton]="hasDeleteButton"
+                [hasValidateButton]="hasValidateButton" />
         </div>
     </div>
 </div>

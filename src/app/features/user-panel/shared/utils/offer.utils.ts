@@ -1,7 +1,6 @@
-import { UserCard } from '../../../../shared/collection/models/user-card.model';
 import { OfferFullWantedCard } from '../../../../shared/offer/models/offer-full-wanted-card.model';
+import { OfferWantedUserCard } from '../../../../shared/offer/models/offer-wanted-user-card.model';
 import { Offer } from '../../../../shared/offer/models/offer.model';
-import { UserInfo } from '../../../../shared/user/models/user-info.interface';
 import { UserCardOnMarket } from '../../../home/models/home-search-results.model';
 import { CardAdInfo } from '../../../transaction/card-ad/models/card-ad-info';
 
@@ -14,7 +13,7 @@ export const fromOfferFullWantedCardToOffer = (offerFull: OfferFullWantedCard): 
     return offer;
 };
 
-export const fromUserCardToAdCardInfo = (userCard: UserCard, userInfo: UserInfo): CardAdInfo => {
+export const fromUserCardToAdCardInfo = (userCard: OfferWantedUserCard): CardAdInfo => {
     return {
         name: userCard.cardInfo.name,
         frenchName: userCard.cardInfo.frenchName,
@@ -27,11 +26,11 @@ export const fromUserCardToAdCardInfo = (userCard: UserCard, userInfo: UserInfo)
         text: userCard.cardInfo.text,
         userCard: {
             userId: userCard.userInfo.userId,
-            userName: userInfo.username,
-            city: userInfo.city,
-            qualityName: userCard.userInfo.qualityName,
-            languageName: userCard.userInfo.languageName,
-            department: userInfo.department,
+            userName: userCard.userInfo.userName,
+            city: userCard.userInfo.city,
+            quality: userCard.userInfo.qualityName,
+            language: userCard.userInfo.languageName,
+            department: userCard.userInfo.department,
         } as unknown as UserCardOnMarket,
     } as CardAdInfo;
 };

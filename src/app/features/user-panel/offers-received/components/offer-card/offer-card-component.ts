@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, map } from 'rxjs';
 import { UserCard } from '../../../../../shared/collection/models/user-card.model';
@@ -49,9 +50,13 @@ export class OfferCardComponent implements OnInit {
     private readonly _userInfo = inject(UserInfoStatesService).getUserInfo();
     public readonly _breakpointService = inject(BreakpointObserverService);
     private readonly _translate = inject(TranslateService);
+    private readonly _router = inject(Router);
 
     @Input({ required: true }) offer!: OfferFullWantedCard;
     @Input() hasActionBar: boolean = true;
+    @Input() hasDeleteButton: boolean = false;
+    @Input() hasAcceptButton: boolean = false;
+    @Input() hasValidateButton: boolean = false;
 
     protected readonly trackById = trackById;
     currentBreakpoints!: Observable<string[]>;
@@ -87,6 +92,11 @@ export class OfferCardComponent implements OnInit {
             width: '90%',
         });
         let instance = dialogRef.componentInstance;
-        instance.cardAdInfo = fromUserCardToAdCardInfo(this.offer.wantedUserCard, this._userInfo);
+        instance.cardAdInfo = fromUserCardToAdCardInfo(this.offer.wantedUserCard);
+    }
+
+    getPage(): string {
+        const array = this._router.url.split('/');
+        return array.length > 1 ? array[2] : 'offers-received';
     }
 }

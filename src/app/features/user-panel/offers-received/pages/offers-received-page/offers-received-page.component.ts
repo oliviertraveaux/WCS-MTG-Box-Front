@@ -7,6 +7,7 @@ import {
     OnInit,
 } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
+import { TranslateModule } from '@ngx-translate/core';
 import { BehaviorSubject, combineLatest, map, Observable, of } from 'rxjs';
 import { OfferFullWantedCard } from '../../../../../shared/offer/models/offer-full-wanted-card.model';
 import { OfferService } from '../../../../../shared/offer/services/offer.service';
@@ -18,7 +19,13 @@ import { OfferCardComponent } from '../../components/offer-card/offer-card-compo
 @Component({
     selector: 'app-offers-received-page',
     standalone: true,
-    imports: [CommonModule, OfferCardComponent, MatChipsModule, FilterOfferBarComponent],
+    imports: [
+        CommonModule,
+        OfferCardComponent,
+        MatChipsModule,
+        FilterOfferBarComponent,
+        TranslateModule,
+    ],
     templateUrl: './offers-received-page.component.html',
     styleUrls: ['./offers-received-page.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
