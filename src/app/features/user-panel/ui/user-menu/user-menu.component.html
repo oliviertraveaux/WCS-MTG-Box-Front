@@ -18,83 +18,84 @@
             [ngClass]="{ hidden: !showMenu, flex: showMenu }"
             class="items-center lg:flex lg:flex-grow">
             <ul class="mr-auto flex list-none flex-col lg:flex-row">
-                <li class="nav-item">
-                    <a
-                        class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
-                        [ngClass]="{
-                            underline: currentPage === '/user-panel/profile'
+              <li class="nav-item">
+                <a
+                  class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
+                  [ngClass]="{
+                            underline: currentPage === '/user-panel/add'
                         }"
-                        (click)="closeNavbar(); $event.preventDefault()"
-                        routerLink="/user-panel/profile">
-                        <i
-                            class="fab fa-facebook-square leading-lg text-lg text-white opacity-75"></i>
-                        <span class=""> {{ 'userPanel.menuLabels.profile' | translate }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
-                        [ngClass]="{
+                  (click)="closeNavbar(); $event.preventDefault()"
+                  routerLink="/user-panel/add">
+                  <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
+                  <span class="">{{ 'userPanel.menuLabels.add' | translate }}</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
+                  [ngClass]="{
                             underline:
                                 currentPage === '/user-panel/collection' ||
                                 currentPage === '/user-panel/collection/add'
                         }"
-                        (click)="closeNavbar(); $event.preventDefault()"
-                        routerLink="/user-panel/collection">
-                        <i class="fab fa-twitter leading-lg text-lg text-white opacity-75"></i>
-                        <span class="">{{ 'userPanel.menuLabels.collection' | translate }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
-                        [ngClass]="{
+                  (click)="closeNavbar(); $event.preventDefault()"
+                  routerLink="/user-panel/collection">
+                  <i class="fab fa-twitter leading-lg text-lg text-white opacity-75"></i>
+                  <span class="">{{ 'userPanel.menuLabels.collection' | translate }}</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
+                  [ngClass]="{
                             underline: currentPage === '/user-panel/history'
                         }"
-                        (click)="closeNavbar(); $event.preventDefault()"
-                        routerLink="/user-panel/history">
-                        <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
-                        <span class=""> {{ 'userPanel.menuLabels.history' | translate }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
-                        [ngClass]="{
+                  (click)="closeNavbar(); $event.preventDefault()"
+                  routerLink="/user-panel/history">
+                  <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
+                  <span class=""> {{ 'userPanel.menuLabels.history' | translate }}</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
+                  [ngClass]="{
                             underline: currentPage === '/user-panel/offers-received'
                         }"
-                        (click)="closeNavbar(); $event.preventDefault()"
-                        routerLink="/user-panel/offers-received">
-                        <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
-                        <span class="">{{
-                            'userPanel.menuLabels.offers-received' | translate
-                        }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
-                        [ngClass]="{
+                  (click)="closeNavbar(); $event.preventDefault()"
+                  routerLink="/user-panel/offers-received">
+                  <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
+                  <span class="">{{
+                      'userPanel.menuLabels.offers-received' | translate
+                    }}</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
+                  [ngClass]="{
                             underline: currentPage === '/user-panel/offers-made'
                         }"
-                        (click)="closeNavbar(); $event.preventDefault()"
-                        routerLink="/user-panel/offers-made">
-                        <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
-                        <span class="">{{ 'userPanel.menuLabels.offers-made' | translate }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
-                        [ngClass]="{
-                            underline: currentPage === '/user-panel/messages'
+                  (click)="closeNavbar(); $event.preventDefault()"
+                  routerLink="/user-panel/offers-made">
+                  <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
+                  <span class="">{{ 'userPanel.menuLabels.offers-made' | translate }}</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
+                  [ngClass]="{
+                            underline: currentPage === '/user-panel/profile'
                         }"
-                        (click)="closeNavbar(); $event.preventDefault()"
-                        routerLink="/user-panel/messages">
-                        <i class="fab fa-pinterest leading-lg text-lg text-white opacity-75"></i>
-                        <span class="">{{ 'userPanel.menuLabels.messages' | translate }}</span>
-                    </a>
-                </li>
+                  (click)="closeNavbar(); $event.preventDefault()"
+                  routerLink="/user-panel/profile">
+                  <i
+                    class="fab fa-facebook-square leading-lg text-lg text-white opacity-75"></i>
+                  <span class=""> {{ 'userPanel.menuLabels.profile' | translate }}</span>
+                </a>
+              </li>
+
                 <li class="nav-item" *ngIf="isUserAdmin">
                     <a
                         class="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:underline"
