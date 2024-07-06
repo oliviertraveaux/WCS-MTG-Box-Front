@@ -229,10 +229,18 @@
       "offers-made": {
         "page-title": "Offres effectuées"
       },
+      "history": {
+        "page-title": "Historique des offres validées"
+      },
       "filter-offer-bar": {
         "all-button-text": "Toutes",
         "pending-button-text": "En attente",
         "accepted-button-text": "Acceptées"
+      },
+      "filter-offer-history-bar": {
+        "all-button-text": "Toutes",
+        "pending-button-text": "Faites",
+        "accepted-button-text": "Reçues"
       }
     }
   },

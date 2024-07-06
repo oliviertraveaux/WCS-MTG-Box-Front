@@ -233,10 +233,18 @@
     "offers-made": {
       "page-title": "Offers made"
     },
+    "history": {
+      "page-title": "Validated offers history"
+    },
     "filter-offer-bar": {
       "all-button-text": "All",
       "pending-button-text": "Pending",
       "accepted-button-text": "Accepted"
+    },
+    "filter-offer-history-bar": {
+      "all-button-text": "All",
+      "pending-button-text": "Made",
+      "accepted-button-text": "Received"
     }
   }
 },
