@@ -15,10 +15,12 @@ export class OfferService {
     private _offerStatesService = inject(OfferStatesService);
 
     getOffersMade(id: number): void {
-        this._offerRepositoryService.getOffersMade(id).subscribe((offersMade: Offer[]) => {
-            this._offerStatesService.setOffersMade(offersMade);
-            this._offerStatesService.setIsOffersMadeLoaded(true);
-        });
+        this._offerRepositoryService
+            .getOffersMade(id)
+            .subscribe((offersMade: OfferFullWantedCard[]) => {
+                this._offerStatesService.setOffersMade(offersMade);
+                this._offerStatesService.setIsOffersMadeLoaded(true);
+            });
     }
 
     getOffersReceived(id: number): void {
@@ -63,7 +65,7 @@ export class OfferService {
         return this._offerRepositoryService.validateOffer(offerId);
     }
 
-    deleteOffer(offerId: number): Observable<Offer> {
+    deleteOffer(offerId: number): Observable<void> {
         return this._offerRepositoryService.deleteOffer(offerId);
     }
 }

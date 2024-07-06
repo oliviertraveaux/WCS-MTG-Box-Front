@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { OfferFullWantedCard } from '../models/offer-full-wanted-card.model';
-import { Offer } from '../models/offer.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class OfferStatesService {
-    private _offersMade: BehaviorSubject<Offer[]> = new BehaviorSubject<Offer[]>([]);
+    private _offersMade: BehaviorSubject<OfferFullWantedCard[]> = new BehaviorSubject<
+        OfferFullWantedCard[]
+    >([]);
     private _offersReceived: BehaviorSubject<OfferFullWantedCard[]> = new BehaviorSubject<
         OfferFullWantedCard[]
     >([]);
     private _isOffersMadeLoaded = new BehaviorSubject<boolean>(false);
     private _isOffersReceivedLoaded = new BehaviorSubject<boolean>(false);
 
-    getOffersMade$(): Observable<Offer[]> {
+    getOffersMade$(): Observable<OfferFullWantedCard[]> {
         return this._offersMade;
     }
-    getOffersMade(): Offer[] {
+    getOffersMade(): OfferFullWantedCard[] {
         return this._offersMade.getValue();
     }
-    setOffersMade(offers: Offer[]): void {
+    setOffersMade(offers: OfferFullWantedCard[]): void {
         this._offersMade.next(offers);
     }
     getOffersReceived$(): Observable<OfferFullWantedCard[]> {

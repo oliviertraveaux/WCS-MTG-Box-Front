@@ -23,8 +23,8 @@ export class OfferRepositoryService {
         return this.http.post<Offer>(`${this.apiOfferUrl}`, offerCreation);
     }
 
-    getOffersMade(id: number): Observable<Offer[]> {
-        return this.http.get<Offer[]>(`${this.apiOfferUrl}/user/${id}`);
+    getOffersMade(id: number): Observable<OfferFullWantedCard[]> {
+        return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/user/${id}`);
     }
 
     getOffersReceived(id: number): Observable<OfferFullWantedCard[]> {
@@ -43,7 +43,7 @@ export class OfferRepositoryService {
         });
     }
 
-    deleteOffer(id: number): Observable<Offer> {
-        return this.http.delete<Offer>(`${this.apiOfferUrl}/cancel-offer/${id}`);
+    deleteOffer(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiOfferUrl}/${id}`);
     }
 }

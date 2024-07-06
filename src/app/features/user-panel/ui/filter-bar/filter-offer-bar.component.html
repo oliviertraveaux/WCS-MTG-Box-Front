@@ -5,18 +5,20 @@
         selected
         (keydown.enter)="resetFilters()"
         (click)="resetFilters()"
-        >All</mat-chip-option
+        >{{ 'transaction.offer.filter-offer-bar.all-button-text' | translate }}</mat-chip-option
     >
     <mat-chip-option
         class="text-xs"
         (keydown.enter)="onFilterByPending()"
         (click)="onFilterByPending()"
-        >Pending</mat-chip-option
+        >{{ 'transaction.offer.filter-offer-bar.pending-button-text' | translate }}</mat-chip-option
     >
     <mat-chip-option
         class="text-xs"
         (keydown.enter)="onFilterByConfirmed()"
         (click)="onFilterByConfirmed()"
-        >{{ confirmChipText }}</mat-chip-option
+        >{{
+            'transaction.offer.filter-offer-bar.accepted-button-text' | translate
+        }}</mat-chip-option
     >
 </mat-chip-listbox>

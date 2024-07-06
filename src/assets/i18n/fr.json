@@ -214,12 +214,25 @@
         "offer-accepted-success": "Offre acceptée",
         "offer-accepted-fail": "Une erreur est survenue lors de l'acceptation",
         "offer-validated-success": "Offre validée",
-        "offer-validated-fail": "Une erreur est survenue lors de la validation"
+        "offer-validated-fail": "Une erreur est survenue lors de la validation",
+        "offer-delete-success": "Offre supprimée",
+        "offer-delete-fail": "Une erreur est survenue lors de la suppression"
       },
       "card-info-bar": {
         "make-offer-to": "Vous faites une offre à  ",
         "make-offer-for": "pour la carte  ",
         "see-ad": "voir l'offre"
+      },
+      "offers-received": {
+        "page-title": "Offres reçues"
+      },
+      "offers-made": {
+        "page-title": "Offres effectuées"
+      },
+      "filter-offer-bar": {
+        "all-button-text": "Toutes",
+        "pending-button-text": "En attente",
+        "accepted-button-text": "Acceptées"
       }
     }
   },

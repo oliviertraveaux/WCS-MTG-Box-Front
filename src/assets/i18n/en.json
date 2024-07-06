@@ -210,27 +210,40 @@
       "basket-title": "Your offer",
       "confirm-button-text-accept": "Accept",
       "confirm-button-text-accepted": "Accepted",
-      "confirm-button-text-validate": "Validater",
+      "confirm-button-text-validate": "Validate",
       "confirm-button-text-validated": "Validated",
     "toast": {
       "offer-created-success": "Your offer has been submitted",
       "offer-created-fail": "An error occurred submitting your offer",
       "offer-accepted-success": "Offer accepted",
-      "offer-accepted-fail": "An error occured accepting the offer",
+      "offer-accepted-fail": "An error occurred accepting the offer",
       "offer-validated-success": "Offer validated",
-      "offer-validated-fail": "An error occured validating the offer"
+      "offer-validated-fail": "An error occurred validating the offer",
+      "offer-deleted-success": "Offer deleted",
+      "offer-deleted-fail": "An error occurred deleting the offer"
     },
     "card-info-bar": {
       "make-offer-to": "You are making an offer to ",
       "make-offer-for": "for the card ",
       "see-ad": "see add"
+    },
+    "offers-received": {
+      "page-title": "Offers received"
+    },
+    "offers-made": {
+      "page-title": "Offers made"
+    },
+    "filter-offer-bar": {
+      "all-button-text": "All",
+      "pending-button-text": "Pending",
+      "accepted-button-text": "Accepted"
     }
   }
 },
   "page-not-found": {
     "title1": "404",
     "title2": "Page not found!",
-    "button-text": "Retour à l'accueil"
+    "button-text": "Back to Home"
   },
   "UpdateProfile": {
     "title": "Edit User Information",

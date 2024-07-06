@@ -1,5 +1,10 @@
 <div class="flex justify-between gap-2 px-4 py-2 md:w-full md:items-center md:justify-end">
-    <button mat-button *ngIf="hasDeleteButton" (keydown.enter)="onDelete()" (click)="onDelete()">
+    <button
+        mat-stroked-button
+        color="warn"
+        *ngIf="hasDeleteButton"
+        (keydown.enter)="onDelete()"
+        (click)="onDelete()">
         Delete
     </button>
     <div class="flex w-full justify-end gap-2 md:w-auto">
@@ -11,7 +16,7 @@
         </button>
         <button
             *ngIf="hasAcceptButton"
-            [disabled]="offer.status | getIsConfirmButtonDisabled"
+            [disabled]="!(offer.status | getIsConfirmButtonDisabled)"
             mat-flat-button
             color="primary"
             (keydown.enter)="acceptOffer()"
