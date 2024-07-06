@@ -8,15 +8,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, map, tap } from 'rxjs';
 import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 import { GetTruncateTextPipe } from '../../../../../shared/collection/pipes/get-truncate-text.pipe';
 import { OfferFullWantedCard } from '../../../../../shared/offer/models/offer-full-wanted-card.model';
 import { BreakpointObserverService } from '../../../../../shared/services/breakpoint-observer.service';
 import { UserInfoStatesService } from '../../../../../shared/user/services/user-info-states.service';
 import { trackById } from '../../../../../shared/utils/track-by-utils';
-import { CardAdCardInfoComponent } from '../../../../transaction/card-ad/components/card-ad-card-info/card-ad-card-info.component';
 import { fromUserCardToAdCardInfo } from '../../../shared/utils/offer.utils';
+import { OfferWantedCardModalComponent } from '../../../ui/offer-wanted-card-modal/offer-wanted-card-modal.component';
 import { OfferCardActionsComponent } from '../offer-card-actions/offer-card-actions.component';
 
 @Component({
@@ -57,10 +58,15 @@ export class OfferCardComponent implements OnInit {
     limitOfCardsToDisplay$!: Observable<number>;
     arrayOfCardsToDisplay$!: Observable<UserCard[]>;
     badgeValue$!: Observable<string>;
+    isMobile: boolean = false;
 
     ngOnInit(): void {
         this.currentBreakpoints = this._breakpointService.currentBreakpoints;
         this.limitOfCardsToDisplay$ = this.currentBreakpoints.pipe(
+            tap(
+                (currentBreakpoints) =>
+                    (this.isMobile = !currentBreakpoints.includes(Breakpoints.Small))
+            ),
             map((currentBreakpoints) => {
                 if (currentBreakpoints.includes(Breakpoints.XLarge)) {
                     return this.offer.userCards.length < 5 ? this.offer.userCards.length : 5;
@@ -82,8 +88,9 @@ export class OfferCardComponent implements OnInit {
     }
 
     openWantedCardDetailDialog(): void {
-        let dialogRef = this._dialog.open(CardAdCardInfoComponent, {
-            width: '90%',
+        let dialogRef = this._dialog.open(OfferWantedCardModalComponent, {
+            height: this.isMobile ? '90%' : undefined,
+            minWidth: '375px',
         });
         let instance = dialogRef.componentInstance;
         instance.cardAdInfo = fromUserCardToAdCardInfo(this.offer.wantedUserCard);

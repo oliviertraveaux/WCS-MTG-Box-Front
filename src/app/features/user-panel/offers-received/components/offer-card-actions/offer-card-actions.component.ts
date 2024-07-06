@@ -58,8 +58,9 @@ export class OfferCardActionsComponent implements OnInit {
 
     openOfferCardsDetailsDialog(): void {
         this._dialog.open(OfferDetailsModalComponent, {
-            width: '90%',
+            width: '100%',
             height: '90%',
+            minWidth: '375px',
             data: { offer: fromOfferFullWantedCardToOffer(this.offer) },
         });
     }
