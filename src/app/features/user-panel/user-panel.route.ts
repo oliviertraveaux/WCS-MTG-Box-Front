@@ -15,7 +15,7 @@ import { ProfilePageComponent } from './profile/pages/profile-page/profile-page.
 
 export const USER_PANEL_ROUTES: Route[] = [
     {
-        path: 'collection/add',
+        path: 'add',
         component: CollectionAddCardPageComponent,
         canDeactivate: [collectionAddCardGuard],
     },

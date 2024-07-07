@@ -73,6 +73,7 @@
   "Topbar": {
     "title": "MTGBox",
     "add": "Ajouter",
+    "manage-card" : "Gérer mes cartes",
     "logout": "Déconnexion",
     "login": "Connexion"
   },
@@ -106,7 +107,9 @@
       "offers-received": "offres reçues",
       "offers-made": "offres effectuées",
       "messages": "messages",
-      "admin": "admin"
+      "admin": "admin",
+      "add" : "Ajouter une carte"
+
     },
   "admin": {
     "title": "Administration des utilisateurs",
