@@ -1,0 +1,8 @@
+<mat-dialog-content class="flex h-full flex-col scrollbar-hide">
+    <div class="flex w-full justify-end">
+        <mat-icon [title]="'Modal.close' | translate" class="cursor-pointer" (click)="onClose()"
+            >close</mat-icon
+        >
+    </div>
+    <app-card-ad-info [cardAdInfo]="cardAdInfo" />
+</mat-dialog-content>

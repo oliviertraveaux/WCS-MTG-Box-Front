@@ -1,0 +1,11 @@
+:root {
+  height: 100%;
+}
+.mat-mdc-dialog-content {
+  max-height: none;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+

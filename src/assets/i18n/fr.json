@@ -96,7 +96,8 @@
       "message": "Etes-vous sur de vouloir supprimer cette selection ?",
       "cancel": "Abandonner",
       "confirm": "Confirmer"
-    }
+    },
+    "close": "fermer"
   },
   "userPanel": {
     "menuLabels": {
