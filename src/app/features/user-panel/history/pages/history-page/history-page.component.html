@@ -1,1 +1,13 @@
-<p>history-page works!</p>
+<div class="container overflow-auto scrollbar-hide">
+    <h3>{{ 'transaction.offer.history.page-title' | translate }}</h3>
+    <app-filter-offer-history-bar
+        (filterByMade)="filterBy('made')"
+        (filterByReceived)="filterBy('received')"
+        (resetFilter)="filterBy('')" />
+    <div
+        class="flex min-h-full w-full flex-col justify-center gap-2 overflow-auto py-2 scrollbar-hide">
+        <ng-container *ngFor="let offerHistory of filteredOffersHistory$ | async">
+            <offer-card [offer]="offerHistory" />
+        </ng-container>
+    </div>
+</div>

@@ -8,13 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { Observable, map } from 'rxjs';
 import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 import { GetTruncateTextPipe } from '../../../../../shared/collection/pipes/get-truncate-text.pipe';
 import { OfferFullWantedCard } from '../../../../../shared/offer/models/offer-full-wanted-card.model';
-import { OfferService } from '../../../../../shared/offer/services/offer.service';
-import { AlertService } from '../../../../../shared/services/alert.service';
 import { BreakpointObserverService } from '../../../../../shared/services/breakpoint-observer.service';
 import { UserInfoStatesService } from '../../../../../shared/user/services/user-info-states.service';
 import { trackById } from '../../../../../shared/utils/track-by-utils';
@@ -44,12 +41,9 @@ import { OfferCardActionsComponent } from '../offer-card-actions/offer-card-acti
     ],
 })
 export class OfferCardComponent implements OnInit {
-    private readonly _alertService = inject(AlertService);
-    private readonly _offerService = inject(OfferService);
     private readonly _dialog = inject(MatDialog);
     private readonly _userInfo = inject(UserInfoStatesService).getUserInfo();
     public readonly _breakpointService = inject(BreakpointObserverService);
-    private readonly _translate = inject(TranslateService);
     private readonly _router = inject(Router);
 
     @Input({ required: true }) offer!: OfferFullWantedCard;
@@ -95,7 +89,22 @@ export class OfferCardComponent implements OnInit {
         instance.cardAdInfo = fromUserCardToAdCardInfo(this.offer.wantedUserCard);
     }
 
-    getPage(): string {
+    getOfferRemoteUserName(offer: OfferFullWantedCard): string {
+        if (this.getPage() === 'offers-received') {
+            return offer.userName;
+        }
+        if (this.getPage() === 'offers-made') {
+            return offer.wantedUserCard.userInfo.userName;
+        }
+        if (this.getPage() === 'history') {
+            return offer.userId === this._userInfo.id
+                ? offer.wantedUserCard.userInfo.userName
+                : offer.userName;
+        }
+        return '';
+    }
+
+    private getPage(): string {
         const array = this._router.url.split('/');
         return array.length > 1 ? array[2] : 'offers-received';
     }

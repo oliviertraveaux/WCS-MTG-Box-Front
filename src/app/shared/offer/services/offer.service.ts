@@ -32,9 +32,19 @@ export class OfferService {
             });
     }
 
+    getOffersHistory(id: number): void {
+        this._offerRepositoryService
+            .getOffersHistory(id)
+            .subscribe((offersHistory: OfferFullWantedCard[]) => {
+                this._offerStatesService.setOffersHistory(offersHistory);
+                this._offerStatesService.setIsOffersHistoryLoaded(true);
+            });
+    }
+
     init(id: number) {
         this.getOffersMade(id);
         this.getOffersReceived(id);
+        this.getOffersHistory(id);
     }
 
     reset(): void {
@@ -42,6 +52,8 @@ export class OfferService {
         this._offerStatesService.setOffersReceived([]);
         this._offerStatesService.setIsOffersMadeLoaded(false);
         this._offerStatesService.setIsOffersReceivedLoaded(false);
+        this._offerStatesService.setOffersHistory([]);
+        this._offerStatesService.setIsOffersHistoryLoaded(false);
     }
 
     createOffer(

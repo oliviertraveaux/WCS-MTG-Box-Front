@@ -31,6 +31,10 @@ export class OfferRepositoryService {
         return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/received/user/${id}`);
     }
 
+    getOffersHistory(id: number): Observable<OfferFullWantedCard[]> {
+        return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/history/user/${id}`);
+    }
+
     acceptOffer(id: number): Observable<Offer> {
         return this.http.put<Offer>(`${this.apiOfferUrl}/accept-offer/${id}`, {
             status: 'ACCEPTED',
