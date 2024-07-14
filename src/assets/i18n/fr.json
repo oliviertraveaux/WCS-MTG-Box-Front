@@ -293,10 +293,48 @@
     "offers-received": "Offres reçues",
     "offers-made": "Offres effectuées",
     "history": "Historique des offres",
-    "page-not-found": "Page non trouvée"
+    "page-not-found": "Page non trouvée",
+    "policies" : "Conditions d'utilisation"
+  },
+
+  "Cookie": {
+    "consent": "Nous utilisons des cookies pour stocker des informations essentielles de session et améliorer votre expérience sur notre site. En continuant à naviguer sur ce site, vous acceptez notre utilisation des cookies.",
+    "button": "Accepter"
+  },
+  "Policies": {
+    "title": "Politique de confidentialité",
+    "welcome": "Bienvenue sur notre site web. En accédant et en utilisant ce site, vous acceptez de vous conformer aux conditions d'utilisation suivantes et à toutes les lois applicables.",
+    "operatorScope": "Opérateur et Champ d'Application",
+    "operatorDetails": "Ce site est géré par MTGBOX. Pour toute question, veuillez nous contacter par email à support@mtgbox.fr.",
+    "siteUse": "Utilisation du Site",
+    "siteFunctionality": "Le site permet aux utilisateurs d'accéder à une plateforme d'échange de produits. Nous agissons uniquement en tant qu'intermédiaire; les échanges conclus via le site sont effectifs entre les utilisateurs.",
+    "cookies": "Cookies",
+    "cookiePolicy": "Notre site utilise des cookies pour améliorer votre expérience utilisateur.",
+    "userAccounts": "Comptes Utilisateurs",
+    "accountDetails": "Pour utiliser certaines fonctionnalités du site, vous devez créer un compte en fournissant des informations exactes et à jour. La gestion de votre compte et de votre mot de passe relève de votre responsabilité. L'opérateur se réserve le droit de refuser l'enregistrement ou de fermer un compte à sa discrétion.",
+    "intellectualProperty": "Propriété Intellectuelle",
+    "intellectualPropertyDetails": "Les contenus publiés sur ce site, y compris les textes, graphiques, logos, et les éléments spécifiques à Magic: The Gathering, sont protégés par le droit d'auteur et appartiennent à l'opérateur ou sont utilisés avec autorisation. Tous les droits relatifs à Magic: The Gathering appartiennent à leurs détenteurs respectifs et sont utilisés ici sous licence ou avec permission explicite.",
+    "liability": "Limitations de Responsabilité",
+    "liabilityDetails": "L'opérateur ne garantit pas l'exactitude, le résultat ou la fiabilité de l'utilisation des matériaux sur son site web et décline toute responsabilité pour des erreurs ou omissions dans ces matériaux.",
+    "conditionChanges": "Modifications des Conditions",
+    "conditionChangeDetails": "L'opérateur se réserve le droit de modifier ces conditions à tout moment. Votre utilisation continue du site après de telles modifications constitue votre acceptation des nouvelles conditions.",
+    "law": "Loi Applicable",
+    "lawDetails": "Ces conditions sont régies et interprétées conformément aux lois de France, et vous vous soumettez irrévocablement à la juridiction exclusive des tribunaux de ce pays ou lieu."
+  },
+  "LegalMentions": {
+    "title": "Mentions Légales",
+    "contactInfo": "Coordonnées",
+    "contactDetails": "Wild Code School\n18 Rue de la Gare,\n28240 La Loupe - France\nTéléphone: 05 31 60 03 05\nE-mail: support@mtgbox.fr",
+    "publisher": "Responsable de la publication",
+    "publisherDetails": "A DEFINIR",
+    "hosting": "Hébergeur du site",
+    "hostingDetails": "Nos serveurs sont hébergés exclusivement dans des centres de données en France, exploités par OVH, 2 rue Kellermann - 59100 Roubaix - France.\nLes services fournis par OVH sont certifiés ISO 27001, CSA STAR et SOC 2.",
+    "version": "Version du 14 juillet 2024."
   }
 
 }
+
+
 
 
 

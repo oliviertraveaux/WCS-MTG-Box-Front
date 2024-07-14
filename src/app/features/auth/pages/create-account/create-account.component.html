@@ -14,7 +14,7 @@
             <input matInput formControlName="userName" required  (input)=" isUsernameAvailable = true">
           </mat-form-field>
           <div>
-            <button mat-raised-button color="accent" matStepperNext [disabled]="!userNameFormGroup.valid || !isUsernameAvailable">{{ 'Register.next' | translate }}</button>
+            <button mat-raised-button color="accent" matStepperNext [disabled]=" !isUsernameAvailable">{{ 'Register.next' | translate }}</button>
           </div>
         </form>
       </mat-step>
@@ -32,7 +32,7 @@
           <div>
 
 
-            <button mat-raised-button color="accent" matStepperNext [disabled]="!emailFormGroup.valid || !isEmailAvailable">{{ 'Register.next' | translate }}</button>
+            <button mat-raised-button color="accent" matStepperNext [disabled]=" !isEmailAvailable">{{ 'Register.next' | translate }}</button>
 
           </div>
         </form>
