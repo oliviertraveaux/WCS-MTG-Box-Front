@@ -17,7 +17,7 @@ import { FilterOfferBarComponent } from '../../../ui/filter-bar/filter-offer-bar
     styleUrls: ['./offers-made-page.component.scss'],
 })
 export class OffersMadePageComponent {
-    private _changeDetectorRef = inject(ChangeDetectorRef);
+    private readonly _changeDetectorRef = inject(ChangeDetectorRef);
     private readonly _offerService = inject(OfferService);
     private readonly _offerStatesService = inject(OfferStatesService);
     private readonly _userId = inject(UserInfoStatesService).getUserInfo().id;
@@ -25,6 +25,7 @@ export class OffersMadePageComponent {
     offersMade$: Observable<OfferFullWantedCard[]> = of([]);
     filtreredOffersMade$: Observable<OfferFullWantedCard[]> = of([]);
     filter$: BehaviorSubject<string> = new BehaviorSubject('');
+
     ngOnInit(): void {
         this.loadOffers();
         this.offersMade$ = this._offerStatesService.getOffersMade$();

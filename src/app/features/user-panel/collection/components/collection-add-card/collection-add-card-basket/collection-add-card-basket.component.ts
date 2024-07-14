@@ -73,7 +73,7 @@ export class CollectionAddCardBasketComponent implements OnInit {
                     );
                     this._cardBasketService.emptyCardBasket();
                     this._collectionCardsService
-                        .getCollectionCards(this._userInfoStatesService.getUserInfo().id)
+                        .getCollectionCards$(this._userInfoStatesService.getUserInfo().id)
                         .subscribe();
                 },
                 error: () => {

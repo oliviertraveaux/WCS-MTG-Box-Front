@@ -74,14 +74,16 @@ import { OfferCreateInfoBarComponent } from '../../components/offer-create-info-
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OfferCreatePageComponent implements OnInit, OnDestroy {
-    private _collectionDisplayService = inject(CollectionDisplaySearchResultsService);
-    private _collectionDisplayStatesService = inject(CollectionDisplaySearchResultsStatesService);
-    private _changeDetectorRef = inject(ChangeDetectorRef);
-    private _destroyRef = inject(DestroyRef);
-    private _breakpointObserverService = inject(BreakpointObserverService);
-    private _route = inject(ActivatedRoute);
-    private _cardAdService = inject(CardAdService);
-    private _userService = inject(UserService);
+    private readonly _collectionDisplayService = inject(CollectionDisplaySearchResultsService);
+    private readonly _collectionDisplayStatesService = inject(
+        CollectionDisplaySearchResultsStatesService
+    );
+    private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+    private readonly _destroyRef = inject(DestroyRef);
+    private readonly _breakpointObserverService = inject(BreakpointObserverService);
+    private readonly _route = inject(ActivatedRoute);
+    private readonly _cardAdService = inject(CardAdService);
+    private readonly _userService = inject(UserService);
 
     readonly isTablet = this._breakpointObserverService.isTablet;
     readonly isDesktop = this._breakpointObserverService.isDesktop;

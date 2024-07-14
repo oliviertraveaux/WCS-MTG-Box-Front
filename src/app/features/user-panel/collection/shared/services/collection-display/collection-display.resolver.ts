@@ -13,7 +13,7 @@ export const collectionDisplayResolver: ResolveFn<boolean> = (route, state): Obs
     if (collectionCardsStatesService.getIsCollectionLoadedValue()) {
         return of(true);
     } else {
-        return collectionCardsService.getCollectionCards(userId).pipe(
+        return collectionCardsService.getCollectionCards$(userId).pipe(
             tap(() => collectionCardsStatesService.setIsCollectionLoaded(true)),
             map((collection) => true)
         );

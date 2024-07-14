@@ -11,7 +11,7 @@ export class CollectionCardsService {
     private _collectionCardRepository = inject(CollectionCardsRepository);
     private _collectionCardsStateService = inject(CollectionCardsStateService);
 
-    getCollectionCards(userId: number): Observable<UserCard[]> {
+    getCollectionCards$(userId: number): Observable<UserCard[]> {
         return this._collectionCardRepository.getCards(userId).pipe(
             take(1),
             tap((collection) => {
