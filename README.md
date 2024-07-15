@@ -50,7 +50,7 @@ This application is designed for MTG players to manage their collections and eng
 
 
 ##  License
-This project was developed by [Romain Timmer](https://github.com/RtimmerGH), [Olivier Taveaux](https://github.com/oliviertraveaux)  and [Antoine Cassagne ](https://github.com/cassaga) during  the CDA program at Wild Code School.
+This project was developed by [Romain Timmer](https://github.com/RtimmerGH), [Olivier Traveaux](https://github.com/oliviertraveaux)  and [Antoine Cassagne ](https://github.com/cassaga) during  the CDA program at Wild Code School.
         
         
         
