@@ -43,11 +43,16 @@ export class RefreshOffersService {
         );
 
     // Used with race, we make a call if collection is not loaded
-    public isUserCollectionEmpty$: Observable<boolean> = this._collectionCardsService
-        .getCollectionCards$(this._userInfoStatesService.getUserInfo().id)
+    public isUserCollectionEmpty$: Observable<boolean> = this._userInfoStatesService
+        .getUserInfo$()
         .pipe(
-            filter((cards: UserCard[]) => !isNil(cards) && cards.length > 0),
-            map(() => true)
+            filter((userInfo: UserInfo) => !!userInfo.id),
+            switchMap((userInfo: UserInfo): Observable<boolean> => {
+                return this._collectionCardsService.getCollectionCards$(userInfo.id).pipe(
+                    filter((cards: UserCard[]) => !isNil(cards) && cards.length > 0),
+                    map(() => true)
+                );
+            })
         );
 
     public hasUserCollection$: Observable<boolean> = race(
@@ -56,6 +61,7 @@ export class RefreshOffersService {
     );
 
     // If all conditions are met, we refresh offers made and offers received with latest value every minute until stopRefreshOffers$ emits
+    // We stop refreshing offers if collection as been emptied
     public refreshData$: Observable<number> = combineLatest([
         this.isUserEligible$,
         this.hasUserCollection$,
@@ -73,15 +79,11 @@ export class RefreshOffersService {
             )
         )
     );
-
-    // We stop refreshing offers if collection as been emptied
     public hasUserCollectionBeenEmptied$: Observable<boolean> = this._collectionCardsStateService
         .getCards$()
         .pipe(
             pairwise(),
-            filter(([prev, curr]) => {
-                return !!prev.length && !curr.length;
-            }),
+            filter(([prev, curr]) => !!prev.length && !curr.length),
             map(() => true)
         );
 

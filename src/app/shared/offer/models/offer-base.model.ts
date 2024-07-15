@@ -9,6 +9,6 @@ export interface OfferBase {
     department: number;
     status: OfferStatus;
     createdDate: Date;
-    acceptedDate: Date | null;
+    lastModificationDate: Date;
     userCards: UserCard[];
 }

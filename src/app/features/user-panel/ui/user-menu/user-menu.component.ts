@@ -1,27 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { filter, map, tap } from 'rxjs';
+import { Observable, filter, map, tap } from 'rxjs';
+import { NotificationService } from '../../../../shared/services/notification.service';
 import { UserRole } from '../../../../shared/user/enums/user-role.enum';
 import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
 
 @Component({
     selector: 'app-user-menu',
     standalone: true,
-    imports: [CommonModule, MatIconModule, RouterLink, TranslateModule],
+    imports: [CommonModule, MatIconModule, RouterLink, TranslateModule, MatBadgeModule],
     templateUrl: './user-menu.component.html',
     styleUrls: ['./user-menu.component.scss'],
 })
 export class UserMenuComponent {
     private readonly _userInfoStatesService = inject(UserInfoStatesService);
-    private _router = inject(Router);
-    private _destroyRef = inject(DestroyRef);
+    private readonly _notificationService = inject(NotificationService);
+    private readonly _router = inject(Router);
+    private readonly _destroyRef = inject(DestroyRef);
     currentPage?: string = this._router.url;
     mobileMenuInfo?: string;
     isUserAdmin!: boolean;
+    offerMadeNotification$: Observable<boolean> =
+        this._notificationService.getOfferMadeNotification();
+    offerReceivedNotification$: Observable<boolean> =
+        this._notificationService.getOfferReceivedNotification();
 
     ngOnInit() {
         this.isUserAdmin = this._userInfoStatesService.getUserInfo().role.type === UserRole.ADMIN;

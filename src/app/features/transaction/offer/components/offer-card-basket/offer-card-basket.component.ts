@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 import { SnackbarStatus } from '../../../../../shared/enums/snackbar-status.enum';
 import { OfferService } from '../../../../../shared/offer/services/offer.service';
+import { OfferStatesService } from '../../../../../shared/offer/services/offer.states.service';
 import { AlertService } from '../../../../../shared/services/alert.service';
 import { CardBasketComponent } from '../../../../../shared/ui/card-basket/card-basket.component';
 import { UserInfoStatesService } from '../../../../../shared/user/services/user-info-states.service';
@@ -23,6 +24,7 @@ export class OfferCardBasketComponent implements OnInit {
     public _collectionDisplayStatesService = inject(CollectionDisplaySearchResultsStatesService);
     private _userId = inject(UserInfoStatesService).getUserInfo().id;
     private _offerService = inject(OfferService);
+    private _offerStatesService = inject(OfferStatesService);
     private _destroyRef = inject(DestroyRef);
     private _alertService = inject(AlertService);
     private _translate = inject(TranslateService);
@@ -62,6 +64,7 @@ export class OfferCardBasketComponent implements OnInit {
                         SnackbarStatus.success
                     );
                     this.emptyCardBasket();
+                    this._offerStatesService.setIsOffersMadeLoaded(false);
                 },
                 error: () => {
                     const logFailed = this._translate.instant(
