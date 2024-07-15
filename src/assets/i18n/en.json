@@ -297,6 +297,43 @@
     "offers-received": "Offers received",
     "offers-made": "Offers made",
     "history": "Offer history",
-    "page-not-found": "Page not found"
+    "page-not-found": "Page not found",
+    "policies": "Policies"
+  },
+  "Cookie" : {
+    "consent" : "We use cookies to store essential session information and enhance your experience on our site. By continuing to browse this site, you agree to our use of cookies.",
+    "button" : "I agree"
+  },
+  "Policies": {
+    "title": "Privacy Policy",
+    "welcome": "Welcome to our website. By accessing and using this site, you agree to comply with the following terms of use and all applicable laws.",
+    "operatorScope": "Operator and Scope",
+    "operatorDetails": "This site is managed by MTGBOX. For any inquiries, please contact us via email at support@mtgbox.fr.",
+    "siteUse": "Site Usage",
+    "siteFunctionality": "The site allows users to access a product exchange platform. We act only as an intermediary; the exchanges concluded through the site are effective between the users.",
+    "cookies": "Cookies",
+    "cookiePolicy": "Our site uses cookies to enhance your user experience.",
+    "userAccounts": "User Accounts",
+    "accountDetails": "To use certain features of the site, you must create an account by providing accurate and up-to-date information. Managing your account and password is your responsibility. The operator reserves the right to refuse registration or to close an account at its discretion.",
+    "intellectualProperty": "Intellectual Property",
+    "intellectualPropertyDetails": "The content published on this site, including texts, graphics, logos, and specific elements related to Magic: The Gathering, are protected by copyright and belong to the operator or are used with permission. All rights related to Magic: The Gathering are owned by their respective holders and are used here under license or with explicit permission.",
+    "liability": "Liability Limitations",
+    "liabilityDetails": "The operator does not guarantee the accuracy, outcome, or reliability of the use of the materials on its website and declines any responsibility for errors or omissions in these materials.",
+    "conditionChanges": "Conditions Changes",
+    "conditionChangeDetails": "The operator reserves the right to change these conditions at any time. Your continued use of the site following such changes constitutes your acceptance of the new conditions.",
+    "law": "Applicable Law",
+    "lawDetails": "These conditions are governed by and construed in accordance with the laws of France, and you irrevocably submit to the exclusive jurisdiction of the courts of this country or location."
+  },
+  "LegalMentions": {
+    "title": "Legal Mentions",
+    "contactInfo": "Contact Information",
+    "contactDetails": "Wild Code School\n18 Rue de la Gare,\n28240 La Loupe - France\nPhone: 05 31 60 03 05\nEmail: support@mtgbox.fr",
+    "publisher": "Publication Manager",
+    "publisherDetails": "TO BE DEFINED",
+    "hosting": "Site Hosting",
+    "hostingDetails": "Our servers are exclusively hosted in data centers in France, operated by OVH, 2 rue Kellermann - 59100 Roubaix - France.\nServices provided by OVH are certified ISO 27001, CSA STAR, and SOC 2.",
+    "version": "Version of July 14, 2024."
   }
 }
+
+

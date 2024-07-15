@@ -43,7 +43,7 @@ export class LoginComponent {
     private _translate = inject(TranslateService);
     private _reconnectUserService = inject(ReconnectUserService);
     private  _dialog = inject( MatDialog)
-
+  isCookieAccepted: boolean = false;
     loginForm = this._fb.group({
         username: ['', [Validators.required]],
         password: ['', [Validators.required]],
@@ -57,6 +57,11 @@ export class LoginComponent {
             }
         });
     }
+
+  ngOnInit() {
+    this.isCookieAccepted = localStorage.getItem('cookiesAccepted') === 'true';
+
+  }
 
     onLogin() {
         if (this.loginForm.valid) {
@@ -85,6 +90,11 @@ export class LoginComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed. Result:', result);
     });
+  }
+
+  acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    this.isCookieAccepted = true;
   }
 
 }

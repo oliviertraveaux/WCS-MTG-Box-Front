@@ -1,4 +1,13 @@
+<div *ngIf="!isCookieAccepted" class="cookie-popup">
+<div class="cookie-content">
+  <p class="mt-6">{{'Cookie.consent' | translate}}</p>
+  <button (click)="acceptCookies()">{{'Cookie.button' | translate}}</button>
+</div>
+  </div>
+
 <section class="login-container mx-auto max-w-md">
+
+
     <form
         [formGroup]="loginForm"
         (ngSubmit)="onLogin()"
