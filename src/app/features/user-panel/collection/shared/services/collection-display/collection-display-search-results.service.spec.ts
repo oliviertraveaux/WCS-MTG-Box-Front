@@ -32,7 +32,7 @@ describe('CollectionAddCardBasketService', () => {
         };
         collectionCardsService = {
             deleteCard: jest.fn(),
-            getCollectionCards: jest.fn(),
+            getCollectionCards$: jest.fn(),
         };
         alertServiceMock = {
             openSnackBar: jest.fn(),
@@ -119,12 +119,12 @@ describe('CollectionAddCardBasketService', () => {
     describe('deleteCard', () => {
         it('should delete card and open success snackbar', () => {
             collectionCardsService.deleteCard = jest.fn().mockReturnValue(of({}));
-            collectionCardsService.getCollectionCards = jest.fn().mockReturnValue(of({}));
+            collectionCardsService.getCollectionCards$ = jest.fn().mockReturnValue(of({}));
             translateMock.instant = jest.fn().mockReturnValue('Toasts.confirm-delete-success');
             collectionDisplaySearchResultsServiceMock.deleteCard(1).subscribe();
 
             expect(collectionCardsService.deleteCard).toHaveBeenCalledWith(1);
-            expect(collectionCardsService.getCollectionCards).toHaveBeenCalledWith(123);
+            expect(collectionCardsService.getCollectionCards$).toHaveBeenCalledWith(123);
             expect(searchCardsStatesServiceMock.setCards).toHaveBeenCalled();
             expect(alertServiceMock.openSnackBar).toHaveBeenCalledWith(
                 translateMock.instant('Toasts.confirm-delete-success'),
@@ -133,14 +133,14 @@ describe('CollectionAddCardBasketService', () => {
         });
         it('should delete card and open error snackbar', () => {
             collectionCardsService.deleteCard = jest.fn().mockReturnValue(of({}));
-            collectionCardsService.getCollectionCards = jest
+            collectionCardsService.getCollectionCards$ = jest
                 .fn()
                 .mockReturnValue(throwError(() => new Error('Failure')));
             translateMock.instant = jest.fn().mockReturnValue('Toasts.confirm-delete-fail');
             collectionDisplaySearchResultsServiceMock.deleteCard(1).subscribe();
 
             expect(collectionCardsService.deleteCard).toHaveBeenCalledWith(1);
-            expect(collectionCardsService.getCollectionCards).toHaveBeenCalledWith(123);
+            expect(collectionCardsService.getCollectionCards$).toHaveBeenCalledWith(123);
             expect(searchCardsStatesServiceMock.setCards).not.toHaveBeenCalled();
             expect(alertServiceMock.openSnackBar).toHaveBeenCalledWith(
                 translateMock.instant('Toasts.confirm-delete-fail'),
@@ -151,12 +151,12 @@ describe('CollectionAddCardBasketService', () => {
     describe('deleteCards', () => {
         it('should delete cards and open success snackbar', () => {
             collectionCardsService.deleteCards = jest.fn().mockReturnValue(of({}));
-            collectionCardsService.getCollectionCards = jest.fn().mockReturnValue(of({}));
+            collectionCardsService.getCollectionCards$ = jest.fn().mockReturnValue(of({}));
             translateMock.instant = jest.fn().mockReturnValue('Toasts.confirm-delete-success');
             collectionDisplaySearchResultsServiceMock.deleteCards([1, 2]).subscribe();
 
             expect(collectionCardsService.deleteCards).toHaveBeenCalledWith([1, 2]);
-            expect(collectionCardsService.getCollectionCards).toHaveBeenCalledWith(123);
+            expect(collectionCardsService.getCollectionCards$).toHaveBeenCalledWith(123);
             expect(searchCardsStatesServiceMock.setCards).toHaveBeenCalled();
             expect(alertServiceMock.openSnackBar).toHaveBeenCalledWith(
                 translateMock.instant('Toasts.confirm-delete-success'),
@@ -165,14 +165,14 @@ describe('CollectionAddCardBasketService', () => {
         });
         it('should delete cards and open error snackbar', () => {
             collectionCardsService.deleteCards = jest.fn().mockReturnValue(of({}));
-            collectionCardsService.getCollectionCards = jest
+            collectionCardsService.getCollectionCards$ = jest
                 .fn()
                 .mockReturnValue(throwError(() => new Error('Failure')));
             translateMock.instant = jest.fn().mockReturnValue('Toasts.confirm-delete-fail');
             collectionDisplaySearchResultsServiceMock.deleteCards([1, 2]).subscribe();
 
             expect(collectionCardsService.deleteCards).toHaveBeenCalledWith([1, 2]);
-            expect(collectionCardsService.getCollectionCards).toHaveBeenCalledWith(123);
+            expect(collectionCardsService.getCollectionCards$).toHaveBeenCalledWith(123);
             expect(searchCardsStatesServiceMock.setCards).not.toHaveBeenCalled();
             expect(alertServiceMock.openSnackBar).toHaveBeenCalledWith(
                 translateMock.instant('Toasts.confirm-delete-fail'),

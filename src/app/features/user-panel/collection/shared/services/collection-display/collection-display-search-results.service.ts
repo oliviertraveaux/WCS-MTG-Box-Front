@@ -49,7 +49,7 @@ export class CollectionDisplaySearchResultsService {
 
     private handleDeleteResponse() {
         this._collectionCardsService
-            .getCollectionCards(this._userInfoId)
+            .getCollectionCards$(this._userInfoId)
             .pipe(take(1))
             .subscribe({
                 next: () => this.handleDeleteSuccess(),
