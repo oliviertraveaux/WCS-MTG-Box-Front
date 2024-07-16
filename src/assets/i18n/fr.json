@@ -93,7 +93,7 @@
   "Modal": {
     "confirm-delete": {
       "title": "Supprimer la sélection",
-      "message": "Etes-vous sur de vouloir supprimer cette selection ?",
+      "message": "Etes-vous sur de vouloir supprimer cette selection ?<br />les offres contenant cette carte seront aussi supprimées",
       "cancel": "Abandonner",
       "confirm": "Confirmer"
     },
@@ -219,8 +219,8 @@
         "offer-accepted-fail": "Une erreur est survenue lors de l'acceptation",
         "offer-validated-success": "Offre validée",
         "offer-validated-fail": "Une erreur est survenue lors de la validation",
-        "offer-delete-success": "Offre supprimée",
-        "offer-delete-fail": "Une erreur est survenue lors de la suppression"
+        "offer-deleted-success": "Offre supprimée",
+        "offer-deleted-fail": "Une erreur est survenue lors de la suppression"
       },
       "card-info-bar": {
         "make-offer-to": "Vous faites une offre à  ",
@@ -245,6 +245,14 @@
         "all-button-text": "Toutes",
         "pending-button-text": "Faites",
         "accepted-button-text": "Reçues"
+      },
+      "dialog": {
+        "accept-title": "Confirmer",
+        "accept-message": "Voulez-vous vraiment accepter cette offre ?",
+        "validate-title": "Confirmer",
+        "validate-message": "Voulez-vous vraiment valider cette offre ?",
+        "delete-title": "Confirmer",
+        "delete-message": "Voulez-vous vraiment supprimer cette offre ?"
       }
     }
   },

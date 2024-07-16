@@ -67,7 +67,10 @@ export class OfferCardActionsComponent implements OnInit {
 
     acceptOffer(): void {
         this._alertService
-            .openConfirmDialog('Confirm', 'Are you sure you want to accept this offer?')
+            .openConfirmDialog(
+                this._translate.instant('transaction.offer.dialog.accept-title'),
+                this._translate.instant('transaction.offer.dialog.accept-message')
+            )
             .subscribe((res) => {
                 if (res) {
                     this._offerService.acceptOffer(this.offer.id).subscribe({
@@ -94,7 +97,10 @@ export class OfferCardActionsComponent implements OnInit {
 
     validateOffer(): void {
         this._alertService
-            .openConfirmDialog('Confirm', 'Are you sure you want to validate this offer?')
+            .openConfirmDialog(
+                this._translate.instant('transaction.offer.dialog.validate-title'),
+                this._translate.instant('transaction.offer.dialog.validate-message')
+            )
             .subscribe((res) => {
                 if (res) {
                     this._offerService.validateOffer(this.offer.id).subscribe({
@@ -121,25 +127,25 @@ export class OfferCardActionsComponent implements OnInit {
 
     onDelete(): void {
         this._alertService
-            .openConfirmDialog('Confirm', 'Are you sure you want to delete this offer?')
+            .openConfirmDialog(
+                this._translate.instant('transaction.offer.dialog.delete-title'),
+                this._translate.instant('transaction.offer.dialog.delete-message')
+            )
             .subscribe((res) => {
                 if (res) {
                     this._offerService.deleteOffer(this.offer.id).subscribe({
                         next: () => {
-                            const validatedSuccess = this._translate.instant(
+                            const deleteSuccess = this._translate.instant(
                                 'transaction.offer.toast.offer-deleted-success'
                             );
-                            this._alertService.openSnackBar(
-                                validatedSuccess,
-                                SnackbarStatus.success
-                            );
+                            this._alertService.openSnackBar(deleteSuccess, SnackbarStatus.success);
                             this._offerService.getOffersMade(this._userId);
                         },
                         error: () => {
-                            const validatedFailed = this._translate.instant(
+                            const deleteFailed = this._translate.instant(
                                 'transaction.offer.toast.offer-deleted-fail'
                             );
-                            this._alertService.openSnackBar(validatedFailed, SnackbarStatus.error);
+                            this._alertService.openSnackBar(deleteFailed, SnackbarStatus.error);
                         },
                     });
                 }
