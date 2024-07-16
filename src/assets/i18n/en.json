@@ -149,6 +149,7 @@
   "home": {
     "access-to-cards" : "Access to cards",
     "search-title": "Search cards",
+    "last-cards" : "Latest cards added",
     "toast": {
       "search-cards-error": "Something wrong happened during the search"
     },

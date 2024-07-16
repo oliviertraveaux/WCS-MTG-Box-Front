@@ -6,6 +6,8 @@ import { AlertService } from '../../../../shared/services/alert.service';
 import { SearchQuery } from '../../../user-panel/collection/models/search-query.model';
 import { HomeSearchRepository } from '../repositories/home-search.repository';
 import { HomeSearchResultsStatesService } from './home-search-results-states.service';
+import {Observable} from "rxjs";
+import {HomeCardSearchResult} from "../../models/home-search-results.model";
 
 @Injectable()
 export class HomeSearchResultsService {
@@ -32,4 +34,11 @@ export class HomeSearchResultsService {
             },
         });
     }
+
+  getLastTenCards(): Observable<HomeCardSearchResult[]> {
+    return this._homeRepository.getLastTenCards();
+  }
+
+
+
 }

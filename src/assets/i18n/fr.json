@@ -147,6 +147,7 @@
   "home": {
     "access-to-cards": "Accéder aux cartes",
     "search-title": "Rechercher des cartes",
+    "last-cards" : "Les dernières cartes ajoutées",
     "toast": {
       "search-cards-error": "Une erreur est survenue pendant la recherche"
     },

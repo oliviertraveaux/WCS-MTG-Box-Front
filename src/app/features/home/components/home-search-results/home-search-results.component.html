@@ -1,13 +1,18 @@
 <div class="flex h-full w-full flex-col py-2">
-    <div class="mat-elevation-z2">
-        <table
-            fixedLayout="true"
-            mat-table
-            [dataSource]="resultData"
-            multiTemplateDataRows
-            matSort
-            (matSortChange)="announceSortChange($event)"
-            class="with-expand dense-3 w-full">
+  <div class="mat-elevation-z2">
+    <h3 *ngIf="lastTenResultsData.data.length">
+      {{ 'home.last-cards' | translate }}
+    </h3>
+
+    <table
+      fixedLayout="true"
+      mat-table
+      [dataSource]="resultData.data.length ? resultData : lastTenResultsData"
+      multiTemplateDataRows
+      matSort
+      (matSortChange)="announceSortChange($event)"
+      class="with-expand dense-3 w-full"
+    >
             <ng-container matColumnDef="name">
                 <th
                     mat-header-cell
@@ -113,7 +118,7 @@
         </table>
 
         <mat-paginator
-            *ngIf="resultData.data.length > 5"
+            *ngIf="resultData.data.length > 5 && !lastTenResultsData"
             [pageSizeOptions]="[5, 10, 25, 50]"
             [showFirstLastButtons]="!!resultData.data.length"
             aria-label="Select page of users"></mat-paginator>

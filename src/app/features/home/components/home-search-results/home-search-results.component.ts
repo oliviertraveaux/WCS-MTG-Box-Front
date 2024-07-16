@@ -28,6 +28,7 @@ import { GetUserCardImgPipe } from '../../../user-panel/collection/shared/pipes/
 import { GetUserCardNamePipe } from '../../../user-panel/collection/shared/pipes/get-user-card-name.pipe';
 import { HomeCardSearchResult, UserCardOnMarket } from '../../models/home-search-results.model';
 import { HomeSearchResultComponent } from '../home-search-result/home-search-result.component';
+import {HomeSearchResultsService} from "../../shared/services/home-search-results.service";
 
 @Component({
     selector: 'app-home-search-results',
@@ -66,6 +67,7 @@ export class HomeSearchResultsComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _destroyRef = inject(DestroyRef);
     private _liveAnnouncer = inject(LiveAnnouncer);
+    private _homeSearchResultsService = inject(HomeSearchResultsService);
 
     readonly isDesktop = this._breakpointObserverService.isDesktop;
     @Input() resultCards$: Observable<HomeCardSearchResult[]> = of([]);
@@ -74,8 +76,11 @@ export class HomeSearchResultsComponent implements OnInit {
     displayedColumns: string[] = ['name', 'setName', 'rarity', 'quantity'];
     displayedColumnsWithExpand: string[] = [...this.displayedColumns, 'expand'];
 
+
     expandedElement?: UserCardOnMarket | null;
     resultData: MatTableDataSource<HomeCardSearchResult> =
+        new MatTableDataSource<HomeCardSearchResult>([]);
+    lastTenResultsData: MatTableDataSource<HomeCardSearchResult> =
         new MatTableDataSource<HomeCardSearchResult>([]);
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -84,7 +89,15 @@ export class HomeSearchResultsComponent implements OnInit {
     ngOnInit() {
         this.resultCards$
             .pipe(takeUntilDestroyed(this._destroyRef))
-            .subscribe((cards) => (this.resultData.data = cards));
+            .subscribe((cards) => (
+              this.resultData.data = cards));
+
+
+      this._homeSearchResultsService.getLastTenCards().subscribe((cards) => {
+        this.lastTenResultsData.data = cards;
+      });
+
+
 
         this._breakpointObserverService.breakpoint$
             .pipe(takeUntilDestroyed(this._destroyRef))
@@ -94,6 +107,7 @@ export class HomeSearchResultsComponent implements OnInit {
     ngAfterViewInit() {
         this.resultData.paginator = this.paginator;
         this.resultData.sort = this.sort;
+        this.lastTenResultsData = this.resultData;
 
         this.resultData.sortingDataAccessor = (item, property) => {
             // Split '.' to allow accessing property of nested object
