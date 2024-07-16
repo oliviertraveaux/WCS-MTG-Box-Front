@@ -1,40 +1,49 @@
 <mat-toolbar color="primary">
-  <div class="flex w-full items-center justify-between px-2 sm:px-16">
-    <a routerLink="home" class="text-xl">{{ 'Topbar.title' | translate }}</a>
-    <div class="flex items-center justify-end gap-4">
-      <a *ngIf="!isLoggedIn()" class="text-xl"  routerLink="login">{{ 'Topbar.login' | translate }}</a>
-      <div *ngIf="isLoggedIn()" class="flex items-center">
-        <span class="text-xl">{{ name }}</span>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button routerLink="user-panel/add" mat-menu-item class="flex items-center">
-            <mat-icon class="text-lg">apps</mat-icon>
-            <span class="text-sm">{{ 'Topbar.manage-card' | translate }}</span>
-          </button>
-          <button (click)="logout()" mat-menu-item class="flex items-center ">
-            <mat-icon class="text-lg">logout</mat-icon>
-            <span class="text-sm">{{ 'Topbar.logout' | translate }}</span>
-          </button>
-        </mat-menu>
-      </div>
-      <mat-form-field appearance="outline" class="w-20 pt-4">
-        <mat-select
-          [(ngModel)]="selectedLanguage"
-          [title]="selectedLanguage"
-          [placeholder]="selectedLanguage === 'fr' ? '🇫🇷' : '🇬🇧'"
-          name="selectedLanguage"
-          id="selectedLanguage">
-          <mat-option
-            *ngFor="let language of languages"
-            [value]="language.name"
-            [title]="language.name"
-            (click)="switchLanguage(language.name)">
-            {{ language.icon }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="flex w-full items-center justify-between px-2 sm:px-16">
+        <a routerLink="home" class="text-xl">{{ 'Topbar.title' | translate }}</a>
+        <div class="flex items-center justify-end gap-4">
+            <a *ngIf="!isLoggedIn()" class="text-xl" routerLink="login">{{
+                'Topbar.login' | translate
+            }}</a>
+            <div *ngIf="isLoggedIn()" class="flex items-center">
+                <div
+                    matBadge="&#8288;"
+                    matBadgeSize="small"
+                    matBadgeColor="accent"
+                    [matBadgeHidden]="!(offerNotification$ | async)"
+                    class="badge_small text-xl">
+                    {{ name }}
+                </div>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button routerLink="user-panel/add" mat-menu-item class="flex items-center">
+                        <mat-icon class="text-lg">apps</mat-icon>
+                        <span class="text-sm">{{ 'Topbar.manage-card' | translate }}</span>
+                    </button>
+                    <button (click)="logout()" mat-menu-item class="flex items-center">
+                        <mat-icon class="text-lg">logout</mat-icon>
+                        <span class="text-sm">{{ 'Topbar.logout' | translate }}</span>
+                    </button>
+                </mat-menu>
+            </div>
+            <mat-form-field appearance="outline" class="w-20 pt-4">
+                <mat-select
+                    [(ngModel)]="selectedLanguage"
+                    [title]="selectedLanguage"
+                    [placeholder]="selectedLanguage === 'fr' ? '🇫🇷' : '🇬🇧'"
+                    name="selectedLanguage"
+                    id="selectedLanguage">
+                    <mat-option
+                        *ngFor="let language of languages"
+                        [value]="language.name"
+                        [title]="language.name"
+                        (click)="switchLanguage(language.name)">
+                        {{ language.icon }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
-  </div>
 </mat-toolbar>

@@ -6,7 +6,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subject } from 'rxjs';
 import { RefreshOffersService } from './features/auth/shared/services/refresh-offers.service';
 import { FooterComponent } from './layout/footer/footer.component';
 import { TopbarComponent } from './layout/topbar/topbar.component';
@@ -40,7 +39,6 @@ export class AppComponent implements OnInit {
     private readonly _breakpointObserverService = inject(BreakpointObserverService);
     private readonly _destroyRef = inject(DestroyRef);
     private readonly _refreshOffersService = inject(RefreshOffersService);
-    private readonly _unsub: Subject<void> = new Subject();
 
     protected readonly Breakpoints = Breakpoints;
 
