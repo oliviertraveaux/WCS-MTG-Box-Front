@@ -1,9 +1,11 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { CollectionDisplayImageComponent } from '../../../../../../shared/collection/components/collection-display-image/collection-display-image.component';
 import { UserCard } from '../../../../../../shared/collection/models/user-card.model';
@@ -26,6 +28,8 @@ import { GetUserCardNamePipe } from '../../../shared/pipes/get-user-card-name.pi
         MatCheckboxModule,
         CollectionDisplayImageComponent,
         GetTruncateTextPipe,
+        MatBadgeModule,
+        MatTooltipModule,
     ],
     templateUrl: './collection-display-search-result.component.html',
     styleUrls: ['./collection-display-search-result.component.scss'],

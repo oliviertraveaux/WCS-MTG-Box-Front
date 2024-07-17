@@ -91,7 +91,12 @@
                             [cards]="cards$ | async"
                             [isAllSelected]="(isAllSelected$ | async)!"
                             (updateSelection)="handleSelection($event)">
-                            <div class="p-2" *ngFor="let card of displayedImageCards$ | async">
+                            <div
+                                class="p-2"
+                                *ngFor="
+                                    let card of displayedImageCards$ | async;
+                                    trackBy: trackById
+                                ">
                                 <app-collection-display-search-result
                                     [card]="card"
                                     [selection]="selection"
