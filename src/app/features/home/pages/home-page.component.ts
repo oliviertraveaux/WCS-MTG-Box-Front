@@ -83,7 +83,7 @@ export class HomePageComponent implements OnInit {
         this._homeSearchResultStatesService.getSearchRequestStatus$();
 
     ngOnInit() {
-      this._homeSearchResultService.getLastTenCards();
+      this._homeSearchResultService.getLatestCards();
       this.cardMarket$ = this._homeSearchResultStatesService.getDemoHomeCards$();
 
 

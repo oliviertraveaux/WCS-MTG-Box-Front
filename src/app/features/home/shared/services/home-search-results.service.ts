@@ -14,6 +14,9 @@ export class HomeSearchResultsService {
     private _alertService = inject(AlertService);
     private _translate = inject(TranslateService);
 
+    cardsNumber: number = 10;
+
+
     searchCards(searchQuery: SearchQuery): void {
         this._homeSearchResultsStatesService.setHomeCards([]);
         this._homeSearchResultsStatesService.setSearchRequestStatus(RequestStatus.loading);
@@ -34,16 +37,15 @@ export class HomeSearchResultsService {
     }
 
 
-  getLastTenCards(): void {
+  getLatestCards(): void {
     this._homeSearchResultsStatesService.setDemoHomeCards([]);
     //nombre de cartes à afficher
-    this._homeRepository.getLastCards(10).subscribe({
+    this._homeRepository.getLastCards(this.cardsNumber).subscribe({
       next: (lastCards) => {
         this._homeSearchResultsStatesService.setDemoHomeCards(lastCards);
-        console.log('last ten cards', lastCards)
+
       },
       error: (err) => {
-        console.error('error fetching last ten cards', err);
         this._alertService.openSnackBar(
           this._translate.instant('home.toast.get-last-ten-cards-error'),
           SnackbarStatus.error

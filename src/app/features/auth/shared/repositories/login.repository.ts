@@ -1,16 +1,21 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, map, tap } from 'rxjs';
-import { ENVIRONMENT } from '../../../../../env';
+
 import { CollectionCardsStateService } from '../../../../shared/collection/services/collection-cards-state.service';
 import { UserInfo } from '../../../../shared/user/models/user-info.interface';
 import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
+import {inject, Injectable} from "@angular/core";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {ENVIRONMENT} from "../../../../../env";
+import {map, Observable, tap} from "rxjs";
 
 @Injectable({
     providedIn: 'root',
 })
 export class LoginRepository {
+
+    private readonly http = inject(HttpClient)
+    private readonly router = inject(Router)
+
     private loginUrl = `${ENVIRONMENT.apiLoginConfigurationURL}`;
     private logoutUrl = `${ENVIRONMENT.apiLogoutConfigurationURL}`;
     private passwordForgottenUrl = `${ENVIRONMENT.apiPasswordForgottenConfigurationURL}`;
@@ -18,10 +23,7 @@ export class LoginRepository {
     private userInfoStatesService = inject(UserInfoStatesService);
     private collectionCardState = inject(CollectionCardsStateService);
 
-    constructor(
-        private http: HttpClient,
-        private router: Router
-    ) {}
+
 
     login(credentials: { username: string; password: string }): Observable<boolean> {
         return this.http

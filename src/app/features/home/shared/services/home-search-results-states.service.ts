@@ -22,12 +22,10 @@ export class HomeSearchResultsStatesService {
 
   setDemoHomeCards(cards: HomeCardSearchResult[]) {
     this. _demoHomeCards$.next(cards);
-    console.log(' set demo cards', cards)
   }
 
 
   getDemoHomeCards$(): Observable<HomeCardSearchResult[]> {
-    console.log(' get demo cards', this._demoHomeCards$  )
     return this._demoHomeCards$;
 
   }

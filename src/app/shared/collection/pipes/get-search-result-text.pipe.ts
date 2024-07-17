@@ -11,10 +11,12 @@ export class getSearchResultTextPipe implements PipeTransform {
   transform(cardsLength: number): string {
     if (cardsLength > 1) {
       return cardsLength + ' ' + this._translate.instant('Collection.addCard.searchResults.totalResultTextPlural');
-    } else if (cardsLength === 1) {
-      return this._translate.instant('Collection.addCard.searchResults.totalResultTextSingular');
-    } else {
-      return this._translate.instant('Collection.addCard.searchResults.noResults');
     }
+
+    if (cardsLength === 1) {
+      return this._translate.instant('Collection.addCard.searchResults.totalResultTextSingular');
+    }
+
+    return this._translate.instant('Collection.addCard.searchResults.noResults');
   }
 }

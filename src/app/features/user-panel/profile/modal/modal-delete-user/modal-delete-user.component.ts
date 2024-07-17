@@ -21,15 +21,14 @@ import {LoginService} from "../../../../auth/shared/services/login.service";
   imports: [MatButtonModule, MatDialogModule, ReactiveFormsModule, MatInputModule, TranslateModule, NgIf],
 })
 export class ModalDeleteUser implements OnInit {
-  constructor(
-      private  _fb: FormBuilder,
-      private  _dialogRef: MatDialogRef<ModalDeleteUser>,
-      private  _alertService: AlertService,
-      private  _translate: TranslateService,
-      private  _authService: LoginService,
-      private  _userInfoStatesService: UserInfoStatesService,
-      private  _userInfosService: UserInfosService,
-  ) { }
+
+  private readonly _fb = inject(FormBuilder);
+  private readonly _dialogRef = inject(MatDialogRef);
+  private readonly _alertService = inject(AlertService);
+  private readonly _translate = inject(TranslateService);
+  private readonly _authService = inject(LoginService);
+  private readonly _userInfoStatesService = inject(UserInfoStatesService);
+  private readonly _userInfosService = inject(UserInfosService);
 
   userId!: number;
   passwordForm!: FormGroup;
