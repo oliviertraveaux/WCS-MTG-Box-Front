@@ -21,6 +21,8 @@
     "delete": "Delete",
     "addCard": {
       "searchTitle": "Search",
+      "defaultMessageTitle": "Search for Cards",
+      "defaultMessageDescription": "Add cards to your collection to enable trading!",
       "cardBasketTitle": "Cards to add",
       "searchForm": {
         "set": "Set",
@@ -46,7 +48,8 @@
       },
       "searchResults": {
         "totalResultTextPlural": " matching results",
-        "totalResultTextSingular": " matching result"
+        "totalResultTextSingular": " matching result",
+        "noResults" : "No data matching the filter"
       },
       "searchResult": {
         "add": "Add"

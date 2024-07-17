@@ -212,7 +212,7 @@
         <div
             class="flex w-full justify-center pb-2 text-xs sm:ml-2 sm:w-fit sm:items-center sm:justify-start sm:pb-0">
             <p *ngIf="(status$ | async) === RequestStatus.success && (cards$ | async)">
-                {{ (cards$ | async)?.length ?? 0 | getSearchResultText }}
+                {{ (cards$ | async)?.length  ?? 0 | getSearchResultText }}
             </p>
         </div>
     </div>

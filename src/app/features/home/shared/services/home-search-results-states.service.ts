@@ -8,6 +8,7 @@ import { HomeCardSearchResult } from '../../models/home-search-results.model';
 })
 export class HomeSearchResultsStatesService {
     private _homeCards$ = new BehaviorSubject<HomeCardSearchResult[]>([]);
+    private _demoHomeCards$ = new BehaviorSubject<HomeCardSearchResult[]>([]);
     private _searchRequestStatus$ = new BehaviorSubject<RequestStatus>(RequestStatus.initial);
     private _isFrenchSearch$ = new BehaviorSubject<boolean>(false);
 
@@ -19,7 +20,22 @@ export class HomeSearchResultsStatesService {
         return this._homeCards$.getValue();
     }
 
-    setHomeCards(cards: HomeCardSearchResult[]) {
+  setDemoHomeCards(cards: HomeCardSearchResult[]) {
+    this. _demoHomeCards$.next(cards);
+    console.log(' set demo cards', cards)
+  }
+
+
+  getDemoHomeCards$(): Observable<HomeCardSearchResult[]> {
+    console.log(' get demo cards', this._demoHomeCards$  )
+    return this._demoHomeCards$;
+
+  }
+
+
+
+
+  setHomeCards(cards: HomeCardSearchResult[]) {
         this._homeCards$.next(cards);
     }
 

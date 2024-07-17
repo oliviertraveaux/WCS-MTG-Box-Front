@@ -32,4 +32,23 @@ export class HomeSearchResultsService {
             },
         });
     }
+
+
+  getLastTenCards(): void {
+    this._homeSearchResultsStatesService.setDemoHomeCards([]);
+    //nombre de cartes à afficher
+    this._homeRepository.getLastCards(10).subscribe({
+      next: (lastCards) => {
+        this._homeSearchResultsStatesService.setDemoHomeCards(lastCards);
+        console.log('last ten cards', lastCards)
+      },
+      error: (err) => {
+        console.error('error fetching last ten cards', err);
+        this._alertService.openSnackBar(
+          this._translate.instant('home.toast.get-last-ten-cards-error'),
+          SnackbarStatus.error
+        );
+      }
+    });
+  }
 }
