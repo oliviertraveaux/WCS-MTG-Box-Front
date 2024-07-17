@@ -92,7 +92,7 @@ export class CardBasketComponent implements OnInit, AfterViewInit {
     filterValues: FilterValues = {
         name: '',
     };
-    displaySelect = !!this._activatedRoute.snapshot.routeConfig?.path?.includes('collection/add');
+    displaySelect = !!this._activatedRoute.snapshot.routeConfig?.path?.includes('add');
 
     ngOnInit() {
         this.cards$
