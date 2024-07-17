@@ -15,6 +15,7 @@ export interface UserCard {
         setName: string;
         text: string;
         artist: string;
+        hasAnOffer?: boolean;
     };
     userInfo: {
         userId: number;

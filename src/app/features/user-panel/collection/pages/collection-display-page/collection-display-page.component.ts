@@ -25,6 +25,7 @@ import { UserCard } from '../../../../../shared/collection/models/user-card.mode
 import { AlertService } from '../../../../../shared/services/alert.service';
 import { BreakpointObserverService } from '../../../../../shared/services/breakpoint-observer.service';
 import { SearchFormService } from '../../../../../shared/services/search-form/search-form.service';
+import { trackById } from '../../../../../shared/utils/track-by-utils';
 import { CollectionAddCardSearchFormComponent } from '../../components/collection-add-card/collection-add-card-search-form/collection-add-card-search-form.component';
 import { CollectionDisplaySearchFormComponent } from '../../components/collection-display/collection-display-search-form/collection-display-search-form.component';
 import { CollectionDisplaySearchResultComponent } from '../../components/collection-display/collection-display-search-result/collection-display-search-result.component';
@@ -65,6 +66,8 @@ export class CollectionDisplayPageComponent implements OnInit, OnDestroy {
     private _changeDetectorRef = inject(ChangeDetectorRef);
     private _breakpointObserverService = inject(BreakpointObserverService);
     private _searchFormService = inject(SearchFormService);
+
+    protected readonly trackById = trackById;
 
     readonly isTablet = this._breakpointObserverService.isTablet;
     readonly isDesktop = this._breakpointObserverService.isDesktop;

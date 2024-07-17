@@ -7,7 +7,13 @@
         <h4 class="truncate pr-2 text-xs">
             {{ card | getUserCardName | getTruncateText: 20 }}
         </h4>
-        <span class="mr-4 inline-block h-4 w-4 rounded-full bg-green-500"></span>
+        <span
+            matTooltip="Has an offer"
+            matTooltipClass="tooltip"
+            [ngClass]="card.cardInfo.hasAnOffer ? 'bg-secondary-color-500' : 'bg-gray-200'"
+            class="mr-3 flex h-6 w-6 items-center justify-center rounded-full text-xs text-white">
+            <mat-icon class="has-offer" fontIcon="swap_horiz"></mat-icon>
+        </span>
     </div>
 
     <div class="flex w-full justify-between">
