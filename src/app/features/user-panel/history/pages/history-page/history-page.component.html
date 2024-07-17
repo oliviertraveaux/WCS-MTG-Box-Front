@@ -6,8 +6,16 @@
         (resetFilter)="filterBy('')" />
     <div
         class="flex min-h-full w-full flex-col justify-center gap-2 overflow-auto py-2 scrollbar-hide">
-        <ng-container *ngFor="let offerHistory of filteredOffersHistory$ | async">
+        <ng-container *ngFor="let offerHistory of displayedOffers$ | async; trackBy: trackBy">
             <offer-card [offer]="offerHistory" />
         </ng-container>
+        <app-pagination
+            *ngIf="((filteredOffersHistory$ | async)?.length ?? 0) > 0"
+            additionalContentBottom
+            [length]="(filteredOffersHistory$ | async)?.length ?? 0"
+            [pageSize]="pageSize"
+            [pageIndex]="pageIndex"
+            [resetPagination]="resetPagination"
+            (page)="displayHistoryPage($event)"></app-pagination>
     </div>
 </div>
