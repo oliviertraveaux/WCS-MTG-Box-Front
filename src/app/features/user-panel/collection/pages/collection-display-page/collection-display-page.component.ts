@@ -59,23 +59,26 @@ import { CollectionDisplaySearchResultsService } from '../../shared/services/col
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionDisplayPageComponent implements OnInit, OnDestroy {
-    private _collectionDisplayService = inject(CollectionDisplaySearchResultsService);
-    private _collectionDisplayStatesService = inject(CollectionDisplaySearchResultsStatesService);
-    private _alertService = inject(AlertService);
-    private _translate = inject(TranslateService);
-    private _changeDetectorRef = inject(ChangeDetectorRef);
-    private _breakpointObserverService = inject(BreakpointObserverService);
-    private _searchFormService = inject(SearchFormService);
+    private readonly _collectionDisplayService = inject(CollectionDisplaySearchResultsService);
+    private readonly _collectionDisplayStatesService = inject(
+        CollectionDisplaySearchResultsStatesService
+    );
+    private readonly _alertService = inject(AlertService);
+    private readonly _translate = inject(TranslateService);
+    private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+    private readonly _breakpointObserverService = inject(BreakpointObserverService);
+    private readonly _searchFormService = inject(SearchFormService);
 
     protected readonly trackById = trackById;
 
     readonly isTablet = this._breakpointObserverService.isTablet;
     readonly isDesktop = this._breakpointObserverService.isDesktop;
 
-    cards$!: Observable<UserCard[]>;
+    cards$: Observable<UserCard[]> = this._collectionDisplayStatesService.getCards$();
     selection!: SelectionModel<UserCard>;
-    isAllSelected$: Observable<boolean> = of(false);
-    isIndeterminate$: Observable<boolean> = of(false);
+    isAllSelected$: Observable<boolean> = this._collectionDisplayStatesService.getIsAllSelected$();
+    isIndeterminate$: Observable<boolean> =
+        this._collectionDisplayStatesService.getIsIndeterminate$();
     listDisplay = false;
     searchForm = this._searchFormService.searchForm;
     displayedImageCards$: Observable<UserCard[]> = of([]);
@@ -84,9 +87,6 @@ export class CollectionDisplayPageComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this._collectionDisplayService.init();
-        this.cards$ = this._collectionDisplayStatesService.getCards$();
-        this.isIndeterminate$ = this._collectionDisplayStatesService.getIsIndeterminate$();
-        this.isAllSelected$ = this._collectionDisplayStatesService.getIsAllSelected$();
         this._collectionDisplayStatesService.getSelectedCards().subscribe((selected) => {
             this.selection = new SelectionModel<UserCard>(true, selected);
         });
@@ -169,15 +169,13 @@ export class CollectionDisplayPageComponent implements OnInit, OnDestroy {
 
     displayImageHandlePage(event: { startIndex: number; endIndex: number }) {
         this.displayedImageCards$ = this.cards$.pipe(
-            map((cards) => {
-                return cards.slice(event.startIndex, event.endIndex);
-            })
+            map((cards) => cards.slice(event.startIndex, event.endIndex))
         );
     }
 
     switchView() {
         this.listDisplay = !this.listDisplay;
-        this._changeDetectorRef.detectChanges();
+        this.displayImageHandlePage({ startIndex: 0, endIndex: this.pageSize });
     }
 
     ngOnDestroy(): void {

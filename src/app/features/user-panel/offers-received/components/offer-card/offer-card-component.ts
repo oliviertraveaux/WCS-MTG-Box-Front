@@ -8,14 +8,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { Observable, map, tap } from 'rxjs';
 import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 import { GetTruncateTextPipe } from '../../../../../shared/collection/pipes/get-truncate-text.pipe';
 import { OfferFullWantedCard } from '../../../../../shared/offer/models/offer-full-wanted-card.model';
 import { BreakpointObserverService } from '../../../../../shared/services/breakpoint-observer.service';
 import { UserInfoStatesService } from '../../../../../shared/user/services/user-info-states.service';
-import { trackById } from '../../../../../shared/utils/track-by-utils';
+import { trackByItem } from '../../../../../shared/utils/track-by-utils';
 import { fromUserCardToAdCardInfo } from '../../../shared/utils/offer.utils';
 import { OfferWantedCardModalComponent } from '../../../ui/offer-wanted-card-modal/offer-wanted-card-modal.component';
 import { OfferCardActionsComponent } from '../offer-card-actions/offer-card-actions.component';
@@ -53,7 +52,8 @@ export class OfferCardComponent implements OnInit {
     @Input() hasAcceptButton: boolean = false;
     @Input() hasValidateButton: boolean = false;
 
-    protected readonly trackById = trackById;
+    protected readonly trackByItem = trackByItem;
+
     currentBreakpoints!: Observable<string[]>;
     limitOfCardsToDisplay$!: Observable<number>;
     arrayOfCardsToDisplay$!: Observable<UserCard[]>;
