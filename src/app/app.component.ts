@@ -1,7 +1,7 @@
 import { Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
@@ -28,6 +28,8 @@ import { BreadcrumbComponent } from './shared/ui/dynamic-links/breadcrumb/breadc
     providers: [TranslateService],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class AppComponent implements OnInit {
     constructor(private translate: TranslateService) {

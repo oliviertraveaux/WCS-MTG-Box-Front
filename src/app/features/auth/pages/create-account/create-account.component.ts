@@ -58,8 +58,8 @@ export class CreateAccountComponent {
 
   isLinear = false;
   isConfirmPasswordHidden = true;
-  isUsernameAvailable: boolean = true;
-  isEmailAvailable: boolean = true;
+isUsernameAvailable = true;
+  isEmailAvailable = true;
   departments: any = franceDepartments;
 
   userNameFormGroup = this._formBuilder.group({

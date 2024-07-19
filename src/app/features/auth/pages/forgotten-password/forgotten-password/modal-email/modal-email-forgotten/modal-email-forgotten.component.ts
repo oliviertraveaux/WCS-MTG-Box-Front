@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -13,6 +13,7 @@ import { LoginService } from '../../../../../shared/services/login.service';
 @Component({
     selector: 'modal-email-forgotten',
     templateUrl: 'modal-email-forgotten.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
         MatButtonModule,

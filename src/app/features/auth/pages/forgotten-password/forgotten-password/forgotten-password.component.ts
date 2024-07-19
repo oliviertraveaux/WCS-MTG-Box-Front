@@ -33,7 +33,7 @@ export class ForgottenPasswordComponent implements OnInit {
   private _fb: FormBuilder = inject(FormBuilder);
   private _route: ActivatedRoute = inject(ActivatedRoute);
   form!: FormGroup;
-  message: string = '';
+  message = '';
 
 
 
