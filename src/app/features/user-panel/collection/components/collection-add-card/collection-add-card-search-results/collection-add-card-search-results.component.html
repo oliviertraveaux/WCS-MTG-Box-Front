@@ -1,4 +1,4 @@
-<div class="flex w-full flex-wrap py-4">
+<div class="flex w-full flex-wrap gap-2.5 py-4">
     <!-- Card skeleton -->
 
     <ng-container
@@ -38,5 +38,6 @@
         [length]="(cards$ | async)?.length ?? 0"
         [pageSize]="pageSize"
         [pageIndex]="pageIndex"
-        (page)="displayImageHandlePage($event)"></app-pagination>
+        (page)="displayImageHandlePage($event)">
+    </app-pagination>
 </div>

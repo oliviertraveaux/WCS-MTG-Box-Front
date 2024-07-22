@@ -60,4 +60,9 @@ export class HomeSearchResultsStatesService {
     setIsFrenchSearch(value: boolean): void {
         this._isFrenchSearch$.next(value);
     }
+
+    reset(): void {
+        this.setHomeCards([]);
+        this.setSearchRequestStatus(RequestStatus.initial);
+    }
 }

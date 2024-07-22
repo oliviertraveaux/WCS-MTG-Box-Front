@@ -20,8 +20,6 @@ export class LoginRepository {
     private logoutUrl = `${ENVIRONMENT.apiLogoutConfigurationURL}`;
     private passwordForgottenUrl = `${ENVIRONMENT.apiPasswordForgottenConfigurationURL}`;
     private newPasswordUrl = `${ENVIRONMENT.apiNewPasswordConfigurationURL}`;
-    private userInfoStatesService = inject(UserInfoStatesService);
-    private collectionCardState = inject(CollectionCardsStateService);
 
 
 
@@ -42,19 +40,8 @@ export class LoginRepository {
             );
     }
 
-    isAuthenticated(): boolean {
-        return !!this.userInfoStatesService.getUserInfo().id;
-    }
-
     logout(): Observable<any> {
-        return this.http.post(this.logoutUrl, { withCredentials: true }).pipe(
-            tap(() => {
-                this.userInfoStatesService.setUserInfo({} as UserInfo);
-                this.collectionCardState.setCards([]);
-                this.collectionCardState.setIsCollectionLoaded(false);
-                this.router.navigate(['/login']);
-            })
-        );
+        return this.http.post(this.logoutUrl, { withCredentials: true });
     }
 
     requestPasswordReset(email: string): Observable<any> {

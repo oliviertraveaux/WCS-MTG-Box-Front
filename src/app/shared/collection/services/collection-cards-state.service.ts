@@ -39,4 +39,10 @@ export class CollectionCardsStateService {
     setSearchRequestStatus(status: RequestStatus): void {
         this._getCollectionStatus$.next(status);
     }
+
+    reset() {
+        this.setCards([]);
+        this.setIsCollectionLoaded(false);
+        this.setSearchRequestStatus(RequestStatus.initial);
+    }
 }

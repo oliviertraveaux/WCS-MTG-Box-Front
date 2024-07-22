@@ -32,4 +32,9 @@ export class UserInfoStatesService {
     setUsers(value: UserInfo[]) {
         this._users$.next(value);
     }
+
+    reset() {
+        this.setUserInfo({} as UserInfo);
+        this.setUsers([]);
+    }
 }

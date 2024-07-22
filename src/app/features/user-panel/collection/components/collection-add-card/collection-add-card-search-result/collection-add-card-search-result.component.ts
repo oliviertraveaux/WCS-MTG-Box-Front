@@ -16,6 +16,7 @@ import { ApiCard } from '../../../models/card-api.model';
 import { GetApiCardImgPipe } from '../../../shared/pipes/get-api-card-img.pipe';
 import { GetApiCardNamePipe } from '../../../shared/pipes/get-api-card-name.pipe';
 import { CollectionAddCardBasketService } from '../../../shared/services/collection-add-card/collection-add-card-basket.service';
+import { GetTruncateTextPipe } from '../../../../../../shared/collection/pipes/get-truncate-text.pipe';
 
 @Component({
     selector: 'app-collection-add-card-search-card-result',
@@ -32,6 +33,7 @@ import { CollectionAddCardBasketService } from '../../../shared/services/collect
         GetApiCardImgPipe,
         GetApiCardNamePipe,
         TranslateModule,
+        GetTruncateTextPipe,
     ],
     templateUrl: './collection-add-card-search-result.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

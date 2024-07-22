@@ -78,8 +78,7 @@
               "browserTarget": "WCS-MTG-Box-Front:build:production"
             },
             "development": {
-              "browserTarget": "WCS-MTG-Box-Front:build:development",
-
+              "browserTarget": "WCS-MTG-Box-Front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +87,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "WCS-MTG-Box-Front:build"
-
           }
         },
         "test": {
@@ -109,11 +107,24 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics",
+      "@angular-eslint/schematics"
+    ]
   }
 }

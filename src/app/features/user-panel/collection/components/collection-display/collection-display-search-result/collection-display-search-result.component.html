@@ -1,24 +1,30 @@
 <div class="flex h-full flex-col items-center">
     <img
         [src]="card | getUserCardImg"
-        class="mb-2 h-auto w-44 transform transition-transform hover:scale-105"
+        class="mb-2 h-auto w-56 transform transition-transform hover:scale-105 sm:w-44"
         [alt]="card | getUserCardName" />
     <div class="mt-2 flex w-full justify-between">
-        <h4 class="truncate pr-2 text-xs">
+        <h4 class="truncate pr-2">
             {{ card | getUserCardName | getTruncateText: 20 }}
         </h4>
-        <span class="mr-4 inline-block h-4 w-4 rounded-full bg-green-500"></span>
+        <span
+            matTooltip="Has an offer"
+            matTooltipClass="tooltip"
+            [ngClass]="card.cardInfo.hasAnOffer ? 'bg-secondary-color-500' : 'bg-gray-200'"
+            class="mr-3 flex h-6 w-6 items-center justify-center rounded-full text-xs text-white">
+            <mat-icon class="has-offer" fontIcon="swap_horiz"></mat-icon>
+        </span>
     </div>
 
     <div class="flex w-full justify-between">
         <div class="mt-1 w-full">
-            <p class="bg-silver truncate text-xs">
+            <p class="bg-silver truncate text-sm">
                 {{ card.cardInfo.setName | translate | getTruncateText: 12 }}
             </p>
             <div *ngIf="card.userInfo.qualityName" class="inline-block text-center">
                 <p
                     [ngClass]="card.userInfo.qualityName | getQualityClass"
-                    class="text-xs font-bold">
+                    class="text-sm font-bold">
                     {{ card.userInfo.qualityName }}
                 </p>
             </div>
