@@ -66,6 +66,9 @@
         "card-saved-success-singular": "Card saved",
         "card-saved-success-plural": " cards saved",
         "card-saved-fail": "An error occurred saving cards"
+      },
+      "tooltip": {
+        "has-an-offer": "Offer received"
       }
     }
   },

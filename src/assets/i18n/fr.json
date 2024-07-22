@@ -67,6 +67,9 @@
         "card-saved-success-singular": "Carte sauvegardée",
         "card-saved-success-plural": " cartes sauvegardées",
         "card-saved-fail": "Une erreur est survenue"
+      },
+      "tooltip": {
+        "has-an-offer": "Offre reçue"
       }
     }
   },
