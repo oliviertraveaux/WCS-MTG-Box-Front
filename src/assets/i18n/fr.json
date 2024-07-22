@@ -21,6 +21,8 @@
     "delete": "Supprimer",
     "addCard": {
       "searchTitle": "Rechercher",
+      "defaultMessageTitle": "Rechercher des cartes",
+      "defaultMessageDescription": "Ajoutez des cartes à votre collection pour pouvoir effectuer des échanges !",
       "cardBasketTitle": "Cartes à ajouter",
       "searchForm": {
         "set": "Edition",
@@ -46,7 +48,8 @@
       },
       "searchResults": {
         "totalResultTextPlural": " résultats correspondants",
-        "totalResultTextSingular": " résultat correspondant"
+        "totalResultTextSingular": " résultat correspondant",
+        "noResults" : "Aucun résultat trouvé pour votre recherche"
       },
       "searchResult": {
         "add": "Ajouter"

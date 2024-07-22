@@ -11,10 +11,16 @@ import { HomeCardSearchResult } from '../../models/home-search-results.model';
 export class HomeSearchRepository {
     private http = inject(HttpClient);
     private homeSearchUrl: string = ENVIRONMENT.apiMarketCardsURL;
+    private lastCardsResults = `${ENVIRONMENT.apiLastMarketCardsURL}`;
 
     public getCards(searchQuery: SearchQuery): Observable<HomeCardSearchResult[]> {
         const params = new HttpParams({ fromObject: searchQuery } as HttpParamsOptions);
 
         return this.http.get<HomeCardSearchResult[]>(this.homeSearchUrl, { params });
     }
+
+  public getLastCards(limit: number): Observable<HomeCardSearchResult[]> {
+    return this.http.get<HomeCardSearchResult[]>(`${this.lastCardsResults}?limit=${limit}`);
+  }
+
 }

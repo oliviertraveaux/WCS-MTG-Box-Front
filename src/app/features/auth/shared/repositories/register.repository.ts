@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ENVIRONMENT} from "../../../../../env";
@@ -7,10 +7,12 @@ import {ENVIRONMENT} from "../../../../../env";
   providedIn: 'root'
 })
 export class RegisterRepository {
+
+  private readonly http = inject(HttpClient)
+
   private registerUrl = `${ENVIRONMENT.apiRegisterConfigurationURL}`;
   private checkAvailabilityUrl = `${ENVIRONMENT.apiCheckAvailabilityConfigurationURL}`;
 
-  constructor(private http: HttpClient) { }
 
   register(formData: any): Observable<any> {
     return this.http.post(this.registerUrl, formData);

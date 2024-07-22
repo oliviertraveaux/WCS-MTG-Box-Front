@@ -11,14 +11,29 @@
 
     <!-- Cards -->
 
-    <ng-template #content>
-        <div
-            class="flex w-full flex-col flex-wrap sm:w-44"
-            *ngFor="let card of displayedImageCards$ | async">
-            <app-collection-add-card-search-card-result [card]="card" />
-        </div>
-    </ng-template>
+  <ng-template #content>
 
+    <ng-container *ngIf="(displayedImageCards$ | async)?.length; else noResults">
+      <div class="flex flex-col"></div>
+      <div
+        class="flex w-1/2 flex-col p-2 sm:w-1/4"
+        *ngFor="let card of displayedImageCards$ | async">
+        <app-collection-add-card-search-card-result [card]="card"/>
+      </div>
+    </ng-container>
+    <ng-template #noResults>
+      <div class="flex items-center justify-center w-full h-full bg-gray-100 p-8">
+        <div class="text-center">
+          <p class="text-xl font-semibold text-gray-700">
+              {{ 'Collection.addCard.defaultMessageTitle' | translate }}
+          </p>
+          <p class="mt-4 text-gray-500">
+            {{ 'Collection.addCard.defaultMessageDescription' | translate }}
+          </p>
+        </div>
+      </div>
+    </ng-template>
+</ng-template>
     <app-pagination
         [length]="(cards$ | async)?.length ?? 0"
         [pageSize]="pageSize"

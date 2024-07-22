@@ -24,28 +24,35 @@ import { HomeSearchResultsComponent } from '../components/home-search-results/ho
 import { HomeCardSearchResult } from '../models/home-search-results.model';
 import { HomeSearchResultsStatesService } from '../shared/services/home-search-results-states.service';
 import { HomeSearchResultsService } from '../shared/services/home-search-results.service';
+import {GetTruncateTextPipe} from "../../../shared/collection/pipes/get-truncate-text.pipe";
+import {
+  CollectionDisplaySearchResultComponent
+} from "../../user-panel/collection/components/collection-display/collection-display-search-result/collection-display-search-result.component";
+
 
 @Component({
     selector: 'app-search-page',
     standalone: true,
-    imports: [
-        CommonModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatIconModule,
-        RouterLink,
-        HomeSearchFormComponent,
-        SearchFormDrawerComponent,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        CollectionDisplaySearchFormComponent,
-        TranslateModule,
-        SearchFormNameOnlyComponent,
-        HomeSearchResultsComponent,
-        MatProgressSpinnerModule,
-    ],
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    RouterLink,
+    HomeSearchFormComponent,
+    SearchFormDrawerComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    CollectionDisplaySearchFormComponent,
+    TranslateModule,
+    SearchFormNameOnlyComponent,
+    HomeSearchResultsComponent,
+    MatProgressSpinnerModule,
+    GetTruncateTextPipe,
+    CollectionDisplaySearchResultComponent,
+  ],
     providers: [
         SearchFormHomeService,
         { provide: SearchFormService, useExisting: SearchFormHomeService },
@@ -69,12 +76,17 @@ export class HomePageComponent implements OnInit {
 
     searchForm = this._searchFormService.searchForm;
     cardResults$!: Observable<HomeCardSearchResult[]>;
+    cardMarket$!: Observable<HomeCardSearchResult[]>;
 
     isFrenchSearch: Observable<boolean> = this._homeSearchResultStatesService.getIsFrenchSearch$();
     status$: Observable<RequestStatus> =
         this._homeSearchResultStatesService.getSearchRequestStatus$();
 
     ngOnInit() {
+      this._homeSearchResultService.getLatestCards();
+      this.cardMarket$ = this._homeSearchResultStatesService.getDemoHomeCards$();
+
+
         this.cardResults$ = this._homeSearchResultStatesService.getHomeCards$();
         this._searchFormService.updateValidityWhenFormValueChanges();
     }
@@ -103,4 +115,24 @@ export class HomePageComponent implements OnInit {
             this._searchFormService.languageControl.name === 'French'
         );
     }
+
+  getUniqueCards(cardMarket: any[]): any[] {
+    const uniqueCards: any[] = [];
+
+    cardMarket.forEach((card) => {
+      card.userCardsOnMarket.forEach((userCard: any) => {
+        const uniqueCard = { ...card, userCardId: userCard.userCardId };
+        const index = uniqueCards.findIndex((c) => c.cardId === card.cardId);
+
+        if (index === -1) {
+          uniqueCards.push(uniqueCard);
+        }
+      });
+    });
+
+    return uniqueCards;
+  }
+
+
+
 }

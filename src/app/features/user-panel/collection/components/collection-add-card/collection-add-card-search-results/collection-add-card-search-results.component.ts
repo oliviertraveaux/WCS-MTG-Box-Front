@@ -13,22 +13,24 @@ import { RequestStatus } from '../../../../../../shared/enums/request-status.enu
 import { ApiCard } from '../../../models/card-api.model';
 import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card/collection-add-card-search-results-states.service';
 import { CollectionAddCardSearchResultComponent } from '../collection-add-card-search-result/collection-add-card-search-result.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-add-card-search-results',
     standalone: true,
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        MatInputModule,
-        MatSelectModule,
-        GetRaritySymbolPipe,
-        MatIconModule,
-        CollectionAddCardSearchResultComponent,
-        getSearchResultTextPipe,
-        CardSkeletonComponent,
-        PaginationComponent,
-    ],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    GetRaritySymbolPipe,
+    MatIconModule,
+    CollectionAddCardSearchResultComponent,
+    getSearchResultTextPipe,
+    CardSkeletonComponent,
+    PaginationComponent,
+    TranslateModule,
+  ],
     templateUrl: './collection-add-card-search-results.component.html',
     styleUrls: ['./collection-add-card-search-results.components.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

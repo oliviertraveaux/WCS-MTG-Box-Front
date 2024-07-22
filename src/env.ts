@@ -13,6 +13,7 @@ export const ENVIRONMENT = {
     apiPasswordForgottenConfigurationURL: `${apiConfigurationUrl}password-forgotten`,
     apiNewPasswordConfigurationURL: `${apiConfigurationUrl}new-password`,
     apiMarketCardsURL: `${apiConfigurationUrl}marketcards`,
+  apiLastMarketCardsURL: `${apiConfigurationUrl}marketcards/latest`,
     apiCardAdURL: `${apiConfigurationUrl}card-ad`,
     apiCardAdOffersURL: `${apiConfigurationUrl}offer/card-ad`,
     apiOffer: `${apiConfigurationUrl}offer`,

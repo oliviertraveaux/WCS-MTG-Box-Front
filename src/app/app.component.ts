@@ -30,11 +30,11 @@ import { BreadcrumbComponent } from './shared/ui/dynamic-links/breadcrumb/breadc
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-    constructor(private translate: TranslateService) {
+    constructor() {
         const preferredLanguage = localStorage.getItem('preferredLanguage') || 'fr';
         this.translate.use(preferredLanguage);
     }
-
+    private readonly translate = inject(TranslateService);
     private readonly _router = inject(Router);
     private readonly _breakpointObserverService = inject(BreakpointObserverService);
     private readonly _destroyRef = inject(DestroyRef);
