@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ENVIRONMENT } from '../../../../env';
+import { ENVIRONMENT } from '../../../../backend-endpoints';
 import { OfferCreation } from '../../../features/transaction/offer/shared/models/offer-creation-data.model';
 import { OfferFullWantedCard } from '../models/offer-full-wanted-card.model';
 import { Offer } from '../models/offer.model';

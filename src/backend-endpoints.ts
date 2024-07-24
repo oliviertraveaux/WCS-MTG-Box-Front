@@ -1,5 +1,5 @@
-const apiConfigurationUrl = '/api/v1/';
-
+const backendUrl = process.env['BACKEND_URL'];
+const apiConfigurationUrl = `${backendUrl}/api/v1/`;
 export const ENVIRONMENT = {
     apiConfigurationUrl: apiConfigurationUrl,
     apiCardsConfigurationURL: `${apiConfigurationUrl}apicards`,
@@ -13,7 +13,7 @@ export const ENVIRONMENT = {
     apiPasswordForgottenConfigurationURL: `${apiConfigurationUrl}password-forgotten`,
     apiNewPasswordConfigurationURL: `${apiConfigurationUrl}new-password`,
     apiMarketCardsURL: `${apiConfigurationUrl}marketcards`,
-  apiLastMarketCardsURL: `${apiConfigurationUrl}marketcards/latest`,
+    apiLastMarketCardsURL: `${apiConfigurationUrl}marketcards/latest`,
     apiCardAdURL: `${apiConfigurationUrl}card-ad`,
     apiCardAdOffersURL: `${apiConfigurationUrl}offer/card-ad`,
     apiOffer: `${apiConfigurationUrl}offer`,

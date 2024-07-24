@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ENVIRONMENT } from '../../../../../../env';
+import { ENVIRONMENT } from '../../../../../../backend-endpoints';
 import { UserInfo } from '../../../../../shared/user/models/user-info.interface';
 import { AdministrateUserRequest } from '../model/administrate-user-request.interface';
 
