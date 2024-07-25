@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ENVIRONMENT } from '../../../../env';
+import { ENVIRONMENT } from '../../../../backend-endpoints';
 import { UserCard } from '../models/user-card.model';
 
 @Injectable({

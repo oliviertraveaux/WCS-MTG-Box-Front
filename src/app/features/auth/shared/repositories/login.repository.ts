@@ -1,27 +1,20 @@
-
-import { CollectionCardsStateService } from '../../../../shared/collection/services/collection-cards-state.service';
-import { UserInfo } from '../../../../shared/user/models/user-info.interface';
-import { UserInfoStatesService } from '../../../../shared/user/services/user-info-states.service';
-import {inject, Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {ENVIRONMENT} from "../../../../../env";
-import {map, Observable, tap} from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
+import { ENVIRONMENT } from '../../../../../backend-endpoints';
 
 @Injectable({
     providedIn: 'root',
 })
 export class LoginRepository {
-
-    private readonly http = inject(HttpClient)
-    private readonly router = inject(Router)
+    private readonly http = inject(HttpClient);
+    private readonly router = inject(Router);
 
     private loginUrl = `${ENVIRONMENT.apiLoginConfigurationURL}`;
     private logoutUrl = `${ENVIRONMENT.apiLogoutConfigurationURL}`;
     private passwordForgottenUrl = `${ENVIRONMENT.apiPasswordForgottenConfigurationURL}`;
     private newPasswordUrl = `${ENVIRONMENT.apiNewPasswordConfigurationURL}`;
-
-
 
     login(credentials: { username: string; password: string }): Observable<boolean> {
         return this.http

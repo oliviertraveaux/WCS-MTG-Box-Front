@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ENVIRONMENT } from '../../../../../env';
+import { ENVIRONMENT } from '../../../../../backend-endpoints';
 import { SearchQuery } from '../../../user-panel/collection/models/search-query.model';
 import { HomeCardSearchResult } from '../../models/home-search-results.model';
 
@@ -19,8 +19,7 @@ export class HomeSearchRepository {
         return this.http.get<HomeCardSearchResult[]>(this.homeSearchUrl, { params });
     }
 
-  public getLastCards(limit: number): Observable<HomeCardSearchResult[]> {
-    return this.http.get<HomeCardSearchResult[]>(`${this.lastCardsResults}?limit=${limit}`);
-  }
-
+    public getLastCards(limit: number): Observable<HomeCardSearchResult[]> {
+        return this.http.get<HomeCardSearchResult[]>(`${this.lastCardsResults}?limit=${limit}`);
+    }
 }

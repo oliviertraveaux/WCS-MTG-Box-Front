@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ENVIRONMENT } from '../../../../env';
+import { ENVIRONMENT } from '../../../../backend-endpoints';
 import { Filters } from '../models/filters.interface';
 
 @Injectable({
