@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "http://localhost:8080",
+    "target": "https://vps-2aaddff6.vps.ovh.net",
     "secure": false
   }
 }
