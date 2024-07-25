@@ -5,13 +5,15 @@ import { ENVIRONMENT } from '../../../../../../backend-endpoints';
 import { CardAdInfo } from '../../models/card-ad-info';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class CardAdRepositoryService {
-    private http = inject(HttpClient);
-    private cardAdUrl: string = ENVIRONMENT.apiCardAdURL;
+  private http = inject(HttpClient);
+  private cardAdUrl: string = ENVIRONMENT.apiCardAdURL;
 
-    getCardAd(id: number): Observable<CardAdInfo> {
-        return this.http.get<CardAdInfo>(`${this.cardAdUrl}/${id}`);
-    }
+  getCardAd(id: number): Observable<CardAdInfo> {
+    return this.http.get<CardAdInfo>(`${this.cardAdUrl}/${id}`, {
+      withCredentials: true
+    });
+  }
 }
