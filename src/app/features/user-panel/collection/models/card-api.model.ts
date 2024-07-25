@@ -1,4 +1,4 @@
-import { CardRarity } from '@shared';
+import { CardRarity } from '../../../../shared/collection/enums/card-rarity.enum';
 import { ForeignName } from './card-api-foreign-name.model';
 
 export interface ApiCard {

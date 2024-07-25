@@ -1,15 +1,22 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
+import { inject, Pipe, PipeTransform } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 @Pipe({
-    standalone: true,
-    name: 'getSearchResultText',
+  standalone: true,
+  name: 'getSearchResultText',
 })
 export class getSearchResultTextPipe implements PipeTransform {
-
-  constructor(private translate: TranslateService) {}
+  private _translate = inject(TranslateService);
 
   transform(cardsLength: number): string {
-    const translationKey = cardsLength > 1 ? 'Collection.results' : 'Collection.result';
-    return `${cardsLength} ${this.translate.instant(translationKey) }`;
+    if (cardsLength > 1) {
+      return cardsLength + ' ' + this._translate.instant('Collection.addCard.searchResults.totalResultTextPlural');
+    }
+
+    if (cardsLength === 1) {
+      return this._translate.instant('Collection.addCard.searchResults.totalResultTextSingular');
+    }
+
+    return this._translate.instant('Collection.addCard.searchResults.noResults');
   }
 }

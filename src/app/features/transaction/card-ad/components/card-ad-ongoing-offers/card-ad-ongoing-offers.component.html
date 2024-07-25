@@ -1,0 +1,110 @@
+<div class="mx-4 flex h-full flex-col py-2">
+    <div class="mat-elevation-z2">
+        <table
+            fixedLayout="true"
+            mat-table
+            [dataSource]="offersData"
+            multiTemplateDataRows
+            matSort
+            (matSortChange)="announceSortChange($event)"
+            class="with-expand dense-3 w-full">
+            <ng-container matColumnDef="userName">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by userName">
+                    {{ 'card-ad.offer-list.userName' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    {{ row.userName }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="city">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by city">
+                    {{ 'card-ad.offer-list.city' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">{{ row.city }}({{ row.department }})</td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by quantity">
+                    {{ 'card-ad.offer-list.quantity' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row" [title]="row.userCards.length">
+                    <span class="my-2 border border-white text-sm font-bold">{{
+                        row.userCards.length
+                    }}</span>
+                </td>
+            </ng-container>
+            <!--          -->
+            <ng-container matColumnDef="expand">
+                <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                <td mat-cell *matCellDef="let row">
+                    <button
+                        mat-icon-button
+                        aria-label="expand row"
+                        (click)="onClick(row); $event.stopPropagation()">
+                        <mat-icon *ngIf="expandedElement !== row">keyboard_arrow_down</mat-icon>
+                        <mat-icon *ngIf="expandedElement === row">keyboard_arrow_up</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let row" [colSpan]="displayedColumnsWithExpand.length">
+                    <div
+                        class="element-detail"
+                        [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'">
+                        <ng-container *ngIf="isDesktop | async; else mobileOffers">
+                            <app-card-ad-offer-desktop
+                                class="w-full"
+                                [offerCards]="row"></app-card-ad-offer-desktop>
+                        </ng-container>
+
+                        <ng-template #mobileOffers>
+                            <app-card-ad-offer-mobile
+                                class="w-full"
+                                [offerCards]="row"></app-card-ad-offer-mobile>
+                        </ng-template>
+                    </div>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsWithExpand"></tr>
+            <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumnsWithExpand"
+                class="element-row"
+                [class.example-expanded-row]="expandedElement === row"
+                (click)="onClick(row)"></tr>
+            <tr
+                mat-row
+                *matRowDef="let element; columns: ['expandedDetail']"
+                class="example-detail-row"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell h-8" [colSpan]="displayedColumnsWithExpand.length">
+                    <span class="m-2">
+                        {{ 'home.searchResultLists.noResults' | translate }}
+                    </span>
+                </td>
+            </tr>
+        </table>
+
+        <mat-paginator
+            *ngIf="offersData.data.length > 5"
+            [pageSizeOptions]="[5, 10, 25, 50]"
+            [showFirstLastButtons]="!!offersData.data.length"
+            aria-label="Select page of users"></mat-paginator>
+    </div>
+</div>

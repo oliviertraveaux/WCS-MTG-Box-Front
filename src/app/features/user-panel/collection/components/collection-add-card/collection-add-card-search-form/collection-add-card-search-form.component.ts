@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,24 +7,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-    BasicFilter,
-    CARD_COLORS,
-    GetLanguageAbbreviationPipe,
-    getSearchResultTextPipe,
-    RequestStatus,
-    SetFilter,
-} from '@shared';
-import { map, Observable, startWith } from 'rxjs';
+import { Observable } from 'rxjs';
+import { GetLanguageAbbreviationPipe } from '../../../../../../shared/collection/pipes/get-language-abbreviation.pipe';
+import { getSearchResultTextPipe } from '../../../../../../shared/collection/pipes/get-search-result-text.pipe';
+import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
+import { BasicFilter } from '../../../../../../shared/filter/models/basic-filter.interface';
+import { SetFilter } from '../../../../../../shared/filter/models/set-filter.interface';
+import { FiltersStateService } from '../../../../../../shared/filter/services/filters-states.service';
+import { SearchFormAddCardCollectionService } from '../../../../../../shared/services/search-form/search-form-add-card-collection.service';
+import { SearchFormComponent } from '../../../../../../shared/ui/search-form/search-form.component';
 import { SearchQuery } from '../../../models/search-query.model';
-import { CollectionAddCardSearchFormService } from '../../../shared/services/collection-add-card-search-form.service';
-import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card-search-results-states.service';
-import { CollectionAddCardSearchResultsService } from '../../../shared/services/collection-add-card-search-results.service';
+import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card/collection-add-card-search-results-states.service';
+import { CollectionAddCardSearchResultsService } from '../../../shared/services/collection-add-card/collection-add-card-search-results.service';
 
 @Component({
-    selector: 'app-collection-search-form',
+    selector: 'app-collection-add-card-search-form',
     standalone: true,
     imports: [
         CommonModule,
@@ -39,55 +36,33 @@ import { CollectionAddCardSearchResultsService } from '../../../shared/services/
         getSearchResultTextPipe,
         TranslateModule,
         GetLanguageAbbreviationPipe,
+        SearchFormComponent,
     ],
     templateUrl: './collection-add-card-search-form.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionAddCardSearchFormComponent implements OnInit {
-    private _searchFormService = inject(CollectionAddCardSearchFormService);
+    private _searchFormService = inject(SearchFormAddCardCollectionService);
     private _searchResultsService = inject(CollectionAddCardSearchResultsService);
     private _searchResultsStateService = inject(CollectionAddCardResultsStatesService);
-    private _activatedRoute = inject(ActivatedRoute);
-    private _destroyRef = inject(DestroyRef);
-
-    protected readonly CARD_COLORS = CARD_COLORS;
-    protected readonly RequestStatus = RequestStatus;
+    private _filtersStateService = inject(FiltersStateService);
 
     searchForm!: FormGroup;
     cardTypes: string[] = [];
     cardRarities: BasicFilter[] = [];
     cardLanguages: BasicFilter[] = [];
-    cardsSets: SetFilter[] = [];
-    filteredCardsSets!: Observable<SetFilter[]> | undefined;
-    filteredCardTypes!: Observable<string[]> | undefined;
-    isFormValid!: boolean;
+    cardSets: SetFilter[] = [];
+
     cards$: Observable<any> = this._searchResultsStateService.getCards$();
     status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
 
     ngOnInit(): void {
-        this.searchForm = this._searchFormService.searchForm;
-        this.isFormValid = this.searchForm.valid && this.searchForm.dirty;
+        this.searchForm = this._searchFormService.initForm();
         this._searchFormService.updateValidityWhenFormValueChanges();
-        this._activatedRoute.data.subscribe((response: any) => {
-            this.cardTypes = response.filters.types.map((type: any) => type.name);
-            this.cardRarities = response.filters.rarities;
-            this.cardLanguages = response.filters.languages;
-            this.cardsSets = response.filters.sets;
-        });
-
-        this.searchForm.valueChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
-            this.isFormValid = this.searchForm.valid && this.searchForm.dirty;
-        });
-
-        this.filteredCardTypes = this._searchFormService.searchForm.get('type')?.valueChanges.pipe(
-            takeUntilDestroyed(this._destroyRef),
-            startWith(''),
-            map((value: string) => this._filterTypes(value || ''))
-        );
-        this.filteredCardsSets = this._searchFormService.searchForm.get('set')?.valueChanges.pipe(
-            takeUntilDestroyed(this._destroyRef),
-            startWith(''),
-            map((value: string) => this._filterSets(value || ''))
-        );
+        this.cardTypes = this._filtersStateService.getTypesValue().map((type: any) => type.name);
+        this.cardRarities = this._filtersStateService.getRaritiesValue();
+        this.cardLanguages = this._filtersStateService.getLanguagesValue();
+        this.cardSets = this._filtersStateService.getSetsValue();
     }
 
     search() {
@@ -97,21 +72,5 @@ export class CollectionAddCardSearchFormComponent implements OnInit {
 
     reset() {
         this._searchFormService.reset();
-    }
-
-    private _filterTypes(value: string): string[] {
-        const filterValue = value.toLowerCase();
-
-        return this.cardTypes.filter((option: string) =>
-            option.toLowerCase().includes(filterValue)
-        );
-    }
-
-    private _filterSets(value: string): SetFilter[] {
-        const filterValue = value.toLowerCase();
-
-        return this.cardsSets.filter((option: SetFilter) =>
-            option.name.toLowerCase().includes(filterValue)
-        );
     }
 }

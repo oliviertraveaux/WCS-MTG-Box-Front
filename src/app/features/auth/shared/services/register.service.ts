@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import { Observable } from 'rxjs';
 import {RegisterRepository} from "../repositories/register.repository";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  constructor(private registerRepository : RegisterRepository) { }
+
+  private readonly registerRepository = inject( RegisterRepository)
 
   register(formData: any): Observable<any> {
     return this.registerRepository.register(formData);

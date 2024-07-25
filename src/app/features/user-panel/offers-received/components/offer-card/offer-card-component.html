@@ -1,0 +1,50 @@
+<div class="w-full rounded-lg border border-solid border-gray-200 bg-white py-2 md:px-4">
+    <div class="divider flex px-4 text-xs text-gray-400">
+        <span>{{ offer.createdDate | date}}</span>
+        <span>{{ offer.wantedUserCard.cardInfo.name | getTruncateText: 25 }}</span>
+        <span>{{ getOfferRemoteUserName(offer) | getTruncateText: 15}}</span>
+    </div>
+    <div class="flex flex-col md:flex-row">
+        <div class="flex items-center justify-between px-4 py-2.5 md:justify-start md:gap-8">
+            <div class="cursor-pointer" (click)="openWantedCardDetailDialog()">
+                <img
+                    [ngSrc]="
+                    offer.wantedUserCard.userInfo.languageName === 'French'
+                        ? offer.wantedUserCard.cardInfo.frenchImageUrl
+                        : offer.wantedUserCard.cardInfo.imageUrl
+                "
+                    [alt]="offer.wantedUserCard.cardInfo.imageUrl"
+                    [width]="96"
+                    [height]="133" />
+            </div>
+            <mat-icon class="icon-size" color="primary" fontIcon="swap_horiz"></mat-icon>
+            <div
+                [matBadgeHidden]="offer.userCards.length <= 3"
+                [matBadge]="(badgeValue$ | async)!"
+                matBadgeSize="medium"
+                matBadgeColor="primary"
+                matBadgePosition="below after"
+                class="flex gap-2">
+                <ng-container
+                    *ngFor="let card of (arrayOfCardsToDisplay$ | async); let i = index; trackBy: trackByItem">
+                    <img
+                        *ngIf="(limitOfCardsToDisplay$ | async)! > i"
+                        [ngSrc]=" offer.userCards[i].userInfo.languageName === 'French' ?
+                    offer.userCards[i].cardInfo.frenchImageUrl :
+                    offer.userCards[i].cardInfo.imageUrl "
+                        [alt]="offer.userCards[i].userInfo.languageName === 'French' ?
+                    offer.userCards[i].cardInfo.frenchName : offer.userCards[i].cardInfo.name"
+                        [width]="96"
+                        [height]="133" />
+                </ng-container>
+            </div>
+        </div>
+        <div *ngIf="hasActionBar" class="flex w-full items-center justify-end">
+            <offer-card-actions
+                [offer]="offer"
+                [hasAcceptButton]="hasAcceptButton"
+                [hasDeleteButton]="hasDeleteButton"
+                [hasValidateButton]="hasValidateButton" />
+        </div>
+    </div>
+</div>

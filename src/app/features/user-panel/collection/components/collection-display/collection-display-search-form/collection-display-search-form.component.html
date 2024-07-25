@@ -1,0 +1,12 @@
+<app-search-form
+    [searchForm]="searchForm"
+    [cardRarities]="cardRarities"
+    [cardSets]="cardSets"
+    [cardLanguages]="cardLanguages"
+    [status$]="status$"
+    [cards$]="cards$"
+    [hasLanguage]="true"
+    [hasRarity]="true"
+    [hasSet]="true"
+    (searchCards)="search()"
+    (resetParams)="reset()" />

@@ -1,0 +1,18 @@
+<app-search-form
+    [searchForm]="searchForm"
+    [cardRarities]="cardRarities"
+    [cardSets]="cardSets"
+    [cardLanguages]="cardLanguages"
+    [status$]="status$"
+    [cards$]="cards$"
+    [hasLanguage]="true"
+    [hasColor]="true"
+    [hasRarity]="true"
+    [hasManaCost]="true"
+    [hasSet]="true"
+    [hasText]="true"
+    [hasArtist]="true"
+    [hasLocation]="true"
+    [hasRecentlyConnected]="true"
+    (searchCards)="search()"
+    (resetParams)="reset()" />

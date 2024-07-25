@@ -1,0 +1,268 @@
+import { CardRarity } from '../../../shared/collection/enums/card-rarity.enum';
+import { CardQuality } from '../../../shared/collection/enums/cardQuality';
+import { HomeCardSearchResult } from '../models/home-search-results.model';
+
+const HOME_RESULTS_1: HomeCardSearchResult[] = [
+    {
+        cardId: 10,
+        name: 'Sol Ring',
+        frenchName: 'Anneau solaire',
+        imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=532602&type=card',
+        frenchImageUrl:
+            'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=533235&type=card',
+        setName: 'Forgotten Realms Commander',
+        setAbbreviation: 'AFC',
+        rarity: CardRarity.unCommon,
+        artist: 'john doe',
+        text: 'card text',
+        userCardsOnMarket: [
+            {
+                userId: 3,
+                userName: 'Romain',
+                quality: CardQuality.good,
+                language: 'English',
+                userCardId: 45,
+                department: 31,
+                city: 'Toulouse',
+                hasAnOffer: false,
+            },
+            {
+                userId: 3,
+                userName: 'Romain',
+                quality: CardQuality.good,
+                language: 'French',
+                userCardId: 46,
+                department: 31000,
+                city: 'Toulouse',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 3,
+                userName: 'Romain',
+                quality: CardQuality.nearMint,
+                language: 'French',
+                userCardId: 47,
+                department: 31000,
+                city: 'Toulouse',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 4,
+                userName: 'Olivier',
+                quality: CardQuality.nearMint,
+                language: 'French',
+                userCardId: 60,
+                department: 33000,
+                city: 'Bordeaux',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 4,
+                userName: 'Olivier',
+                quality: CardQuality.nearMint,
+                language: 'English',
+                userCardId: 61,
+                department: 33000,
+                city: 'Bordeaux',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 4,
+                userName: 'Olivier',
+                quality: CardQuality.nearMint,
+                language: 'English',
+                userCardId: 62,
+                department: 33000,
+                city: 'Bordeaux',
+
+                hasAnOffer: false,
+            },
+        ],
+    },
+    {
+        cardId: 25,
+        name: 'Molten Ravager',
+        frenchName: '',
+        imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=548186&type=card',
+        frenchImageUrl: '',
+        setName: 'Arena Beginner Set',
+        setAbbreviation: 'ANB',
+        rarity: CardRarity.common,
+        artist: 'john doe',
+        text: 'card text',
+        userCardsOnMarket: [
+            {
+                userId: 3,
+                userName: 'Romain',
+                quality: CardQuality.excellent,
+                language: 'English',
+                userCardId: 70,
+                department: 31000,
+                city: 'Bordeaux',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 4,
+                userName: 'Olivier',
+                quality: CardQuality.nearMint,
+                language: 'French',
+                userCardId: 81,
+                department: 33000,
+                city: 'Bordeaux',
+
+                hasAnOffer: true,
+            },
+        ],
+    },
+    {
+        cardId: 25,
+        name: 'Molten Ravager',
+        frenchName: '',
+        imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=548186&type=card',
+        frenchImageUrl: '',
+        setName: 'Arena Beginner Set',
+        setAbbreviation: 'ANB',
+        rarity: CardRarity.common,
+        artist: 'john doe',
+        text: 'card text',
+        userCardsOnMarket: [
+            {
+                userId: 3,
+                userName: 'Romain',
+                quality: CardQuality.excellent,
+                language: 'English',
+                userCardId: 70,
+                department: 31000,
+                city: 'Bordeaux',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 4,
+                userName: 'Olivier',
+                quality: CardQuality.nearMint,
+                language: 'French',
+                userCardId: 81,
+                department: 33000,
+                city: 'Bordeaux',
+
+                hasAnOffer: true,
+            },
+        ],
+    },
+    {
+        cardId: 26,
+        name: 'Molten Ravager',
+        frenchName: '',
+        imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=548186&type=card',
+        frenchImageUrl: '',
+        setName: 'Arena Beginner Set',
+        setAbbreviation: 'ANB',
+        rarity: CardRarity.common,
+        artist: 'john doe',
+        text: 'card text',
+        userCardsOnMarket: [
+            {
+                userId: 3,
+                userName: 'Romain',
+                quality: CardQuality.excellent,
+                language: 'English',
+                userCardId: 70,
+                department: 31000,
+                city: 'Bordeaux',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 4,
+                userName: 'Olivier',
+                quality: CardQuality.nearMint,
+                language: 'French',
+                userCardId: 81,
+                department: 33000,
+                city: 'Bordeaux',
+
+                hasAnOffer: true,
+            },
+        ],
+    },
+    {
+        cardId: 27,
+        name: 'Molten Ravager',
+        frenchName: '',
+        imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=548186&type=card',
+        frenchImageUrl: '',
+        setName: 'Arena Beginner Set',
+        setAbbreviation: 'ANB',
+        rarity: CardRarity.common,
+        artist: 'john doe',
+        text: 'card text',
+        userCardsOnMarket: [
+            {
+                userId: 3,
+                userName: 'Romain',
+                quality: CardQuality.excellent,
+                language: 'English',
+                userCardId: 70,
+                department: 31000,
+                city: 'Bordeaux',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 4,
+                userName: 'Olivier',
+                quality: CardQuality.nearMint,
+                language: 'French',
+                userCardId: 81,
+                department: 33000,
+                city: 'Bordeaux',
+
+                hasAnOffer: true,
+            },
+        ],
+    },
+    {
+        cardId: 28,
+        name: 'Molten Ravager',
+        frenchName: '',
+        imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=548186&type=card',
+        frenchImageUrl: '',
+        setName: 'Arena Beginner Set',
+        setAbbreviation: 'ANB',
+        rarity: CardRarity.common,
+        artist: 'john doe',
+        text: 'card text',
+        userCardsOnMarket: [
+            {
+                userId: 3,
+                userName: 'Romain',
+                quality: CardQuality.excellent,
+                language: 'English',
+                userCardId: 70,
+                department: 31000,
+                city: 'Bordeaux',
+
+                hasAnOffer: false,
+            },
+            {
+                userId: 4,
+                userName: 'Olivier',
+                quality: CardQuality.nearMint,
+                language: 'French',
+                userCardId: 81,
+                department: 33000,
+                city: 'Bordeaux',
+
+                hasAnOffer: true,
+            },
+        ],
+    },
+];
+
+export default { HOME_RESULTS_1 };

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,14 +10,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { BreakpointObserverService } from '@shared';
+import { BreakpointObserverService } from '../../../../../shared/services/breakpoint-observer.service';
+import { SearchFormAddCardCollectionService } from '../../../../../shared/services/search-form/search-form-add-card-collection.service';
 import { CollectionAddCardBasketComponent } from '../../components/collection-add-card/collection-add-card-basket/collection-add-card-basket.component';
 import { CollectionAddCardSearchFormComponent } from '../../components/collection-add-card/collection-add-card-search-form/collection-add-card-search-form.component';
 import { CollectionAddCardSearchResultsComponent } from '../../components/collection-add-card/collection-add-card-search-results/collection-add-card-search-results.component';
 import { SearchQuery } from '../../models/search-query.model';
-import { CollectionAddCardBasketService } from '../../shared/services/collection-add-card-basket.service';
-import { CollectionAddCardSearchFormService } from '../../shared/services/collection-add-card-search-form.service';
-import { CollectionAddCardSearchResultsService } from '../../shared/services/collection-add-card-search-results.service';
+import { CollectionAddCardBasketService } from '../../shared/services/collection-add-card/collection-add-card-basket.service';
+import { CollectionAddCardSearchResultsService } from '../../shared/services/collection-add-card/collection-add-card-search-results.service';
 
 @Component({
     selector: 'app-collection-page',
@@ -39,10 +39,11 @@ import { CollectionAddCardSearchResultsService } from '../../shared/services/col
     ],
     templateUrl: './collection-add-card-page.component.html',
     styleUrls: ['./collection-add-card-page.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionAddCardPageComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);
-    private _searchFormService = inject(CollectionAddCardSearchFormService);
+    private _searchFormService = inject(SearchFormAddCardCollectionService);
     private _searchResultsService = inject(CollectionAddCardSearchResultsService);
     private _cardBasketService = inject(CollectionAddCardBasketService);
     private _destroyRef = inject(DestroyRef);

@@ -1,0 +1,30 @@
+<div class="container flex h-full w-full flex-col overflow-y-auto pb-1 scrollbar-hide">
+    <ng-container *ngIf="cardAd$ | async as cardAd; else loading">
+        <h3 class="p-4">
+            {{ cardAd.userCard.language === 'French' ? cardAd.frenchName : cardAd.name }}
+        </h3>
+        <app-card-ad-info [cardAdInfo]="cardAd"></app-card-ad-info>
+        <div>
+            <button
+                class="m-4"
+                mat-flat-button
+                color="primary"
+                (click)="onMakeAnOffer()"
+                [disabled]="(isButtonDisabled$ | async)!">
+                {{ 'card-ad.make-an-offer-button' | translate }}
+            </button>
+        </div>
+        <h3 class="p-4">
+            {{ 'card-ad.ongoing-offers-title' | translate }}
+        </h3>
+        <app-card-ad-ongoing-offers
+            *ngIf="!(isLoading$ | async); else loading"
+            [cardAdOffers$]="cardAdOffers$">
+        </app-card-ad-ongoing-offers>
+    </ng-container>
+    <ng-template #loading>
+        <div class="flex h-full w-full items-center justify-center">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
+</div>

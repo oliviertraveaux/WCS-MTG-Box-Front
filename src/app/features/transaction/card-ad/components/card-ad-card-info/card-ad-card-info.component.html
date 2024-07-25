@@ -1,0 +1,96 @@
+<mat-card class="example-card dense-3 my-2">
+    <mat-card-content class="h-full">
+        <div class="mb-2 flex h-full flex-col items-center lg:mb-0 lg:flex-row">
+            <img
+                [ngSrc]="
+                    cardAdInfo.userCard.language === 'French'
+                        ? cardAdInfo.frenchImageUrl
+                        : cardAdInfo.imageUrl
+                "
+                class="py-1 lg:mx-8"
+                style="object-fit: contain"
+                [alt]="cardAdInfo.imageUrl"
+                [width]="265"
+                [height]="370" />
+            <mat-divider *ngIf="isDesktop | async" [vertical]="true" class="h-full"></mat-divider>
+            <div class="flex h-full overflow-y-auto scrollbar-hide lg:mx-8">
+                <mat-list class="dense-3 example-list-wrapping">
+                    <mat-list-item>
+                        <span matListItemTitle>{{ 'card-ad.englishNameTitle' | translate }}</span>
+                        <span matListItemLine class="!whitespace-normal">{{
+                            cardAdInfo.name
+                        }}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matListItemTitle>{{ 'card-ad.frenchNameTitle' | translate }}</span>
+                        <span matListItemLine class="!whitespace-normal">{{
+                            cardAdInfo.frenchName ? cardAdInfo.frenchName : ''
+                        }}</span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matListItemTitle> {{ 'card-ad.set' | translate }}</span>
+                        <span matListItemLine class="!whitespace-normal"
+                            >{{ cardAdInfo.setName }}
+                        </span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matListItemTitle> {{ 'card-ad.artist' | translate }}</span>
+                        <span matListItemLine class="!whitespace-normal"
+                            >{{ cardAdInfo.artist }}
+                        </span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matListItemTitle>{{ 'card-ad.rarity' | translate }}</span>
+                        <span
+                            matListItemLine
+                            class="rarity !whitespace-normal"
+                            [ngClass]="cardAdInfo.rarity | getRarityClass"
+                            >{{ cardAdInfo.rarity }}</span
+                        >
+                    </mat-list-item>
+                    <ng-container *ngIf="isDesktop | async">
+                        <mat-list-item lines="5">
+                            <span matListItemTitle>{{ 'card-ad.text' | translate }}</span>
+                            <span matListItemLine class="!whitespace-normal">{{
+                                cardAdInfo.text
+                            }}</span>
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list>
+                <mat-list class="dense-3">
+                    <ng-container *ngIf="isCardAdWantedCard">
+                        <mat-list-item>
+                            <span matListItemTitle>{{ 'card-ad.userName' | translate }}</span>
+                            <span matListItemLine class="!whitespace-normal">{{
+                                cardAdInfo.userCard.userName
+                            }}</span>
+                        </mat-list-item>
+                        <mat-list-item lines="2">
+                            <span matListItemTitle>{{ 'card-ad.city' | translate }}</span>
+                            <span matListItemLine
+                                >{{ cardAdInfo.userCard.city }} ({{
+                                    cardAdInfo.userCard.department
+                                }})</span
+                            >
+                        </mat-list-item>
+                    </ng-container>
+                    <mat-list-item>
+                        <span matListItemTitle>{{ 'card-ad.quality' | translate }}</span>
+                        <span
+                            matListItemLine
+                            class="!whitespace-normal"
+                            [ngClass]="cardAdInfo.userCard.quality | getQualityClass"
+                            >{{ cardAdInfo.userCard.quality }}
+                        </span>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <span matListItemTitle>{{ 'card-ad.language' | translate }}</span>
+                        <span matListItemLine class="!whitespace-normal"
+                            >{{ cardAdInfo.userCard.language }}
+                        </span>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

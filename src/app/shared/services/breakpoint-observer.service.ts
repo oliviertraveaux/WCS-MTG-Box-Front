@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, distinctUntilChanged, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, distinctUntilChanged, map } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -48,10 +48,7 @@ export class BreakpointObserverService {
             Breakpoints.Large,
             Breakpoints.XLarge,
         ])
-        .pipe(
-            tap((value) => console.log(value.breakpoints)),
-            distinctUntilChanged()
-        );
+        .pipe(distinctUntilChanged());
 
     public breakpointChanged() {
         if (this._breakpointObserver.isMatched(Breakpoints.XLarge)) {

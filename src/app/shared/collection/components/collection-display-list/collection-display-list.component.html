@@ -1,0 +1,187 @@
+<div
+    class="absolute inset-0 z-10 flex w-screen items-center justify-center overflow-hidden"
+    *ngIf="selectedCard"
+    (click)="closeImage()">
+    <div class="absolute z-20 flex flex-col items-center justify-center gap-4">
+        <div>
+            <mat-icon class="text-white">close</mat-icon>
+        </div>
+        <img
+            [src]="selectedCard | getUserCardImg"
+            [alt]="selectedCard | getUserCardName"
+            class="w-64" />
+    </div>
+    <div class="h-screen w-screen bg-gray-900 opacity-70"></div>
+</div>
+
+<div class="flex h-full w-full flex-col lg:py-2">
+    <div class="mat-elevation-z2">
+        <table
+            fixedLayout="true"
+            mat-table
+            [dataSource]="cardsData"
+            multiTemplateDataRows
+            matSort
+            (matSortChange)="announceSortChange($event)"
+            class="with-expand dense-3 w-full">
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox
+                        (click)="$event.stopPropagation()"
+                        (change)="$event ? toggleSelection(row) : null"
+                        [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="cardInfo.name">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by name">
+                    {{ 'ui.collectionDisplayList.name' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    {{ row | getUserCardName }}
+                    {{ row.userInfo.languageName === 'French' ? '(FR)' : '(EN)' }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cardInfo.setName">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by set">
+                    {{ 'ui.collectionDisplayList.set' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row" [title]="row.cardInfo.setName">
+                    {{ (isDesktop | async) ? row.cardInfo.setName : row.cardInfo.setAbbreviation }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="userInfo.qualityName">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by quality">
+                    {{ 'ui.collectionDisplayList.quality' | translate }}
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                    [ngClass]="row.userInfo.qualityName | getQualityClass">
+                    {{ row.userInfo.qualityName }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cardInfo.rarity">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by rarity">
+                    {{ 'ui.collectionDisplayList.rarity' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row" [title]="row.cardInfo.rarity">
+                    <span
+                        class="my-2 border border-white text-sm font-bold"
+                        [ngClass]="row.cardInfo.rarity | getRarityClass"
+                        >{{ row.cardInfo.rarity | getRaritySymbol }}</span
+                    >
+                </td>
+            </ng-container>
+            <!--          -->
+            <ng-container matColumnDef="expand">
+                <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                <td mat-cell *matCellDef="let row">
+                    <button
+                        mat-icon-button
+                        aria-label="expand row"
+                        (click)="onClick(row); $event.stopPropagation()">
+                        <mat-icon *ngIf="expandedElement !== row">keyboard_arrow_down</mat-icon>
+                        <mat-icon *ngIf="expandedElement === row">keyboard_arrow_up</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let row" [colSpan]="displayedColumnsWithExpand.length">
+                    <div
+                        class="element-detail flex flex-col items-center md:flex-row md:items-start"
+                        [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'">
+                        <img
+                            [ngSrc]="row | getUserCardImg"
+                            class="py-1"
+                            style="object-fit: contain"
+                            [alt]="row | getUserCardImg"
+                            [width]="265"
+                            [height]="370" />
+                        <div class="mb-4 flex flex-col">
+                            <mat-list class="dense-3">
+                                <mat-list-item>
+                                    <span matListItemTitle>{{
+                                        'ui.collectionDisplayList.englishNameTitle' | translate
+                                    }}</span>
+                                    <span matListItemLine class="!whitespace-normal">{{
+                                        row.cardInfo.name
+                                    }}</span>
+                                </mat-list-item>
+                                <mat-list-item>
+                                    <span matListItemTitle>{{
+                                        'ui.collectionDisplayList.frenchNameTitle' | translate
+                                    }}</span>
+                                    <span matListItemLine class="!whitespace-normal">{{
+                                        row.cardInfo.frenchName ? row.cardInfo.frenchName : ''
+                                    }}</span>
+                                </mat-list-item>
+                                <mat-list-item>
+                                    <span matListItemTitle>
+                                        {{ 'ui.collectionDisplayList.set' | translate }}</span
+                                    >
+                                    <span matListItemLine class="!whitespace-normal">
+                                        {{ row.cardInfo.setName }}
+                                    </span>
+                                </mat-list-item>
+                            </mat-list>
+                            <button
+                                *ngIf="hasActionButton"
+                                class="mx-4 w-1/2"
+                                mat-flat-button
+                                color="primary"
+                                (click)="onDelete(row.userInfo.userCardId)">
+                                {{ 'ui.collectionDisplayList.delete' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                class="element-row"
+                [class.example-expanded-row]="expandedElement === row"
+                (click)="expandedElement = expandedElement === row ? null : row"></tr>
+            <tr
+                mat-row
+                *matRowDef="let element; columns: ['expandedDetail']"
+                class="example-detail-row"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell h-8" [colSpan]="displayedColumnsWithExpand.length">
+                    {{ 'ui.collectionDisplayList.noResults' | translate }}
+                </td>
+            </tr>
+        </table>
+
+        <mat-paginator
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 25, 50]"
+            [showFirstLastButtons]="!!cardsData.data.length"
+            aria-label="Select page of users"></mat-paginator>
+    </div>
+</div>

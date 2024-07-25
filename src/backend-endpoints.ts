@@ -1,0 +1,28 @@
+const backendUrl = process.env['BACKEND_URL'];
+const apiConfigurationUrl = `${backendUrl}/api/v1/`;
+export const ENVIRONMENT = {
+    apiConfigurationUrl: apiConfigurationUrl,
+    apiCardsConfigurationURL: `${apiConfigurationUrl}apicards`,
+    apiCollectionCardsConfigurationURL: `${apiConfigurationUrl}collection-cards`,
+    apiLoginConfigurationURL: `${apiConfigurationUrl}login`,
+    apiRegisterConfigurationURL: `${apiConfigurationUrl}register`,
+    apiCheckAvailabilityConfigurationURL: `${apiConfigurationUrl}check-availability`,
+    apiFilterConfigurationUrl: `${apiConfigurationUrl}filters`,
+    apiLogoutConfigurationURL: `${apiConfigurationUrl}logout`,
+    apiVerifyTokenURL: `${apiConfigurationUrl}verify-token`,
+    apiPasswordForgottenConfigurationURL: `${apiConfigurationUrl}password-forgotten`,
+    apiNewPasswordConfigurationURL: `${apiConfigurationUrl}new-password`,
+    apiMarketCardsURL: `${apiConfigurationUrl}marketcards`,
+    apiLastMarketCardsURL: `${apiConfigurationUrl}marketcards/latest`,
+    apiCardAdURL: `${apiConfigurationUrl}card-ad`,
+    apiCardAdOffersURL: `${apiConfigurationUrl}offer/card-ad`,
+    apiOffer: `${apiConfigurationUrl}offer`,
+    apiUser: `${apiConfigurationUrl}users`,
+    apiUpdateUsernameURL: `${apiConfigurationUrl}users/update-username`,
+    apiUpdatePasswordURL: `${apiConfigurationUrl}users/update-password`,
+    apiUpdateUserURL: `${apiConfigurationUrl}users/update-infos`,
+    apiVerifyPasswordURL: `${apiConfigurationUrl}users/verify-password`,
+    apiDeleteUserURL: `${apiConfigurationUrl}users/delete`,
+    apiAdministrateUser: `${apiConfigurationUrl}users/administrate`,
+    url: 'http://localhost:8080',
+};

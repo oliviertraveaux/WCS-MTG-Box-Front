@@ -1,0 +1,10 @@
+<mat-paginator
+    *ngIf="length"
+    #paginator
+    class="w-full"
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [showFirstLastButtons]="!!length && showFirstLastButtons"
+    [hidePageSize]="hidePageSize"
+    (page)="handlePageEvent($event)"></mat-paginator>

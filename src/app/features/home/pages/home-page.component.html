@@ -1,0 +1,76 @@
+<div class="flex h-full w-full min-w-full flex-col">
+    <!-- Video Background -->
+    <div
+        class="hero relative bg-gray-900 bg-cover bg-center bg-no-repeat"
+        style="position: relative; overflow: hidden">
+        <video autoplay muted loop class="absolute h-full w-full object-cover">
+            <source src="./assets/video/hero.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <h1 class="mb-4 text-6xl font-bold uppercase tracking-wide text-white outline">
+                MTG Box
+            </h1>
+            <button
+                mat-raised-button
+                color="primary"
+                class="m-2 rounded px-4 py-2 font-bold text-white hover:bg-blue-700"
+                (click)="scrollToDrawer()">
+                {{ 'home.access-to-cards' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full" id="drawerContainer">
+  <mat-drawer #filterDrawer class="h-full w-full px-4">
+    <app-search-form-drawer (toggleDrawer)="toggleFilterDrawer()">
+      <app-home-search-form (searchStarted)="searchStarted()"></app-home-search-form>
+    </app-search-form-drawer>
+  </mat-drawer>
+  <mat-drawer-content>
+    <section class="align container flex h-full flex-col items-center justify-center">
+      <div class="flex h-full w-full flex-col pb-1">
+        <h3>{{ 'home.search-title' | translate }}</h3>
+        <app-search-form-name-only (search)="search()" (toggleFilterDrawer)="toggleFilterDrawer()"></app-search-form-name-only>
+        <ng-container *ngIf="isTablet || isDesktop | async">
+          <app-home-search-form (searchStarted)="searchStarted()"></app-home-search-form>
+        </ng-container>
+
+        <div *ngIf="cardResults$">
+
+        <app-home-search-results
+          *ngIf="(status$ | async) !== RequestStatus.loading; else loading"
+          [isFrenchSearch]="!!(isFrenchSearch | async)"
+          class="overflow-y-auto scrollbar-hide"
+          [resultCards$]="cardResults$">
+        </app-home-search-results></div>
+
+        <div *ngIf="cardMarket$ | async as cardMarket">
+          <div class="flex flex-col items-center">
+            <h3 class="m-6" >Les dernières cartes ajoutées :</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+              <div *ngFor="let uniqueCard of getUniqueCards(cardMarket)" class="flex flex-col items-center w-64">
+                <a [routerLink]="['/card-ad', uniqueCard.userCardId]">
+                  <img [src]="uniqueCard.imageUrl" class="mb-2 h-auto w-44 transform transition-transform hover:scale-105" [alt]="uniqueCard.name" />
+                </a>
+                <div class="w-full">
+                  <h5 class="truncate text-center ">{{ uniqueCard.name | getTruncateText: 20 }}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<ng-template #loading>
+  <div class="flex h-full w-full items-center justify-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+

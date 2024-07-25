@@ -1,26 +1,25 @@
-import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {ENVIRONMENT} from "../../../../../env";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ENVIRONMENT } from '../../../../../backend-endpoints';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class RegisterRepository {
-  private registerUrl = `${ENVIRONMENT.apiRegisterConfigurationURL}`;
-  private checkAvailabilityUrl = `${ENVIRONMENT.apiCheckAvailabilityConfigurationURL}`;
+    private readonly http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
+    private registerUrl = `${ENVIRONMENT.apiRegisterConfigurationURL}`;
+    private checkAvailabilityUrl = `${ENVIRONMENT.apiCheckAvailabilityConfigurationURL}`;
 
-  register(formData: any): Observable<any> {
-    return this.http.post(this.registerUrl, formData);
-  }
+    register(formData: any): Observable<any> {
+        return this.http.post(this.registerUrl, formData);
+    }
 
-  checkAvailability(username?: string, email?: string): Observable<boolean> {
-    let params = new HttpParams();
-    params = params.set('username', username || '');
-    params = params.set('email', email || '');
-    return this.http.get<boolean>(this.checkAvailabilityUrl, { params: params });
-  }
-
+    checkAvailability(username?: string, email?: string): Observable<boolean> {
+        let params = new HttpParams();
+        params = params.set('username', username || '');
+        params = params.set('email', email || '');
+        return this.http.get<boolean>(this.checkAvailabilityUrl, { params: params });
+    }
 }

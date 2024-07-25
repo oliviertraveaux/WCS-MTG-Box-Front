@@ -22,8 +22,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./src/custom-webpack.config.js"
+            },
+
             "outputPath": "dist/wcs-mtg-box-front",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -47,7 +51,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -72,14 +76,13 @@
           "options": {
             "proxyConfig": "src/proxy.conf.json"
           },
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "WCS-MTG-Box-Front:build:production"
             },
             "development": {
-              "browserTarget": "WCS-MTG-Box-Front:build:development",
-
+              "browserTarget": "WCS-MTG-Box-Front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +91,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "WCS-MTG-Box-Front:build"
-
           }
         },
         "test": {
@@ -109,11 +111,24 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics",
+      "@angular-eslint/schematics"
+    ]
   }
 }

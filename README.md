@@ -1,27 +1,56 @@
-# WCSMTGBoxFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+# <p align="center">MTG Box</p>
+![](https://i.postimg.cc/xC9j3SK0/mtg-background-5-fotor-2024062314112.png)
+  
+## Table of Contents
+- [Introduction](#introduction)
+- [Stack](#stack)
+- [Setup](#setup)
+- [Usage](#usage)
+- [License](#license)
+- [Contact](#contact)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Introduction
+This project is the front-end part of MTGBOX, a website dedicated to the trading of Magic: The Gathering related products. It provides an interactive user interface that allows users to build their own card collections and engage in trading with other users, enhancing their experience and interaction within the Magic: The Gathering community.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Stack
+- [Angular](https://https://www.angular.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [RxJs](https://www.https://www.rxjs.dev/)
+- [Tailwind CSS](https://www.tailwindcss.com/)
+- [Angular Material](https://www.material.angular.io//)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Setup
+To set up this project locally, follow these steps:
 
-## Running end-to-end tests
+1. Clone the repository:
+ `git clone https://github.com/yourUsername/mtgbox-frontend.git`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Install the dependencies:
+`npm install`
 
-## Further help
+3. Launch project 
+`npm start`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Navigate to http://localhost:4200/ in your browser.
+
+
+
+## Usage
+This application is designed for MTG players to manage their collections and engage with the community:
+
+- Manage Collections: Add, update, and remove cards.
+- Trade Cards: Send and receive trade offers.
+- Browse Collections: Explore other users' card collections.
+
+
+##  License
+This project was developed by [Romain Timmer](https://github.com/RtimmerGH), [Olivier Traveaux](https://github.com/oliviertraveaux)  and [Antoine Cassagne ](https://github.com/cassaga) during  the CDA program at Wild Code School.
+        
+        
+        

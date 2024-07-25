@@ -1,0 +1,7 @@
+<mat-form-field appearance="outline" class="role-select h-[50px] pt-1">
+    <mat-select [(value)]="user.role.type">
+        <mat-option *ngFor="let role of roles" [value]="role">
+            {{ role }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

@@ -1,0 +1,24 @@
+<mat-chip-listbox>
+    <mat-chip-option
+        class="text-xs"
+        dense="3"
+        selected
+        (keydown.enter)="resetFilters()"
+        (click)="resetFilters()"
+        >{{ 'transaction.offer.filter-offer-bar.all-button-text' | translate }}</mat-chip-option
+    >
+    <mat-chip-option
+        class="text-xs"
+        (keydown.enter)="onFilterByPending()"
+        (click)="onFilterByPending()"
+        >{{ 'transaction.offer.filter-offer-bar.pending-button-text' | translate }}</mat-chip-option
+    >
+    <mat-chip-option
+        class="text-xs"
+        (keydown.enter)="onFilterByConfirmed()"
+        (click)="onFilterByConfirmed()"
+        >{{
+            'transaction.offer.filter-offer-bar.accepted-button-text' | translate
+        }}</mat-chip-option
+    >
+</mat-chip-listbox>

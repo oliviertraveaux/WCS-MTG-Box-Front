@@ -5,7 +5,7 @@
     "email": "Email",
     "password": "Mot de passe",
     "password-confirm": "Confirmer le mot de passe",
-    "postal-code": "Code Postal",
+    "department": "Département",
     "city": "Ville",
     "next": "Suivant",
     "sign-up": "S'inscrire",
@@ -21,6 +21,8 @@
     "delete": "Supprimer",
     "addCard": {
       "searchTitle": "Rechercher",
+      "defaultMessageTitle": "Rechercher des cartes",
+      "defaultMessageDescription": "Ajoutez des cartes à votre collection pour pouvoir effectuer des échanges !",
       "cardBasketTitle": "Cartes à ajouter",
       "searchForm": {
         "set": "Edition",
@@ -37,7 +39,17 @@
         "search": "Rechercher",
         "results": "resultats",
         "result": "resulat",
-        "reset": "Réinitialiser"
+        "reset": "Réinitialiser",
+        "error": {
+          "minLength": "3 caractères min.",
+          "nameOrSetMissing": "Nom ou édition requis.",
+          "language": "Nom requis."
+        }
+      },
+      "searchResults": {
+        "totalResultTextPlural": " résultats correspondants",
+        "totalResultTextSingular": " résultat correspondant",
+        "noResults" : "Aucun résultat trouvé pour votre recherche"
       },
       "searchResult": {
         "add": "Ajouter"
@@ -58,12 +70,16 @@
         "card-saved-success-singular": "Carte sauvegardée",
         "card-saved-success-plural": " cartes sauvegardées",
         "card-saved-fail": "Une erreur est survenue"
+      },
+      "tooltip": {
+        "has-an-offer": "Offre reçue"
       }
     }
   },
   "Topbar": {
     "title": "MTGBox",
     "add": "Ajouter",
+    "manage-card" : "Gérer mes cartes",
     "logout": "Déconnexion",
     "login": "Connexion"
   },
@@ -74,7 +90,20 @@
     "register-sucess": "Inscription réussie'",
     "register-fail": "Erreur lors de l'inscription",
     "login-fail": "Échec de la connexion. Veuillez réessayer.",
-    "login-success": "Connexion réussie. Bienvenue !"
+    "login-success": "Connexion réussie. Bienvenue !",
+    "confirm-delete-success": "Suppression confirmée",
+    "confirm-delete-fail": "Une erreur est survenue",
+    "confirm-mail-password" : "L'email a été envoyé",
+    "mail-password-fail": "Une erreur a eu lieu pendant l'envoi du mail"
+  },
+  "Modal": {
+    "confirm-delete": {
+      "title": "Supprimer la sélection",
+      "message": "Etes-vous sur de vouloir supprimer cette selection ?<br />les offres contenant cette carte seront aussi supprimées",
+      "cancel": "Abandonner",
+      "confirm": "Confirmer"
+    },
+    "close": "fermer"
   },
   "userPanel": {
     "menuLabels": {
@@ -82,10 +111,247 @@
       "profile": "profil",
       "collection": "collection",
       "history": "historique",
-      "offersReceived": "offres reçues",
-      "offersMade": "offres effectuées",
-      "messages": "messages"
+      "offers-received": "offres reçues",
+      "offers-made": "offres effectuées",
+      "messages": "messages",
+      "admin": "admin",
+      "add" : "Ajouter une carte"
+
+    },
+  "admin": {
+    "title": "Administration des utilisateurs",
+    "toast": {
+      "get-users-fail": "Une erreur est survenue",
+      "user-updated-success": "Utilisateur mis à jour",
+      "user-updated-fail": "An error occured",
+      "confirm-dialog-text": "Etes vous sur de vouloir modifier l'utilisateur : {{username}} ?",
+      "confirm-dialog-title": "Confirmer"
     }
+  }
+  },
+  "ui": {
+    "cardBasket": {
+      "reset": "Vider",
+      "add-cards": "Cartes à ajouter",
+      "save": "Enregistrer",
+      "name": "Nom",
+      "set": "Edition",
+      "quality": "Qualité",
+      "delete": "Supprimer"
+    },
+    "collectionDisplayList": {
+      "name": "Nom",
+      "set": "Edition",
+      "quality": "Qualité",
+      "rarity": "Rareté",
+      "delete": "Supprimer",
+      "frenchNameTitle": "Nom Français",
+      "englishNameTitle": "Nom Anglais",
+      "noResults": "Aucun résultats"
+    }
+  },
+  "home": {
+    "access-to-cards": "Accéder aux cartes",
+    "search-title": "Rechercher des cartes",
+    "toast": {
+      "search-cards-error": "Une erreur est survenue pendant la recherche"
+    },
+    "searchResultLists": {
+      "name": "Nom",
+      "set": "Edition",
+      "quality": "Qualité",
+      "rarity": "Rareté",
+      "frenchNameTitle": "Nom Français",
+      "englishNameTitle": "Nom Anglais",
+      "quantity": "Quantité",
+      "noResults": "Aucun résultats",
+      "artist": "Artiste",
+      "city": "Ville",
+      "info":"Info",
+      "language": "langue",
+      "userName": "Nom",
+      "go-to-ad-tooltip": "Voir annonce"
+    }
+  },
+  "ResetPassword": {
+    "forgot-password": "Mot de passe oublié ?",
+    "title": "Réinitialiser le mot de passe",
+    "content": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "email": "Email",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "valid-email": "Veuillez entrer une adresse email valide",
+    "reset-password": "Réinitialiser le mot de passe",
+    "new-password": "Nouveau mot de passe",
+    "password-required": "Le mot de passe est requis",
+    "password-length": "Le mot de passe doit comporter au moins 6 caractères",
+    "confirm-password": "Confirmer le mot de passe",
+    "password-match": "Les mots de passe doivent correspondre",
+    "update-password": "Mettre à jour le mot de passe"
+  },
+  "card-ad": {
+    "name": "Nom",
+    "set": "Edition",
+    "quality": "Qualité",
+    "rarity": "Rareté",
+    "frenchNameTitle": "Nom Français",
+    "englishNameTitle": "Nom Anglais",
+    "artist": "Artiste",
+    "text": "texte",
+    "city": "Ville",
+    "language": "langue",
+    "userName": "Nom",
+    "make-an-offer-button": "Faire un offre",
+    "ongoing-offers-title": "Offre(s) en cours",
+    "offer-list": {
+      "userName": "Nom",
+      "city": "Ville",
+      "quantity": "Quantité",
+      "no-offer-message": "Il n'y a pas d'offre pour cette carte"
+    }
+  },
+  "transaction": {
+    "offer": {
+      "collection-title": "Sélectionnez des cartes",
+      "basket-title": "Votre offre",
+      "confirm-button-text-accept": "Accepter",
+      "confirm-button-text-accepted": "Acceptée",
+      "confirm-button-text-validate": "Valider",
+      "confirm-button-text-validated": "Validée",
+      "toast": {
+        "offer-created-success": "Votre offre a été envoyée",
+        "offer-created-fail": "Une erreur est survenue",
+        "offer-accepted-success": "Offre acceptée",
+        "offer-accepted-fail": "Une erreur est survenue lors de l'acceptation",
+        "offer-validated-success": "Offre validée",
+        "offer-validated-fail": "Une erreur est survenue lors de la validation",
+        "offer-deleted-success": "Offre supprimée",
+        "offer-deleted-fail": "Une erreur est survenue lors de la suppression"
+      },
+      "card-info-bar": {
+        "make-offer-to": "Vous faites une offre à  ",
+        "make-offer-for": "pour la carte  ",
+        "see-ad": "voir l'offre"
+      },
+      "offers-received": {
+        "page-title": "Offres reçues"
+      },
+      "offers-made": {
+        "page-title": "Offres effectuées"
+      },
+      "history": {
+        "page-title": "Historique des offres validées"
+      },
+      "filter-offer-bar": {
+        "all-button-text": "Toutes",
+        "pending-button-text": "En attente",
+        "accepted-button-text": "Acceptées"
+      },
+      "filter-offer-history-bar": {
+        "all-button-text": "Toutes",
+        "pending-button-text": "Faites",
+        "accepted-button-text": "Reçues"
+      },
+      "dialog": {
+        "accept-title": "Confirmer",
+        "accept-message": "Voulez-vous vraiment accepter cette offre ?",
+        "validate-title": "Confirmer",
+        "validate-message": "Voulez-vous vraiment valider cette offre ?",
+        "delete-title": "Confirmer",
+        "delete-message": "Voulez-vous vraiment supprimer cette offre ?"
+      }
+    }
+  },
+  "page-not-found": {
+    "title1": "404",
+    "title2": "Cette page n'existe pas!",
+    "button-text": "Retour à l'accueil"
+  },
+  "UpdateProfile": {
+    "title": "Modifier les Informations de l'Utilisateur",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "delete-account": "Supprimer le compte",
+    "deleted-account": "Le compte a bien été supprimé",
+    "department": "Département",
+    "city": "Ville",
+    "active": "Collection visible",
+    "toast": {
+      "update-success": "Profil mis à jour",
+      "update-fail": "Une erreur est survenue",
+      "username": "Le nom a bien été modifié !",
+      "userInfos": "Modifications effectuées",
+      "userPassword": "Le mot de passe a bien été modifié"
+    },
+    "save": "Enregistrer",
+    "password": "Mot de passe",
+    "password-modify": "Modifier le mot de passe",
+    "password-current": "Mot de passe actuel",
+    "password-invalid": "Mot de passe invalide",
+    "password-new": "Nouveau mot de passe",
+    "password-confirm": "Confirmer le  nouveau mot de passe",
+    "password-modified": "Mot de passe modifié",
+    "change-username-info": "Etes vous sur de vouloir modifier votre nom d'utilisateur par :{{username}}? ",
+    "change-username-title": "Changement du nom d'utilisateur",
+    "delete-user": {
+      "info" : "Attention la suppression de votre compte entrainera la suppression de toutes vos données",
+      "password" : "Entre votre mot de passe pour confirmer"
+    }
+  },
+  "BreadCrumb": {
+    "card_ad": "Consulter une carte",
+    "add": "Ajouter des cartes",
+    "make-offer": "Faire une offre",
+    "profile": "Modifier mon profil",
+    "collection": "Ma collection",
+    "offers-received": "Offres reçues",
+    "offers-made": "Offres effectuées",
+    "history": "Historique des offres",
+    "page-not-found": "Page non trouvée",
+    "policies" : "Conditions d'utilisation"
+  },
+
+  "Cookie": {
+    "consent": "Nous utilisons des cookies pour stocker des informations essentielles de session et améliorer votre expérience sur notre site. En continuant à naviguer sur ce site, vous acceptez notre utilisation des cookies.",
+    "button": "Accepter"
+  },
+  "Policies": {
+    "title": "Politique de confidentialité",
+    "welcome": "Bienvenue sur notre site web. En accédant et en utilisant ce site, vous acceptez de vous conformer aux conditions d'utilisation suivantes et à toutes les lois applicables.",
+    "operatorScope": "Opérateur et Champ d'Application",
+    "operatorDetails": "Ce site est géré par MTGBOX. Pour toute question, veuillez nous contacter par email à support@mtgbox.fr.",
+    "siteUse": "Utilisation du Site",
+    "siteFunctionality": "Le site permet aux utilisateurs d'accéder à une plateforme d'échange de produits. Nous agissons uniquement en tant qu'intermédiaire; les échanges conclus via le site sont effectifs entre les utilisateurs.",
+    "cookies": "Cookies",
+    "cookiePolicy": "Notre site utilise des cookies pour améliorer votre expérience utilisateur.",
+    "userAccounts": "Comptes Utilisateurs",
+    "accountDetails": "Pour utiliser certaines fonctionnalités du site, vous devez créer un compte en fournissant des informations exactes et à jour. La gestion de votre compte et de votre mot de passe relève de votre responsabilité. L'opérateur se réserve le droit de refuser l'enregistrement ou de fermer un compte à sa discrétion.",
+    "intellectualProperty": "Propriété Intellectuelle",
+    "intellectualPropertyDetails": "Les contenus publiés sur ce site, y compris les textes, graphiques, logos, et les éléments spécifiques à Magic: The Gathering, sont protégés par le droit d'auteur et appartiennent à l'opérateur ou sont utilisés avec autorisation. Tous les droits relatifs à Magic: The Gathering appartiennent à leurs détenteurs respectifs et sont utilisés ici sous licence ou avec permission explicite.",
+    "liability": "Limitations de Responsabilité",
+    "liabilityDetails": "L'opérateur ne garantit pas l'exactitude, le résultat ou la fiabilité de l'utilisation des matériaux sur son site web et décline toute responsabilité pour des erreurs ou omissions dans ces matériaux.",
+    "conditionChanges": "Modifications des Conditions",
+    "conditionChangeDetails": "L'opérateur se réserve le droit de modifier ces conditions à tout moment. Votre utilisation continue du site après de telles modifications constitue votre acceptation des nouvelles conditions.",
+    "law": "Loi Applicable",
+    "lawDetails": "Ces conditions sont régies et interprétées conformément aux lois de France, et vous vous soumettez irrévocablement à la juridiction exclusive des tribunaux de ce pays ou lieu."
+  },
+  "LegalMentions": {
+    "title": "Mentions Légales",
+    "contactInfo": "Coordonnées",
+    "contactDetails": "Wild Code School\n18 Rue de la Gare,\n28240 La Loupe - France\nTéléphone: 05 31 60 03 05\nE-mail: support@mtgbox.fr",
+    "publisher": "Responsable de la publication",
+    "publisherDetails": "A DEFINIR",
+    "hosting": "Hébergeur du site",
+    "hostingDetails": "Nos serveurs sont hébergés exclusivement dans des centres de données en France, exploités par OVH, 2 rue Kellermann - 59100 Roubaix - France.\nLes services fournis par OVH sont certifiés ISO 27001, CSA STAR et SOC 2.",
+    "version": "Version du 14 juillet 2024."
   }
 
 }
+
+
+
+
+
+
+
+

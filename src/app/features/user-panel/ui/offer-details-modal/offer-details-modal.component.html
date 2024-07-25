@@ -1,0 +1,13 @@
+<mat-dialog-content class="flex h-full flex-col">
+    <div class="flex w-full justify-end">
+        <mat-icon [title]="'Modal.close' | translate" class="cursor-pointer" (click)="onClose()"
+            >close</mat-icon
+        >
+    </div>
+    <app-card-ad-offer-desktop
+        *ngIf="isDesktop | async; else mobileTemplate"
+        [offerCards]="data.offer" />
+    <ng-template #mobileTemplate>
+        <app-card-ad-offer-mobile [offerCards]="data.offer" />
+    </ng-template>
+</mat-dialog-content>

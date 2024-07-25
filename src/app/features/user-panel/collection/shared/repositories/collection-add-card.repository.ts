@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { UserCard } from '@shared';
 import { Observable } from 'rxjs';
-import { ENVIRONMENT } from '../../../../../../env';
+import { ENVIRONMENT } from '../../../../../../backend-endpoints';
+import { UserCard } from '../../../../../shared/collection/models/user-card.model';
 import { ApiCard } from '../../models/card-api.model';
 import { SearchQuery } from '../../models/search-query.model';
 
@@ -19,7 +19,6 @@ export class CollectionAddCardRepository {
 
         // For debug purpose
         const apiUrlWithParams = `${this.apiCardsUrl}?${params.toString()}`;
-        console.log('from repo', apiUrlWithParams);
 
         return this.http.get<ApiCard[]>(this.apiCardsUrl, { params });
     }

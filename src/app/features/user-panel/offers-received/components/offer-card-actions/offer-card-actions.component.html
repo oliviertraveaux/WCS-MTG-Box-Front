@@ -1,0 +1,36 @@
+<div class="flex justify-between gap-2 px-4 py-2 md:w-full md:items-center md:justify-end">
+    <button
+        mat-stroked-button
+        color="warn"
+        *ngIf="hasDeleteButton"
+        (keydown.enter)="onDelete()"
+        (click)="onDelete()">
+        Delete
+    </button>
+    <div class="flex w-full justify-end gap-2 md:w-auto">
+        <button
+            mat-stroked-button
+            (keydown.enter)="openOfferCardsDetailsDialog()"
+            (click)="openOfferCardsDetailsDialog()">
+            Détails
+        </button>
+        <button
+            *ngIf="hasAcceptButton"
+            [disabled]="!(offer.status | getIsConfirmButtonDisabled)"
+            mat-flat-button
+            color="primary"
+            (keydown.enter)="acceptOffer()"
+            (click)="acceptOffer()">
+            {{ acceptButtontext }}
+        </button>
+        <button
+            *ngIf="hasValidateButton"
+            [disabled]="offer.status | getIsConfirmButtonDisabled"
+            mat-flat-button
+            color="primary"
+            (keydown.enter)="validateOffer()"
+            (click)="validateOffer()">
+            {{ validateButtonText }}
+        </button>
+    </div>
+</div>

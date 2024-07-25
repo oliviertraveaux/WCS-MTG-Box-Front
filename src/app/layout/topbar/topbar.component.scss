@@ -1,0 +1,11 @@
+:host {
+  ::ng-deep .mat-mdc-select-arrow { display: none; }
+  ::ng-deep .mdc-notched-outline { display: none; }
+}
+
+
+.mat-badge-small .mat-badge-content {
+  width: 12px;
+  height: 12px;
+  top: -4px;
+}

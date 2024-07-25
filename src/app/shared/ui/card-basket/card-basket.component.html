@@ -1,0 +1,138 @@
+<div class="flex h-full w-full flex-col px-4 sm:px-8 lg:px-0 lg:py-2">
+    <div class="flex flex-col sm:flex-row">
+        <mat-form-field class="dense-3 w-full sm:w-1/3" appearance="outline">
+            <mat-label>{{ 'ui.cardBasket.name' | translate }}</mat-label>
+            <input matInput [formControl]="nameFilter" />
+            <button type="button" mat-icon-button matSuffix>
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <div class="flex pb-4 sm:w-2/3 sm:items-end sm:justify-end">
+            <button
+                class="mx-1 w-1/2 sm:mx-1 sm:w-1/4 lg:w-1/3"
+                mat-stroked-button
+                [disabled]="isCardListEmpty"
+                (click)="empty()">
+                {{ 'ui.cardBasket.reset' | translate }}
+            </button>
+            <button
+                class="mx-1 w-1/2 sm:mx-1 sm:w-1/4 lg:w-1/3"
+                mat-flat-button
+                color="primary"
+                [disabled]="!isCardListSavable"
+                (click)="save()">
+                {{ 'ui.cardBasket.save' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <div
+        class="absolute inset-0 z-10 flex w-screen items-center justify-center overflow-hidden"
+        *ngIf="selectedCard"
+        (click)="closeImage()">
+        <div class="absolute z-20 flex flex-col items-center justify-center gap-4">
+            <div>
+                <mat-icon class="text-white">close</mat-icon>
+            </div>
+            <img
+                [src]="selectedCard | getUserCardImg"
+                [alt]="selectedCard | getUserCardName"
+                class="w-64" />
+        </div>
+        <div class="h-screen w-screen bg-gray-900 opacity-70"></div>
+    </div>
+
+    <div class="mat-elevation-z2">
+        <table
+            mat-table
+            [dataSource]="cardsData"
+            matSort
+            (matSortChange)="announceSortChange($event)"
+            class="dense-3 w-full">
+            <ng-container matColumnDef="show">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon
+                        color="primary"
+                        (click)="showImage(element)"
+                        fontIcon="visibility"></mat-icon>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="cardInfo.name">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by name">
+                    {{ 'ui.cardBasket.name' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <span (click)="showImage(element)"
+                        >{{ element | getUserCardName }}
+                        {{ element.userInfo.languageName === 'French' ? '(FR)' : '(EN)' }}</span
+                    >
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cardInfo.setAbbreviation">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by set">
+                    {{ 'ui.cardBasket.set' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.cardInfo.setAbbreviation }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="userInfo.qualityName">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header
+                    sortActionDescription="Sort by quality">
+                    {{ 'ui.cardBasket.quality' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-form-field
+                        *ngIf="displaySelect; else elseQuality"
+                        appearance="outline"
+                        class="quality-select h-[50px] pt-1">
+                        <mat-select
+                            [(value)]="element.userInfo.qualityName"
+                            (selectionChange)="setQuality(element, $event.value)">
+                            <mat-option *ngFor="let quality of cardQuality" [value]="quality.name">
+                                {{ quality.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-template #elseQuality> {{ element.userInfo.qualityName }}</ng-template>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button
+                        matTooltip="{{ 'ui.cardBasket.delete' | translate }}"
+                        mat-icon-button
+                        class="material-icons app-toolbar-menu delete-button"
+                        (click)="removeRow(element)"
+                        color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" class="h-8"></tr>
+        </table>
+        <mat-paginator
+            class="pb-2"
+            [pageSizeOptions]="[5, 10, 20]"
+            [showFirstLastButtons]="!!cardsData.data.length"></mat-paginator>
+    </div>
+</div>
