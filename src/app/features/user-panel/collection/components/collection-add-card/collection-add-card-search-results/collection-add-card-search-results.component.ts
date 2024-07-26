@@ -4,48 +4,52 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
 import { map, Observable, of } from 'rxjs';
 import { CardSkeletonComponent } from '../../../../../../shared/collection/components/card-skelton/card-skeleton.component';
 import { PaginationComponent } from '../../../../../../shared/collection/components/pagination/pagination.component';
 import { GetRaritySymbolPipe } from '../../../../../../shared/collection/pipes/get-rarity-symbol.pipe';
 import { getSearchResultTextPipe } from '../../../../../../shared/collection/pipes/get-search-result-text.pipe';
 import { RequestStatus } from '../../../../../../shared/enums/request-status.enum';
+import { trackByItem } from '../../../../../../shared/utils/track-by-utils';
 import { ApiCard } from '../../../models/card-api.model';
 import { CollectionAddCardResultsStatesService } from '../../../shared/services/collection-add-card/collection-add-card-search-results-states.service';
 import { CollectionAddCardSearchResultComponent } from '../collection-add-card-search-result/collection-add-card-search-result.component';
-import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-collection-add-card-search-results',
     standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSelectModule,
-    GetRaritySymbolPipe,
-    MatIconModule,
-    CollectionAddCardSearchResultComponent,
-    getSearchResultTextPipe,
-    CardSkeletonComponent,
-    PaginationComponent,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSelectModule,
+        GetRaritySymbolPipe,
+        MatIconModule,
+        CollectionAddCardSearchResultComponent,
+        getSearchResultTextPipe,
+        CardSkeletonComponent,
+        PaginationComponent,
+        TranslateModule,
+    ],
     templateUrl: './collection-add-card-search-results.component.html',
     styleUrls: ['./collection-add-card-search-results.components.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollectionAddCardSearchResultsComponent implements OnInit {
-    private _searchResultsStateService = inject(CollectionAddCardResultsStatesService);
+    private readonly _searchResultsStateService = inject(CollectionAddCardResultsStatesService);
 
     protected readonly RequestStatus = RequestStatus;
+
+    public trackByCardId = (index: number, card: ApiCard) => card.cardIdApi;
+
     readonly numberOfItemsInSelectList: number[] = Array.from(
         { length: 10 },
         (_, index) => index + 1
     );
     pageSize: number = 10;
     pageIndex: number = 0;
-    cards$!: Observable<any>;
+    cards$!: Observable<ApiCard[]>;
     displayedImageCards$: Observable<ApiCard[]> = of([]);
     status$: Observable<RequestStatus> = this._searchResultsStateService.getSearchRequestStatus$();
 
@@ -74,4 +78,6 @@ export class CollectionAddCardSearchResultsComponent implements OnInit {
             })
         );
     }
+
+    protected readonly trackByItem = trackByItem;
 }
