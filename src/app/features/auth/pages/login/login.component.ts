@@ -87,9 +87,6 @@ export class LoginComponent {
       width: '400px' // Set your desired width here
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed. Result:', result);
-    });
   }
 
   acceptCookies() {

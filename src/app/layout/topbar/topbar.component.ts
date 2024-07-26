@@ -66,7 +66,6 @@ export class TopbarComponent implements OnInit {
 
         this._notificationService.hasOfferReceivedLengthChanged
             .pipe(
-                tap((value) => console.log('from topbar hasOfferReceivedLengthChanged', value)),
                 takeUntilDestroyed(this._destroyRef),
                 tap(() => this._notificationService.setOfferReceivedNotification(true))
             )
@@ -74,7 +73,6 @@ export class TopbarComponent implements OnInit {
 
         this._notificationService.hasOffersMadeStatusChanged
             .pipe(
-                tap((value) => console.log('from topbar hasOffersMadeStatusChanged', value)),
                 takeUntilDestroyed(this._destroyRef),
                 tap(() => this._notificationService.setOfferMadeNotification(true))
             )
