@@ -88,11 +88,11 @@ export class OfferCardComponent implements OnInit {
     }
 
     openWantedCardDetailDialog(): void {
-        let dialogRef = this._dialog.open(OfferWantedCardModalComponent, {
+        const dialogRef = this._dialog.open(OfferWantedCardModalComponent, {
             height: this.isMobile ? '90%' : undefined,
             minWidth: '375px',
         });
-        let instance = dialogRef.componentInstance;
+        const instance = dialogRef.componentInstance;
         instance.cardAdInfo = fromUserCardToAdCardInfo(this.offer.wantedUserCard);
     }
 

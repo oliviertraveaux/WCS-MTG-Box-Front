@@ -19,8 +19,8 @@ export class CollectionAddCardBasketService {
     private _userInfoStatesService = inject(UserInfoStatesService);
 
     private getUserInfosId(): number {
-    return this._userInfoStatesService.getUserInfo().id;
-  }
+        return this._userInfoStatesService.getUserInfo().id;
+    }
 
     updateCardBasket(updatedCard: UserCard): void {
         return this._cardBasketStateService.setCardBasket(
@@ -33,7 +33,7 @@ export class CollectionAddCardBasketService {
     }
 
     fromSearchResultToCardBasket(apiCard: ApiCard): UserCard {
-      const userInfosId = this.getUserInfosId();
+        const userInfosId = this.getUserInfosId();
         return {
             cardInfo: {
                 uniqueId: uuidv4(),

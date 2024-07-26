@@ -10,7 +10,7 @@ import { preventMakeOfferGuard } from './features/transaction/offer/shared/guard
 import { collectionDisplayResolver } from './features/user-panel/collection/shared/services/collection-display/collection-display.resolver';
 import { USER_PANEL_ROUTES } from './features/user-panel/user-panel.route';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
-import {PoliciesComponent} from "./layout/policies/policies/policies.component";
+import { PoliciesComponent } from './layout/policies/policies/policies.component';
 
 export const routes: Route[] = [
     {
@@ -35,7 +35,7 @@ export const routes: Route[] = [
         children: USER_PANEL_ROUTES,
         canActivate: [AuthGuard],
     },
-  { path: 'collection', redirectTo: 'user-panel/collection', pathMatch: 'full' },
+    { path: 'collection', redirectTo: 'user-panel/collection', pathMatch: 'full' },
 
     {
         path: 'card-ad/:id',
@@ -51,10 +51,10 @@ export const routes: Route[] = [
         path: 'page-not-found',
         component: PageNotFoundComponent,
     },
-  {
-    path : 'policies',
-    component: PoliciesComponent
-  },
+    {
+        path: 'policies',
+        component: PoliciesComponent,
+    },
     {
         path: '**',
         component: PageNotFoundComponent,

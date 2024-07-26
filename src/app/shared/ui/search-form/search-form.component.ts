@@ -1,14 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-    ChangeDetectorRef,
-    Component,
-    DestroyRef,
-    EventEmitter,
-    inject,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -54,7 +45,6 @@ import { BreakpointObserverService } from '../../services/breakpoint-observer.se
 })
 export class SearchFormComponent implements OnInit {
     private _breakpointObserverService = inject(BreakpointObserverService);
-    private _changeDetectorRef = inject(ChangeDetectorRef);
     private _destroyRef = inject(DestroyRef);
 
     @Input({ required: true }) searchForm!: FormGroup;

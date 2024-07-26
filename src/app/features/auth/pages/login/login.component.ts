@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -8,14 +8,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LoginData } from '../../models/auth.model';
 import { LoginService } from '../../shared/services/login.service';
 
+import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SnackbarStatus } from '../../../../shared/enums/snackbar-status.enum';
 import { AlertService } from '../../../../shared/services/alert.service';
 import { ReconnectUserService } from '../../shared/services/reconnect-user.service';
-import {MatDialog} from "@angular/material/dialog";
-import {
-  ModalForgottenPassword
-} from "../forgotten-password/forgotten-password/modal-email/modal-email-forgotten/modal-email-forgotten.component";
+import { ModalForgottenPassword } from '../forgotten-password/forgotten-password/modal-email/modal-email-forgotten/modal-email-forgotten.component';
 
 @Component({
     selector: 'app-login',
@@ -34,7 +32,7 @@ import {
     styleUrls: ['./login.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
     private _fb: FormBuilder = inject(FormBuilder);
     private _authService: LoginService = inject(LoginService);
     private _router: Router = inject(Router);
@@ -42,8 +40,8 @@ export class LoginComponent {
     private _route: ActivatedRoute = inject(ActivatedRoute);
     private _translate = inject(TranslateService);
     private _reconnectUserService = inject(ReconnectUserService);
-    private  _dialog = inject( MatDialog)
-  isCookieAccepted: boolean = false;
+    private _dialog = inject(MatDialog);
+    isCookieAccepted: boolean = false;
     loginForm = this._fb.group({
         username: ['', [Validators.required]],
         password: ['', [Validators.required]],
@@ -58,10 +56,9 @@ export class LoginComponent {
         });
     }
 
-  ngOnInit() {
-    this.isCookieAccepted = localStorage.getItem('cookiesAccepted') === 'true';
-
-  }
+    ngOnInit() {
+        this.isCookieAccepted = localStorage.getItem('cookiesAccepted') === 'true';
+    }
 
     onLogin() {
         if (this.loginForm.valid) {
@@ -82,16 +79,14 @@ export class LoginComponent {
         }
     }
 
-  openForgotPasswordDialog() {
-    const dialogRef = this._dialog.open(ModalForgottenPassword, {
-      width: '400px' // Set your desired width here
-    });
+    openForgotPasswordDialog() {
+        const dialogRef = this._dialog.open(ModalForgottenPassword, {
+            width: '400px', // Set your desired width here
+        });
+    }
 
-  }
-
-  acceptCookies() {
-    localStorage.setItem('cookiesAccepted', 'true');
-    this.isCookieAccepted = true;
-  }
-
+    acceptCookies() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        this.isCookieAccepted = true;
+    }
 }

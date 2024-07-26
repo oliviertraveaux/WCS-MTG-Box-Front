@@ -33,10 +33,10 @@ export class PaginationComponent implements OnChanges {
             this.paginator.firstPage();
         }
     }
+
     handlePageEvent(event: PageEvent) {
         const startIndex = event.pageIndex * event.pageSize;
         const endIndex = startIndex + event.pageSize;
         this.page.emit({ startIndex, endIndex });
     }
-
 }

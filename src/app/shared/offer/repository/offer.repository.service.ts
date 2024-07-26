@@ -7,47 +7,63 @@ import { OfferFullWantedCard } from '../models/offer-full-wanted-card.model';
 import { Offer } from '../models/offer.model';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class OfferRepositoryService {
-  private http = inject(HttpClient);
+    private http = inject(HttpClient);
 
-  private cardAdOffersURL: string = ENVIRONMENT.apiCardAdOffersURL;
-  private apiOfferUrl: string = ENVIRONMENT.apiOffer;
+    private cardAdOffersURL: string = ENVIRONMENT.apiCardAdOffersURL;
+    private apiOfferUrl: string = ENVIRONMENT.apiOffer;
 
-  getCardAdOffers(id: number): Observable<Offer[]> {
-    return this.http.get<Offer[]>(`${this.cardAdOffersURL}/${id}`, { withCredentials: true });
-  }
+    getCardAdOffers(id: number): Observable<Offer[]> {
+        return this.http.get<Offer[]>(`${this.cardAdOffersURL}/${id}`, { withCredentials: true });
+    }
 
-  createOffer(offerCreation: OfferCreation): Observable<Offer> {
-    return this.http.post<Offer>(`${this.apiOfferUrl}`, offerCreation, { withCredentials: true });
-  }
+    createOffer(offerCreation: OfferCreation): Observable<Offer> {
+        return this.http.post<Offer>(`${this.apiOfferUrl}`, offerCreation, {
+            withCredentials: true,
+        });
+    }
 
-  getOffersMade(id: number): Observable<OfferFullWantedCard[]> {
-    return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/user/${id}`, { withCredentials: true });
-  }
+    getOffersMade(id: number): Observable<OfferFullWantedCard[]> {
+        return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/user/${id}`, {
+            withCredentials: true,
+        });
+    }
 
-  getOffersReceived(id: number): Observable<OfferFullWantedCard[]> {
-    return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/received/user/${id}`, { withCredentials: true });
-  }
+    getOffersReceived(id: number): Observable<OfferFullWantedCard[]> {
+        return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/received/user/${id}`, {
+            withCredentials: true,
+        });
+    }
 
-  getOffersHistory(id: number): Observable<OfferFullWantedCard[]> {
-    return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/history/user/${id}`, { withCredentials: true });
-  }
+    getOffersHistory(id: number): Observable<OfferFullWantedCard[]> {
+        return this.http.get<OfferFullWantedCard[]>(`${this.apiOfferUrl}/history/user/${id}`, {
+            withCredentials: true,
+        });
+    }
 
-  acceptOffer(id: number): Observable<Offer> {
-    return this.http.put<Offer>(`${this.apiOfferUrl}/accept-offer/${id}`, {
-      status: 'ACCEPTED',
-    }, { withCredentials: true });
-  }
+    acceptOffer(id: number): Observable<Offer> {
+        return this.http.put<Offer>(
+            `${this.apiOfferUrl}/accept-offer/${id}`,
+            {
+                status: 'ACCEPTED',
+            },
+            { withCredentials: true }
+        );
+    }
 
-  validateOffer(id: number): Observable<Offer> {
-    return this.http.put<Offer>(`${this.apiOfferUrl}/validate-offer/${id}`, {
-      status: 'VALIDATED',
-    }, { withCredentials: true });
-  }
+    validateOffer(id: number): Observable<Offer> {
+        return this.http.put<Offer>(
+            `${this.apiOfferUrl}/validate-offer/${id}`,
+            {
+                status: 'VALIDATED',
+            },
+            { withCredentials: true }
+        );
+    }
 
-  deleteOffer(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiOfferUrl}/${id}`, { withCredentials: true });
-  }
+    deleteOffer(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiOfferUrl}/${id}`, { withCredentials: true });
+    }
 }

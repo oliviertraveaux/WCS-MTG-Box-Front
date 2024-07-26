@@ -9,13 +9,12 @@ import { HomeSearchResultsStatesService } from './home-search-results-states.ser
 
 @Injectable()
 export class HomeSearchResultsService {
-    private _homeRepository = inject(HomeSearchRepository);
-    private _homeSearchResultsStatesService = inject(HomeSearchResultsStatesService);
-    private _alertService = inject(AlertService);
-    private _translate = inject(TranslateService);
+    private readonly _homeRepository = inject(HomeSearchRepository);
+    private readonly _homeSearchResultsStatesService = inject(HomeSearchResultsStatesService);
+    private readonly _alertService = inject(AlertService);
+    private readonly _translate = inject(TranslateService);
 
     cardsNumber: number = 10;
-
 
     searchCards(searchQuery: SearchQuery): void {
         this._homeSearchResultsStatesService.setHomeCards([]);
@@ -36,21 +35,19 @@ export class HomeSearchResultsService {
         });
     }
 
-
-  getLatestCards(): void {
-    this._homeSearchResultsStatesService.setDemoHomeCards([]);
-    //nombre de cartes à afficher
-    this._homeRepository.getLastCards(this.cardsNumber).subscribe({
-      next: (lastCards) => {
-        this._homeSearchResultsStatesService.setDemoHomeCards(lastCards);
-
-      },
-      error: (err) => {
-        this._alertService.openSnackBar(
-          this._translate.instant('home.toast.get-last-ten-cards-error'),
-          SnackbarStatus.error
-        );
-      }
-    });
-  }
+    getLatestCards(): void {
+        this._homeSearchResultsStatesService.setDemoHomeCards([]);
+        //nombre de cartes à afficher
+        this._homeRepository.getLastCards(this.cardsNumber).subscribe({
+            next: (lastCards) => {
+                this._homeSearchResultsStatesService.setDemoHomeCards(lastCards);
+            },
+            error: () => {
+                this._alertService.openSnackBar(
+                    this._translate.instant('home.toast.get-last-ten-cards-error'),
+                    SnackbarStatus.error
+                );
+            },
+        });
+    }
 }
