@@ -1,6 +1,6 @@
 <div class="w-full rounded-lg border border-solid border-gray-200 bg-white py-2 md:px-4">
     <div class="divider flex px-4 text-xs text-gray-400">
-        <span>{{ offer.createdDate | date}}</span>
+        <span>{{ offer.createdDate | date }}</span>
         <span>{{ offer.wantedUserCard.cardInfo.name | getTruncateText: 25 }}</span>
         <span>{{ getOfferRemoteUserName(offer) | getTruncateText: 15}}</span>
     </div>
@@ -19,7 +19,7 @@
             </div>
             <mat-icon class="icon-size" color="primary" fontIcon="swap_horiz"></mat-icon>
             <div
-                [matBadgeHidden]="offer.userCards.length <= 3"
+                [matBadgeHidden]="(isBadgeVisible$ | async) === false"
                 [matBadge]="(badgeValue$ | async)!"
                 matBadgeSize="medium"
                 matBadgeColor="primary"

@@ -59,6 +59,7 @@ export class OfferCardComponent implements OnInit {
     arrayOfCardsToDisplay$!: Observable<UserCard[]>;
     badgeValue$!: Observable<string>;
     isMobile: boolean = false;
+    isBadgeVisible$!: Observable<boolean>;
 
     ngOnInit(): void {
         this.currentBreakpoints = this._breakpointService.currentBreakpoints;
@@ -75,6 +76,12 @@ export class OfferCardComponent implements OnInit {
                 } else if (currentBreakpoints.includes(Breakpoints.Small)) {
                     return this.offer.userCards.length < 3 ? this.offer.userCards.length : 3;
                 } else return 1;
+            })
+        );
+
+        this.isBadgeVisible$ = this.limitOfCardsToDisplay$.pipe(
+            map((cardsToDisplay) => {
+                return this.offer.userCards.length > cardsToDisplay;
             })
         );
 
