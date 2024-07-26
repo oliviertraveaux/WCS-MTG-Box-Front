@@ -49,7 +49,7 @@
 
         <div *ngIf="cardMarket$ | async as cardMarket">
           <div class="flex flex-col items-center">
-            <h3 class="m-6" >Les dernières cartes ajoutées :</h3>
+            <h3 class="m-6" >{{ 'home.last-cards' | translate }}</h3>
             <div class="flex flex-wrap justify-center gap-4">
               <div *ngFor="let uniqueCard of getUniqueCards(cardMarket)" class="flex flex-col items-center w-64">
                 <a [routerLink]="['/card-ad', uniqueCard.userCardId]">

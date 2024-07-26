@@ -173,7 +173,8 @@
       "language": "language",
       "userName": "User",
       "go-to-ad-tooltip": "Go to ad"
-    }
+    },
+    "last-cards": "The latest cards added :"
   },
   "ResetPassword": {
     "forgot-password": "Forgot Password ?",
@@ -262,7 +263,9 @@
       "validate-message": "Are you sure you want to validate this offer?",
       "delete-title": "Confirm",
       "delete-message": "Are you sure you want to delete this offer?"
-    }
+    },
+    "details" : "Details",
+    "delete" : "Delete"
   }
 },
   "page-not-found": {
@@ -322,7 +325,7 @@
     "title": "Privacy Policy",
     "welcome": "Welcome to our website. By accessing and using this site, you agree to comply with the following terms of use and all applicable laws.",
     "operatorScope": "Operator and Scope",
-    "operatorDetails": "This site is managed by MTGBOX. For any inquiries, please contact us via email at support@mtgbox.fr.",
+    "operatorDetails": "This site is managed by MTGBOX. For any inquiries, please contact us via email at contact@mtgbox.online.",
     "siteUse": "Site Usage",
     "siteFunctionality": "The site allows users to access a product exchange platform. We act only as an intermediary; the exchanges concluded through the site are effective between the users.",
     "cookies": "Cookies",
@@ -341,12 +344,12 @@
   "LegalMentions": {
     "title": "Legal Mentions",
     "contactInfo": "Contact Information",
-    "contactDetails": "Wild Code School\n18 Rue de la Gare,\n28240 La Loupe - France\nPhone: 05 31 60 03 05\nEmail: support@mtgbox.fr",
-    "publisher": "Publication Manager",
-    "publisherDetails": "TO BE DEFINED",
+    "contactDetails": "Wild Code School\n18 Rue de la Gare,\n28240 La Loupe - France\nPhone: 05 31 60 03 05\nEmail: contact@mtgbox.online",
+    "publisher": "Publication Managers",
+    "publisherDetails": "Olivier Traveaux, Romain Timmer, Antoine Cassagne",
     "hosting": "Site Hosting",
     "hostingDetails": "Our servers are exclusively hosted in data centers in France, operated by OVH, 2 rue Kellermann - 59100 Roubaix - France.\nServices provided by OVH are certified ISO 27001, CSA STAR, and SOC 2.",
-    "version": "Version of July 14, 2024."
+    "version": "Version of July 26, 2024."
   }
 }
 

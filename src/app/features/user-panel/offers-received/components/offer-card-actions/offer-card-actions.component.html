@@ -5,14 +5,14 @@
         *ngIf="hasDeleteButton"
         (keydown.enter)="onDelete()"
         (click)="onDelete()">
-        Delete
+      {{ 'transaction.offer.delete' | translate }}
     </button>
     <div class="flex w-full justify-end gap-2 md:w-auto">
         <button
             mat-stroked-button
             (keydown.enter)="openOfferCardsDetailsDialog()"
             (click)="openOfferCardsDetailsDialog()">
-            Détails
+          {{ 'transaction.offer.details' | translate }}
         </button>
         <button
             *ngIf="hasAcceptButton"
