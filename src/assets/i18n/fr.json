@@ -171,7 +171,8 @@
       "language": "langue",
       "userName": "Nom",
       "go-to-ad-tooltip": "Voir annonce"
-    }
+    },
+    "last-cards": "Les dernières cartes ajoutées :"
   },
   "ResetPassword": {
     "forgot-password": "Mot de passe oublié ?",
@@ -259,7 +260,9 @@
         "validate-message": "Voulez-vous vraiment valider cette offre ?",
         "delete-title": "Confirmer",
         "delete-message": "Voulez-vous vraiment supprimer cette offre ?"
-      }
+      },
+      "details" : "Détails",
+      "delete" : "Supprimer"
     }
   },
   "page-not-found": {
@@ -319,7 +322,7 @@
     "title": "Politique de confidentialité",
     "welcome": "Bienvenue sur notre site web. En accédant et en utilisant ce site, vous acceptez de vous conformer aux conditions d'utilisation suivantes et à toutes les lois applicables.",
     "operatorScope": "Opérateur et Champ d'Application",
-    "operatorDetails": "Ce site est géré par MTGBOX. Pour toute question, veuillez nous contacter par email à support@mtgbox.fr.",
+    "operatorDetails": "Ce site est géré par MTGBOX. Pour toute question, veuillez nous contacter par email à contact@mtgbox.online.",
     "siteUse": "Utilisation du Site",
     "siteFunctionality": "Le site permet aux utilisateurs d'accéder à une plateforme d'échange de produits. Nous agissons uniquement en tant qu'intermédiaire; les échanges conclus via le site sont effectifs entre les utilisateurs.",
     "cookies": "Cookies",
@@ -338,12 +341,12 @@
   "LegalMentions": {
     "title": "Mentions Légales",
     "contactInfo": "Coordonnées",
-    "contactDetails": "Wild Code School\n18 Rue de la Gare,\n28240 La Loupe - France\nTéléphone: 05 31 60 03 05\nE-mail: support@mtgbox.fr",
-    "publisher": "Responsable de la publication",
-    "publisherDetails": "A DEFINIR",
+    "contactDetails": "Wild Code School\n18 Rue de la Gare,\n28240 La Loupe - France\nTéléphone: 05 31 60 03 05\nE-mail: contact@mtgbox.online",
+    "publisher": "Responsables de la publication",
+    "publisherDetails": "Olivier Traveaux, Romain Timmer, Antoine Cassagne",
     "hosting": "Hébergeur du site",
     "hostingDetails": "Nos serveurs sont hébergés exclusivement dans des centres de données en France, exploités par OVH, 2 rue Kellermann - 59100 Roubaix - France.\nLes services fournis par OVH sont certifiés ISO 27001, CSA STAR et SOC 2.",
-    "version": "Version du 14 juillet 2024."
+    "version": "Version du 26 juillet 2024."
   }
 
 }

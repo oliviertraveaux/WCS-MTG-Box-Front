@@ -136,8 +136,6 @@ export class ProfilePageComponent implements OnInit {
                 });
                 const alertTitle = this._translate.instant('UpdateProfile.change-username-title');
 
-                console.log('alertInfo:', alertInfo); // Debugging log
-
                 this._alertService.openConfirmDialog(alertTitle, alertInfo).subscribe((result) => {
                     if (result) {
                         const updatedUser = {

@@ -37,10 +37,6 @@ export class PaginationComponent implements OnChanges {
         const startIndex = event.pageIndex * event.pageSize;
         const endIndex = startIndex + event.pageSize;
         this.page.emit({ startIndex, endIndex });
-        console.log('from pagination', 'start', startIndex, 'end', endIndex);
     }
 
-    ngOnInit(): void {
-        console.log(this.pageIndex);
-    }
 }

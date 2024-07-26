@@ -91,6 +91,6 @@ export class HomeSearchResultComponent implements OnInit {
 
     //TODO add Redirection to Announce
     navigateToAnnounce(userCardId: number) {
-        console.log('navigate to announce: ', userCardId);
+
     }
 }
