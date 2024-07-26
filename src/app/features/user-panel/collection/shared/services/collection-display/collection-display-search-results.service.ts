@@ -35,7 +35,7 @@ export class CollectionDisplaySearchResultsService {
         });
     }
 
-    deleteCard(userCardId: number): Observable<any> {
+    deleteCard(userCardId: number): Observable<void> {
         return this._collectionCardsService
             .deleteCard(userCardId)
             .pipe(tap(() => this.handleDeleteResponse()));

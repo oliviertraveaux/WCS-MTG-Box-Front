@@ -1,13 +1,14 @@
 <div class="flex h-screen w-screen flex-col">
-  <app-topbar></app-topbar>
+    <app-topbar></app-topbar>
 
-  <app-breadcrumb *ngIf="!(isCurrentRoute('user-panel'))"
-                  [ngClass]="{'hidden': disableBreadCrumb()}"></app-breadcrumb>
+    <app-breadcrumb
+        *ngIf="!isCurrentRoute('user-panel')"
+        [ngClass]="{ hidden: disableBreadCrumb() }"></app-breadcrumb>
 
-  <div class="flex flex-grow overflow-y-auto justify-center">
-    <router-outlet></router-outlet>
-  </div>
-  <div *ngIf="(currentBreakpoint$ | async)?.includes(Breakpoints.Small)">
-    <app-footer />
-  </div>
+    <div class="flex flex-grow justify-center overflow-y-auto">
+        <router-outlet></router-outlet>
+    </div>
+    <div *ngIf="(currentBreakpoint$ | async)?.includes(Breakpoints.Small)">
+        <app-footer />
+    </div>
 </div>

@@ -26,7 +26,7 @@ import { FilterOfferHistoryBarComponent } from '../../../ui/filter-bar/filter-of
     styleUrls: ['./history-page.component.scss'],
 })
 export class HistoryPageComponent implements OnInit {
-    private _changeDetectorRef = inject(ChangeDetectorRef);
+    private readonly _changeDetectorRef = inject(ChangeDetectorRef);
     private readonly _offerService = inject(OfferService);
     private readonly _offerStatesService = inject(OfferStatesService);
     private readonly _userId = inject(UserInfoStatesService).getUserInfo().id;

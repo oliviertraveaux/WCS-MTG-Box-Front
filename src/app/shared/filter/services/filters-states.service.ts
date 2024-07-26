@@ -4,6 +4,7 @@ import { BasicFilter } from '../models/basic-filter.interface';
 import { Filters } from '../models/filters.interface';
 import { QualityFilter } from '../models/quality-filter.interface';
 import { SetFilter } from '../models/set-filter.interface';
+import { TypeFilter } from '../models/type-filter.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -30,11 +31,11 @@ export class FiltersStateService {
         return this._filters$.getValue().languages;
     }
 
-    getTypes(): Observable<string[]> {
+    getTypes(): Observable<TypeFilter[]> {
         return this._filters$.pipe(map((filters) => filters.types));
     }
 
-    getTypesValue(): string[] {
+    getTypesValue(): TypeFilter[] {
         return this._filters$.getValue().types;
     }
 
@@ -62,11 +63,11 @@ export class FiltersStateService {
         return this._filters$.getValue().sets;
     }
 
-    getCardTypes(): Observable<string[]> {
+    getCardTypes(): Observable<TypeFilter[]> {
         return this._filters$.pipe(map((filters) => filters.types));
     }
 
-    getCardTypesValue(): string[] {
+    getCardTypesValue(): TypeFilter[] {
         return this._filters$.getValue().types;
     }
 }

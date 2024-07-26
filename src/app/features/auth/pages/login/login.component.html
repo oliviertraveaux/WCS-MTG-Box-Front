@@ -1,13 +1,11 @@
 <div *ngIf="!isCookieAccepted" class="cookie-popup">
-<div class="cookie-content">
-  <p class="mt-6">{{'Cookie.consent' | translate}}</p>
-  <button (click)="acceptCookies()">{{'Cookie.button' | translate}}</button>
+    <div class="cookie-content">
+        <p class="mt-6">{{ 'Cookie.consent' | translate }}</p>
+        <button (click)="acceptCookies()">{{ 'Cookie.button' | translate }}</button>
+    </div>
 </div>
-  </div>
 
 <section class="login-container mx-auto max-w-md">
-
-
     <form
         [formGroup]="loginForm"
         (ngSubmit)="onLogin()"
@@ -26,10 +24,13 @@
             <input matInput type="password" formControlName="password" />
         </mat-form-field>
 
-      <a   class="text-xs text-gray-500 cursor-pointer hover:underline" (click)="openForgotPasswordDialog()">{{ 'ResetPassword.forgot-password' | translate }}</a>
+        <a
+            class="cursor-pointer text-xs text-gray-500 hover:underline"
+            (click)="openForgotPasswordDialog()"
+            >{{ 'ResetPassword.forgot-password' | translate }}</a
+        >
 
-
-      <button mat-raised-button color="primary" type="submit" class="login-button w-full py-2">
+        <button mat-raised-button color="primary" type="submit" class="login-button w-full py-2">
             {{ 'Login.login' | translate }}
         </button>
     </form>

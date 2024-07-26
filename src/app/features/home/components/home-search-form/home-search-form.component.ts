@@ -28,16 +28,14 @@ import { HomeSearchResultsService } from '../../shared/services/home-search-resu
 export class HomeSearchFormComponent implements OnInit {
     @Output() searchStarted = new EventEmitter();
 
-    private _searchFormService = inject(SearchFormHomeService);
-    private _searchResultsService = inject(HomeSearchResultsService);
-    private _filtersStateService = inject(FiltersStateService);
+    private readonly _searchFormService = inject(SearchFormHomeService);
+    private readonly _searchResultsService = inject(HomeSearchResultsService);
+    private readonly _filtersStateService = inject(FiltersStateService);
 
     searchForm!: FormGroup;
     cardRarities: BasicFilter[] = [];
     cardLanguages: BasicFilter[] = [];
     cardSets: SetFilter[] = [];
-
-    cards$: Observable<any> = of([]);
     status$: Observable<RequestStatus> = of(RequestStatus.initial);
 
     ngOnInit(): void {

@@ -24,53 +24,60 @@
 </div>
 
 <mat-drawer-container [hasBackdrop]="true" class="absolute inset-0 h-full" id="drawerContainer">
-  <mat-drawer #filterDrawer class="h-full w-full px-4">
-    <app-search-form-drawer (toggleDrawer)="toggleFilterDrawer()">
-      <app-home-search-form (searchStarted)="searchStarted()"></app-home-search-form>
-    </app-search-form-drawer>
-  </mat-drawer>
-  <mat-drawer-content>
-    <section class="align container flex h-full flex-col items-center justify-center">
-      <div class="flex h-full w-full flex-col pb-1">
-        <h3>{{ 'home.search-title' | translate }}</h3>
-        <app-search-form-name-only (search)="search()" (toggleFilterDrawer)="toggleFilterDrawer()"></app-search-form-name-only>
-        <ng-container *ngIf="isTablet || isDesktop | async">
-          <app-home-search-form (searchStarted)="searchStarted()"></app-home-search-form>
-        </ng-container>
+    <mat-drawer #filterDrawer class="h-full w-full px-4">
+        <app-search-form-drawer (toggleDrawer)="toggleFilterDrawer()">
+            <app-home-search-form (searchStarted)="searchStarted()"></app-home-search-form>
+        </app-search-form-drawer>
+    </mat-drawer>
+    <mat-drawer-content>
+        <section class="align container flex h-full flex-col items-center justify-center">
+            <div class="flex h-full w-full flex-col pb-1">
+                <h3>{{ 'home.search-title' | translate }}</h3>
+                <app-search-form-name-only
+                    (search)="search()"
+                    (toggleFilterDrawer)="toggleFilterDrawer()"></app-search-form-name-only>
+                <ng-container *ngIf="isTablet || isDesktop | async">
+                    <app-home-search-form (searchStarted)="searchStarted()"></app-home-search-form>
+                </ng-container>
 
-        <div *ngIf="cardResults$">
-
-        <app-home-search-results
-          *ngIf="(status$ | async) !== RequestStatus.loading; else loading"
-          [isFrenchSearch]="!!(isFrenchSearch | async)"
-          class="overflow-y-auto scrollbar-hide"
-          [resultCards$]="cardResults$">
-        </app-home-search-results></div>
-
-        <div *ngIf="cardMarket$ | async as cardMarket">
-          <div class="flex flex-col items-center">
-            <h3 class="m-6" >{{ 'home.last-cards' | translate }}</h3>
-            <div class="flex flex-wrap justify-center gap-4">
-              <div *ngFor="let uniqueCard of getUniqueCards(cardMarket)" class="flex flex-col items-center w-64">
-                <a [routerLink]="['/card-ad', uniqueCard.userCardId]">
-                  <img [src]="uniqueCard.imageUrl" class="mb-2 h-auto w-44 transform transition-transform hover:scale-105" [alt]="uniqueCard.name" />
-                </a>
-                <div class="w-full">
-                  <h5 class="truncate text-center ">{{ uniqueCard.name | getTruncateText: 20 }}</h5>
+                <div *ngIf="cardResults$">
+                    <app-home-search-results
+                        *ngIf="(status$ | async) !== RequestStatus.loading; else loading"
+                        [isFrenchSearch]="!!(isFrenchSearch | async)"
+                        class="overflow-y-auto scrollbar-hide"
+                        [resultCards$]="cardResults$">
+                    </app-home-search-results>
                 </div>
-              </div>
+
+                <div *ngIf="cardMarket$ | async as cardMarket">
+                    <div class="flex flex-col items-center">
+                        <h3 class="m-6">{{ 'home.last-cards' | translate }}</h3>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <div
+                                *ngFor="let uniqueCard of getUniqueCards(cardMarket)"
+                                class="flex w-64 flex-col items-center">
+                                <a [routerLink]="['/card-ad', uniqueCard.userCardId]">
+                                    <img
+                                        [src]="uniqueCard.imageUrl"
+                                        class="mb-2 h-auto w-44 transform transition-transform hover:scale-105"
+                                        [alt]="uniqueCard.name" />
+                                </a>
+                                <div class="w-full">
+                                    <h5 class="truncate text-center">
+                                        {{ uniqueCard.name | getTruncateText: 20 }}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </mat-drawer-content>
+        </section>
+    </mat-drawer-content>
 </mat-drawer-container>
 
 <ng-template #loading>
-  <div class="flex h-full w-full items-center justify-center">
-    <mat-spinner></mat-spinner>
-  </div>
+    <div class="flex h-full w-full items-center justify-center">
+        <mat-spinner></mat-spinner>
+    </div>
 </ng-template>
-
-

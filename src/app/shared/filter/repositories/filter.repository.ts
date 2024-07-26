@@ -5,16 +5,16 @@ import { ENVIRONMENT } from '../../../../backend-endpoints';
 import { Filters } from '../models/filters.interface';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class FilterRepository {
-  private readonly http = inject(HttpClient);
+    private readonly http = inject(HttpClient);
 
-  public getFilters(): Observable<Filters> {
-    const apiUrl = `${ENVIRONMENT.apiFilterConfigurationUrl}`;
+    public getFilters(): Observable<Filters> {
+        const apiUrl = `${ENVIRONMENT.apiFilterConfigurationUrl}`;
 
-    return this.http.get<Filters>(apiUrl, {
-      withCredentials: true
-    });
-  }
+        return this.http.get<Filters>(apiUrl, {
+            withCredentials: true,
+        });
+    }
 }

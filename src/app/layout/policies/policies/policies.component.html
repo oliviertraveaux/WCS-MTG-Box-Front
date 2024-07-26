@@ -1,60 +1,89 @@
 <section class="policies w-full">
-  <mat-accordion multi="true">
+    <mat-accordion multi="true">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <strong>{{ 'Policies.title' | translate }}</strong>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <p>{{ 'Policies.welcome' | translate }}</p>
+                <br />
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <strong>{{ 'Policies.title' | translate }}</strong>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div>
-        <p>{{ 'Policies.welcome' | translate }}</p><br>
+                <p>
+                    <strong>{{ 'Policies.operatorScope' | translate }}</strong
+                    ><br />
+                    {{ 'Policies.operatorDetails' | translate }}
+                </p>
+                <br />
+                <p>
+                    <strong>{{ 'Policies.siteUse' | translate }}</strong
+                    ><br />
+                    {{ 'Policies.siteFunctionality' | translate }}
+                </p>
+                <br />
+                <p>
+                    <strong>{{ 'Policies.cookies' | translate }}</strong
+                    ><br />
+                    {{ 'Policies.cookiePolicy' | translate }}
+                </p>
+                <br />
+                <p>
+                    <strong>{{ 'Policies.userAccounts' | translate }}</strong
+                    ><br />
+                    {{ 'Policies.accountDetails' | translate }}
+                </p>
+                <br />
+                <p>
+                    <strong>{{ 'Policies.intellectualProperty' | translate }}</strong
+                    ><br />
+                    {{ 'Policies.intellectualPropertyDetails' | translate }}
+                </p>
+                <br />
+                <p>
+                    <strong>{{ 'Policies.liability' | translate }}</strong
+                    ><br />
+                    {{ 'Policies.liabilityDetails' | translate }}
+                </p>
+                <br />
+                <p>
+                    <strong>{{ 'Policies.conditionChanges' | translate }}</strong
+                    ><br />
+                    {{ 'Policies.conditionChangeDetails' | translate }}
+                </p>
+                <br />
+                <p>
+                    <strong>{{ 'Policies.law' | translate }}</strong
+                    ><br />
+                    {{ 'Policies.lawDetails' | translate }}
+                </p>
+            </div>
+        </mat-expansion-panel>
 
-        <p><strong>{{ 'Policies.operatorScope' | translate }}</strong><br>
-          {{ 'Policies.operatorDetails' | translate }}
-        </p><br>
-        <p><strong>{{ 'Policies.siteUse' | translate }}</strong><br>
-          {{ 'Policies.siteFunctionality' | translate }}
-        </p><br>
-        <p><strong>{{ 'Policies.cookies' | translate }}</strong><br>
-          {{ 'Policies.cookiePolicy' | translate }}
-        </p><br>
-        <p><strong>{{ 'Policies.userAccounts' | translate }}</strong><br>
-          {{ 'Policies.accountDetails' | translate }}
-        </p><br>
-        <p><strong>{{ 'Policies.intellectualProperty' | translate }}</strong><br>
-          {{ 'Policies.intellectualPropertyDetails' | translate }}
-        </p><br>
-        <p><strong>{{ 'Policies.liability' | translate }}</strong><br>
-          {{ 'Policies.liabilityDetails' | translate }}
-        </p><br>
-        <p><strong>{{ 'Policies.conditionChanges' | translate }}</strong><br>
-          {{ 'Policies.conditionChangeDetails' | translate }}
-        </p><br>
-        <p><strong>{{ 'Policies.law' | translate }}</strong><br>
-          {{ 'Policies.lawDetails' | translate }}
-        </p>
-      </div>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <strong>{{ 'LegalMentions.title' | translate }}</strong>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div>
-        <strong>{{ 'LegalMentions.contactInfo' | translate }}</strong>
-        <p>{{ 'LegalMentions.contactDetails' | translate }}</p><br>
-        <p><strong>{{ 'LegalMentions.publisher' | translate }}</strong><br>
-          {{ 'LegalMentions.publisherDetails' | translate }}
-        </p><br>
-        <p><strong>{{ 'LegalMentions.hosting' | translate }}</strong><br>
-          {{ 'LegalMentions.hostingDetails' | translate }}
-        </p><br>
-        <p>{{ 'LegalMentions.version' | translate }}</p>
-      </div>
-    </mat-expansion-panel>
-
-  </mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <strong>{{ 'LegalMentions.title' | translate }}</strong>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <strong>{{ 'LegalMentions.contactInfo' | translate }}</strong>
+                <p>{{ 'LegalMentions.contactDetails' | translate }}</p>
+                <br />
+                <p>
+                    <strong>{{ 'LegalMentions.publisher' | translate }}</strong
+                    ><br />
+                    {{ 'LegalMentions.publisherDetails' | translate }}
+                </p>
+                <br />
+                <p>
+                    <strong>{{ 'LegalMentions.hosting' | translate }}</strong
+                    ><br />
+                    {{ 'LegalMentions.hostingDetails' | translate }}
+                </p>
+                <br />
+                <p>{{ 'LegalMentions.version' | translate }}</p>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </section>

@@ -20,6 +20,7 @@ import { GetTruncateTextPipe } from '../../../../../../shared/collection/pipes/g
 import { SnackbarStatus } from '../../../../../../shared/enums/snackbar-status.enum';
 import { AlertService } from '../../../../../../shared/services/alert.service';
 import { SearchFormAddCardCollectionService } from '../../../../../../shared/services/search-form/search-form-add-card-collection.service';
+import { trackByItem } from '../../../../../../shared/utils/track-by-utils';
 import { ApiCard } from '../../../models/card-api.model';
 import { GetApiCardImgPipe } from '../../../shared/pipes/get-api-card-img.pipe';
 import { GetApiCardNamePipe } from '../../../shared/pipes/get-api-card-name.pipe';
@@ -81,4 +82,6 @@ export class CollectionAddCardSearchResultComponent {
             SnackbarStatus.success
         );
     }
+
+    protected readonly trackByItem = trackByItem;
 }
