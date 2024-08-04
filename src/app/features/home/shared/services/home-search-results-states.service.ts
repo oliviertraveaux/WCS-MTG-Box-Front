@@ -7,10 +7,12 @@ import { HomeCardSearchResult } from '../../models/home-search-results.model';
     providedIn: 'root',
 })
 export class HomeSearchResultsStatesService {
-    private _homeCards$ = new BehaviorSubject<HomeCardSearchResult[]>([]);
-    private _demoHomeCards$ = new BehaviorSubject<HomeCardSearchResult[]>([]);
-    private _searchRequestStatus$ = new BehaviorSubject<RequestStatus>(RequestStatus.initial);
-    private _isFrenchSearch$ = new BehaviorSubject<boolean>(false);
+    private readonly _homeCards$ = new BehaviorSubject<HomeCardSearchResult[]>([]);
+    private readonly _demoHomeCards$ = new BehaviorSubject<HomeCardSearchResult[]>([]);
+    private readonly _searchRequestStatus$ = new BehaviorSubject<RequestStatus>(
+        RequestStatus.initial
+    );
+    private readonly _isFrenchSearch$ = new BehaviorSubject<boolean>(false);
 
     getHomeCards$(): Observable<HomeCardSearchResult[]> {
         return this._homeCards$;
@@ -20,20 +22,15 @@ export class HomeSearchResultsStatesService {
         return this._homeCards$.getValue();
     }
 
-  setDemoHomeCards(cards: HomeCardSearchResult[]) {
-    this. _demoHomeCards$.next(cards);
-  }
+    setDemoHomeCards(cards: HomeCardSearchResult[]) {
+        this._demoHomeCards$.next(cards);
+    }
 
+    getDemoHomeCards$(): Observable<HomeCardSearchResult[]> {
+        return this._demoHomeCards$;
+    }
 
-  getDemoHomeCards$(): Observable<HomeCardSearchResult[]> {
-    return this._demoHomeCards$;
-
-  }
-
-
-
-
-  setHomeCards(cards: HomeCardSearchResult[]) {
+    setHomeCards(cards: HomeCardSearchResult[]) {
         this._homeCards$.next(cards);
     }
 

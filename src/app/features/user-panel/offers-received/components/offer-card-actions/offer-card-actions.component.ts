@@ -11,7 +11,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
-import {TranslateModule, TranslateService} from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SnackbarStatus } from '../../../../../shared/enums/snackbar-status.enum';
 import { OfferStatus } from '../../../../../shared/offer/enums/offer-status.enum';
 import { OfferFullWantedCard } from '../../../../../shared/offer/models/offer-full-wanted-card.model';
@@ -27,7 +27,13 @@ import { OfferDetailsModalComponent } from '../../../ui/offer-details-modal/offe
     templateUrl: './offer-card-actions.component.html',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatButtonModule, MatChipsModule, NgIf, GetIsConfirmButtonDisabledPipe, TranslateModule],
+    imports: [
+        MatButtonModule,
+        MatChipsModule,
+        NgIf,
+        GetIsConfirmButtonDisabledPipe,
+        TranslateModule,
+    ],
 })
 export class OfferCardActionsComponent implements OnInit {
     private readonly _dialog = inject(MatDialog);

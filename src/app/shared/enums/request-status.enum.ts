@@ -1,6 +1,6 @@
 export enum RequestStatus {
-  initial = "Initial",
-  success = "Success",
-  loading = "Loading",
-  error = "Error",
+    initial = 'Initial',
+    success = 'Success',
+    loading = 'Loading',
+    error = 'Error',
 }

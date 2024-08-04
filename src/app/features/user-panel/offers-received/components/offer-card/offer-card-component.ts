@@ -59,6 +59,7 @@ export class OfferCardComponent implements OnInit {
     arrayOfCardsToDisplay$!: Observable<UserCard[]>;
     badgeValue$!: Observable<string>;
     isMobile: boolean = false;
+    isBadgeVisible$!: Observable<boolean>;
 
     ngOnInit(): void {
         this.currentBreakpoints = this._breakpointService.currentBreakpoints;
@@ -78,6 +79,12 @@ export class OfferCardComponent implements OnInit {
             })
         );
 
+        this.isBadgeVisible$ = this.limitOfCardsToDisplay$.pipe(
+            map((cardsToDisplay) => {
+                return this.offer.userCards.length > cardsToDisplay;
+            })
+        );
+
         this.arrayOfCardsToDisplay$ = this.limitOfCardsToDisplay$.pipe(
             map((limit) => this.offer.userCards.slice(0, limit))
         );
@@ -88,11 +95,11 @@ export class OfferCardComponent implements OnInit {
     }
 
     openWantedCardDetailDialog(): void {
-        let dialogRef = this._dialog.open(OfferWantedCardModalComponent, {
+        const dialogRef = this._dialog.open(OfferWantedCardModalComponent, {
             height: this.isMobile ? '90%' : undefined,
             minWidth: '375px',
         });
-        let instance = dialogRef.componentInstance;
+        const instance = dialogRef.componentInstance;
         instance.cardAdInfo = fromUserCardToAdCardInfo(this.offer.wantedUserCard);
     }
 

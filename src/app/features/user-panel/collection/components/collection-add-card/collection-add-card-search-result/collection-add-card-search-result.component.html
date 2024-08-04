@@ -20,12 +20,14 @@
             <p class="text-sm">{{ card.artist | translate }}</p>
         </div>
         <div class="flex w-full items-center gap-2 sm:w-44">
-            <mat-form-field class="mt-2 h-[40px] w-1/2" appearance="outline">
+            <mat-form-field class="dense-3 mt-2 h-[40px] w-1/2" appearance="outline">
                 <mat-select [(value)]="selectedNumberOfItems" placeholder="0" #selectValue>
                     <mat-option>0</mat-option>
-                    <mat-option *ngFor="let number of numberOfItems" [value]="number">{{
-                        number
-                    }}</mat-option>
+                    <mat-option
+                        *ngFor="let number of numberOfItems; trackBy: trackByItem"
+                        [value]="number"
+                        >{{ number }}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
 

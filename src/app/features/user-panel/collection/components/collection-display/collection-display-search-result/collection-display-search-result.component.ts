@@ -38,7 +38,7 @@ import { GetUserCardNamePipe } from '../../../shared/pipes/get-user-card-name.pi
 export class CollectionDisplaySearchResultComponent {
     @Input({ required: true }) card!: UserCard;
     @Input() selection!: SelectionModel<UserCard>;
-    @Input() hasRemoveButton: Boolean = true;
+    @Input() hasRemoveButton: boolean = true;
     @Output() updateSelection = new EventEmitter<UserCard[]>();
     @Output() cardToRemove = new EventEmitter<number>();
 

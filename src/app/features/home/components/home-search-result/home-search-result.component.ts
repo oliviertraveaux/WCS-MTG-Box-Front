@@ -1,6 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     DestroyRef,
@@ -50,7 +51,7 @@ import { HomeCardSearchResult, UserCardOnMarket } from '../../models/home-search
     styleUrls: ['./home-search-result.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeSearchResultComponent implements OnInit {
+export class HomeSearchResultComponent implements OnInit, AfterViewInit {
     @Input() resultCard!: HomeCardSearchResult;
     @Input() isFrenchSearch: boolean = false;
 
@@ -87,10 +88,5 @@ export class HomeSearchResultComponent implements OnInit {
         } else {
             this._liveAnnouncer.announce('Sorting cleared');
         }
-    }
-
-    //TODO add Redirection to Announce
-    navigateToAnnounce(userCardId: number) {
-
     }
 }

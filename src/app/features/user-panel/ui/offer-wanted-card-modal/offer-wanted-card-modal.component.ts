@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {ChangeDetectionStrategy, Component, inject, Input} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
@@ -25,8 +25,7 @@ import { CardAdOfferMobileComponent } from '../../../transaction/offer/component
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OfferWantedCardModalComponent {
-
-  private readonly dialogRef = inject( MatDialogRef<OfferWantedCardModalComponent>)
+    private readonly dialogRef = inject(MatDialogRef<OfferWantedCardModalComponent>);
 
     @Input() cardAdInfo!: CardAdInfo;
 

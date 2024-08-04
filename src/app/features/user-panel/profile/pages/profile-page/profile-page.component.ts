@@ -29,8 +29,8 @@ import { franceDepartments } from '../../../../auth/shared/departments-utils';
 import { LoginService } from '../../../../auth/shared/services/login.service';
 import { ReconnectUserService } from '../../../../auth/shared/services/reconnect-user.service';
 import { RegisterService } from '../../../../auth/shared/services/register.service';
-import { ModalDeleteUser } from '../../modal/modal-delete-user/modal-delete-user.component';
-import { ModalModifypassword } from '../../modal/modal-modify-password/modal-modify-password.component';
+import { ModalDeleteUserComponent } from '../../modal/modal-delete-user/modal-delete-user.component';
+import { ModalModifypasswordComponent } from '../../modal/modal-modify-password/modal-modify-password.component';
 import { UserForm } from '../../shared/model/user-form-group.model';
 import { UserInfosService } from '../../shared/services/user-infos.service';
 
@@ -116,13 +116,13 @@ export class ProfilePageComponent implements OnInit {
     }
 
     openModifyPasswordDialog() {
-        this._dialog.open(ModalModifypassword, {
+        this._dialog.open(ModalModifypasswordComponent, {
             width: '600px',
         });
     }
 
     openDeleteUserDialog() {
-        this._dialog.open(ModalDeleteUser, {
+        this._dialog.open(ModalDeleteUserComponent, {
             width: '600px',
         });
     }

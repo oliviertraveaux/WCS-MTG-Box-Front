@@ -5,24 +5,24 @@ import { ENVIRONMENT } from '../../../../backend-endpoints';
 import { UserCard } from '../models/user-card.model';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class CollectionCardsRepository {
-  private http = inject(HttpClient);
-  apiCollectionCardsUrl: string = ENVIRONMENT.apiCollectionCardsConfigurationURL;
+    private http = inject(HttpClient);
+    apiCollectionCardsUrl: string = ENVIRONMENT.apiCollectionCardsConfigurationURL;
 
-  public getCards(userId: number): Observable<UserCard[]> {
-    const url = `${this.apiCollectionCardsUrl}/user/${userId}`;
-    return this.http.get<UserCard[]>(url, { withCredentials: true });
-  }
+    public getCards(userId: number): Observable<UserCard[]> {
+        const url = `${this.apiCollectionCardsUrl}/user/${userId}`;
+        return this.http.get<UserCard[]>(url, { withCredentials: true });
+    }
 
-  public deleteCard(userCardId: number | undefined): Observable<any> {
-    const url = `${this.apiCollectionCardsUrl}/usercard/${userCardId}`;
-    return this.http.delete(url, { withCredentials: true });
-  }
+    public deleteCard(userCardId: number | undefined): Observable<any> {
+        const url = `${this.apiCollectionCardsUrl}/usercard/${userCardId}`;
+        return this.http.delete(url, { withCredentials: true });
+    }
 
-  public deleteCards(userCardsIds: number[]): Observable<void> {
-    const url = `${this.apiCollectionCardsUrl}/usercards`;
-    return this.http.delete<void>(url, { body: userCardsIds, withCredentials: true });
-  }
+    public deleteCards(userCardsIds: number[]): Observable<void> {
+        const url = `${this.apiCollectionCardsUrl}/usercards`;
+        return this.http.delete<void>(url, { body: userCardsIds, withCredentials: true });
+    }
 }
