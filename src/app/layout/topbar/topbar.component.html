@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <div class="flex w-full items-center justify-between px-2 sm:px-16">
-        <a routerLink="home" class="text-xl">{{ 'Topbar.title' | translate }}</a>
+        <a routerLink="home" class="mtg-box-logo text-xl">{{ 'Topbar.title' | translate }}</a>
         <div class="flex items-center justify-end gap-4">
             <a *ngIf="!isLoggedIn()" class="text-xl" routerLink="login">{{
                 'Topbar.login' | translate

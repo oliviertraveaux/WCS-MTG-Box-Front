@@ -77,7 +77,7 @@
     }
   },
   "Topbar": {
-    "title": "MTGBox",
+    "title": "MTG Box",
     "add": "Ajouter",
     "manage-card" : "Gérer mes cartes",
     "logout": "Déconnexion",
